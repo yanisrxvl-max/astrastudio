@@ -6,3 +6,6 @@ data/*.tmp
 data/*.sqlite
 data/*.sqlite-shm
 data/*.sqlite-wal
+tmp-*.png
+tmp_*.txt
+2026 - 4 Décembre - v4 2.pdf

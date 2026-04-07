@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Espace élève | Astra Studio</title>
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="theme-color" content="#050608" />
+    <link rel="icon" type="image/png" href="/assets/branding/astra-studio-logo.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,500;6..96,700&amp;family=Sora:wght@300;400;500;600;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/css/base.css" />
+    <link rel="stylesheet" href="/css/components.css" />
+    <link rel="stylesheet" href="/css/pages.css" />
+    <script defer src="/js/learn-auth.js"></script>
+  </head>
+  <body class="learn-body" data-page="learn-auth">
+    <main class="learn-shell">
+      <section class="container learn-auth-grid">
+        <div class="learn-auth-copy reveal is-visible">
+          <a class="brand" href="/index.html" aria-label="Astra Studio">
+            <img
+              class="brand-logo"
+              src="/assets/branding/astra-studio-logo.png"
+              alt="Astra Studio"
+              width="500"
+              height="500"
+            />
+          </a>
+          <span class="kicker">Espace élève Astra Studio</span>
+          <h1 class="display-title">Accédez à vos formations premium.</h1>
+          <p class="subhead">
+            Connectez-vous pour reprendre vos modules, suivre votre progression et soumettre vos
+            exercices dans un espace structuré.
+          </p>
+          <div class="learn-auth-points">
+            <article class="panel">
+              <h2>Parcours clair</h2>
+              <p>Retrouvez immédiatement vos formations achetées et votre prochaine leçon.</p>
+            </article>
+            <article class="panel">
+              <h2>Suivi réel</h2>
+              <p>Progression, devoirs, retours et ressources centralisés dans un cockpit premium.</p>
+            </article>
+          </div>
+        </div>
+
+        <div class="panel learn-auth-panel reveal is-visible" style="--reveal-delay: 0.08s">
+          <div class="learn-auth-tabs" role="tablist" aria-label="Connexion ou inscription">
+            <button type="button" class="learn-tab is-active" data-auth-tab="login">Connexion</button>
+            <button type="button" class="learn-tab" data-auth-tab="signup">Inscription</button>
+            <button type="button" class="learn-tab" data-auth-tab="forgot">Mot de passe</button>
+          </div>
+
+          <p class="form-feedback" data-auth-feedback role="status" aria-live="polite"></p>
+
+          <form class="learn-form" data-auth-form="login" novalidate>
+            <label class="field-wrap">
+              <span>E-mail</span>
+              <input type="email" name="email" autocomplete="email" required />
+            </label>
+            <label class="field-wrap">
+              <span>Mot de passe</span>
+              <input type="password" name="password" autocomplete="current-password" required />
+            </label>
+            <button type="submit" class="button button-primary">Se connecter</button>
+          </form>
+
+          <form class="learn-form is-hidden" data-auth-form="signup" novalidate>
+            <label class="field-wrap">
+              <span>Nom complet</span>
+              <input type="text" name="full_name" autocomplete="name" required minlength="2" />
+            </label>
+            <label class="field-wrap">
+              <span>E-mail</span>
+              <input type="email" name="email" autocomplete="email" required />
+            </label>
+            <label class="field-wrap">
+              <span>Mot de passe</span>
+              <input type="password" name="password" autocomplete="new-password" required minlength="8" />
+            </label>
+            <button type="submit" class="button button-primary">Créer mon compte élève</button>
+          </form>
+
+          <form class="learn-form is-hidden" data-auth-form="forgot" novalidate>
+            <label class="field-wrap">
+              <span>E-mail de connexion</span>
+              <input type="email" name="email" autocomplete="email" required />
+            </label>
+            <button type="submit" class="button button-secondary">Recevoir le lien</button>
+          </form>
+
+          <form class="learn-form is-hidden" data-auth-form="reset" novalidate>
+            <label class="field-wrap">
+              <span>Nouveau mot de passe</span>
+              <input type="password" name="password" autocomplete="new-password" required minlength="8" />
+            </label>
+            <button type="submit" class="button button-primary">Mettre à jour le mot de passe</button>
+          </form>
+
+          <p class="learn-auth-note">
+            Analyse de sécurité et gestion des sessions côté serveur uniquement. Aucun secret n’est
+            exposé côté client.
+          </p>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

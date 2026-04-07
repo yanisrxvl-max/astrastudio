@@ -1,0 +1,69 @@
+<svg width="1600" height="1200" viewBox="0 0 1600 1200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="1200" fill="#06070A"/>
+  <circle cx="1264" cy="210" r="230" fill="url(#paint0_radial)"/>
+  <circle cx="324" cy="988" r="304" fill="url(#paint1_radial)"/>
+  <rect x="96" y="90" width="1408" height="1020" rx="44" fill="url(#paint2_linear)" stroke="rgba(255,255,255,0.08)" stroke-opacity="0.34"/>
+  <rect x="158" y="152" width="548" height="896" rx="32" fill="url(#paint3_linear)" stroke="rgba(255,255,255,0.08)" stroke-opacity="0.2"/>
+  <rect x="770" y="152" width="676" height="896" rx="32" fill="url(#paint4_linear)" stroke="rgba(255,255,255,0.08)" stroke-opacity="0.2"/>
+  <circle cx="432" cy="492" r="184" fill="url(#paint5_radial)"/>
+  <circle cx="432" cy="492" r="240" stroke="url(#paint6_linear)" stroke-opacity="0.35"/>
+  <path d="M846 314H1212" stroke="url(#paint7_linear)" stroke-width="2"/>
+  <path d="M846 776H1300" stroke="url(#paint8_linear)" stroke-width="2"/>
+  <path d="M846 836H1244" stroke="url(#paint9_linear)" stroke-width="2"/>
+  <path d="M846 896H1160" stroke="url(#paint10_linear)" stroke-width="2"/>
+  <text x="842" y="418" fill="#E2C28E" font-size="24" font-family="Arial, sans-serif" letter-spacing="10">FOUNDER VISION</text>
+  <text x="842" y="534" fill="#F4EFE6" font-size="104" font-family="Georgia, serif" letter-spacing="-4">Je me lance</text>
+  <text x="842" y="632" fill="#F4EFE6" font-size="104" font-family="Georgia, serif" letter-spacing="-4">avec vous.</text>
+  <text x="842" y="726" fill="#D7D0C3" font-size="28" font-family="Arial, sans-serif">
+    Structure, content direction and 360 presence for ambitious brands.
+  </text>
+  <text x="262" y="872" fill="#F4EFE6" font-size="80" font-family="Georgia, serif" letter-spacing="-3">Astra</text>
+  <text x="262" y="942" fill="#E2C28E" font-size="22" font-family="Arial, sans-serif" letter-spacing="9">STUDIO</text>
+  <defs>
+    <radialGradient id="paint0_radial" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1264 210) rotate(90) scale(230)">
+      <stop stop-color="#8EA8C2" stop-opacity="0.2"/>
+      <stop offset="1" stop-color="#8EA8C2" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="paint1_radial" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(324 988) rotate(90) scale(304)">
+      <stop stop-color="#C8A76A" stop-opacity="0.16"/>
+      <stop offset="1" stop-color="#C8A76A" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="paint2_linear" x1="96" y1="90" x2="1504" y2="1110" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#10141A"/>
+      <stop offset="1" stop-color="#080A0E"/>
+    </linearGradient>
+    <linearGradient id="paint3_linear" x1="158" y1="152" x2="706" y2="1048" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#141821"/>
+      <stop offset="1" stop-color="#090B10"/>
+    </linearGradient>
+    <linearGradient id="paint4_linear" x1="770" y1="152" x2="1446" y2="1048" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#151922"/>
+      <stop offset="1" stop-color="#0A0C10"/>
+    </linearGradient>
+    <radialGradient id="paint5_radial" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(432 492) rotate(90) scale(184)">
+      <stop stop-color="#F5EFE5"/>
+      <stop offset="0.42" stop-color="#D8B372"/>
+      <stop offset="1" stop-color="#D8B372" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="paint6_linear" x1="192" y1="252" x2="672" y2="732" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#E2C28E"/>
+      <stop offset="1" stop-color="#8EA8C2"/>
+    </linearGradient>
+    <linearGradient id="paint7_linear" x1="846" y1="314" x2="1212" y2="314" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F4EFE6"/>
+      <stop offset="1" stop-color="#F4EFE6" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="paint8_linear" x1="846" y1="776" x2="1300" y2="776" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#E2C28E"/>
+      <stop offset="1" stop-color="#E2C28E" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="paint9_linear" x1="846" y1="836" x2="1244" y2="836" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#8EA8C2"/>
+      <stop offset="1" stop-color="#8EA8C2" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="paint10_linear" x1="846" y1="896" x2="1160" y2="896" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F4EFE6"/>
+      <stop offset="1" stop-color="#F4EFE6" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+</svg>

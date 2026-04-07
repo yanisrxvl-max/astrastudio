@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Cockpit | Astra Studio</title>
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="theme-color" content="#050608" />
+    <link rel="icon" type="image/png" href="/assets/branding/astra-studio-logo.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,500;6..96,700&amp;family=Sora:wght@300;400;500;600;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/css/base.css" />
+    <link rel="stylesheet" href="/css/components.css" />
+    <link rel="stylesheet" href="/css/admin.css" />
+    <script defer src="/js/admin.js"></script>
+  </head>
+  <body class="admin-body">
+    <div class="admin-app">
+      <aside class="admin-sidebar panel">
+        <div class="admin-sidebar-brand">
+          <img
+            class="brand-logo"
+            src="/assets/branding/astra-studio-logo.png"
+            alt="Astra Studio"
+            width="500"
+            height="500"
+          />
+          <div>
+            <span class="kicker">Astra Studio</span>
+            <h1 class="admin-sidebar-title">Cockpit interne</h1>
+          </div>
+        </div>
+
+        <nav class="admin-sidebar-nav" aria-label="Navigation admin">
+          <button type="button" class="admin-nav-link is-active" data-admin-section-target="dashboard">Dashboard</button>
+          <button type="button" class="admin-nav-link" data-admin-section-target="leads">Leads</button>
+          <button type="button" class="admin-nav-link" data-admin-section-target="clients">Clients</button>
+          <button type="button" class="admin-nav-link" data-admin-section-target="projects">Projets</button>
+          <button type="button" class="admin-nav-link" data-admin-section-target="documents">Documents</button>
+          <button type="button" class="admin-nav-link" data-admin-section-target="media">Médias</button>
+          <button type="button" class="admin-nav-link" data-admin-section-target="resources">Ressources</button>
+          <button type="button" class="admin-nav-link" data-admin-section-target="settings">Paramètres</button>
+          <a class="admin-nav-link" href="/admin/academy">Formations (LMS)</a>
+        </nav>
+
+        <div class="admin-sidebar-note">
+          <span class="kicker">Usage quotidien</span>
+          <p>Un espace pensé pour piloter les leads, les clients, les projets, les assets et l’organisation du studio.</p>
+        </div>
+      </aside>
+
+      <main class="admin-main">
+        <header class="admin-header panel">
+          <div>
+            <span class="kicker" data-admin-section-kicker>Dashboard</span>
+            <h2 class="admin-header-title" data-admin-section-title>Vue d’ensemble</h2>
+            <p class="admin-header-copy" data-admin-section-description>
+              Une lecture claire de l’activité du studio, des demandes aux projets en cours.
+            </p>
+          </div>
+
+          <div class="admin-header-actions">
+            <button class="button button-secondary" type="button" data-admin-global-refresh>Actualiser</button>
+            <button class="button button-secondary" type="button" data-admin-logout>Se déconnecter</button>
+          </div>
+        </header>
+
+        <div class="admin-feedback-wrap">
+          <p class="form-feedback admin-app-feedback" data-admin-app-feedback role="status" aria-live="polite"></p>
+        </div>
+
+        <section class="admin-view" data-admin-view></section>
+      </main>
+    </div>
+  </body>
+</html>

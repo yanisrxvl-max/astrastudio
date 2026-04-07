@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard élève | Astra Studio</title>
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="theme-color" content="#050608" />
+    <link rel="icon" type="image/png" href="/assets/branding/astra-studio-logo.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,500;6..96,700&amp;family=Sora:wght@300;400;500;600;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/css/base.css" />
+    <link rel="stylesheet" href="/css/components.css" />
+    <link rel="stylesheet" href="/css/pages.css" />
+    <script defer src="/js/learn-dashboard.js"></script>
+  </head>
+  <body class="learn-body" data-page="learn-dashboard">
+    <header class="learn-topbar panel">
+      <a class="brand" href="/index.html" aria-label="Astra Studio">
+        <img
+          class="brand-logo"
+          src="/assets/branding/astra-studio-logo.png"
+          alt="Astra Studio"
+          width="500"
+          height="500"
+        />
+      </a>
+      <nav class="learn-topbar-nav" aria-label="Navigation élève">
+        <a href="/formations.html">Catalogue</a>
+        <a href="/learn/dashboard" aria-current="page">Dashboard</a>
+      </nav>
+      <div class="learn-topbar-actions">
+        <button type="button" class="button button-secondary" data-student-refresh>Actualiser</button>
+        <button type="button" class="button button-secondary" data-student-logout>Déconnexion</button>
+      </div>
+    </header>
+
+    <main class="learn-main container">
+      <section class="learn-hero panel">
+        <span class="kicker">Espace formations</span>
+        <h1 class="display-title" data-dashboard-title>Bienvenue dans votre espace Astra Studio.</h1>
+        <p class="subhead">
+          Suivez votre progression, reprenez vos modules et pilotez vos rendus depuis un seul cockpit.
+        </p>
+        <p class="form-feedback" data-dashboard-feedback role="status" aria-live="polite"></p>
+      </section>
+
+      <section class="learn-metrics-grid" data-dashboard-metrics></section>
+
+      <section class="learn-courses-stack">
+        <div class="section-header split">
+          <div class="stack">
+            <span class="kicker">Mes formations</span>
+            <h2 class="section-title">Vos programmes actifs</h2>
+          </div>
+          <a class="button button-secondary" href="/formations.html">Voir le catalogue complet</a>
+        </div>
+        <div class="learn-courses-grid" data-dashboard-courses></div>
+      </section>
+    </main>
+  </body>
+</html>

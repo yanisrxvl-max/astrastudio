@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Connexion Admin | Astra Studio</title>
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="theme-color" content="#050608" />
+    <link rel="icon" type="image/png" href="/assets/branding/astra-studio-logo.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,500;6..96,700&amp;family=Sora:wght@300;400;500;600;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/css/base.css" />
+    <link rel="stylesheet" href="/css/components.css" />
+    <link rel="stylesheet" href="/css/admin.css" />
+    <script defer src="/js/admin-login.js"></script>
+  </head>
+  <body class="admin-body admin-login-body">
+    <main class="admin-login-shell">
+      <section class="admin-login-card panel">
+        <img
+          class="brand-logo"
+          src="/assets/branding/astra-studio-logo.png"
+          alt="Astra Studio"
+          width="500"
+          height="500"
+        />
+        <span class="kicker">Astra Studio</span>
+        <h1 class="admin-title">Connexion à l’espace interne</h1>
+        <p class="admin-login-copy">
+          Accédez au cockpit interne pour suivre les leads, les clients, les projets, les documents et les ressources du studio.
+        </p>
+
+        <form class="admin-login-form" data-admin-login-form>
+          <label class="admin-filter-field">
+            <span>Identifiant</span>
+            <input type="text" name="username" autocomplete="username" required />
+          </label>
+          <label class="admin-filter-field">
+            <span>Mot de passe</span>
+            <input type="password" name="password" autocomplete="current-password" required />
+          </label>
+          <button class="button button-primary" type="submit">Entrer dans l’admin</button>
+          <p class="form-feedback" data-admin-login-feedback role="status" aria-live="polite"></p>
+        </form>
+      </section>
+    </main>
+  </body>
+</html>

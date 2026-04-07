@@ -1,0 +1,27 @@
+<svg width="680" height="240" viewBox="0 0 680 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <text
+    x="340"
+    y="118"
+    text-anchor="middle"
+    fill="#E7C78F"
+    font-size="76"
+    font-family="Georgia, 'Times New Roman', serif"
+    letter-spacing="-1.8"
+  >
+    Snack Me
+  </text>
+  <text
+    x="340"
+    y="166"
+    text-anchor="middle"
+    fill="#F4EEE2"
+    fill-opacity="0.78"
+    font-size="18"
+    font-family="Arial, Helvetica, sans-serif"
+    letter-spacing="8"
+  >
+    CHOCOLAT ARTISANAL
+  </text>
+  <path d="M158 148H250" stroke="#E7C78F" stroke-opacity="0.58" stroke-width="1.4" />
+  <path d="M430 148H522" stroke="#E7C78F" stroke-opacity="0.58" stroke-width="1.4" />
+</svg>

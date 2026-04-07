@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Formation | Astra Studio</title>
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="theme-color" content="#050608" />
+    <link rel="icon" type="image/png" href="/assets/branding/astra-studio-logo.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,500;6..96,700&amp;family=Sora:wght@300;400;500;600;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/css/base.css" />
+    <link rel="stylesheet" href="/css/components.css" />
+    <link rel="stylesheet" href="/css/pages.css" />
+    <script defer src="/js/learn-course.js"></script>
+  </head>
+  <body class="learn-body" data-page="learn-course">
+    <header class="learn-topbar panel">
+      <a class="brand" href="/index.html" aria-label="Astra Studio">
+        <img
+          class="brand-logo"
+          src="/assets/branding/astra-studio-logo.png"
+          alt="Astra Studio"
+          width="500"
+          height="500"
+        />
+      </a>
+      <nav class="learn-topbar-nav" aria-label="Navigation élève">
+        <a href="/learn/dashboard">Dashboard</a>
+        <a href="/formations.html">Catalogue</a>
+      </nav>
+      <div class="learn-topbar-actions">
+        <button type="button" class="button button-secondary" data-course-back>Retour dashboard</button>
+      </div>
+    </header>
+
+    <main class="learn-main container">
+      <section class="learn-course-hero panel">
+        <div>
+          <span class="kicker">Programme élève</span>
+          <h1 class="display-title" data-course-title>Chargement de la formation...</h1>
+          <p class="subhead" data-course-subtitle>
+            Un instant, nous préparons votre parcours, vos modules et votre prochaine étape.
+          </p>
+        </div>
+        <div class="learn-progress-wrap">
+          <div class="learn-progress-label">
+            <span>Progression globale</span>
+            <strong data-course-progress-label>0%</strong>
+          </div>
+          <div class="diagnostic-progress-bar"><span data-course-progress-bar style="width: 0%"></span></div>
+        </div>
+      </section>
+
+      <p class="form-feedback" data-course-feedback role="status" aria-live="polite"></p>
+
+      <section class="learn-course-layout">
+        <aside class="panel learn-course-sidebar" data-course-modules></aside>
+
+        <div class="learn-course-main-stack">
+          <article class="panel learn-lesson-panel">
+            <span class="meta-label" data-lesson-meta>Leçon</span>
+            <h2 class="section-title" data-lesson-title>Sélectionnez une leçon</h2>
+            <p class="subhead" data-lesson-content>
+              Choisissez une leçon dans la colonne de gauche pour afficher son contenu.
+            </p>
+            <div class="learn-lesson-actions">
+              <button type="button" class="button button-primary" data-mark-complete disabled>
+                Marquer comme terminée
+              </button>
+            </div>
+          </article>
+
+          <article class="panel learn-assignment-panel">
+            <div class="learn-assignment-head">
+              <div>
+                <span class="kicker">Devoir de la leçon</span>
+                <h3 class="card-title">Soumettre votre travail</h3>
+              </div>
+              <span class="status-pill" data-assignment-status>En attente</span>
+            </div>
+
+            <p class="subhead" data-assignment-prompt>
+              Le brief du devoir apparaîtra ici dès qu’une leçon est sélectionnée.
+            </p>
+
+            <form data-assignment-form class="learn-assignment-form" novalidate>
+              <input type="hidden" name="lesson_id" data-assignment-lesson-id />
+              <label class="field-wrap">
+                <span>Votre réponse</span>
+                <textarea
+                  name="text_response"
+                  rows="5"
+                  placeholder="Décrivez votre travail, vos décisions et vos points de progression."
+                  required
+                  minlength="10"
+                ></textarea>
+              </label>
+              <label class="field-wrap">
+                <span>Captures / fichiers (optionnel)</span>
+                <input type="file" name="attachments" multiple />
+              </label>
+              <button type="submit" class="button button-secondary">Envoyer le devoir</button>
+            </form>
+          </article>
+
+          <article class="panel">
+            <div class="learn-assignment-head">
+              <div>
+                <span class="kicker">Historique</span>
+                <h3 class="card-title">Vos remises</h3>
+              </div>
+            </div>
+            <div class="learn-submissions-list" data-submissions-list></div>
+          </article>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

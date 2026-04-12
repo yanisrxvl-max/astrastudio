@@ -1,5 +1,10 @@
 const feedbackNode = document.querySelector("[data-formations-feedback]");
 const buyButtons = Array.from(document.querySelectorAll("[data-course-buy]"));
+let autoLaunchHandled = false;
+
+function getUrlParams() {
+  return new URLSearchParams(window.location.search);
+}
 
 function setFeedback(message, type = "") {
   if (!feedbackNode) {
@@ -44,9 +49,8 @@ async function handleBuy(courseSlug, button) {
   const session = await requestApi("/api/student/session");
 
   if (!session.authenticated) {
-    const nextTarget = encodeURIComponent("/formations.html");
-    const course = encodeURIComponent(courseSlug);
-    window.location.href = `/learn/login?mode=login&next=${nextTarget}&course=${course}`;
+    const nextTarget = encodeURIComponent(`/formations.html?buy=${encodeURIComponent(courseSlug)}`);
+    window.location.href = `/learn/login?mode=login&next=${nextTarget}`;
     return;
   }
 
@@ -84,6 +88,29 @@ async function handleBuy(courseSlug, button) {
   window.location.href = checkout.checkout_url;
 }
 
+async function bootstrapAutoBuy() {
+  const params = getUrlParams();
+  const courseSlug = params.get("buy") || "";
+
+  if (!courseSlug || autoLaunchHandled) {
+    return;
+  }
+
+  autoLaunchHandled = true;
+  const matchingButton = buyButtons.find((button) => button.dataset.courseBuy === courseSlug) || null;
+
+  setFeedback("Préparation de votre accès formation…", "success");
+  setButtonLoading(matchingButton, true);
+
+  try {
+    await handleBuy(courseSlug, matchingButton);
+  } catch (error) {
+    setFeedback(error.message || "Impossible d’ouvrir cette formation pour le moment.", "error");
+  } finally {
+    setButtonLoading(matchingButton, false);
+  }
+}
+
 buyButtons.forEach((button) => {
   button.addEventListener("click", () => {
     const courseSlug = button.dataset.courseBuy;
@@ -101,3 +128,5 @@ buyButtons.forEach((button) => {
     });
   });
 });
+
+bootstrapAutoBuy();

@@ -29,6 +29,12 @@ const sectionMeta = {
     description:
       "Une lecture rapide des demandes, du pipeline, des clients actifs et des projets à surveiller.",
   },
+  objectives: {
+    kicker: "Trajectoire",
+    title: "Objectifs & plan d'action",
+    description:
+      "Une base chiffrée pour viser les premiers paliers de chiffre d'affaires, savoir quoi publier, quoi envoyer et quoi suivre chaque semaine.",
+  },
   leads: {
     kicker: "Pipeline",
     title: "Leads & demandes",
@@ -113,6 +119,7 @@ const state = {
   },
   data: {
     dashboard: null,
+    growthPlan: null,
     leads: [],
     leadSummary: null,
     leadDetail: null,
@@ -184,6 +191,16 @@ function formatCurrency(value) {
     currency: "EUR",
     maximumFractionDigits: 0,
   }).format(Number(value || 0));
+}
+
+function formatCount(value) {
+  return new Intl.NumberFormat("fr-FR", {
+    maximumFractionDigits: 0,
+  }).format(Number(value || 0));
+}
+
+function formatCurrencyRange(min, max) {
+  return `${formatCurrency(min)} → ${formatCurrency(max)}`;
 }
 
 function formatLeadStatus(status) {
@@ -334,6 +351,11 @@ async function loadLookups(force = false) {
 async function loadDashboard() {
   const payload = await apiRequest("/api/admin/dashboard");
   state.data.dashboard = payload.data;
+}
+
+async function loadGrowthPlan() {
+  const payload = await apiRequest("/api/admin/growth-plan");
+  state.data.growthPlan = payload.data;
 }
 
 async function loadLeads() {
@@ -615,6 +637,7 @@ function renderDashboardSection() {
           </div>
           <div class="admin-quick-links">
             ${renderQuickLink("leads", "Suivre les demandes", "Voir les nouveaux leads et changer leurs statuts.")}
+            ${renderQuickLink("objectives", "Voir la trajectoire", "Ouvrir le plan 12 mois, les cibles et la routine d'exécution.")}
             ${renderQuickLink("clients", "Ouvrir les clients", "Retrouver vite les infos, liens et notes utiles.")}
             ${renderQuickLink("projects", "Piloter les projets", "Vérifier l’avancement, les budgets et les deadlines.")}
             ${renderQuickLink("documents", "Ranger les documents", "Classer briefs, devis, contrats et factures.")}
@@ -648,6 +671,227 @@ function renderDashboardSection() {
         </section>
       </div>
     </div>
+  `;
+}
+
+function renderObjectivesSection() {
+  const plan = state.data.growthPlan;
+
+  if (!plan) {
+    adminView.innerHTML = renderEmptyState("Chargement du plan d'action…");
+    return;
+  }
+
+  adminView.innerHTML = `
+    <section class="admin-growth-hero panel">
+      <div class="admin-growth-copy">
+        <span class="kicker">Trajectoire 12 mois</span>
+        <h3>Le cap business recommandé pour rendre Astra Studio réellement rentable.</h3>
+        <p>
+          ${escapeHtml(plan.baseline.summary)} ${escapeHtml(plan.forecast_note)}
+        </p>
+        <div class="admin-tag-list">
+          ${renderPill(plan.baseline.stage, "is-attention")}
+          ${renderPill(plan.baseline.current_won_leads ? `${plan.baseline.current_won_leads} projet(s) gagné(s)` : "Aucune vente historique enregistrée")}
+          ${renderPill(plan.baseline.current_active_clients ? `${plan.baseline.current_active_clients} client(s) actif(s)` : "Base clients à construire")}
+          ${renderPill(
+            plan.baseline.current_pipeline_estimate
+              ? `Pipeline actuel : ${formatCurrency(plan.baseline.current_pipeline_estimate)}`
+              : "Pipeline commercial à construire"
+          )}
+        </div>
+      </div>
+
+      <div class="admin-growth-highlight-grid">
+        <article class="admin-growth-highlight">
+          <span class="kicker">Prochain focus</span>
+          <strong>${escapeHtml(plan.baseline.next_focus)}</strong>
+          <p>Le prochain levier à installer avant d'optimiser le reste.</p>
+        </article>
+        <article class="admin-growth-highlight">
+          <span class="kicker">Objectif de travail</span>
+          <strong>${escapeHtml(plan.north_star.working_goal)}</strong>
+          <p>Trajectoire centrale recommandée si l'exécution marketing est propre et régulière.</p>
+        </article>
+        <article class="admin-growth-highlight">
+          <span class="kicker">Année 1 cible</span>
+          <strong>${escapeHtml(formatCurrency(plan.north_star.target_year_one_revenue))}</strong>
+          <p>Cap de chiffre d'affaires annuel sur la trajectoire centrale.</p>
+        </article>
+        <article class="admin-growth-highlight">
+          <span class="kicker">Mois 12 cible</span>
+          <strong>${escapeHtml(formatCurrency(plan.north_star.target_month_twelve_revenue))}</strong>
+          <p>Run-rate visé si le système devient répétable.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="admin-panel panel">
+      <div class="admin-panel-head">
+        <div>
+          <span class="kicker">Scénarios</span>
+          <h3>Combien Astra Studio peut générer selon le niveau d'exécution</h3>
+        </div>
+      </div>
+      <div class="admin-scenario-grid">
+        ${plan.scenarios
+          .map(
+            (scenario) => `
+              <article class="admin-scenario-card">
+                <span class="kicker">${escapeHtml(scenario.title)}</span>
+                <strong>${escapeHtml(formatCurrencyRange(scenario.monthly_min, scenario.monthly_max))} / mois</strong>
+                <p>${escapeHtml(formatCurrencyRange(scenario.yearly_min, scenario.yearly_max))} / an</p>
+                <div class="admin-mini-list">
+                  <article class="admin-mini-card">
+                    <strong>Services</strong>
+                    <p>${escapeHtml(scenario.service_pace)}</p>
+                  </article>
+                  <article class="admin-mini-card">
+                    <strong>Formations</strong>
+                    <p>${escapeHtml(scenario.training_pace)}</p>
+                  </article>
+                </div>
+                <p>${escapeHtml(scenario.mix)}</p>
+                <span class="admin-scenario-note">${escapeHtml(scenario.notes)}</span>
+              </article>
+            `
+          )
+          .join("")}
+      </div>
+    </section>
+
+    <div class="admin-dashboard-grid">
+      <div class="admin-stack">
+        <section class="admin-panel panel">
+          <div class="admin-panel-head">
+            <div>
+              <span class="kicker">Cadence hebdo</span>
+              <h3>Ce que tu dois produire chaque semaine</h3>
+            </div>
+          </div>
+          <div class="admin-growth-action-grid">
+            ${plan.weekly_cadence
+              .map(
+                (block) => `
+                  <article class="admin-action-card">
+                    <span class="kicker">${escapeHtml(block.target)}</span>
+                    <h4>${escapeHtml(block.title)}</h4>
+                    <ul class="admin-check-list">
+                      ${block.items.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}
+                    </ul>
+                  </article>
+                `
+              )
+              .join("")}
+          </div>
+        </section>
+
+        <section class="admin-panel panel">
+          <div class="admin-panel-head">
+            <div>
+              <span class="kicker">Ce qu'il faut envoyer</span>
+              <h3>Le pipeline commercial à exécuter sans friction</h3>
+            </div>
+          </div>
+          <div class="admin-process-list">
+            ${plan.send_sequence
+              .map(
+                (step, index) => `
+                  <article class="admin-process-item">
+                    <div class="admin-process-index">${index + 1}</div>
+                    <div class="admin-process-copy">
+                      <strong>${escapeHtml(step.step)}</strong>
+                      <span>${escapeHtml(step.timing)}</span>
+                      <p>${escapeHtml(step.deliverable)}</p>
+                    </div>
+                  </article>
+                `
+              )
+              .join("")}
+          </div>
+        </section>
+      </div>
+
+      <div class="admin-stack">
+        <section class="admin-panel panel">
+          <div class="admin-panel-head">
+            <div>
+              <span class="kicker">Scorecard</span>
+              <h3>Les chiffres à regarder chaque semaine</h3>
+            </div>
+          </div>
+          <div class="admin-mini-list">
+            ${plan.scorecard
+              .map(
+                (item) => `
+                  <article class="admin-mini-card">
+                    <strong>${escapeHtml(item.label)}</strong>
+                    <p>${escapeHtml(item.target)}</p>
+                  </article>
+                `
+              )
+              .join("")}
+          </div>
+        </section>
+
+        <section class="admin-panel panel">
+          <div class="admin-panel-head">
+            <div>
+              <span class="kicker">Points de vigilance</span>
+              <h3>Ce qui peut casser la trajectoire</h3>
+            </div>
+          </div>
+          <ul class="admin-check-list">
+            ${plan.watchouts.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}
+          </ul>
+        </section>
+      </div>
+    </div>
+
+    <section class="admin-panel panel">
+      <div class="admin-panel-head">
+        <div>
+          <span class="kicker">Plan 12 mois</span>
+          <h3>Les cibles chiffrées à viser mois par mois</h3>
+        </div>
+      </div>
+      <div class="admin-table-wrap">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>Mois</th>
+              <th>CA cible</th>
+              <th>Visites qualifiées</th>
+              <th>Leads</th>
+              <th>Appels</th>
+              <th>Devis</th>
+              <th>Signatures</th>
+              <th>Ventes formation</th>
+              <th>Focus</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${plan.monthly_roadmap
+              .map(
+                (month) => `
+                  <tr>
+                    <td>${escapeHtml(month.month)}</td>
+                    <td>${escapeHtml(formatCurrency(month.revenue_target))}</td>
+                    <td>${escapeHtml(formatCount(month.traffic_target))}</td>
+                    <td>${escapeHtml(formatCount(month.leads_target))}</td>
+                    <td>${escapeHtml(formatCount(month.calls_target))}</td>
+                    <td>${escapeHtml(formatCount(month.quotes_target))}</td>
+                    <td>${escapeHtml(month.wins_target)}</td>
+                    <td>${escapeHtml(formatCount(month.course_sales_target))}</td>
+                    <td>${escapeHtml(month.focus)}</td>
+                  </tr>
+                `
+              )
+              .join("")}
+          </tbody>
+        </table>
+      </div>
+    </section>
   `;
 }
 
@@ -1789,6 +2033,9 @@ function renderSection() {
     case "dashboard":
       renderDashboardSection();
       break;
+    case "objectives":
+      renderObjectivesSection();
+      break;
     case "leads":
       renderLeadsSection();
       break;
@@ -1819,6 +2066,9 @@ async function loadCurrentSection(forceLookups = false) {
   switch (state.section) {
     case "dashboard":
       await loadDashboard();
+      break;
+    case "objectives":
+      await loadGrowthPlan();
       break;
     case "leads":
       await loadLeads();

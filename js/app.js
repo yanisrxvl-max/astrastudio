@@ -124,6 +124,7 @@ if (contactForm) {
   const sourceField = contactForm.querySelector("[data-contact-source]");
   const formShell = contactForm.closest(".contact-form-shell");
   const formFields = Array.from(contactForm.querySelectorAll("input, select, textarea"));
+  const projectTypeField = contactForm.querySelector("#project-type");
   const defaultSubmitLabel = submitButton ? submitButton.textContent : "";
   const isLocalTest =
     window.location.protocol === "file:" ||
@@ -172,6 +173,39 @@ if (contactForm) {
     sourceField.value = `Site Astra Studio • ${currentLocation || "contact.html"}`;
   };
 
+  const applyIntentPreset = () => {
+    const params = new URLSearchParams(window.location.search);
+    const intent = params.get("intent");
+
+    if (!intent || !projectTypeField || projectTypeField.value) {
+      return;
+    }
+
+    const intentMap = {
+      "systemes-ia": "Systèmes IA de marque",
+      "production-mobile": "Production mobile / matériel sur site",
+      agence: "Besoin à clarifier ensemble",
+      formation: "Besoin à clarifier ensemble",
+      "audit-premium": "Besoin à clarifier ensemble",
+      audit: "Besoin à clarifier ensemble",
+      "image-influence": "Dispositif image & influence",
+    };
+
+    const mappedValue = intentMap[intent];
+
+    if (!mappedValue) {
+      return;
+    }
+
+    const option = Array.from(projectTypeField.options).find(
+      (entry) => entry.textContent.trim() === mappedValue
+    );
+
+    if (option) {
+      projectTypeField.value = option.value || option.textContent.trim();
+    }
+  };
+
   const setSubmittingState = (isSubmitting) => {
     contactForm.classList.toggle("is-submitting", isSubmitting);
 
@@ -194,6 +228,7 @@ if (contactForm) {
   };
 
   setSourceValue();
+  applyIntentPreset();
 
   formFields.forEach((field) => {
     const clearCurrentField = () => {

@@ -37,12 +37,12 @@ const config = {
   leadsNotifyEmail: process.env.LEADS_NOTIFY_EMAIL || "",
   admin: {
     username: process.env.ADMIN_USERNAME || "admin",
-    password: process.env.ADMIN_PASSWORD || "change-me",
-    sessionSecret: process.env.ADMIN_SESSION_SECRET || "astra-studio-session-secret",
+    password: process.env.ADMIN_PASSWORD || "",
+    sessionSecret: process.env.ADMIN_SESSION_SECRET || require("crypto").randomBytes(32).toString("hex"),
     sessionTtlHours: parseInteger(process.env.ADMIN_SESSION_TTL_HOURS, 168),
   },
   student: {
-    sessionSecret: process.env.STUDENT_SESSION_SECRET || "astra-student-session-secret",
+    sessionSecret: process.env.STUDENT_SESSION_SECRET || require("crypto").randomBytes(32).toString("hex"),
     sessionTtlHours: parseInteger(process.env.STUDENT_SESSION_TTL_HOURS, 720),
     passwordResetTtlMinutes: parseInteger(process.env.PASSWORD_RESET_TTL_MINUTES, 60),
     allowDevFakeCheckout: parseBoolean(

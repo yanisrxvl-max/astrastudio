@@ -27,6 +27,15 @@
   --transition-fast: 200ms cubic-bezier(0.16, 1, 0.3, 1);
   --transition: 400ms cubic-bezier(0.16, 1, 0.3, 1);
   --transition-slow: 700ms cubic-bezier(0.16, 1, 0.3, 1);
+  --page-bg-base: #040507;
+  --page-atmosphere-a: radial-gradient(130% 95% at 14% 0%, rgba(200, 167, 106, 0.2), transparent 58%);
+  --page-atmosphere-b: radial-gradient(120% 90% at 86% 100%, rgba(142, 168, 194, 0.18), transparent 62%);
+  --page-atmosphere-c: radial-gradient(95% 78% at 52% 42%, rgba(26, 28, 34, 0.55), transparent 74%);
+  --page-overlay: linear-gradient(180deg, rgba(5, 6, 8, 0.84), rgba(5, 6, 8, 0.72));
+  --page-flow: conic-gradient(from 130deg at 70% 20%, rgba(200, 167, 106, 0.08), transparent 38%, rgba(118, 141, 165, 0.07), transparent 74%, rgba(200, 167, 106, 0.06));
+  --page-atmosphere-opacity: 0.86;
+  --hero-accent-warm: rgba(200, 167, 106, 0.12);
+  --hero-accent-cool: rgba(142, 168, 194, 0.1);
 }
 
 *,
@@ -47,21 +56,24 @@ body {
   font-family: var(--font-sans);
   line-height: 1.65;
   color: var(--text);
-  background: #040507;
+  background: var(--page-bg-base);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 body::before {
   content: "";
-  position: absolute;
-  inset: 0;
+  position: fixed;
+  inset: -12%;
   pointer-events: none;
   z-index: -2;
+  opacity: var(--page-atmosphere-opacity);
   background:
-    radial-gradient(ellipse 60% 80% at 20% 0%, rgba(200, 167, 106, 0.08), transparent 60%),
-    radial-gradient(ellipse 60% 80% at 80% 100%, rgba(142, 168, 194, 0.06), transparent 60%);
-  opacity: 0.8;
+    var(--page-atmosphere-a),
+    var(--page-atmosphere-b),
+    var(--page-atmosphere-c);
+  filter: saturate(1.06) contrast(1.03);
+  animation: astra-bg-drift 42s cubic-bezier(0.36, 0.05, 0.26, 0.97) infinite alternate;
 }
 
 body::after {
@@ -70,9 +82,135 @@ body::after {
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  opacity: 0.15;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-  mix-blend-mode: overlay;
+  opacity: 0.95;
+  background:
+    var(--page-overlay),
+    var(--page-flow),
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.18'/%3E%3C/svg%3E");
+  background-size: cover, 185% 185%, 170px 170px;
+  background-position: center, 14% 16%, 0 0;
+  background-repeat: no-repeat, no-repeat, repeat;
+  mix-blend-mode: normal;
+  animation: astra-bg-flow 52s cubic-bezier(0.4, 0.05, 0.22, 0.98) infinite alternate;
+}
+
+body[data-page="home"] {
+  --page-bg-base: #040507;
+  --page-atmosphere-a: radial-gradient(135% 90% at 18% 0%, rgba(200, 167, 106, 0.26), transparent 60%);
+  --page-atmosphere-b: radial-gradient(120% 88% at 90% 14%, rgba(98, 122, 150, 0.23), transparent 58%);
+  --page-atmosphere-c: radial-gradient(85% 90% at 50% 62%, rgba(20, 22, 29, 0.7), transparent 76%);
+  --page-overlay: linear-gradient(180deg, rgba(4, 5, 7, 0.82), rgba(4, 5, 7, 0.7));
+  --page-flow: conic-gradient(from 132deg at 72% 16%, rgba(200, 167, 106, 0.11), transparent 40%, rgba(118, 141, 165, 0.09), transparent 74%, rgba(200, 167, 106, 0.07));
+  --hero-accent-warm: rgba(220, 188, 136, 0.18);
+  --hero-accent-cool: rgba(142, 168, 194, 0.14);
+}
+
+body[data-page="vision"] {
+  --page-bg-base: #070504;
+  --page-atmosphere-a: radial-gradient(120% 96% at 15% 4%, rgba(145, 98, 61, 0.31), transparent 58%);
+  --page-atmosphere-b: radial-gradient(110% 90% at 84% 18%, rgba(92, 69, 52, 0.34), transparent 62%);
+  --page-atmosphere-c: conic-gradient(from 145deg at 62% 72%, rgba(33, 28, 24, 0.58), rgba(9, 10, 13, 0) 20%, rgba(92, 69, 52, 0.2) 44%, rgba(9, 10, 13, 0) 70%, rgba(120, 86, 58, 0.15) 100%);
+  --page-overlay: linear-gradient(180deg, rgba(7, 5, 4, 0.86), rgba(7, 5, 4, 0.73));
+  --page-flow: radial-gradient(130% 90% at 76% 30%, rgba(201, 169, 111, 0.1), transparent 64%);
+  --hero-accent-warm: rgba(201, 169, 111, 0.21);
+  --hero-accent-cool: rgba(126, 146, 164, 0.09);
+}
+
+body[data-page="services"] {
+  --page-bg-base: #06070a;
+  --page-atmosphere-a: radial-gradient(120% 90% at 12% 5%, rgba(120, 142, 166, 0.23), transparent 58%);
+  --page-atmosphere-b: radial-gradient(105% 84% at 86% 18%, rgba(198, 166, 107, 0.2), transparent 60%);
+  --page-atmosphere-c: repeating-linear-gradient(140deg, rgba(255, 255, 255, 0.018) 0 1px, transparent 1px 58px), radial-gradient(100% 90% at 50% 62%, rgba(16, 18, 24, 0.64), transparent 78%);
+  --page-overlay: linear-gradient(180deg, rgba(6, 7, 10, 0.86), rgba(6, 7, 10, 0.74));
+  --page-flow: linear-gradient(118deg, rgba(255, 255, 255, 0.024) 0%, rgba(255, 255, 255, 0) 24%, rgba(200, 167, 106, 0.09) 48%, rgba(255, 255, 255, 0) 72%, rgba(142, 168, 194, 0.08) 100%);
+  --hero-accent-warm: rgba(200, 167, 106, 0.17);
+  --hero-accent-cool: rgba(142, 168, 194, 0.17);
+}
+
+body[data-page="formations"] {
+  --page-bg-base: #080603;
+  --page-atmosphere-a: radial-gradient(125% 95% at 14% 8%, rgba(175, 129, 78, 0.3), transparent 56%);
+  --page-atmosphere-b: radial-gradient(108% 88% at 88% 14%, rgba(116, 87, 60, 0.27), transparent 60%);
+  --page-atmosphere-c: radial-gradient(92% 82% at 52% 74%, rgba(44, 35, 27, 0.62), transparent 78%);
+  --page-overlay: linear-gradient(180deg, rgba(8, 6, 3, 0.84), rgba(8, 6, 3, 0.71));
+  --page-flow: radial-gradient(118% 86% at 76% 30%, rgba(220, 187, 132, 0.13), transparent 62%), radial-gradient(96% 70% at 24% 70%, rgba(173, 126, 77, 0.1), transparent 66%);
+  --hero-accent-warm: rgba(218, 184, 130, 0.2);
+  --hero-accent-cool: rgba(142, 168, 194, 0.08);
+}
+
+body[data-page="work"] {
+  --page-bg-base: #040506;
+  --page-atmosphere-a: radial-gradient(128% 88% at 14% 4%, rgba(200, 167, 106, 0.18), transparent 56%);
+  --page-atmosphere-b: radial-gradient(95% 82% at 86% 18%, rgba(131, 151, 171, 0.18), transparent 60%);
+  --page-atmosphere-c: radial-gradient(85% 110% at 50% 78%, rgba(12, 14, 20, 0.78), transparent 78%);
+  --page-overlay: linear-gradient(180deg, rgba(4, 5, 6, 0.9), rgba(4, 5, 6, 0.76));
+  --page-flow: linear-gradient(138deg, rgba(255, 255, 255, 0.028) 0%, rgba(255, 255, 255, 0) 28%, rgba(200, 167, 106, 0.08) 56%, rgba(255, 255, 255, 0) 84%);
+  --hero-accent-warm: rgba(200, 167, 106, 0.16);
+  --hero-accent-cool: rgba(142, 168, 194, 0.11);
+}
+
+body[data-page="results"] {
+  --page-bg-base: #05070b;
+  --page-atmosphere-a: radial-gradient(122% 96% at 14% 8%, rgba(102, 132, 170, 0.28), transparent 58%);
+  --page-atmosphere-b: radial-gradient(110% 88% at 88% 14%, rgba(62, 84, 114, 0.33), transparent 62%);
+  --page-atmosphere-c: repeating-linear-gradient(132deg, rgba(123, 150, 180, 0.026) 0 1px, transparent 1px 54px), radial-gradient(90% 96% at 48% 74%, rgba(12, 16, 24, 0.72), transparent 78%);
+  --page-overlay: linear-gradient(180deg, rgba(5, 7, 11, 0.9), rgba(5, 7, 11, 0.78));
+  --page-flow: conic-gradient(from 160deg at 72% 26%, rgba(114, 149, 187, 0.15), transparent 38%, rgba(200, 167, 106, 0.08), transparent 68%, rgba(114, 149, 187, 0.12));
+  --hero-accent-warm: rgba(200, 167, 106, 0.12);
+  --hero-accent-cool: rgba(132, 162, 199, 0.2);
+}
+
+body[data-page="contact"] {
+  --page-bg-base: #060504;
+  --page-atmosphere-a: radial-gradient(124% 92% at 14% 8%, rgba(168, 126, 83, 0.25), transparent 58%);
+  --page-atmosphere-b: radial-gradient(108% 86% at 84% 16%, rgba(124, 92, 65, 0.23), transparent 62%);
+  --page-atmosphere-c: radial-gradient(95% 84% at 50% 74%, rgba(23, 19, 15, 0.64), transparent 78%);
+  --page-overlay: linear-gradient(180deg, rgba(6, 5, 4, 0.88), rgba(6, 5, 4, 0.76));
+  --page-flow: radial-gradient(120% 88% at 74% 28%, rgba(218, 184, 131, 0.1), transparent 66%);
+  --hero-accent-warm: rgba(210, 174, 119, 0.19);
+  --hero-accent-cool: rgba(142, 168, 194, 0.08);
+}
+
+body[data-surface="production"] {
+  --page-bg-base: #06070a;
+  --page-atmosphere-a: radial-gradient(122% 88% at 12% 8%, rgba(126, 145, 166, 0.26), transparent 56%);
+  --page-atmosphere-b: radial-gradient(104% 86% at 86% 14%, rgba(202, 170, 112, 0.24), transparent 58%);
+  --page-atmosphere-c: repeating-linear-gradient(135deg, rgba(255, 255, 255, 0.02) 0 1px, transparent 1px 52px), radial-gradient(90% 85% at 54% 70%, rgba(14, 17, 24, 0.68), transparent 80%);
+  --page-overlay: linear-gradient(180deg, rgba(6, 7, 10, 0.88), rgba(6, 7, 10, 0.75));
+  --page-flow: linear-gradient(118deg, rgba(255, 255, 255, 0.022) 0%, rgba(255, 255, 255, 0) 26%, rgba(200, 167, 106, 0.1) 52%, rgba(255, 255, 255, 0) 76%, rgba(142, 168, 194, 0.1) 100%);
+}
+
+body[data-surface="ai-systems"] {
+  --page-bg-base: #05060a;
+  --page-atmosphere-a: radial-gradient(124% 90% at 12% 10%, rgba(94, 117, 149, 0.28), transparent 56%);
+  --page-atmosphere-b: radial-gradient(106% 84% at 86% 12%, rgba(205, 171, 110, 0.22), transparent 60%);
+  --page-atmosphere-c: radial-gradient(88% 82% at 54% 72%, rgba(18, 20, 28, 0.72), transparent 80%);
+  --page-overlay: linear-gradient(180deg, rgba(5, 6, 10, 0.88), rgba(5, 6, 10, 0.76));
+  --page-flow: conic-gradient(from 154deg at 72% 24%, rgba(125, 154, 188, 0.13), transparent 38%, rgba(200, 167, 106, 0.08), transparent 68%, rgba(125, 154, 188, 0.11));
+}
+
+@keyframes astra-bg-drift {
+  0% {
+    transform: translate3d(-1.5%, -1%, 0) scale(1.03);
+  }
+  50% {
+    transform: translate3d(1.2%, 0.8%, 0) scale(1.045);
+  }
+  100% {
+    transform: translate3d(2.4%, 1.4%, 0) scale(1.03);
+  }
+}
+
+@keyframes astra-bg-flow {
+  0% {
+    background-position: center, 8% 16%, 0 0;
+  }
+  50% {
+    background-position: center, 82% 68%, 30px 20px;
+  }
+  100% {
+    background-position: center, 64% 26%, 56px 34px;
+  }
 }
 
 body.nav-open {
@@ -232,7 +370,7 @@ strong {
   display: grid;
   gap: 1rem;
   align-items: end;
-  margin-bottom: clamp(2.1rem, 3.2vw, 3rem);
+  margin-bottom: clamp(1.7rem, 2.7vw, 2.45rem);
 }
 
 .section-header.split {
@@ -289,10 +427,16 @@ strong {
 }
 
 .surface-note {
-  padding: 1.18rem 1.35rem;
+  display: grid;
+  gap: 0.3rem;
+  padding: 0.98rem 1.12rem;
   border-radius: var(--radius-sm);
   border: 1px solid rgba(255, 255, 255, 0.05);
   background: rgba(255, 255, 255, 0.02);
+}
+
+.surface-note p:last-child {
+  margin-bottom: 0;
 }
 
 .inline-link {
@@ -370,6 +514,15 @@ textarea:focus-visible {
 }
 
 @media (max-width: 980px) {
+  body::before {
+    inset: -16%;
+    opacity: calc(var(--page-atmosphere-opacity) * 0.9);
+  }
+
+  body::after {
+    background-size: cover, 230% 230%, 128px 128px;
+  }
+
   .page-shell {
     padding-top: 98px;
   }
@@ -388,7 +541,7 @@ textarea:focus-visible {
 
 @media (max-width: 640px) {
   body::after {
-    background-size: 90px 90px;
+    background-size: cover, 260% 260%, 98px 98px;
   }
 
   .container {
@@ -405,5 +558,12 @@ textarea:focus-visible {
 
   .section-title {
     font-size: clamp(2.05rem, 10.8vw, 3rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body::before,
+  body::after {
+    animation: none;
   }
 }

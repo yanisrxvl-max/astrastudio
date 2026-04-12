@@ -1,6 +1,7 @@
 const fs = require("node:fs");
 
 const { config } = require("../config/env");
+const { academyCurriculum } = require("../data/academy-curriculum");
 const { bindNamedParameters } = require("../utils/sqlite");
 const { getDatabase } = require("./database");
 
@@ -487,266 +488,108 @@ function seedContentModules() {
 
 function seedAcademyContent() {
   const db = getDatabase();
+  const existingCourses = db.prepare("SELECT COUNT(*) AS total FROM academy_courses").get().total || 0;
+  const existingModules = db.prepare("SELECT COUNT(*) AS total FROM academy_modules").get().total || 0;
+  const existingLessons = db.prepare("SELECT COUNT(*) AS total FROM academy_lessons").get().total || 0;
+
+  if (existingCourses > 0 || existingModules > 0 || existingLessons > 0) {
+    return;
+  }
+
   const now = new Date().toISOString();
-
-  const courses = [
-    {
-      id: "course-orbite",
-      slug: "astra-orbite",
-      title: "ASTRA / ORBITE",
-      subtitle: "Se lancer sérieusement sur les réseaux en 2026",
-      description:
-        "La formation d’entrée pour clarifier son positionnement, structurer ses profils et lancer un plan de présence digital fiable en 30 jours.",
-      level: "debutant",
-      price_cents: 11900,
-      order_index: 1,
-    },
-    {
-      id: "course-capture",
-      slug: "astra-capture",
-      title: "ASTRA / CAPTURE",
-      subtitle: "Créer des contenus qui arrêtent le scroll",
-      description:
-        "La formation phare sur le hook, la rétention, le rythme et la construction de formats vidéo qui génèrent une attention utile.",
-      level: "intermediaire",
-      price_cents: 27900,
-      order_index: 2,
-    },
-    {
-      id: "course-signature",
-      slug: "astra-signature",
-      title: "ASTRA / SIGNATURE",
-      subtitle: "Construire une image premium et cohérente",
-      description:
-        "Monter la perception de valeur avec une direction visuelle et éditoriale claire, cohérente et business.",
-      level: "intermediaire",
-      price_cents: 34900,
-      order_index: 3,
-    },
-    {
-      id: "course-social-os",
-      slug: "astra-social-os",
-      title: "ASTRA / SOCIAL OS",
-      subtitle: "Transformer sa présence en système business",
-      description:
-        "Architecture premium pour relier contenu, distribution, conversion et pilotage sur 90 jours.",
-      level: "avance",
-      price_cents: 89000,
-      order_index: 4,
-    },
-  ];
-
-  const modules = [
-    {
-      id: "orbite-m1",
-      course_id: "course-orbite",
-      title: "Clarté de positionnement",
-      description: "Définir angle, cible et promesse visible dès le profil.",
-      order_index: 1,
-    },
-    {
-      id: "orbite-m2",
-      course_id: "course-orbite",
-      title: "Architecture de présence",
-      description: "Construire des profils lisibles et un plan 30 jours.",
-      order_index: 2,
-    },
-    {
-      id: "capture-m1",
-      course_id: "course-capture",
-      title: "Mécaniques d’attention",
-      description: "Hook, tension, curiosité et promesse claire.",
-      order_index: 1,
-    },
-    {
-      id: "capture-m2",
-      course_id: "course-capture",
-      title: "Structure et itération",
-      description: "Script, montage, test et amélioration des formats.",
-      order_index: 2,
-    },
-    {
-      id: "signature-m1",
-      course_id: "course-signature",
-      title: "Territoire de perception",
-      description: "Poser un langage de marque premium et cohérent.",
-      order_index: 1,
-    },
-    {
-      id: "signature-m2",
-      course_id: "course-signature",
-      title: "Système visuel & éditorial",
-      description: "Aligner codes visuels, ton éditorial et preuves.",
-      order_index: 2,
-    },
-    {
-      id: "socialos-m1",
-      course_id: "course-social-os",
-      title: "Architecture business-social",
-      description: "Relier contenu, offre et conversion.",
-      order_index: 1,
-    },
-    {
-      id: "socialos-m2",
-      course_id: "course-social-os",
-      title: "OS éditorial 90 jours",
-      description: "Pipeline de production, distribution et KPI.",
-      order_index: 2,
-    },
-  ];
-
-  const lessons = [
-    {
-      id: "orbite-l1",
-      course_id: "course-orbite",
-      module_id: "orbite-m1",
-      title: "Choisir un angle net",
-      lesson_type: "mixed",
-      duration_minutes: 24,
-      assignment_prompt:
-        "Rédigez votre phrase de positionnement (qui, pour qui, promesse) et publiez une capture de votre bio mise à jour.",
-      order_index: 1,
-    },
-    {
-      id: "orbite-l2",
-      course_id: "course-orbite",
-      module_id: "orbite-m2",
-      title: "Plan de lancement 30 jours",
-      lesson_type: "mixed",
-      duration_minutes: 31,
-      assignment_prompt:
-        "Partagez votre calendrier 30 jours avec 3 piliers de contenu et 6 idées de posts.",
-      order_index: 2,
-    },
-    {
-      id: "capture-l1",
-      course_id: "course-capture",
-      module_id: "capture-m1",
-      title: "Construire un hook qui retient",
-      lesson_type: "video",
-      duration_minutes: 29,
-      assignment_prompt:
-        "Écrivez 10 hooks sur votre offre, puis soumettez vos 3 meilleurs avec explication du choix.",
-      order_index: 1,
-    },
-    {
-      id: "capture-l2",
-      course_id: "course-capture",
-      module_id: "capture-m2",
-      title: "Rythme et montage intentionnel",
-      lesson_type: "video",
-      duration_minutes: 36,
-      assignment_prompt:
-        "Soumettez un avant/après de votre montage avec un court commentaire sur vos décisions de rythme.",
-      order_index: 2,
-    },
-    {
-      id: "signature-l1",
-      course_id: "course-signature",
-      module_id: "signature-m1",
-      title: "Définir votre territoire premium",
-      lesson_type: "mixed",
-      duration_minutes: 32,
-      assignment_prompt:
-        "Déposez votre mini-charte (couleurs, typographies, ton) et 3 captures de références.",
-      order_index: 1,
-    },
-    {
-      id: "signature-l2",
-      course_id: "course-signature",
-      module_id: "signature-m2",
-      title: "Nettoyer les signaux amateurs",
-      lesson_type: "text",
-      duration_minutes: 27,
-      assignment_prompt:
-        "Réalisez l’audit anti-amateur sur votre profil et joignez vos captures avant/après.",
-      order_index: 2,
-    },
-    {
-      id: "socialos-l1",
-      course_id: "course-social-os",
-      module_id: "socialos-m1",
-      title: "Map offre, audience et contenu",
-      lesson_type: "mixed",
-      duration_minutes: 41,
-      assignment_prompt:
-        "Soumettez votre matrice offre/contenu/objections et la priorisation des canaux.",
-      order_index: 1,
-    },
-    {
-      id: "socialos-l2",
-      course_id: "course-social-os",
-      module_id: "socialos-m2",
-      title: "Déployer un sprint 90 jours",
-      lesson_type: "mixed",
-      duration_minutes: 48,
-      assignment_prompt:
-        "Déposez votre sprint 90 jours avec KPI hebdomadaires et rituels de review.",
-      order_index: 2,
-    },
-  ];
-
   const courseStatement = db.prepare(`
     INSERT INTO academy_courses (
       id, created_at, updated_at, slug, title, subtitle, description, level, status, price_cents, currency, order_index
-    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, 'published', ?, 'EUR', ?)
+    ) VALUES (@id, @created_at, @updated_at, @slug, @title, @subtitle, @description, @level, 'published', @price_cents, @currency, @order_index)
     ON CONFLICT(id) DO NOTHING
   `);
 
   const moduleStatement = db.prepare(`
     INSERT INTO academy_modules (
       id, created_at, updated_at, course_id, title, description, order_index
-    ) VALUES (?, ?, ?, ?, ?, ?, ?)
+    ) VALUES (@id, @created_at, @updated_at, @course_id, @title, @description, @order_index)
     ON CONFLICT(id) DO NOTHING
   `);
 
   const lessonStatement = db.prepare(`
     INSERT INTO academy_lessons (
-      id, created_at, updated_at, course_id, module_id, title, lesson_type, duration_minutes, assignment_prompt, order_index
-    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+      id, created_at, updated_at, course_id, module_id, title, lesson_type, duration_minutes, video_url, content_markdown, assignment_prompt, order_index
+    ) VALUES (@id, @created_at, @updated_at, @course_id, @module_id, @title, @lesson_type, @duration_minutes, @video_url, @content_markdown, @assignment_prompt, @order_index)
     ON CONFLICT(id) DO NOTHING
   `);
 
-  courses.forEach((course) => {
+  const resourceStatement = db.prepare(`
+    INSERT INTO academy_resources (
+      id, created_at, updated_at, course_id, title, resource_type, file_url, description, order_index
+    ) VALUES (@id, @created_at, @updated_at, @course_id, @title, @resource_type, @file_url, @description, @order_index)
+    ON CONFLICT(id) DO NOTHING
+  `);
+
+  academyCurriculum.forEach((course) => {
     courseStatement.run(
-      course.id,
-      now,
-      now,
-      course.slug,
-      course.title,
-      course.subtitle,
-      course.description,
-      course.level,
-      course.price_cents,
-      course.order_index
+      bindNamedParameters({
+        id: course.id,
+        created_at: now,
+        updated_at: now,
+        slug: course.slug,
+        title: course.title,
+        subtitle: course.subtitle,
+        description: course.description,
+        level: course.level,
+        price_cents: course.price_cents,
+        currency: course.currency || "EUR",
+        order_index: course.order_index,
+      })
     );
-  });
 
-  modules.forEach((module) => {
-    moduleStatement.run(
-      module.id,
-      now,
-      now,
-      module.course_id,
-      module.title,
-      module.description,
-      module.order_index
-    );
-  });
+    (course.modules || []).forEach((module, moduleIndex) => {
+      moduleStatement.run(
+        bindNamedParameters({
+          id: module.id,
+          created_at: now,
+          updated_at: now,
+          course_id: course.id,
+          title: module.title,
+          description: module.description || "",
+          order_index: module.order_index || moduleIndex + 1,
+        })
+      );
 
-  lessons.forEach((lesson) => {
-    lessonStatement.run(
-      lesson.id,
-      now,
-      now,
-      lesson.course_id,
-      lesson.module_id,
-      lesson.title,
-      lesson.lesson_type,
-      lesson.duration_minutes,
-      lesson.assignment_prompt,
-      lesson.order_index
-    );
+      (module.lessons || []).forEach((lesson, lessonIndex) => {
+        lessonStatement.run(
+          bindNamedParameters({
+            id: lesson.id,
+            created_at: now,
+            updated_at: now,
+            course_id: course.id,
+            module_id: module.id,
+            title: lesson.title,
+            lesson_type: lesson.lesson_type || "mixed",
+            duration_minutes: lesson.duration_minutes || 0,
+            video_url: lesson.video_url || "",
+            content_markdown: lesson.content_markdown || "",
+            assignment_prompt: lesson.assignment_prompt || "",
+            order_index: lesson.order_index || lessonIndex + 1,
+          })
+        );
+      });
+    });
+
+    (course.resources || []).forEach((resource, resourceIndex) => {
+      resourceStatement.run(
+        bindNamedParameters({
+          id: `${course.id}-${resource.id || `resource-${resourceIndex + 1}`}`,
+          created_at: now,
+          updated_at: now,
+          course_id: course.id,
+          title: resource.title,
+          resource_type: resource.resource_type || "guide",
+          file_url: resource.file_url || "",
+          description: resource.description || "",
+          order_index: resourceIndex + 1,
+        })
+      );
+    });
   });
 }
 

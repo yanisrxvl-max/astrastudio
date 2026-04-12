@@ -1,0 +1,1599 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fulani Hair Growth Booster</title>
+  <meta name="description" content="Fulani Hair Growth Booster - Sérum roll-on ciblé pour réveiller les baby hair et renforcer les tempes." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --black: #0a0a0a;
+      --black-deep: #050505;
+      --sand: #f5ede0;
+      --ivory: #faf8f5;
+      --ink: #1a1a1a;
+      --gold: #c9a96e;
+      --gold-soft: #d9bf90;
+      --brown: #8b6f47;
+      --line-dark: rgba(201, 169, 110, 0.28);
+      --line-light: rgba(139, 111, 71, 0.22);
+      --radius: 1.25rem;
+      --ease: cubic-bezier(0.22, 1, 0.36, 1);
+      --shadow-gold: 0 16px 34px rgba(201, 169, 110, 0.18);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Inter", sans-serif;
+      background: var(--black);
+      color: var(--ivory);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 110;
+      opacity: 0.04;
+      background-image:
+        radial-gradient(circle at 20% 10%, rgba(255, 255, 255, 0.55) 0.5px, transparent 0.8px),
+        radial-gradient(circle at 75% 55%, rgba(255, 255, 255, 0.5) 0.5px, transparent 0.8px);
+      background-size: 3px 3px, 4px 4px;
+      mix-blend-mode: soft-light;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .container {
+      width: min(1120px, calc(100% - 2rem));
+      margin-inline: auto;
+    }
+
+    .section {
+      position: relative;
+      padding-block: clamp(4.5rem, 10vw, 8.5rem);
+      isolation: isolate;
+    }
+
+    .section::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: radial-gradient(circle at 10% 0%, rgba(201, 169, 110, 0.07), transparent 45%);
+      z-index: -1;
+    }
+
+    .dark {
+      background: var(--black);
+      color: var(--ivory);
+    }
+
+    .light {
+      background: var(--sand);
+      color: var(--ink);
+    }
+
+    .eyebrow {
+      margin: 0;
+      text-transform: uppercase;
+      letter-spacing: 0.24em;
+      font-size: 0.72rem;
+      font-weight: 500;
+      color: var(--gold);
+    }
+
+    .title {
+      margin: 0;
+      font-family: "Cormorant Garamond", serif;
+      font-weight: 600;
+      line-height: 0.98;
+      letter-spacing: -0.02em;
+    }
+
+    .subtitle {
+      margin: 1rem 0 0;
+      max-width: 58ch;
+      font-size: clamp(0.98rem, 2.4vw, 1.14rem);
+      color: rgba(250, 248, 245, 0.82);
+    }
+
+    .light .subtitle {
+      color: rgba(26, 26, 26, 0.75);
+    }
+
+    .section-head {
+      display: grid;
+      gap: 0.95rem;
+      margin-bottom: clamp(1.8rem, 4vw, 3rem);
+    }
+
+    .section-title {
+      margin: 0;
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(2.1rem, 7.6vw, 4rem);
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+    }
+
+    .accent {
+      color: var(--gold);
+    }
+
+    .line-divider {
+      width: min(820px, 100%);
+      height: 1px;
+      margin: clamp(2rem, 4vw, 2.8rem) auto 0;
+      background: linear-gradient(90deg, transparent, rgba(201, 169, 110, 0.75), transparent);
+      border: 0;
+    }
+
+    .site-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 60;
+      transition: background-color 0.4s var(--ease), border-color 0.4s var(--ease), box-shadow 0.4s var(--ease), backdrop-filter 0.4s var(--ease);
+      border-bottom: 1px solid transparent;
+    }
+
+    .site-header.scrolled {
+      background: rgba(8, 8, 8, 0.84);
+      border-color: rgba(201, 169, 110, 0.24);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+    }
+
+    .header-shell {
+      width: min(1120px, calc(100% - 1.4rem));
+      margin-inline: auto;
+      min-height: 4.1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .logo-wrap {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.58rem;
+      font-family: "Cormorant Garamond", serif;
+      font-size: 1.28rem;
+      letter-spacing: 0.1em;
+      color: var(--ivory);
+    }
+
+    .logo-mark {
+      width: 1.65rem;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      border: 1px solid rgba(201, 169, 110, 0.85);
+      position: relative;
+      box-shadow: inset 0 0 0 1px rgba(201, 169, 110, 0.2);
+    }
+
+    .logo-mark::before,
+    .logo-mark::after {
+      content: "";
+      position: absolute;
+      background: rgba(201, 169, 110, 0.8);
+      border-radius: 999px;
+    }
+
+    .logo-mark::before {
+      width: 38%;
+      height: 1px;
+      top: 52%;
+      left: 18%;
+      transform: rotate(-25deg);
+    }
+
+    .logo-mark::after {
+      width: 1px;
+      height: 45%;
+      right: 28%;
+      top: 18%;
+      transform: rotate(25deg);
+    }
+
+    .nav-links {
+      display: none;
+      align-items: center;
+      gap: 1.2rem;
+      font-size: 0.87rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: rgba(250, 248, 245, 0.78);
+    }
+
+    .nav-links a {
+      position: relative;
+      transition: color 0.25s var(--ease);
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -0.3rem;
+      height: 1px;
+      background: var(--gold);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.35s var(--ease);
+    }
+
+    .nav-links a:hover {
+      color: var(--ivory);
+    }
+
+    .nav-links a:hover::after {
+      transform: scaleX(1);
+    }
+
+    .cta {
+      --btn-fg: var(--gold);
+      --btn-bg: transparent;
+      --btn-fill: var(--gold);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(201, 169, 110, 0.85);
+      border-radius: 999px;
+      background: var(--btn-bg);
+      color: var(--btn-fg);
+      padding: 0.86rem 1.35rem;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      transition: color 0.35s var(--ease), border-color 0.35s var(--ease), transform 0.35s var(--ease);
+      isolation: isolate;
+      cursor: pointer;
+    }
+
+    .cta::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      width: 0;
+      background: var(--btn-fill);
+      transition: width 0.45s var(--ease);
+      z-index: -1;
+    }
+
+    .cta:hover,
+    .cta:focus-visible {
+      color: #141414;
+      transform: translateY(-1px);
+      border-color: var(--gold-soft);
+      outline: none;
+    }
+
+    .cta:hover::before,
+    .cta:focus-visible::before {
+      width: 100%;
+    }
+
+    .cta:active {
+      transform: translateY(0);
+    }
+
+    .cta.mini {
+      font-size: 0.73rem;
+      padding: 0.64rem 1rem;
+      letter-spacing: 0.11em;
+    }
+
+    .hero {
+      min-height: 100svh;
+      display: grid;
+      align-items: center;
+      padding-top: 4.8rem;
+      overflow: clip;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: -12% -12% 0;
+      z-index: -2;
+      opacity: 0.08;
+      background-image:
+        linear-gradient(42deg, transparent 47%, rgba(201, 169, 110, 0.72) 48%, transparent 49%),
+        linear-gradient(-42deg, transparent 47%, rgba(201, 169, 110, 0.72) 48%, transparent 49%),
+        linear-gradient(90deg, transparent 49%, rgba(201, 169, 110, 0.5) 50%, transparent 51%);
+      background-size: 120px 120px, 120px 120px, 160px 160px;
+      background-position: center;
+      transform: scale(1.2);
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: auto 0 0;
+      height: 42%;
+      background: linear-gradient(to bottom, rgba(10, 10, 10, 0), #0a0a0a 72%);
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .hero-grid {
+      display: grid;
+      gap: clamp(1.5rem, 5vw, 3rem);
+      align-items: center;
+    }
+
+    .hero-copy {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .hero-title {
+      font-size: clamp(2.5rem, 11vw, 6.4rem);
+      text-wrap: balance;
+    }
+
+    .hero-meta {
+      margin-top: 0.35rem;
+      font-size: clamp(0.95rem, 2.8vw, 1.08rem);
+      color: rgba(250, 248, 245, 0.78);
+      letter-spacing: 0.02em;
+    }
+
+    .hero-actions {
+      margin-top: 0.65rem;
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+    }
+
+    .hero-note {
+      font-size: 0.82rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: rgba(201, 169, 110, 0.88);
+    }
+
+    .product-placeholder {
+      min-height: clamp(260px, 52vw, 520px);
+      border: 1px solid rgba(201, 169, 110, 0.76);
+      border-radius: var(--radius);
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 1.4rem;
+      font-family: "Cormorant Garamond", serif;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: rgba(201, 169, 110, 0.92);
+      background:
+        linear-gradient(155deg, rgba(201, 169, 110, 0.16), rgba(10, 10, 10, 0.12) 42%),
+        radial-gradient(circle at 28% 16%, rgba(255, 255, 255, 0.09), transparent 50%),
+        rgba(250, 248, 245, 0.02);
+      box-shadow:
+        inset 0 0 0 1px rgba(201, 169, 110, 0.24),
+        var(--shadow-gold);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .product-placeholder::after {
+      content: "";
+      position: absolute;
+      width: 120%;
+      height: 1px;
+      left: -10%;
+      top: 50%;
+      background: linear-gradient(90deg, transparent, rgba(201, 169, 110, 0.6), transparent);
+      transform: rotate(-8deg);
+    }
+
+    .scroll-indicator {
+      position: absolute;
+      left: 50%;
+      bottom: 1.4rem;
+      transform: translateX(-50%);
+      display: grid;
+      justify-items: center;
+      gap: 0.45rem;
+      color: rgba(201, 169, 110, 0.84);
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .scroll-line {
+      width: 1px;
+      height: 46px;
+      background: linear-gradient(to bottom, rgba(201, 169, 110, 0), rgba(201, 169, 110, 0.85), rgba(201, 169, 110, 0));
+      animation: pulseLine 1.9s ease-in-out infinite;
+    }
+
+    @keyframes pulseLine {
+      0%,
+      100% {
+        opacity: 0.45;
+        transform: translateY(0);
+      }
+      50% {
+        opacity: 1;
+        transform: translateY(8px);
+      }
+    }
+
+    .problem-text {
+      max-width: 70ch;
+      margin: 0;
+      font-size: clamp(1rem, 2.8vw, 1.18rem);
+    }
+
+    .problem-text strong {
+      color: var(--gold);
+      font-weight: 600;
+    }
+
+    .solution-layout {
+      display: grid;
+      gap: clamp(1.3rem, 4vw, 2.6rem);
+      align-items: center;
+    }
+
+    .active-grid {
+      display: grid;
+      gap: 0.85rem;
+      margin-top: 1.35rem;
+    }
+
+    .active-card {
+      position: relative;
+      border: 1px solid var(--line-dark);
+      border-radius: 1rem;
+      padding: 1rem 1rem 1rem 1.1rem;
+      background: rgba(250, 248, 245, 0.02);
+      overflow: hidden;
+    }
+
+    .active-card::before {
+      content: "";
+      position: absolute;
+      inset: auto -20% 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(201, 169, 110, 0.45), transparent);
+    }
+
+    .active-index {
+      margin: 0 0 0.45rem;
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      color: rgba(201, 169, 110, 0.8);
+      text-transform: uppercase;
+    }
+
+    .active-title {
+      margin: 0;
+      font-family: "Cormorant Garamond", serif;
+      font-size: 1.52rem;
+      line-height: 1;
+      letter-spacing: 0.02em;
+    }
+
+    .active-desc {
+      margin: 0.45rem 0 0;
+      color: rgba(250, 248, 245, 0.78);
+      font-size: 0.95rem;
+    }
+
+    .steps {
+      display: grid;
+      gap: 0.95rem;
+    }
+
+    .step {
+      position: relative;
+      border: 1px solid var(--line-light);
+      border-radius: 1rem;
+      background: rgba(255, 255, 255, 0.45);
+      padding: 1.25rem 1rem;
+      overflow: hidden;
+      min-height: 170px;
+    }
+
+    .step-num {
+      position: absolute;
+      right: 0.65rem;
+      top: 0.2rem;
+      margin: 0;
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(3.2rem, 11vw, 5rem);
+      line-height: 1;
+      color: rgba(201, 169, 110, 0.25);
+      letter-spacing: 0.03em;
+      pointer-events: none;
+    }
+
+    .step h3 {
+      margin: 0;
+      font-family: "Cormorant Garamond", serif;
+      font-size: 1.78rem;
+      line-height: 1;
+    }
+
+    .step p {
+      margin: 0.6rem 0 0;
+      max-width: 36ch;
+      color: rgba(26, 26, 26, 0.76);
+      font-size: 0.98rem;
+    }
+
+    .why-grid {
+      display: grid;
+      gap: 0.9rem;
+      margin-top: 1rem;
+    }
+
+    .why-item {
+      border-radius: 1rem;
+      border: 1px solid var(--line-dark);
+      background: linear-gradient(145deg, rgba(201, 169, 110, 0.07), rgba(10, 10, 10, 0.04));
+      padding: 1.1rem 1rem;
+      display: grid;
+      gap: 0.38rem;
+    }
+
+    .why-kicker {
+      margin: 0;
+      font-size: 0.74rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: rgba(201, 169, 110, 0.82);
+    }
+
+    .why-item h3 {
+      margin: 0;
+      font-family: "Cormorant Garamond", serif;
+      font-size: 1.58rem;
+      line-height: 1;
+    }
+
+    .why-item p {
+      margin: 0;
+      color: rgba(250, 248, 245, 0.78);
+      font-size: 0.95rem;
+      max-width: 42ch;
+    }
+
+    .inci-cloud {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .inci-chip {
+      border: 1px solid rgba(139, 111, 71, 0.38);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.35);
+      color: var(--ink);
+      padding: 0.48rem 0.78rem;
+      font-size: 0.82rem;
+      transition: transform 0.28s var(--ease), border-color 0.28s var(--ease), background-color 0.28s var(--ease), color 0.28s var(--ease), box-shadow 0.28s var(--ease);
+      cursor: default;
+      user-select: none;
+    }
+
+    .inci-chip:hover,
+    .inci-chip:focus-visible,
+    .inci-chip.is-active {
+      transform: translateY(-1px);
+      border-color: rgba(201, 169, 110, 0.62);
+      background: rgba(201, 169, 110, 0.2);
+      color: #20180f;
+      box-shadow: 0 8px 16px rgba(139, 111, 71, 0.12);
+      outline: none;
+    }
+
+    .inci-chip.star {
+      border-color: rgba(201, 169, 110, 0.74);
+      background: rgba(201, 169, 110, 0.2);
+      color: #251b10;
+      font-weight: 600;
+    }
+
+    .proof-grid {
+      display: grid;
+      gap: 1rem;
+      margin-top: 1.1rem;
+    }
+
+    .proof-card {
+      border: 1px solid rgba(201, 169, 110, 0.26);
+      border-radius: 1rem;
+      background: rgba(255, 255, 255, 0.02);
+      padding: 1.2rem 1rem;
+      transition: transform 0.32s var(--ease), border-color 0.32s var(--ease), box-shadow 0.32s var(--ease);
+    }
+
+    .proof-card:hover {
+      transform: translateY(-4px) scale(1.01);
+      border-color: rgba(201, 169, 110, 0.6);
+      box-shadow: var(--shadow-gold);
+    }
+
+    .proof-name {
+      margin: 0;
+      font-size: 0.95rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(250, 248, 245, 0.78);
+    }
+
+    .proof-stars {
+      margin: 0.35rem 0 0.55rem;
+      color: var(--gold);
+      letter-spacing: 0.08em;
+      font-size: 0.96rem;
+    }
+
+    .proof-text {
+      margin: 0;
+      color: rgba(250, 248, 245, 0.85);
+      font-size: 0.97rem;
+    }
+
+    .pricing-wrap {
+      display: grid;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .pricing-card {
+      position: relative;
+      border: 1px solid var(--line-light);
+      border-radius: 1rem;
+      padding: 1.2rem 1rem;
+      background: rgba(255, 255, 255, 0.46);
+      display: grid;
+      gap: 0.75rem;
+    }
+
+    .pricing-card.featured {
+      border-color: rgba(201, 169, 110, 0.78);
+      background: rgba(255, 255, 255, 0.76);
+      box-shadow: var(--shadow-gold);
+    }
+
+    .badge {
+      position: absolute;
+      top: -0.55rem;
+      right: 0.85rem;
+      border-radius: 999px;
+      padding: 0.28rem 0.62rem;
+      font-size: 0.66rem;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      background: #171717;
+      color: var(--gold-soft);
+      border: 1px solid rgba(201, 169, 110, 0.62);
+    }
+
+    .pricing-name {
+      margin: 0;
+      font-family: "Cormorant Garamond", serif;
+      font-size: 2rem;
+      line-height: 1;
+    }
+
+    .pricing-price {
+      margin: 0;
+      font-size: 1.8rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: #18120a;
+      line-height: 1;
+    }
+
+    .pricing-note {
+      margin: 0;
+      color: rgba(26, 26, 26, 0.7);
+      font-size: 0.92rem;
+    }
+
+    .old-price {
+      text-decoration: line-through;
+      color: rgba(26, 26, 26, 0.56);
+      font-size: 0.95rem;
+    }
+
+    .shipping-note {
+      margin: 1.25rem 0 0;
+      text-align: center;
+      color: rgba(26, 26, 26, 0.75);
+      font-size: 0.89rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .urgency-block {
+      text-align: center;
+      display: grid;
+      justify-items: center;
+      gap: 1rem;
+    }
+
+    .urgency-big {
+      margin: 0;
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(2.9rem, 14vw, 7rem);
+      line-height: 0.9;
+      letter-spacing: -0.02em;
+    }
+
+    .urgency-small {
+      margin: 0;
+      font-size: clamp(1.05rem, 3.3vw, 1.55rem);
+      color: rgba(250, 248, 245, 0.76);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .stock-widget {
+      width: min(620px, 100%);
+      border: 1px solid var(--line-dark);
+      border-radius: 1rem;
+      padding: 1rem;
+      background: rgba(255, 255, 255, 0.03);
+      display: grid;
+      gap: 0.55rem;
+    }
+
+    .stock-meta {
+      display: flex;
+      justify-content: space-between;
+      gap: 0.7rem;
+      align-items: baseline;
+      font-size: 0.86rem;
+      color: rgba(250, 248, 245, 0.84);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .stock-bar {
+      height: 0.55rem;
+      border-radius: 999px;
+      background: rgba(250, 248, 245, 0.12);
+      overflow: hidden;
+    }
+
+    .stock-fill {
+      display: block;
+      height: 100%;
+      width: 0;
+      background: linear-gradient(90deg, rgba(201, 169, 110, 0.45), rgba(201, 169, 110, 1));
+      border-radius: inherit;
+      transition: width 1.2s var(--ease);
+      box-shadow: 0 0 18px rgba(201, 169, 110, 0.5);
+    }
+
+    .faq-list {
+      border-top: 1px solid rgba(139, 111, 71, 0.34);
+      border-bottom: 1px solid rgba(139, 111, 71, 0.34);
+      margin-top: 1rem;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid rgba(139, 111, 71, 0.22);
+    }
+
+    .faq-item:last-child {
+      border-bottom: 0;
+    }
+
+    .faq-q {
+      width: 100%;
+      border: 0;
+      background: transparent;
+      color: inherit;
+      text-align: left;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 1.08rem 0.35rem;
+      font-size: 1rem;
+      font-weight: 500;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .faq-q:focus-visible {
+      outline: 1px solid rgba(201, 169, 110, 0.7);
+      outline-offset: -1px;
+    }
+
+    .faq-icon {
+      font-size: 1.5rem;
+      line-height: 1;
+      color: var(--brown);
+      transition: transform 0.34s var(--ease), color 0.34s var(--ease);
+    }
+
+    .faq-item.open .faq-icon {
+      transform: rotate(45deg);
+      color: var(--gold);
+    }
+
+    .faq-a {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.45s var(--ease);
+    }
+
+    .faq-a p {
+      margin: 0;
+      padding: 0 0.35rem 1rem;
+      color: rgba(26, 26, 26, 0.75);
+      max-width: 75ch;
+      font-size: 0.95rem;
+    }
+
+    .site-footer {
+      background: var(--black-deep);
+      color: rgba(250, 248, 245, 0.76);
+      text-align: center;
+      padding: 3.1rem 1rem 2.5rem;
+      border-top: 1px solid rgba(201, 169, 110, 0.16);
+    }
+
+    .footer-brand {
+      margin: 0;
+      font-family: "Cormorant Garamond", serif;
+      letter-spacing: 0.14em;
+      font-size: 2rem;
+      color: var(--gold-soft);
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin: 0.8rem 0 1rem;
+      font-size: 0.84rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .footer-links a {
+      color: rgba(250, 248, 245, 0.72);
+      transition: color 0.3s var(--ease);
+    }
+
+    .footer-links a:hover {
+      color: var(--gold-soft);
+    }
+
+    .footer-meta,
+    .footer-warning {
+      margin: 0.4rem 0 0;
+      font-size: 0.78rem;
+      color: rgba(250, 248, 245, 0.62);
+    }
+
+    .cursor-ring {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      border: 1px solid rgba(201, 169, 110, 0.7);
+      pointer-events: none;
+      transform: translate(-50%, -50%);
+      z-index: 120;
+      opacity: 0;
+      transition: opacity 0.26s ease, transform 0.12s linear;
+      mix-blend-mode: screen;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.8s var(--ease), transform 0.8s var(--ease);
+      transition-delay: var(--delay, 0s);
+      will-change: transform, opacity;
+    }
+
+    .reveal.in-view {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    [data-parallax] {
+      will-change: transform;
+      transition: transform 0.1s linear;
+    }
+
+    @media (min-width: 720px) {
+      .nav-links {
+        display: inline-flex;
+      }
+
+      .hero-actions {
+        gap: 1rem;
+      }
+
+      .active-grid,
+      .proof-grid,
+      .pricing-wrap,
+      .steps,
+      .why-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (min-width: 920px) {
+      .hero-grid {
+        grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+      }
+
+      .solution-layout {
+        grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+      }
+
+      .steps {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .why-grid {
+        grid-template-columns: repeat(12, minmax(0, 1fr));
+      }
+
+      .why-item {
+        padding: 1.35rem 1.2rem;
+      }
+
+      .why-item:nth-child(1),
+      .why-item:nth-child(4) {
+        grid-column: span 7;
+      }
+
+      .why-item:nth-child(2),
+      .why-item:nth-child(3) {
+        grid-column: span 5;
+      }
+
+      .proof-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .pricing-wrap {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        align-items: stretch;
+      }
+
+      .pricing-card {
+        padding: 1.4rem 1.2rem;
+      }
+
+      .pricing-card.featured {
+        transform: translateY(-10px) scale(1.02);
+      }
+    }
+
+    @media (max-width: 919px) {
+      .hero {
+        min-height: 96svh;
+      }
+
+      .scroll-indicator {
+        bottom: 0.75rem;
+      }
+    }
+
+    @media (pointer: coarse), (max-width: 900px) {
+      .cursor-ring {
+        display: none;
+      }
+
+      .cta {
+        min-height: 44px;
+      }
+
+      .proof-card:hover,
+      .pricing-card.featured {
+        transform: none;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 1ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 1ms !important;
+        scroll-behavior: auto !important;
+      }
+
+      .reveal {
+        opacity: 1 !important;
+        transform: none !important;
+      }
+
+      .cursor-ring {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="cursor-ring" aria-hidden="true"></div>
+
+  <header class="site-header" id="siteHeader">
+    <div class="header-shell">
+      <a class="logo-wrap" href="#top" aria-label="Fulani">
+        <span class="logo-mark" aria-hidden="true"></span>
+        <span>FULANI</span>
+      </a>
+      <nav class="nav-links" aria-label="Navigation principale">
+        <a href="#solution">Le produit</a>
+        <a href="#rituel">Rituel</a>
+        <a href="#ingredients">Ingrédients</a>
+        <a href="#commander">Commander</a>
+      </nav>
+      <a class="cta mini" href="#commander">Commander</a>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="section dark hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow reveal">Édition limitée — 500 exemplaires</p>
+          <h1 class="title hero-title reveal" style="--delay:0.08s;">Cible tes tempes.<br />Réveille tes baby hair.</h1>
+          <p class="hero-meta reveal" style="--delay:0.15s;">Sérum roll-on concentré · Romarin · Ricin · Biotine · Gingembre</p>
+          <div class="hero-actions reveal" style="--delay:0.22s;">
+            <a class="cta" href="#commander">Commander — <span class="count" data-target="14.9" data-decimals="2">14,90</span>€</a>
+            <span class="hero-note">Expédition sous 48h</span>
+          </div>
+        </div>
+        <div class="product-placeholder reveal" data-parallax="0.075" style="--delay:0.12s;">
+          [IMAGE PRODUIT]
+        </div>
+      </div>
+      <div class="scroll-indicator" aria-hidden="true">
+        <span class="scroll-line"></span>
+        <span>Scroll</span>
+      </div>
+    </section>
+
+    <section class="section light" id="probleme">
+      <div class="container">
+        <div class="section-head reveal">
+          <h2 class="section-title">Tes tempes s'affinent. Tes baby hair disparaissent.</h2>
+          <p class="problem-text">Tresses serrées, perruques, tissages, coiffures protectrices répétées: avec le temps, la traction <strong>fragilise les follicules</strong> et les contours deviennent plus clairs. Les cheveux repoussent plus fins, plus lents, parfois irréguliers. Le résultat: une ligne frontale qui perd en densité et en confiance.</p>
+        </div>
+        <hr class="line-divider reveal" />
+      </div>
+    </section>
+
+    <section class="section dark" id="solution">
+      <div class="container solution-layout">
+        <div class="product-placeholder reveal" data-parallax="0.05">
+          [IMAGE PRODUIT]
+        </div>
+        <div>
+          <div class="section-head reveal">
+            <p class="eyebrow">La solution</p>
+            <h2 class="section-title">Fulani Hair Growth Booster</h2>
+            <p class="subtitle">4 actifs. 1 roll-on. Tes tempes.</p>
+          </div>
+          <div class="active-grid">
+            <article class="active-card reveal" style="--delay:0.05s;">
+              <p class="active-index">Actif 01</p>
+              <h3 class="active-title">Romarin</h3>
+              <p class="active-desc">Stimule la micro-circulation du cuir chevelu pour relancer les zones ralenties.</p>
+            </article>
+            <article class="active-card reveal" style="--delay:0.1s;">
+              <p class="active-index">Actif 02</p>
+              <h3 class="active-title">Ricin</h3>
+              <p class="active-desc">Nourrit et fortifie la fibre sur les zones fragiles, sans effet alourdissant.</p>
+            </article>
+            <article class="active-card reveal" style="--delay:0.15s;">
+              <p class="active-index">Actif 03</p>
+              <h3 class="active-title">Gingembre</h3>
+              <p class="active-desc">Tonifie les racines et participe à un environnement propice à la repousse.</p>
+            </article>
+            <article class="active-card reveal" style="--delay:0.2s;">
+              <p class="active-index">Actif 04</p>
+              <h3 class="active-title">Biotine</h3>
+              <p class="active-desc">Soutient des cheveux visiblement plus denses, résistants et homogènes.</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section light" id="rituel">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="eyebrow">Comment ça marche</p>
+          <h2 class="section-title">Ton rituel en 3 gestes</h2>
+        </div>
+        <div class="steps">
+          <article class="step reveal" style="--delay:0.05s;">
+            <p class="step-num">01</p>
+            <h3>Applique</h3>
+            <p>Roll-on directement sur les tempes, les baby hair et les zones clairsemées.</p>
+          </article>
+          <article class="step reveal" style="--delay:0.12s;">
+            <p class="step-num">02</p>
+            <h3>Masse</h3>
+            <p>Petits mouvements circulaires pour activer la circulation sanguine.</p>
+          </article>
+          <article class="step reveal" style="--delay:0.19s;">
+            <p class="step-num">03</p>
+            <h3>Répète</h3>
+            <p>Matin et soir. <span class="count" data-target="2">2</span> minutes. C'est tout.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section dark" id="rollon">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="eyebrow">Pourquoi le roll-on</p>
+          <h2 class="section-title">Pas une huile de plus.<br />Un outil de précision.</h2>
+        </div>
+        <div class="why-grid">
+          <article class="why-item reveal" style="--delay:0.03s;">
+            <p class="why-kicker">Différence 01</p>
+            <h3>Application ciblée</h3>
+            <p>La bille dépose la juste dose exactement sur la zone à traiter, sans débordement.</p>
+          </article>
+          <article class="why-item reveal" style="--delay:0.08s;">
+            <p class="why-kicker">Différence 02</p>
+            <h3>Zéro gaspillage</h3>
+            <p>Pas d'huile qui coule, pas de mains grasses, pas de traces inutiles sur le linge.</p>
+          </article>
+          <article class="why-item reveal" style="--delay:0.13s;">
+            <p class="why-kicker">Différence 03</p>
+            <h3>Stimulation mécanique</h3>
+            <p>La bille masse le cuir chevelu et aide à activer la micro-circulation pendant l'application.</p>
+          </article>
+          <article class="why-item reveal" style="--delay:0.18s;">
+            <p class="why-kicker">Différence 04</p>
+            <h3>Texture légère</h3>
+            <p>Pénètre rapidement, sans film gras, pour une routine facile même avant de sortir.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section light" id="ingredients">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="eyebrow">Transparence</p>
+          <h2 class="section-title">Ce qu'il y a dedans. Tout.</h2>
+        </div>
+        <ul class="inci-cloud" aria-label="Liste INCI complète">
+          <li class="inci-chip reveal" tabindex="0">Aqua</li>
+          <li class="inci-chip reveal" tabindex="0">PEG-12 Dimethicone</li>
+          <li class="inci-chip reveal" tabindex="0">Glycerin</li>
+          <li class="inci-chip reveal" tabindex="0">Maltitol</li>
+          <li class="inci-chip reveal" tabindex="0">Polysorbate 20</li>
+          <li class="inci-chip star reveal" tabindex="0">PEG-40 Hydrogenated Castor Oil</li>
+          <li class="inci-chip reveal" tabindex="0">Phenoxyethane</li>
+          <li class="inci-chip reveal" tabindex="0">Cetearyl Maleate</li>
+          <li class="inci-chip star reveal" tabindex="0">Zingiber Officinale (Ginger) Root Oil</li>
+          <li class="inci-chip reveal" tabindex="0">Xanthan Gum</li>
+          <li class="inci-chip reveal" tabindex="0">Glyceryl Stearate</li>
+          <li class="inci-chip star reveal" tabindex="0">Rosmarinus Officinalis (Rosemary) Leaf Oil</li>
+          <li class="inci-chip reveal" tabindex="0">Methylparaben</li>
+          <li class="inci-chip reveal" tabindex="0">Butylene Glycol</li>
+          <li class="inci-chip reveal" tabindex="0">PEG-10</li>
+          <li class="inci-chip reveal" tabindex="0">PEG-60 Almond Glycerides</li>
+          <li class="inci-chip reveal" tabindex="0">Caprylyl Glycol</li>
+          <li class="inci-chip reveal" tabindex="0">Citric Acid</li>
+          <li class="inci-chip reveal" tabindex="0">Sodium Citrate</li>
+          <li class="inci-chip reveal" tabindex="0">Carbomer</li>
+          <li class="inci-chip reveal" tabindex="0">Nordihydroguaiaretic Acid</li>
+          <li class="inci-chip reveal" tabindex="0">Sodium Metabisulfite</li>
+          <li class="inci-chip reveal" tabindex="0">Oleanolic Acid</li>
+          <li class="inci-chip star reveal" tabindex="0">Biotin</li>
+        </ul>
+        <p class="subtitle reveal" style="margin-top:1.2rem; max-width:none;">Formule transparente. Pas de bullshit.</p>
+      </div>
+    </section>
+
+    <section class="section dark" id="temoignages">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="eyebrow">Social proof</p>
+          <h2 class="section-title">Elles l'ont testé.</h2>
+        </div>
+        <div class="proof-grid">
+          <article class="proof-card reveal" style="--delay:0.04s;">
+            <p class="proof-name">Fatou M.</p>
+            <p class="proof-stars">★★★★★</p>
+            <p class="proof-text">J'ai les tempes très fines à cause des tresses. Au bout de 3 semaines d'utilisation matin et soir, je vois clairement des petits cheveux qui repoussent. Le roll-on c'est tellement pratique.</p>
+          </article>
+          <article class="proof-card reveal" style="--delay:0.1s;">
+            <p class="proof-name">Amina K.</p>
+            <p class="proof-stars">★★★★★</p>
+            <p class="proof-text">J'ai testé plein d'huiles, c'est le premier produit que j'utilise vraiment tous les jours parce que c'est rapide et pas gras. Mes baby hair sont plus fournis.</p>
+          </article>
+          <article class="proof-card reveal" style="--delay:0.16s;">
+            <p class="proof-name">Sarah L.</p>
+            <p class="proof-stars">★★★★☆</p>
+            <p class="proof-text">Bonne texture, application facile. Je n'ai pas encore de résultats visibles mais ça ne fait que 10 jours. L'odeur est agréable et le format est top pour voyager.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section light" id="commander">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="eyebrow">Offres</p>
+          <h2 class="section-title">Choisis ton format.</h2>
+        </div>
+        <div class="pricing-wrap">
+          <article class="pricing-card reveal" style="--delay:0.03s;">
+            <h3 class="pricing-name">1 Roll-On</h3>
+            <p class="pricing-price"><span class="count" data-target="14.9" data-decimals="2">14,90</span>€</p>
+            <p class="pricing-note">Parfait pour démarrer ta routine ciblée.</p>
+            <a class="cta" href="#commander">Commander</a>
+          </article>
+
+          <article class="pricing-card featured reveal" style="--delay:0.09s;">
+            <span class="badge">Populaire</span>
+            <h3 class="pricing-name">Pack Duo</h3>
+            <p class="pricing-price"><span class="count" data-target="26.9" data-decimals="2">26,90</span>€</p>
+            <p class="pricing-note"><span class="old-price">29,80€</span> · Économie <span class="count" data-target="10">10</span>%</p>
+            <a class="cta" href="#commander">Commander</a>
+          </article>
+
+          <article class="pricing-card reveal" style="--delay:0.15s;">
+            <span class="badge">Meilleure offre</span>
+            <h3 class="pricing-name">Pack Trio</h3>
+            <p class="pricing-price"><span class="count" data-target="36.9" data-decimals="2">36,90</span>€</p>
+            <p class="pricing-note"><span class="old-price">44,70€</span> · Économie <span class="count" data-target="17">17</span>%</p>
+            <a class="cta" href="#commander">Commander</a>
+          </article>
+        </div>
+        <p class="shipping-note reveal">Livraison France métropolitaine · Expédition sous 48h</p>
+      </div>
+    </section>
+
+    <section class="section dark" id="stock">
+      <div class="container urgency-block">
+        <h2 class="urgency-big reveal"><span class="count" data-target="500">500</span> exemplaires.</h2>
+        <p class="urgency-small reveal" style="--delay:0.07s;">Pas de réassort.</p>
+
+        <div class="stock-widget reveal" data-stock="87.4" style="--delay:0.14s;">
+          <div class="stock-meta">
+            <span><span class="count" data-target="437">437</span> restants</span>
+            <span>500 total</span>
+          </div>
+          <div class="stock-bar">
+            <span class="stock-fill" aria-hidden="true"></span>
+          </div>
+        </div>
+
+        <a class="cta reveal" href="#commander" style="--delay:0.2s;">Commander maintenant</a>
+      </div>
+    </section>
+
+    <section class="section light" id="faq">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="eyebrow">FAQ</p>
+          <h2 class="section-title">Questions fréquentes</h2>
+        </div>
+
+        <div class="faq-list reveal">
+          <article class="faq-item">
+            <button class="faq-q" aria-expanded="false">
+              <span>Ça fonctionne sur tous types de cheveux ?</span>
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-a">
+              <p>Oui. La formule est adaptée à tous les types de cheveux, texturés ou lisses. Elle est particulièrement efficace sur les zones ciblées : tempes, baby hair, golfes.</p>
+            </div>
+          </article>
+
+          <article class="faq-item">
+            <button class="faq-q" aria-expanded="false">
+              <span>Combien de temps dure un roll-on ?</span>
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-a">
+              <p>En utilisation biquotidienne (matin et soir), un roll-on dure environ 6 à 8 semaines.</p>
+            </div>
+          </article>
+
+          <article class="faq-item">
+            <button class="faq-q" aria-expanded="false">
+              <span>Au bout de combien de temps voit-on des résultats ?</span>
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-a">
+              <p>Les premiers signes sont généralement visibles après 3 à 4 semaines d'utilisation régulière. La constance est la clé.</p>
+            </div>
+          </article>
+
+          <article class="faq-item">
+            <button class="faq-q" aria-expanded="false">
+              <span>C'est gras ? Ça tache ?</span>
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-a">
+              <p>Non. La texture est légère et pénètre rapidement. Pas de film gras, pas de taches sur l'oreiller.</p>
+            </div>
+          </article>
+
+          <article class="faq-item">
+            <button class="faq-q" aria-expanded="false">
+              <span>Je peux l'utiliser sur ma barbe ?</span>
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-a">
+              <p>Oui. Le roll-on est adapté pour cibler les zones clairsemées de la barbe avec les mêmes actifs stimulants.</p>
+            </div>
+          </article>
+
+          <article class="faq-item">
+            <button class="faq-q" aria-expanded="false">
+              <span>Livraison et délais ?</span>
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-a">
+              <p>Expédition sous 48h. Livraison en 3-5 jours ouvrés partout en France métropolitaine.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p class="footer-brand">FULANI</p>
+    <div class="footer-links">
+      <a href="#">Instagram</a>
+      <a href="#">TikTok</a>
+      <a href="#">Contact</a>
+    </div>
+    <p class="footer-meta">© 2026 Fulani · Tous droits réservés</p>
+    <p class="footer-warning">Ce produit n'est pas un médicament. Les résultats peuvent varier d'une personne à l'autre.</p>
+  </footer>
+
+  <script>
+    (function () {
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      const header = document.getElementById('siteHeader');
+      const toggleHeader = () => {
+        header.classList.toggle('scrolled', window.scrollY > 16);
+      };
+      toggleHeader();
+      window.addEventListener('scroll', toggleHeader, { passive: true });
+
+      const revealElements = document.querySelectorAll('.reveal');
+      const revealObserver = new IntersectionObserver(
+        (entries, observer) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) {
+              return;
+            }
+            entry.target.classList.add('in-view');
+
+            if (entry.target.classList.contains('stock-widget')) {
+              const fill = entry.target.querySelector('.stock-fill');
+              if (fill && !fill.dataset.done) {
+                const stock = Number(entry.target.dataset.stock || 0);
+                fill.style.width = Math.min(Math.max(stock, 0), 100) + '%';
+                fill.dataset.done = 'true';
+              }
+            }
+
+            observer.unobserve(entry.target);
+          });
+        },
+        { threshold: 0.18 }
+      );
+
+      revealElements.forEach((el) => revealObserver.observe(el));
+
+      const formatFR = (value, decimals) => {
+        return value.toLocaleString('fr-FR', {
+          minimumFractionDigits: decimals,
+          maximumFractionDigits: decimals,
+        });
+      };
+
+      const counters = document.querySelectorAll('.count');
+      const counterObserver = new IntersectionObserver(
+        (entries, observer) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) {
+              return;
+            }
+
+            const el = entry.target;
+            if (el.dataset.done === 'true') {
+              observer.unobserve(el);
+              return;
+            }
+
+            const target = Number(el.dataset.target || 0);
+            const decimals = Number(el.dataset.decimals || (String(target).includes('.') ? 2 : 0));
+            const duration = Number(el.dataset.duration || 1300);
+            const startValue = Number(el.dataset.start || 0);
+
+            if (prefersReduced) {
+              el.textContent = formatFR(target, decimals);
+              el.dataset.done = 'true';
+              observer.unobserve(el);
+              return;
+            }
+
+            let startTime;
+            const step = (time) => {
+              if (!startTime) {
+                startTime = time;
+              }
+              const progress = Math.min((time - startTime) / duration, 1);
+              const eased = 1 - Math.pow(1 - progress, 3);
+              const current = startValue + (target - startValue) * eased;
+              el.textContent = formatFR(current, decimals);
+
+              if (progress < 1) {
+                window.requestAnimationFrame(step);
+              } else {
+                el.textContent = formatFR(target, decimals);
+                el.dataset.done = 'true';
+                observer.unobserve(el);
+              }
+            };
+
+            window.requestAnimationFrame(step);
+          });
+        },
+        { threshold: 0.5 }
+      );
+
+      counters.forEach((counter) => counterObserver.observe(counter));
+
+      const faqItems = document.querySelectorAll('.faq-item');
+      faqItems.forEach((item) => {
+        const button = item.querySelector('.faq-q');
+        const answer = item.querySelector('.faq-a');
+
+        button.addEventListener('click', () => {
+          const isOpen = item.classList.contains('open');
+
+          faqItems.forEach((other) => {
+            other.classList.remove('open');
+            const otherBtn = other.querySelector('.faq-q');
+            const otherAns = other.querySelector('.faq-a');
+            otherBtn.setAttribute('aria-expanded', 'false');
+            otherAns.style.maxHeight = '0px';
+          });
+
+          if (!isOpen) {
+            item.classList.add('open');
+            button.setAttribute('aria-expanded', 'true');
+            answer.style.maxHeight = answer.scrollHeight + 'px';
+          }
+        });
+      });
+
+      window.addEventListener('resize', () => {
+        const opened = document.querySelector('.faq-item.open .faq-a');
+        if (opened) {
+          opened.style.maxHeight = opened.scrollHeight + 'px';
+        }
+      });
+
+      document.querySelectorAll('.inci-chip').forEach((chip) => {
+        chip.addEventListener('click', () => {
+          chip.classList.toggle('is-active');
+        });
+
+        chip.addEventListener('keydown', (event) => {
+          if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            chip.classList.toggle('is-active');
+          }
+        });
+      });
+
+      const parallaxTargets = document.querySelectorAll('[data-parallax]');
+      if (!prefersReduced && parallaxTargets.length > 0) {
+        let rafPending = false;
+
+        const updateParallax = () => {
+          const scrollY = window.scrollY || window.pageYOffset;
+          parallaxTargets.forEach((el) => {
+            const speed = Number(el.dataset.parallax || 0.06);
+            const y = Math.min(scrollY * speed, 52);
+            el.style.transform = 'translate3d(0,' + y + 'px,0)';
+          });
+          rafPending = false;
+        };
+
+        const onScroll = () => {
+          if (!rafPending) {
+            rafPending = true;
+            window.requestAnimationFrame(updateParallax);
+          }
+        };
+
+        window.addEventListener('scroll', onScroll, { passive: true });
+      }
+
+      const ring = document.querySelector('.cursor-ring');
+      const finePointer = window.matchMedia('(pointer: fine)').matches;
+      if (ring && finePointer && !prefersReduced) {
+        let active = false;
+
+        window.addEventListener('mousemove', (event) => {
+          ring.style.opacity = '1';
+          ring.style.transform = 'translate(' + event.clientX + 'px, ' + event.clientY + 'px) translate(-50%, -50%)';
+          active = true;
+        });
+
+        window.addEventListener('mouseleave', () => {
+          ring.style.opacity = '0';
+          active = false;
+        });
+
+        window.addEventListener('mousedown', () => {
+          if (active) {
+            ring.style.width = '18px';
+            ring.style.height = '18px';
+          }
+        });
+
+        window.addEventListener('mouseup', () => {
+          ring.style.width = '24px';
+          ring.style.height = '24px';
+        });
+      }
+    })();
+  </script>
+</body>
+</html>

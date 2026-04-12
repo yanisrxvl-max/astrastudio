@@ -8,6 +8,7 @@
     "start": "node backend/src/server.js",
     "dev": "node --watch backend/src/server.js",
     "db:init": "node backend/scripts/init-db.js",
+    "academy:sync": "node backend/scripts/sync-academy-curriculum.js",
     "verify": "node backend/scripts/verify.js"
   },
   "engines": {

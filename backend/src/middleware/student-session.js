@@ -58,7 +58,7 @@ function requireStudentSession(req, res, next) {
   const studentSession = getStudentSessionFromRequest(req);
 
   if (!studentSession) {
-    if (req.path.startsWith("/api/")) {
+    if ((req.originalUrl || "").startsWith("/api/")) {
       return res.status(401).json({
         ok: false,
         message: "Connexion requise pour accéder à l’espace élève.",

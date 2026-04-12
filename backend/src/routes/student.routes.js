@@ -6,6 +6,7 @@ const express = require("express");
 const multer = require("multer");
 
 const { config } = require("../config/env");
+const { getCoursePresentation } = require("../data/academy-curriculum");
 const { applyStudentSession, requireStudentSession, STUDENT_SESSION_COOKIE_NAME } = require("../middleware/student-session");
 const {
   consumePasswordResetToken,
@@ -115,10 +116,17 @@ function getDashboardPayload(userId) {
     const totalLessons = Number(enrollment.total_lessons || 0);
     const completedLessons = Number(enrollment.completed_lessons || 0);
     const progressPercent = totalLessons ? Math.round((completedLessons / totalLessons) * 100) : 0;
+    const tree = getCourseTreeForStudent(userId, enrollment.course_id);
+    const presentation = getCoursePresentation(enrollment.course_id) || {};
 
     return {
       ...enrollment,
       progress_percent: progressPercent,
+      module_count: tree?.modules?.length || 0,
+      total_duration_minutes: tree?.stats?.total_duration_minutes || 0,
+      remaining_duration_minutes: tree?.stats?.remaining_duration_minutes || 0,
+      next_lesson: tree?.next_lesson || null,
+      presentation,
     };
   });
 
@@ -133,6 +141,10 @@ function getDashboardPayload(userId) {
   const pendingAssignments = listSubmissionsForUser(userId).filter((submission) =>
     ["submitted", "pending_review", "revision_requested"].includes(submission.status)
   ).length;
+  const nextStep =
+    enrollments.find((enrollment) => Number(enrollment.progress_percent || 0) < 100 && enrollment.next_lesson) ||
+    enrollments.find((enrollment) => enrollment.next_lesson) ||
+    null;
 
   return {
     metrics: {
@@ -140,6 +152,18 @@ function getDashboardPayload(userId) {
       average_progress: avgProgress,
       pending_assignments: pendingAssignments,
     },
+    next_step: nextStep
+      ? {
+          course_id: nextStep.course_id,
+          course_slug: nextStep.slug,
+          course_title: nextStep.title,
+          course_subtitle: nextStep.subtitle,
+          progress_percent: nextStep.progress_percent,
+          remaining_duration_minutes: nextStep.remaining_duration_minutes,
+          next_lesson: nextStep.next_lesson,
+          promise: nextStep.presentation?.promise || "",
+        }
+      : null,
     enrollments,
   };
 }
@@ -607,7 +631,10 @@ function createStudentRouter({ mailer }) {
 
       return res.status(200).json({
         ok: true,
-        course: tree,
+        course: {
+          ...tree,
+          presentation: getCoursePresentation(course.id) || getCoursePresentation(course.slug) || null,
+        },
         submissions: listSubmissionsForUser(req.studentSession.user.id, { course_id: course.id }),
       });
     })
@@ -649,7 +676,13 @@ function createStudentRouter({ mailer }) {
 
       return res.status(200).json({
         ok: true,
-        course: getCourseTreeForStudent(req.studentSession.user.id, lesson.course_id),
+        course: {
+          ...getCourseTreeForStudent(req.studentSession.user.id, lesson.course_id),
+          presentation:
+            getCoursePresentation(lesson.course_id) ||
+            getCoursePresentation(getCourseById(lesson.course_id)?.slug || "") ||
+            null,
+        },
       });
     })
   );

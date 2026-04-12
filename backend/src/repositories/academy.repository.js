@@ -73,21 +73,29 @@ function listCoursesAdmin() {
 
 function getCourseBySlug(slug) {
   const db = getDatabase();
-  return db.prepare("SELECT * FROM academy_courses WHERE slug = ?").get(slug) || null;
+  return (
+    db
+      .prepare("SELECT * FROM academy_courses WHERE slug = @slug")
+      .get(bindNamedParameters({ slug })) || null
+  );
 }
 
 function getCourseById(courseId) {
   const db = getDatabase();
-  return db.prepare("SELECT * FROM academy_courses WHERE id = ?").get(courseId) || null;
+  return (
+    db
+      .prepare("SELECT * FROM academy_courses WHERE id = @course_id")
+      .get(bindNamedParameters({ course_id: courseId })) || null
+  );
 }
 
 function listModulesByCourse(courseId) {
   const db = getDatabase();
   return db
     .prepare(
-      "SELECT * FROM academy_modules WHERE course_id = ? ORDER BY order_index ASC, created_at ASC"
+      "SELECT * FROM academy_modules WHERE course_id = @course_id ORDER BY order_index ASC, created_at ASC"
     )
-    .all(courseId);
+    .all(bindNamedParameters({ course_id: courseId }));
 }
 
 function listLessonsByCourse(courseId) {
@@ -100,33 +108,55 @@ function listLessonsByCourse(courseId) {
         m.order_index AS module_order_index
       FROM academy_lessons l
       INNER JOIN academy_modules m ON m.id = l.module_id
-      WHERE l.course_id = ?
+      WHERE l.course_id = @course_id
       ORDER BY m.order_index ASC, l.order_index ASC, l.created_at ASC
     `)
-    .all(courseId);
+    .all(bindNamedParameters({ course_id: courseId }));
+}
+
+function listResourcesByCourse(courseId) {
+  const db = getDatabase();
+  return db
+    .prepare(
+      "SELECT * FROM academy_resources WHERE course_id = @course_id ORDER BY order_index ASC, created_at ASC"
+    )
+    .all(bindNamedParameters({ course_id: courseId }));
 }
 
 function getLessonById(lessonId) {
   const db = getDatabase();
-  return db.prepare("SELECT * FROM academy_lessons WHERE id = ?").get(lessonId) || null;
+  return (
+    db
+      .prepare("SELECT * FROM academy_lessons WHERE id = @lesson_id")
+      .get(bindNamedParameters({ lesson_id: lessonId })) || null
+  );
 }
 
 function getModuleById(moduleId) {
   const db = getDatabase();
-  return db.prepare("SELECT * FROM academy_modules WHERE id = ?").get(moduleId) || null;
+  return (
+    db
+      .prepare("SELECT * FROM academy_modules WHERE id = @module_id")
+      .get(bindNamedParameters({ module_id: moduleId })) || null
+  );
 }
 
 function getUserByEmail(email) {
   const db = getDatabase();
   const normalizedEmail = normalizeEmail(email);
   const row =
-    db.prepare("SELECT * FROM academy_users WHERE email = ? LIMIT 1").get(normalizedEmail) || null;
+    db
+      .prepare("SELECT * FROM academy_users WHERE email = @email LIMIT 1")
+      .get(bindNamedParameters({ email: normalizedEmail })) || null;
   return row;
 }
 
 function getUserById(userId) {
   const db = getDatabase();
-  const row = db.prepare("SELECT * FROM academy_users WHERE id = ?").get(userId) || null;
+  const row =
+    db
+      .prepare("SELECT * FROM academy_users WHERE id = @user_id")
+      .get(bindNamedParameters({ user_id: userId })) || null;
   return row;
 }
 
@@ -161,9 +191,15 @@ function updateUserPassword(userId, passwordHash) {
   const updatedAt = nowIso();
   db.prepare(`
     UPDATE academy_users
-    SET password_hash = ?, updated_at = ?
-    WHERE id = ?
-  `).run(passwordHash, updatedAt, userId);
+    SET password_hash = @password_hash, updated_at = @updated_at
+    WHERE id = @user_id
+  `).run(
+    bindNamedParameters({
+      password_hash: passwordHash,
+      updated_at: updatedAt,
+      user_id: userId,
+    })
+  );
 }
 
 function markUserLastLogin(userId) {
@@ -171,9 +207,15 @@ function markUserLastLogin(userId) {
   const now = nowIso();
   db.prepare(`
     UPDATE academy_users
-    SET last_login_at = ?, updated_at = ?
-    WHERE id = ?
-  `).run(now, now, userId);
+    SET last_login_at = @last_login_at, updated_at = @updated_at
+    WHERE id = @user_id
+  `).run(
+    bindNamedParameters({
+      last_login_at: now,
+      updated_at: now,
+      user_id: userId,
+    })
+  );
 }
 
 function createStudentSession(input) {
@@ -209,7 +251,9 @@ function deleteExpiredStudentSessions() {
 
 function deleteStudentSessionByToken(token) {
   const db = getDatabase();
-  db.prepare("DELETE FROM academy_sessions WHERE token_hash = ?").run(hashToken(token));
+  db.prepare("DELETE FROM academy_sessions WHERE token_hash = @token_hash").run(
+    bindNamedParameters({ token_hash: hashToken(token) })
+  );
 }
 
 function getStudentSessionByToken(token) {
@@ -227,17 +271,19 @@ function getStudentSessionByToken(token) {
           u.status AS user_status
         FROM academy_sessions s
         INNER JOIN academy_users u ON u.id = s.user_id
-        WHERE s.token_hash = ?
+        WHERE s.token_hash = @token_hash
         LIMIT 1
       `)
-      .get(tokenHash) || null;
+      .get(bindNamedParameters({ token_hash: tokenHash })) || null;
 
   if (!row) {
     return null;
   }
 
   if (new Date(row.expires_at).getTime() <= Date.now()) {
-    db.prepare("DELETE FROM academy_sessions WHERE id = ?").run(row.id);
+    db.prepare("DELETE FROM academy_sessions WHERE id = @session_id").run(
+      bindNamedParameters({ session_id: row.id })
+    );
     return null;
   }
 
@@ -249,9 +295,9 @@ function createPasswordResetToken(input) {
   const now = nowIso();
   db.prepare(`
     DELETE FROM academy_password_resets
-    WHERE user_id = ?
+    WHERE user_id = @user_id
        OR datetime(expires_at) < datetime('now')
-  `).run(input.user_id);
+  `).run(bindNamedParameters({ user_id: input.user_id }));
 
   const tokenRecord = {
     id: randomUUID(),
@@ -280,11 +326,11 @@ function getPasswordResetToken(token) {
       .prepare(`
         SELECT *
         FROM academy_password_resets
-        WHERE token_hash = ?
+        WHERE token_hash = @token_hash
           AND consumed_at = ''
         LIMIT 1
       `)
-      .get(hashToken(token)) || null;
+      .get(bindNamedParameters({ token_hash: hashToken(token) })) || null;
 
   if (!row) {
     return null;
@@ -301,9 +347,14 @@ function consumePasswordResetToken(resetId) {
   const db = getDatabase();
   db.prepare(`
     UPDATE academy_password_resets
-    SET consumed_at = ?
-    WHERE id = ?
-  `).run(nowIso(), resetId);
+    SET consumed_at = @consumed_at
+    WHERE id = @reset_id
+  `).run(
+    bindNamedParameters({
+      consumed_at: nowIso(),
+      reset_id: resetId,
+    })
+  );
 }
 
 function listUserEnrollments(userId) {
@@ -339,11 +390,11 @@ function listUserEnrollments(userId) {
         ) AS last_activity_at
       FROM academy_enrollments e
       INNER JOIN academy_courses c ON c.id = e.course_id
-      WHERE e.user_id = ?
+      WHERE e.user_id = @user_id
         AND e.status = 'active'
       ORDER BY datetime(e.updated_at) DESC
     `)
-    .all(userId);
+    .all(bindNamedParameters({ user_id: userId }));
 }
 
 function getEnrollment(userId, courseId) {
@@ -353,12 +404,17 @@ function getEnrollment(userId, courseId) {
       .prepare(`
         SELECT *
         FROM academy_enrollments
-        WHERE user_id = ?
-          AND course_id = ?
+        WHERE user_id = @user_id
+          AND course_id = @course_id
           AND status = 'active'
         LIMIT 1
       `)
-      .get(userId, courseId) || null
+      .get(
+        bindNamedParameters({
+          user_id: userId,
+          course_id: courseId,
+        })
+      ) || null
   );
 }
 
@@ -370,7 +426,7 @@ function createOrActivateEnrollment(input) {
     INSERT INTO academy_enrollments (
       id, created_at, updated_at, user_id, course_id, source, status, started_at, completed_at
     ) VALUES (
-      ?, ?, ?, ?, ?, ?, 'active', '', ''
+      @id, @created_at, @updated_at, @user_id, @course_id, @source, 'active', '', ''
     )
     ON CONFLICT(user_id, course_id)
     DO UPDATE SET
@@ -378,12 +434,14 @@ function createOrActivateEnrollment(input) {
       source = excluded.source,
       status = 'active'
   `).run(
-    enrollmentId,
-    now,
-    now,
-    input.user_id,
-    input.course_id,
-    input.source || "purchase"
+    bindNamedParameters({
+      id: enrollmentId,
+      created_at: now,
+      updated_at: now,
+      user_id: input.user_id,
+      course_id: input.course_id,
+      source: input.source || "purchase",
+    })
   );
 
   return getEnrollment(input.user_id, input.course_id);
@@ -396,33 +454,40 @@ function createOrUpdatePurchase(input) {
       .prepare(`
         SELECT *
         FROM academy_purchases
-        WHERE provider = ?
-          AND provider_session_id = ?
+        WHERE provider = @provider
+          AND provider_session_id = @provider_session_id
         LIMIT 1
       `)
-      .get(input.provider || "stripe", input.provider_session_id) || null;
+      .get(
+        bindNamedParameters({
+          provider: input.provider || "stripe",
+          provider_session_id: input.provider_session_id,
+        })
+      ) || null;
   const now = nowIso();
 
   if (existing) {
     db.prepare(`
       UPDATE academy_purchases
-      SET updated_at = ?,
-          user_id = ?,
-          course_id = ?,
-          amount_cents = ?,
-          currency = ?,
-          metadata_json = ?,
-          status = ?
-      WHERE id = ?
+      SET updated_at = @updated_at,
+          user_id = @user_id,
+          course_id = @course_id,
+          amount_cents = @amount_cents,
+          currency = @currency,
+          metadata_json = @metadata_json,
+          status = @status
+      WHERE id = @purchase_id
     `).run(
-      now,
-      input.user_id,
-      input.course_id,
-      input.amount_cents,
-      input.currency,
-      JSON.stringify(input.metadata || {}),
-      input.status || existing.status,
-      existing.id
+      bindNamedParameters({
+        updated_at: now,
+        user_id: input.user_id,
+        course_id: input.course_id,
+        amount_cents: input.amount_cents,
+        currency: input.currency,
+        metadata_json: JSON.stringify(input.metadata || {}),
+        status: input.status || existing.status,
+        purchase_id: existing.id,
+      })
     );
     return getPurchaseByProviderSessionId(input.provider_session_id);
   }
@@ -464,10 +529,10 @@ function getPurchaseByProviderSessionId(sessionId) {
         SELECT *
         FROM academy_purchases
         WHERE provider = 'stripe'
-          AND provider_session_id = ?
+          AND provider_session_id = @provider_session_id
         LIMIT 1
       `)
-      .get(sessionId) || null
+      .get(bindNamedParameters({ provider_session_id: sessionId })) || null
   );
 }
 
@@ -476,19 +541,20 @@ function markPurchasePaid(input) {
   const now = nowIso();
   db.prepare(`
     UPDATE academy_purchases
-    SET updated_at = ?,
+    SET updated_at = @updated_at,
         status = 'paid',
-        paid_at = CASE WHEN paid_at = '' THEN ? ELSE paid_at END,
-        provider_payment_intent = CASE WHEN ? = '' THEN provider_payment_intent ELSE ? END,
-        metadata_json = ?
-    WHERE id = ?
+        paid_at = CASE WHEN paid_at = '' THEN @paid_at ELSE paid_at END,
+        provider_payment_intent = CASE WHEN @provider_payment_intent = '' THEN provider_payment_intent ELSE @provider_payment_intent END,
+        metadata_json = @metadata_json
+    WHERE id = @purchase_id
   `).run(
-    now,
-    now,
-    input.provider_payment_intent || "",
-    input.provider_payment_intent || "",
-    JSON.stringify(input.metadata || {}),
-    input.purchase_id
+    bindNamedParameters({
+      updated_at: now,
+      paid_at: now,
+      provider_payment_intent: input.provider_payment_intent || "",
+      metadata_json: JSON.stringify(input.metadata || {}),
+      purchase_id: input.purchase_id,
+    })
   );
 }
 
@@ -496,9 +562,15 @@ function markPurchaseFailed(input) {
   const db = getDatabase();
   db.prepare(`
     UPDATE academy_purchases
-    SET updated_at = ?, status = ?
-    WHERE id = ?
-  `).run(nowIso(), input.status || "failed", input.purchase_id);
+    SET updated_at = @updated_at, status = @status
+    WHERE id = @purchase_id
+  `).run(
+    bindNamedParameters({
+      updated_at: nowIso(),
+      status: input.status || "failed",
+      purchase_id: input.purchase_id,
+    })
+  );
 }
 
 function listPurchasesAdmin(filters = {}) {
@@ -566,12 +638,12 @@ function listUsersAdmin(filters = {}) {
       enrollment_count:
         db
           .prepare(`
-            SELECT COUNT(*) AS total
-            FROM academy_enrollments
-            WHERE user_id = ?
+          SELECT COUNT(*) AS total
+          FROM academy_enrollments
+          WHERE user_id = @user_id
               AND status = 'active'
           `)
-          .get(user.id)?.total || 0,
+          .get(bindNamedParameters({ user_id: user.id }))?.total || 0,
       row_index: index,
     }));
 }
@@ -585,26 +657,35 @@ function getCourseTreeForStudent(userId, courseId) {
 
   const modules = listModulesByCourse(courseId);
   const lessons = listLessonsByCourse(courseId);
+  const resources = listResourcesByCourse(courseId);
   const db = getDatabase();
   const progressRows = db
     .prepare(`
       SELECT *
       FROM academy_lesson_progress
-      WHERE user_id = ?
-        AND course_id = ?
+      WHERE user_id = @user_id
+        AND course_id = @course_id
     `)
-    .all(userId, courseId);
+    .all(
+      bindNamedParameters({
+        user_id: userId,
+        course_id: courseId,
+      })
+    );
 
   const progressMap = new Map(progressRows.map((row) => [row.lesson_id, row]));
+  const lessonOrder = lessons.map((lesson) => ({
+    ...lesson,
+    progress: progressMap.get(lesson.id) || null,
+  }));
   const lessonsByModule = modules.map((module) => {
-    const moduleLessons = lessons
-      .filter((lesson) => lesson.module_id === module.id)
-      .map((lesson) => ({
-        ...lesson,
-        progress: progressMap.get(lesson.id) || null,
-      }));
+    const moduleLessons = lessonOrder.filter((lesson) => lesson.module_id === module.id);
 
     const completed = moduleLessons.filter((lesson) => lesson.progress?.status === "completed").length;
+    const moduleDuration = moduleLessons.reduce(
+      (sum, lesson) => sum + Number(lesson.duration_minutes || 0),
+      0
+    );
 
     return {
       ...module,
@@ -612,21 +693,48 @@ function getCourseTreeForStudent(userId, courseId) {
       stats: {
         total_lessons: moduleLessons.length,
         completed_lessons: completed,
+        total_duration_minutes: moduleDuration,
       },
     };
-  });
+  }).filter((module) => module.lessons.length > 0);
 
   const totalLessons = lessons.length;
   const completedLessons = progressRows.filter((row) => row.status === "completed").length;
   const progressPercent = totalLessons ? Math.round((completedLessons / totalLessons) * 100) : 0;
+  const totalDurationMinutes = lessonOrder.reduce(
+    (sum, lesson) => sum + Number(lesson.duration_minutes || 0),
+    0
+  );
+  const completedDurationMinutes = lessonOrder
+    .filter((lesson) => lesson.progress?.status === "completed")
+    .reduce((sum, lesson) => sum + Number(lesson.duration_minutes || 0), 0);
+  const nextLesson =
+    lessonOrder.find((lesson) => lesson.progress?.status !== "completed") ||
+    lessonOrder[lessonOrder.length - 1] ||
+    null;
 
   return {
     ...course,
     modules: lessonsByModule,
+    resources,
+    next_lesson: nextLesson
+      ? {
+          id: nextLesson.id,
+          title: nextLesson.title,
+          module_id: nextLesson.module_id,
+          module_title: nextLesson.module_title,
+          duration_minutes: nextLesson.duration_minutes,
+          lesson_type: nextLesson.lesson_type,
+          progress_status: nextLesson.progress?.status || "not_started",
+        }
+      : null,
     stats: {
       total_lessons: totalLessons,
       completed_lessons: completedLessons,
       progress_percent: progressPercent,
+      total_duration_minutes: totalDurationMinutes,
+      completed_duration_minutes: completedDurationMinutes,
+      remaining_duration_minutes: Math.max(0, totalDurationMinutes - completedDurationMinutes),
       last_activity_at:
         progressRows
           .slice()
@@ -644,11 +752,16 @@ function upsertLessonProgress(input) {
       .prepare(`
         SELECT *
         FROM academy_lesson_progress
-        WHERE user_id = ?
-          AND lesson_id = ?
+        WHERE user_id = @user_id
+          AND lesson_id = @lesson_id
         LIMIT 1
       `)
-      .get(input.user_id, input.lesson_id) || null;
+      .get(
+        bindNamedParameters({
+          user_id: input.user_id,
+          lesson_id: input.lesson_id,
+        })
+      ) || null;
 
   const nextStatus = input.status || current?.status || "in_progress";
   const nextPercent = Number.isFinite(input.progress_percent)
@@ -664,21 +777,24 @@ function upsertLessonProgress(input) {
         id, created_at, updated_at, user_id, course_id, module_id, lesson_id,
         status, progress_percent, started_at, completed_at, last_position_seconds
       ) VALUES (
-        ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?
+        @id, @created_at, @updated_at, @user_id, @course_id, @module_id, @lesson_id,
+        @status, @progress_percent, @started_at, @completed_at, @last_position_seconds
       )
     `).run(
-      randomUUID(),
-      now,
-      now,
-      input.user_id,
-      input.course_id,
-      input.module_id,
-      input.lesson_id,
-      nextStatus,
-      nextPercent,
-      startedAt,
-      completedAt,
-      Number(input.last_position_seconds || 0)
+      bindNamedParameters({
+        id: randomUUID(),
+        created_at: now,
+        updated_at: now,
+        user_id: input.user_id,
+        course_id: input.course_id,
+        module_id: input.module_id,
+        lesson_id: input.lesson_id,
+        status: nextStatus,
+        progress_percent: nextPercent,
+        started_at: startedAt,
+        completed_at: completedAt,
+        last_position_seconds: Number(input.last_position_seconds || 0),
+      })
     );
 
     return;
@@ -686,21 +802,23 @@ function upsertLessonProgress(input) {
 
   db.prepare(`
     UPDATE academy_lesson_progress
-    SET updated_at = ?,
-        status = ?,
-        progress_percent = ?,
-        started_at = ?,
-        completed_at = ?,
-        last_position_seconds = ?
-    WHERE id = ?
+    SET updated_at = @updated_at,
+        status = @status,
+        progress_percent = @progress_percent,
+        started_at = @started_at,
+        completed_at = @completed_at,
+        last_position_seconds = @last_position_seconds
+    WHERE id = @progress_id
   `).run(
-    now,
-    nextStatus,
-    nextPercent,
-    startedAt,
-    completedAt,
-    Number(input.last_position_seconds || current.last_position_seconds || 0),
-    current.id
+    bindNamedParameters({
+      updated_at: now,
+      status: nextStatus,
+      progress_percent: nextPercent,
+      started_at: startedAt,
+      completed_at: completedAt,
+      last_position_seconds: Number(input.last_position_seconds || current.last_position_seconds || 0),
+      progress_id: current.id,
+    })
   );
 }
 
@@ -714,34 +832,38 @@ function createSubmissionWithAttachments(input) {
     db.prepare(`
       INSERT INTO academy_submissions (
         id, created_at, updated_at, user_id, course_id, module_id, lesson_id, status, text_response, admin_feedback, reviewed_at
-      ) VALUES (?, ?, ?, ?, ?, ?, ?, 'submitted', ?, '', '')
+      ) VALUES (@id, @created_at, @updated_at, @user_id, @course_id, @module_id, @lesson_id, 'submitted', @text_response, '', '')
     `).run(
-      submissionId,
-      now,
-      now,
-      input.user_id,
-      input.course_id,
-      input.module_id,
-      input.lesson_id,
-      input.text_response || ""
+      bindNamedParameters({
+        id: submissionId,
+        created_at: now,
+        updated_at: now,
+        user_id: input.user_id,
+        course_id: input.course_id,
+        module_id: input.module_id,
+        lesson_id: input.lesson_id,
+        text_response: input.text_response || "",
+      })
     );
 
     const attachmentStatement = db.prepare(`
       INSERT INTO academy_submission_attachments (
         id, submission_id, user_id, created_at, original_name, stored_name, mime_type, size_bytes
-      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+      ) VALUES (@id, @submission_id, @user_id, @created_at, @original_name, @stored_name, @mime_type, @size_bytes)
     `);
 
     (input.attachments || []).forEach((file) => {
       attachmentStatement.run(
-        randomUUID(),
-        submissionId,
-        input.user_id,
-        now,
-        file.original_name,
-        file.stored_name,
-        file.mime_type || "",
-        Number(file.size_bytes || 0)
+        bindNamedParameters({
+          id: randomUUID(),
+          submission_id: submissionId,
+          user_id: input.user_id,
+          created_at: now,
+          original_name: file.original_name,
+          stored_name: file.stored_name,
+          mime_type: file.mime_type || "",
+          size_bytes: Number(file.size_bytes || 0),
+        })
       );
     });
 
@@ -846,10 +968,10 @@ function getSubmissionById(submissionId) {
         INNER JOIN academy_courses c ON c.id = s.course_id
         INNER JOIN academy_lessons l ON l.id = s.lesson_id
         INNER JOIN academy_modules m ON m.id = s.module_id
-        WHERE s.id = ?
+        WHERE s.id = @submission_id
         LIMIT 1
       `)
-      .get(submissionId) || null;
+      .get(bindNamedParameters({ submission_id: submissionId })) || null;
 
   if (!row) {
     return null;
@@ -867,10 +989,10 @@ function listAttachmentsForSubmission(submissionId) {
     .prepare(`
       SELECT *
       FROM academy_submission_attachments
-      WHERE submission_id = ?
+      WHERE submission_id = @submission_id
       ORDER BY datetime(created_at) ASC
     `)
-    .all(submissionId);
+    .all(bindNamedParameters({ submission_id: submissionId }));
 }
 
 function getAttachmentById(attachmentId) {
@@ -880,10 +1002,10 @@ function getAttachmentById(attachmentId) {
       .prepare(`
         SELECT *
         FROM academy_submission_attachments
-        WHERE id = ?
+        WHERE id = @attachment_id
         LIMIT 1
       `)
-      .get(attachmentId) || null
+      .get(bindNamedParameters({ attachment_id: attachmentId })) || null
   );
 }
 
@@ -902,9 +1024,17 @@ function updateSubmissionReview(submissionId, updates) {
 
   db.prepare(`
     UPDATE academy_submissions
-    SET updated_at = ?, status = ?, admin_feedback = ?, reviewed_at = ?
-    WHERE id = ?
-  `).run(now, nextStatus, nextFeedback, reviewedAt, submissionId);
+    SET updated_at = @updated_at, status = @status, admin_feedback = @admin_feedback, reviewed_at = @reviewed_at
+    WHERE id = @submission_id
+  `).run(
+    bindNamedParameters({
+      updated_at: now,
+      status: nextStatus,
+      admin_feedback: nextFeedback,
+      reviewed_at: reviewedAt,
+      submission_id: submissionId,
+    })
+  );
 
   return getSubmissionById(submissionId);
 }
@@ -1127,7 +1257,11 @@ function createManualEnrollment(input) {
 
 function getPurchaseById(purchaseId) {
   const db = getDatabase();
-  return db.prepare("SELECT * FROM academy_purchases WHERE id = ?").get(purchaseId) || null;
+  return (
+    db
+      .prepare("SELECT * FROM academy_purchases WHERE id = @purchase_id")
+      .get(bindNamedParameters({ purchase_id: purchaseId })) || null
+  );
 }
 
 module.exports = {
@@ -1162,6 +1296,7 @@ module.exports = {
   listCoursesAdmin,
   listLessonsByCourse,
   listModulesByCourse,
+  listResourcesByCourse,
   listPublishedCourses,
   listPurchasesAdmin,
   listSubmissionsForAdmin,

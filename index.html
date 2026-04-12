@@ -49,8 +49,8 @@
     <section class="hero hero-home">
       <div class="hero-video-layer" data-bg-video-wrap aria-hidden="true">
         <video class="hero-video-media" data-bg-video autoplay muted loop playsinline preload="metadata"
-          poster="assets/videos/astra-hero-work-poster.png">
-          <source src="assets/videos/astra-hero-work.mp4" type="video/mp4" />
+          poster="assets/videos/astra-hero-work-poster.png?v=20260408-3">
+          <source src="assets/videos/astra-hero-work.mp4?v=20260408-3" type="video/mp4" />
         </video>
         <div class="hero-video-overlay"></div>
       </div>
@@ -212,8 +212,9 @@
           </article>
         </div>
 
-        <div class="button-row reveal" style="--reveal-delay: 0.18s">
+        <div class="button-row button-row-relaxed reveal" style="--reveal-delay: 0.18s">
           <a class="button button-secondary" href="services.html">Découvrir les services</a>
+          <a class="button button-ghost" href="production.html">Voir la capacité de production</a>
           <a class="button button-ghost" href="contact.html">Discuter d'une mission</a>
         </div>
       </div>
@@ -221,16 +222,84 @@
 
     <section class="section">
       <div class="container">
-        <article class="panel services-band-note reveal"
-          style="text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 5rem 2rem;">
+        <article class="panel partnership-callout reveal">
+          <div class="partnership-callout-copy">
+            <span class="kicker">Collaboration sélective</span>
+            <h2 class="section-title">Astra Studio peut aussi activer un dispositif image &amp; influence avec Wafia.</h2>
+            <p class="subhead">
+              Pour certains projets, la bonne réponse ne s'arrête pas à la création.
+              Elle demande aussi un partenaire spécialisé en influence, talents et orchestration
+              d'activation.
+            </p>
+          </div>
+          <div class="partnership-callout-meta">
+            <article class="surface-note">
+              <span class="meta-label">Astra Studio</span>
+              <p>Direction créative, contenus premium, scripts, assets et lisibilité de marque.</p>
+            </article>
+            <article class="surface-note">
+              <span class="meta-label">Wafia</span>
+              <p>Influence marketing, casting créateurs, activation et coordination de campagne.</p>
+            </article>
+          </div>
+          <div class="button-row">
+            <a class="button button-primary" href="creative-influence.html">Explorer l'approche</a>
+            <a class="button button-secondary" href="contact.html">Cadrer un dispositif</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <article class="panel services-architecture reveal">
+          <div class="services-architecture-head">
+            <div>
+              <span class="kicker">Astra Systems</span>
+              <h2 class="section-title">Astra Studio conçoit aussi des systèmes IA de marque.</h2>
+            </div>
+            <p class="subhead">
+              Une branche pensée pour les marques qui veulent mieux qualifier, mieux produire et mieux convertir,
+              sans perdre en tenue, en cohérence ni en qualité de relation client.
+            </p>
+          </div>
+
+          <div class="positioning-grid">
+            <article class="insight-card reveal">
+              <span class="card-eyebrow">ASTRA / SIGNAL</span>
+              <h3 class="card-title display">Qualifier les demandes avec plus de clarté.</h3>
+              <p>Pré-diagnostic, tri des besoins et orientation vers la bonne offre ou le bon cadrage.</p>
+            </article>
+            <article class="insight-card reveal" style="--reveal-delay: 0.08s">
+              <span class="card-eyebrow">ASTRA / OPERATOR</span>
+              <h3 class="card-title display">Structurer le contenu sans devenir générique.</h3>
+              <p>Angles, scripts, repurposing et brand voice pour produire plus régulièrement avec un vrai cadre.</p>
+            </article>
+            <article class="insight-card reveal" style="--reveal-delay: 0.16s">
+              <span class="card-eyebrow">ASTRA / DESK</span>
+              <h3 class="card-title display">Fluidifier la réponse et l'avant-vente.</h3>
+              <p>Réponses utiles, cadrage plus rapide et orientation plus nette vers le bon prochain pas.</p>
+            </article>
+          </div>
+
+          <div class="button-row">
+            <a class="button button-primary" href="systemes-ia.html">Découvrir Astra Systems</a>
+            <a class="button button-secondary" href="contact.html?intent=systemes-ia">Demander un cadrage IA</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <article class="panel services-band-note services-band-note--center reveal">
           <span class="kicker">Astra Formations</span>
-          <h2 class="card-title display" style="max-width: 800px; margin: 1rem auto;">Transformer l'attention en
-            autorité de marché.</h2>
-          <p style="max-width: 600px; margin: 0 auto 2.5rem; color: var(--color-gray-400);">
+          <h2 class="card-title display services-band-note-title">Transformer l'attention en autorité de marché.</h2>
+          <p class="services-band-note-copy">
             Des programmes d'ingénierie digitale conçus pour les créateurs, marques et dirigeants qui veulent des vues,
             de la crédibilité et une monétisation prédictible.
           </p>
-          <div class="button-row" style="justify-content: center;">
+          <div class="button-row button-row-center">
             <a class="button button-primary" href="formations.html">Voir les programmes</a>
             <a class="button button-secondary" href="contact.html">Discuter d'un projet</a>
           </div>
@@ -274,6 +343,7 @@
           <h3>Navigation</h3>
           <a href="vision.html">À propos</a>
           <a href="services.html">Services</a>
+          <a href="systemes-ia.html">Systèmes IA</a>
           <a href="formations.html">Formations</a>
           <a href="work.html">Réalisations</a>
           <a href="diagnostic.html">Diagnostic gratuit</a>

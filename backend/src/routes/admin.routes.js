@@ -7,6 +7,7 @@ const { createHttpError } = require("../utils/http-error");
 const { sanitizeText } = require("../utils/sanitize");
 const { getAdminLeads, updateLeadFromAdmin, findLead } = require("../services/lead.service");
 const { getAdminContentModules } = require("../services/content.service");
+const { getAdminGrowthPlan } = require("../services/admin-growth-plan.service");
 const {
   createActivityLog,
   createEntity,
@@ -303,6 +304,28 @@ function createAdminRouter({ mailer }) {
             pipeline_estimate: pipelineEstimate,
           },
         },
+      });
+    })
+  );
+
+  router.get(
+    "/growth-plan",
+    asyncHandler(async (req, res) => {
+      const snapshot = getDashboardSnapshot();
+      const leads = getAdminLeads({}).leads;
+      const pipelineEstimate = leads
+        .filter((lead) => ["new", "contacted", "quote_sent"].includes(lead.status))
+        .reduce((total, lead) => total + getLeadPipelineAmount(lead), 0);
+
+      res.json({
+        ok: true,
+        data: getAdminGrowthPlan({
+          ...snapshot,
+          metrics: {
+            ...snapshot.metrics,
+            pipeline_estimate: pipelineEstimate,
+          },
+        }),
       });
     })
   );

@@ -30,50 +30,116 @@
         />
       </a>
       <nav class="learn-topbar-nav" aria-label="Navigation élève">
-        <a href="/learn/dashboard">Dashboard</a>
-        <a href="/formations.html">Catalogue</a>
+        <a href="/learn/dashboard">Mon espace</a>
+        <a href="/formations.html">Programmes</a>
       </nav>
       <div class="learn-topbar-actions">
-        <button type="button" class="button button-secondary" data-course-back>Retour dashboard</button>
+        <button type="button" class="button button-secondary" data-course-back>Retour à l'espace élève</button>
       </div>
     </header>
 
     <main class="learn-main container">
       <section class="learn-course-hero panel">
-        <div>
-          <span class="kicker">Programme élève</span>
+        <div class="learn-course-hero-copy">
+          <span class="kicker">Programme actif</span>
           <h1 class="display-title" data-course-title>Chargement de la formation...</h1>
           <p class="subhead" data-course-subtitle>
             Un instant, nous préparons votre parcours, vos modules et votre prochaine étape.
           </p>
-        </div>
-        <div class="learn-progress-wrap">
-          <div class="learn-progress-label">
-            <span>Progression globale</span>
-            <strong data-course-progress-label>0%</strong>
+          <div class="learn-course-stat-grid" data-course-meta></div>
+          <div class="button-row">
+            <button type="button" class="button button-primary" data-course-start>Commencer le programme</button>
+            <button type="button" class="button button-secondary" data-course-overview-trigger>Vue programme</button>
           </div>
-          <div class="diagnostic-progress-bar"><span data-course-progress-bar style="width: 0%"></span></div>
         </div>
+        <aside class="learn-course-summary panel" data-course-summary>
+          <span class="meta-label">Progression globale</span>
+          <strong class="learn-summary-progress" data-course-progress-label>0%</strong>
+          <div class="diagnostic-progress-bar"><span data-course-progress-bar style="width: 0%"></span></div>
+          <div class="learn-course-summary-body" data-course-summary-body>
+            <p class="subhead">Nous préparons le point de reprise recommandé.</p>
+          </div>
+        </aside>
       </section>
 
       <p class="form-feedback" data-course-feedback role="status" aria-live="polite"></p>
 
       <section class="learn-course-layout">
-        <aside class="panel learn-course-sidebar" data-course-modules></aside>
+        <aside class="panel learn-course-sidebar">
+          <div class="learn-sidebar-head">
+            <span class="kicker">Parcours</span>
+            <h2 class="section-title">Modules et leçons</h2>
+            <p class="subhead">Suivez le programme dans l'ordre ou reprenez directement votre prochaine étape.</p>
+          </div>
+          <div data-course-modules></div>
+        </aside>
 
         <div class="learn-course-main-stack">
-          <article class="panel learn-lesson-panel">
-            <div data-lesson-video-placeholder style="display: none; width: 100%;"></div>
-            
-            <span class="meta-label" data-lesson-meta>Leçon</span>
-            <h2 class="section-title display" data-lesson-title>Bienvenue dans votre formation</h2>
-            <p class="subhead" data-lesson-content>
-              Choisissez une leçon dans la colonne de gauche pour afficher son contenu.
+          <article class="panel learn-program-panel" data-course-program>
+            <div class="learn-program-head">
+              <div>
+                <span class="kicker">Vue programme</span>
+                <h2 class="section-title" data-program-title>Chargement du programme...</h2>
+              </div>
+              <span class="status-pill" data-program-status>En préparation</span>
+            </div>
+            <p class="subhead" data-program-description>
+              Nous structurons la promesse, le niveau attendu et la meilleure manière d'entrer dans ce parcours.
             </p>
+            <div class="learn-program-grid">
+              <article class="learn-mini-panel">
+                <span class="meta-label">Objectif global</span>
+                <p data-program-outcome></p>
+              </article>
+              <article class="learn-mini-panel">
+                <span class="meta-label">Point d'entrée recommandé</span>
+                <p data-program-next-step></p>
+              </article>
+              <article class="learn-mini-panel">
+                <span class="meta-label">Pour qui</span>
+                <p data-program-audience></p>
+              </article>
+              <article class="learn-mini-panel">
+                <span class="meta-label">Cadence conseillée</span>
+                <p data-program-cadence></p>
+              </article>
+            </div>
+            <div class="learn-program-editorial-grid">
+              <article class="learn-editorial-panel">
+                <span class="meta-label">Méthode du programme</span>
+                <p data-program-method></p>
+              </article>
+              <article class="learn-editorial-panel">
+                <span class="meta-label">Ce que vous construisez</span>
+                <p data-program-deliverable></p>
+              </article>
+            </div>
+            <div class="learn-program-highlights" data-program-highlights></div>
+            <div class="learn-program-supports" data-program-supports></div>
+          </article>
+
+          <article class="panel learn-lesson-panel" data-lesson-shell hidden>
+            <div data-lesson-video-placeholder class="learn-lesson-media" hidden></div>
+
+            <div class="learn-lesson-head">
+              <div>
+                <span class="meta-label" data-lesson-meta>Leçon</span>
+                <h2 class="section-title display" data-lesson-title>Bienvenue dans votre formation</h2>
+              </div>
+              <span class="status-pill" data-lesson-status>À faire</span>
+            </div>
+            <div class="learn-lesson-rich" data-lesson-content></div>
             <div class="learn-lesson-actions">
-              <button type="button" class="button button-primary" data-mark-complete disabled>
-                Marquer comme terminée
-              </button>
+              <div class="button-row">
+                <button type="button" class="button button-secondary" data-prev-lesson disabled>Leçon précédente</button>
+                <button type="button" class="button button-secondary" data-next-lesson disabled>Leçon suivante</button>
+              </div>
+              <div class="button-row">
+                <button type="button" class="button button-secondary" data-course-overview-trigger>Revenir à la vue programme</button>
+                <button type="button" class="button button-primary" data-mark-complete disabled>
+                  Marquer comme terminée
+                </button>
+              </div>
             </div>
           </article>
 

@@ -6,7 +6,7 @@
   right: 0;
   width: 100%;
   z-index: 1000;
-  padding: 10px 0 0;
+  padding: 16px 0;
   background: transparent;
   border-bottom: none;
   box-shadow: none;
@@ -14,12 +14,13 @@
 }
 
 .site-header.scrolled {
-  padding: 8px 0 0;
+  padding: 12px 0;
 }
 
 .site-header .container {
-  width: min(100% - 48px, 1200px);
-  max-width: 1200px;
+  width: min(100% - 64px, 1400px);
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
 .header-inner {
@@ -28,7 +29,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1.5rem;
+  gap: 2.5rem;
   min-width: 0;
 }
 
@@ -135,7 +136,7 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  gap: 0.75rem;
+  gap: 1.25rem;
   flex: 1;
   min-width: 0;
 }
@@ -145,8 +146,8 @@
   align-items: center;
   justify-content: flex-end;
   flex-wrap: nowrap;
-  gap: clamp(1rem, 2vw, 2rem);
-  padding: 0.36rem 0.58rem;
+  gap: clamp(1.25rem, 2.5vw, 2.5rem);
+  padding: 0.5rem 0.75rem;
   border-radius: 999px;
   border: 1px solid rgba(255, 255, 255, 0.08);
   background: linear-gradient(180deg, rgba(9, 12, 17, 0.42), rgba(9, 12, 17, 0.28));
@@ -166,7 +167,7 @@
   align-items: center;
   justify-content: flex-end;
   flex-wrap: nowrap;
-  gap: 32px;
+  gap: clamp(1.5rem, 2vw, 2rem);
   margin: 0;
   padding: 0;
   min-width: 0;
@@ -180,20 +181,20 @@
   display: inline-flex;
   align-items: center;
   position: relative;
-  padding: 0.4rem 0;
+  padding: 0.5rem 0;
   border: none;
   border-radius: 0;
   background: none;
   box-shadow: none;
   color: var(--color-text-primary, var(--text));
-  font-size: 0.875rem;
+  font-size: 0.825rem;
   font-weight: 500;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   text-decoration: none;
   line-height: 1.2;
   white-space: nowrap;
-  opacity: 0.7;
+  opacity: 0.75;
   transition: opacity 0.2s ease, color 0.2s ease;
 }
 

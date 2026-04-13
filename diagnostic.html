@@ -4,11 +4,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Astra Signal | Diagnostic premium de présence digitale</title>
+  <title>Diagnostic Astra Signal | Astra Studio</title>
   <meta name="description"
-    content="Astra Signal est le diagnostic premium d'Astra Studio pour clarifier votre positionnement, vos blocages et la meilleure trajectoire image + contenu + performance." />
+    content="Astra Signal : pré-diagnostic premium assisté par IA pour clarifier positionnement, contenu et trajectoire business." />
   <meta name="theme-color" content="#050608" />
-  <link rel="icon" type="image/png" href="assets/branding/astra-studio-logo.png" />
+  <link rel="icon" type="image/png" href="assets/favicon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
@@ -25,24 +25,28 @@
   <header class="site-header">
     <div class="container header-inner">
       <a class="brand" href="index.html" aria-label="Astra Studio">
-        <img class="brand-logo" src="assets/branding/astra-studio-logo.png" alt="Astra Studio" width="500"
-          height="500" />
+        <span class="brand-text"><span class="brand-text-main">ASTRA</span> <span class="brand-text-accent">STUDIO</span></span>
       </a>
 
-      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-navigation"
-        aria-label="Ouvrir le menu">
-        <span></span>
-        <span></span>
-      </button>
+      <div class="header-end">
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="header-nav-wrap"
+          aria-label="Ouvrir le menu">
+          <span class="nav-toggle-line" aria-hidden="true"></span>
+          <span class="nav-toggle-line" aria-hidden="true"></span>
+          <span class="nav-toggle-line" aria-hidden="true"></span>
+        </button>
 
-      <nav class="site-nav" id="site-navigation" aria-label="Navigation principale">
-        <a href="vision.html" data-page-link="vision">À propos</a>
-        <a href="services.html" data-page-link="services">Services</a>
-        <a href="formations.html" data-page-link="formations">Formations</a>
-        <a href="work.html" data-page-link="work">Réalisations</a>
-        <a href="contact.html" data-page-link="contact">Contact</a>
-        <a class="header-cta" href="contact.html">Discuter d'un projet</a>
-      </nav>
+        <div class="header-nav-wrap" id="header-nav-wrap">
+          <nav class="site-nav" id="site-navigation" aria-label="Navigation principale">
+            <a href="vision.html" data-page-link="vision">Ma vision</a>
+            <a href="services.html" data-page-link="services">Services</a>
+            <a href="formations.html" data-page-link="formations">Formations</a>
+            <a href="work.html" data-page-link="work">Réalisations</a>
+            <a href="contact.html" data-page-link="contact">Contact</a>
+          </nav>
+          <a class="header-cta button button-primary" href="contact.html">Discuter d'un projet</a>
+        </div>
+      </div>
     </div>
   </header>
 
@@ -50,11 +54,11 @@
     <section class="section diagnostic-section">
       <div class="container">
         <article class="panel diagnostic-app" data-diagnostic-app>
-          <header class="diagnostic-head">
-            <button class="diagnostic-back" type="button" data-diagnostic-back>
+          <div class="diagnostic-head">
+            <button class="diagnostic-back is-hidden" type="button" data-diagnostic-back>
               Retour
             </button>
-            <div class="diagnostic-progress-wrap" aria-hidden="true">
+            <div class="diagnostic-progress-wrap" aria-label="Progression du diagnostic">
               <div class="diagnostic-progress-bar">
                 <span data-progress-fill></span>
               </div>
@@ -63,52 +67,13 @@
                 <strong data-progress-value>0%</strong>
               </div>
             </div>
-          </header>
+          </div>
 
-          <div class="diagnostic-stage" data-diagnostic-stage aria-live="polite"></div>
+          <div class="diagnostic-stage" data-diagnostic-stage></div>
         </article>
       </div>
     </section>
   </main>
-
-  <footer class="site-footer">
-    <div class="container">
-      <div class="footer-grid">
-        <div class="footer-group">
-          <a class="brand" href="index.html" aria-label="Astra Studio">
-            <img class="brand-logo" src="assets/branding/astra-studio-logo.png" alt="Astra Studio" width="500"
-              height="500" />
-          </a>
-          <p>
-            Studio créatif nouvelle génération pour les marques qui veulent paraître plus
-            crédibles, plus désirables et plus prêtes à grandir.
-          </p>
-        </div>
-
-        <div class="footer-group">
-          <h3>Navigation</h3>
-          <a href="vision.html">À propos</a>
-          <a href="services.html">Services</a>
-          <a href="formations.html">Formations</a>
-          <a href="work.html">Réalisations</a>
-          <a href="diagnostic.html">Diagnostic gratuit</a>
-          <a href="contact.html">Contact</a>
-        </div>
-
-        <div class="footer-group">
-          <h3>Contact</h3>
-          <a href="mailto:bonjour@astrastudio.fr">bonjour@astrastudio.fr</a>
-          <p>Paris, à distance et sur site selon les besoins.</p>
-          <a href="contact.html">Ouvrir le brief projet</a>
-        </div>
-      </div>
-
-      <div class="footer-bottom">
-        <span>&copy; <span data-current-year></span> Astra Studio. Tous droits réservés.</span>
-        <span>Direction artistique, contenu, production, consulting.</span>
-      </div>
-    </div>
-  </footer>
 </body>
 
 </html>

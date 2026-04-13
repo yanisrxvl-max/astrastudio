@@ -19,7 +19,7 @@ process.env.SMTP_PASS = "";
 process.env.SMTP_FROM = "";
 process.env.SMTP_REPLY_TO = "";
 process.env.ADMIN_USERNAME = process.env.ADMIN_USERNAME || "admin";
-process.env.ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || "change-me";
+process.env.ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || "astra-verify-e2e-only";
 process.env.ADMIN_SESSION_SECRET =
   process.env.ADMIN_SESSION_SECRET || "astra-studio-verify-secret";
 
@@ -121,7 +121,7 @@ async function main() {
           "Nous voulons vérifier le pipeline commercial et la stabilité du système de contact.",
       }),
     });
-    assert.equal(validLead.response.status, 201);
+    assert.equal(validLead.response.status, 200);
     assert.equal(validLead.payload.ok, true);
 
     const login = await requestJson(`${baseUrl}/api/admin/auth/login`, {

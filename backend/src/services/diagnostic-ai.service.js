@@ -265,8 +265,6 @@ function buildFallbackAnalysis(responses = [], reason = "") {
     getAnswerById(responses, "positioning_clarity")?.answer_label || "Volonté de structurer la présence.";
   const goalFromQuiz =
     getAnswerById(responses, "primary_goal")?.answer_label || "Objectif de croissance plus lisible.";
-  const reasonSnippet = sanitizeText(reason, { max: 180, multiline: true });
-
   return {
     profile_name: fallbackNameByPath[recommendedPath],
     profile_summary:
@@ -313,9 +311,8 @@ function buildFallbackAnalysis(responses = [], reason = "") {
     profile_type: recommendedPath,
     strategic_summary:
       "Lecture de secours générée localement pour préserver l'expérience. Les recommandations restent alignées avec Astra Studio.",
-    transparency_note: reasonSnippet
-      ? `Pré-diagnostic de secours. Motif: ${reasonSnippet}`
-      : "Pré-diagnostic de secours. L'analyse Gemini est momentanément indisponible.",
+    transparency_note:
+      "Pré-diagnostic de secours. L'analyse assistée par IA est momentanément indisponible.",
     model: "fallback_local",
   };
 }

@@ -12,18 +12,36 @@ function toInteger(value, fallback = 0) {
 function validateLeadPayload(payload) {
   const errors = {};
 
+  const primaryObjectiveRaw = sanitizeText(payload.primary_objective, { max: 500 });
+  const messageBody = sanitizeText(payload.message, { max: 3000, multiline: true });
+
+  let timelineValue = sanitizeText(payload.timeline, { max: 160 });
+  if (!timelineValue) {
+    timelineValue = "À définir ensemble";
+  }
+
+  let companyValue = sanitizeText(payload.company, { max: 120 });
+  if (companyValue.length < 2) {
+    companyValue = "Non renseigné";
+  }
+
   const values = {
     name: sanitizeText(payload.name, { max: 80 }),
     email: sanitizeText(payload.email, { max: 160 }).toLowerCase(),
-    company: sanitizeText(payload.company, { max: 120 }),
+    company: companyValue,
     website_or_instagram: normalizeOptional(payload.website_or_instagram || payload.website, {
       max: 220,
     }),
     phone: normalizeOptional(payload.phone, { max: 40 }),
     project_type: sanitizeText(payload.project_type, { max: 120 }),
     budget: sanitizeText(payload.budget, { max: 120 }),
-    timeline: sanitizeText(payload.timeline, { max: 160 }),
-    message: sanitizeText(payload.message, { max: 3000, multiline: true }),
+    timeline: timelineValue,
+    message: primaryObjectiveRaw
+      ? sanitizeText(`Objectif principal : ${primaryObjectiveRaw}\n\n${messageBody}`, {
+          max: 3000,
+          multiline: true,
+        })
+      : messageBody,
     source: normalizeOptional(payload.source, { max: 180 }),
     estimated_budget_amount: toInteger(payload.estimated_budget_amount, 0),
     internal_notes: normalizeOptional(payload.internal_notes, { max: 3000, multiline: true }),
@@ -37,10 +55,6 @@ function validateLeadPayload(payload) {
     errors.email = "Merci d'indiquer une adresse e-mail valide.";
   }
 
-  if (values.company.length < 2) {
-    errors.company = "Merci d'indiquer votre entreprise ou votre marque.";
-  }
-
   if (!values.project_type) {
     errors.project_type = "Merci de sélectionner un type de projet.";
   }
@@ -49,12 +63,8 @@ function validateLeadPayload(payload) {
     errors.budget = "Merci d'indiquer un budget envisagé.";
   }
 
-  if (!values.timeline) {
-    errors.timeline = "Merci d'indiquer un timing souhaité.";
-  }
-
-  if (values.message.length < 20) {
-    errors.message = "Merci de donner un peu plus de contexte sur le projet.";
+  if (messageBody.length < 10) {
+    errors.message = "Merci de décrire votre besoin en quelques mots (au moins 10 caractères).";
   }
 
   return {

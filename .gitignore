@@ -1,6 +1,8 @@
 node_modules
 .env
 npm-debug.log*
+.DS_Store
+.claude/
 data/leads.json
 data/*.tmp
 data/*.sqlite
@@ -9,3 +11,4 @@ data/*.sqlite-wal
 tmp-*.png
 tmp_*.txt
 2026 - 4 Décembre - v4 2.pdf
+2026 - 4 De*embre - v4 2.pdf

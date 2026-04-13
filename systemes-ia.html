@@ -17,6 +17,7 @@
   <link rel="stylesheet" href="css/base.css" />
   <link rel="stylesheet" href="css/components.css" />
   <link rel="stylesheet" href="css/pages.css" />
+  <link rel="stylesheet" href="css/styles-premium.css" />
   <script defer src="js/app.js"></script>
 </head>
 
@@ -24,24 +25,28 @@
   <header class="site-header">
     <div class="container header-inner">
       <a class="brand" href="index.html" aria-label="Astra Studio">
-        <img class="brand-logo" src="assets/branding/astra-studio-logo.png" alt="Astra Studio" width="500"
-          height="500" />
+        <span class="brand-text"><span class="brand-text-main">ASTRA</span> <span class="brand-text-accent">STUDIO</span></span>
       </a>
 
-      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-navigation"
-        aria-label="Ouvrir le menu">
-        <span></span>
-        <span></span>
-      </button>
+      <div class="header-end">
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="header-nav-wrap"
+          aria-label="Ouvrir le menu">
+          <span class="nav-toggle-line" aria-hidden="true"></span>
+          <span class="nav-toggle-line" aria-hidden="true"></span>
+          <span class="nav-toggle-line" aria-hidden="true"></span>
+        </button>
 
-      <nav class="site-nav" id="site-navigation" aria-label="Navigation principale">
-        <a href="vision.html" data-page-link="vision">À propos</a>
-        <a href="services.html" data-page-link="services">Services</a>
-        <a href="formations.html" data-page-link="formations">Formations</a>
-        <a href="work.html" data-page-link="work">Réalisations</a>
-        <a href="contact.html" data-page-link="contact">Contact</a>
-        <a class="header-cta" href="contact.html?intent=systemes-ia">Demander un cadrage IA</a>
-      </nav>
+        <div class="header-nav-wrap" id="header-nav-wrap">
+          <nav class="site-nav" id="site-navigation" aria-label="Navigation principale">
+            <a href="vision.html" data-page-link="vision">Ma vision</a>
+            <a href="services.html" data-page-link="services">Services</a>
+            <a href="formations.html" data-page-link="formations">Formations</a>
+            <a href="work.html" data-page-link="work">Réalisations</a>
+            <a href="contact.html" data-page-link="contact">Contact</a>
+          </nav>
+          <a class="header-cta button button-primary" href="contact.html">Discuter d'un projet</a>
+        </div>
+      </div>
     </div>
   </header>
 
@@ -346,36 +351,65 @@
 
   <footer class="site-footer">
     <div class="container">
-      <div class="footer-grid">
-        <div class="footer-group">
-          <a class="brand" href="index.html" aria-label="Astra Studio">
-            <img class="brand-logo" src="assets/branding/astra-studio-logo.png" alt="Astra Studio" width="500"
-              height="500" />
-          </a>
-          <p>Des systèmes IA conçus pour servir l'image, le contenu et la conversion sans perdre en tenue de marque.</p>
+      <div class="footer-premium-grid">
+        <div class="footer-premium-col footer-premium-col--brand">
+          <a class="brand" href="index.html" aria-label="Astra Studio"><span class="brand-text"><span class="brand-text-main">ASTRA</span> <span class="brand-text-accent">STUDIO</span></span></a>
+          <p class="footer-premium-desc">
+            Studio créatif humain + IA. Stratégie, contenu, et automatisation pour marques ambitieuses.
+          </p>
         </div>
-
-        <div class="footer-group">
-          <h3>Navigation</h3>
-          <a href="vision.html">À propos</a>
-          <a href="services.html">Services</a>
-          <a href="systemes-ia.html">Systèmes IA</a>
-          <a href="formations.html">Formations</a>
-          <a href="contact.html">Contact</a>
+        <nav class="footer-premium-col" aria-label="Navigation">
+          <h3 class="footer-premium-heading">Navigation</h3>
+          <div class="footer-premium-links">
+            <a href="vision.html">Ma vision</a>
+            <a href="index.html#methode">Notre méthode</a>
+            <a href="services.html">Services</a>
+            <a href="systemes-ia.html">Systèmes IA</a>
+            <a href="formations.html">Formations</a>
+            <a href="work.html">Réalisations</a>
+            <a href="contact.html">Contact</a>
+          </div>
+        </nav>
+        <div class="footer-premium-col">
+          <h3 class="footer-premium-heading">Contact</h3>
+          <div class="footer-premium-contact">
+            <a href="mailto:bonjour@astrastudio.fr">bonjour@astrastudio.fr</a>
+            <p>Paris · À distance · Sur site</p>
+            <p class="footer-premium-contact-note">Creative Review incluse dans chaque offre</p>
+          </div>
         </div>
-
-        <div class="footer-group">
-          <h3>Contact</h3>
-          <a href="mailto:bonjour@astrastudio.fr">bonjour@astrastudio.fr</a>
-          <p>Paris, à distance et sur site selon les besoins.</p>
-          <a href="contact.html?intent=systemes-ia">Demander un cadrage IA</a>
+        <div class="footer-premium-col">
+          <h3 class="footer-premium-heading">Réseaux</h3>
+          <div class="footer-premium-social">
+            <a href="#" aria-label="LinkedIn">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path
+                  d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+              </svg>
+            </a>
+            <a href="#" aria-label="Instagram">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+                <circle cx="12" cy="12" r="4" />
+                <circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none" />
+              </svg>
+            </a>
+            <a href="#" aria-label="TikTok">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path
+                  d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z" />
+              </svg>
+            </a>
+            <a href="#" aria-label="X (Twitter)">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+              </svg>
+            </a>
+          </div>
         </div>
       </div>
-
-      <div class="footer-bottom">
-        <span>&copy; <span data-current-year></span> Astra Studio. Tous droits réservés.</span>
-        <span>Direction créative, contenu, systèmes IA, conversion.</span>
-      </div>
+      <p class="footer-premium-copy">© 2026 Astra Studio. Tous droits réservés.</p>
+      <p class="footer-premium-copy-sub">Méthode 100→10→1 • Humain + IA • Paris &amp; à distance</p>
     </div>
   </footer>
 </body>

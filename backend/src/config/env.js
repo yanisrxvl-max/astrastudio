@@ -29,9 +29,7 @@ const config = {
   port: parseInteger(process.env.PORT, 3000),
   trustProxy: parseBoolean(process.env.TRUST_PROXY, false),
   rootDir: getResolvedRootDir(),
-  publicDir: process.env.PUBLIC_DIR
-    ? path.resolve(process.env.PUBLIC_DIR)
-    : getResolvedRootDir(),
+  publicDir: resolveRootPath(process.env.PUBLIC_DIR || "public"),
   databaseFile: resolveRootPath(process.env.DB_FILE || "data/astra-studio.sqlite"),
   legacyLeadsFile: resolveRootPath(process.env.LEGACY_LEADS_FILE || "data/leads.json"),
   leadsNotifyEmail: process.env.LEADS_NOTIFY_EMAIL || "",
@@ -61,9 +59,13 @@ const config = {
     replyTo: process.env.SMTP_REPLY_TO || "",
   },
   ai: {
-    apiKey: process.env.GEMINI_API_KEY || process.env.GOOGLE_API_KEY || "",
+    provider: "gemini",
+    apiKey: process.env.GEMINI_API_KEY || "",
     model: process.env.GEMINI_MODEL || "gemini-2.5-flash",
-    timeoutMs: parseInteger(process.env.GEMINI_TIMEOUT_MS, 18000),
+    timeoutMs: parseInteger(
+      process.env.GEMINI_TIMEOUT_MS || process.env.AI_TIMEOUT_MS,
+      30000
+    ),
   },
   stripe: {
     secretKey: process.env.STRIPE_SECRET_KEY || "",
@@ -97,7 +99,7 @@ function assertConfig() {
   }
 
   if (config.ai.timeoutMs < 4000) {
-    throw new Error("GEMINI_TIMEOUT_MS doit être supérieur ou égal à 4000.");
+    throw new Error("AI_TIMEOUT_MS doit être ≥ 4000.");
   }
 
   if (config.student.sessionTtlHours < 1) {
@@ -109,6 +111,10 @@ function assertConfig() {
   }
 
   if (config.env === "production") {
+    if (config.admin.password === "") {
+      throw new Error("ADMIN_PASSWORD doit être défini et non vide en production.");
+    }
+
     if (!process.env.ADMIN_USERNAME || !process.env.ADMIN_PASSWORD) {
       throw new Error("ADMIN_USERNAME et ADMIN_PASSWORD doivent être définis en production.");
     }
@@ -117,21 +123,17 @@ function assertConfig() {
       throw new Error("ADMIN_SESSION_SECRET doit être défini en production.");
     }
 
-    if (config.admin.password === "change-me") {
-      throw new Error("ADMIN_PASSWORD ne peut pas rester sur la valeur par défaut en production.");
-    }
-
-    if (config.admin.sessionSecret === "astra-studio-session-secret") {
-      throw new Error("ADMIN_SESSION_SECRET ne peut pas rester sur la valeur par défaut en production.");
-    }
-
     if (!process.env.STUDENT_SESSION_SECRET) {
       throw new Error("STUDENT_SESSION_SECRET doit être défini en production.");
     }
 
-    if (config.student.sessionSecret === "astra-student-session-secret") {
-      throw new Error("STUDENT_SESSION_SECRET ne peut pas rester sur la valeur par défaut en production.");
+    if (!process.env.STRIPE_WEBHOOK_SECRET || !String(config.stripe.webhookSecret || "").trim()) {
+      throw new Error("STRIPE_WEBHOOK_SECRET doit être défini et non vide en production (webhooks Stripe).");
     }
+  }
+
+  if (config.env === "production" && !process.env.STRIPE_SECRET_KEY) {
+    throw new Error("STRIPE_SECRET_KEY est requis en production.");
   }
 }
 

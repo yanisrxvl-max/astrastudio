@@ -17,6 +17,90 @@
   <link rel="stylesheet" href="css/base.css" />
   <link rel="stylesheet" href="css/components.css" />
   <link rel="stylesheet" href="css/pages.css" />
+  <link rel="stylesheet" href="css/styles-premium.css" />
+  <style>
+    body[data-page="work"] {
+      background: #050505;
+    }
+    .work-case-biz-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px;
+      margin-top: 8px;
+    }
+    @media (max-width: 900px) {
+      .work-case-biz-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    .work-case-biz-card {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      padding: 28px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(15, 15, 15, 0.85);
+      transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+    }
+    .work-case-biz-card:hover {
+      border-color: #d4af37;
+      box-shadow: 0 0 0 1px rgba(212, 175, 55, 0.25);
+      transform: translateY(-2px);
+    }
+    .work-case-biz-card h2 {
+      margin: 0 0 20px;
+      font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+      line-height: 1.25;
+      color: #fff;
+    }
+    .work-case-biz-block {
+      margin-bottom: 18px;
+    }
+    .work-case-biz-block:last-of-type {
+      margin-bottom: 0;
+    }
+    .work-case-biz-label {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #d4af37;
+      margin-bottom: 8px;
+    }
+    .work-case-biz-card p {
+      margin: 0;
+      color: rgba(255, 255, 255, 0.78);
+      line-height: 1.55;
+    }
+    .work-case-biz-results {
+      margin: 0;
+      padding-left: 1.15rem;
+      color: rgba(255, 255, 255, 0.82);
+      line-height: 1.6;
+    }
+    .work-case-biz-results li {
+      margin-bottom: 6px;
+    }
+    .work-case-biz-results li:last-child {
+      margin-bottom: 0;
+    }
+    .work-case-biz-card .work-case-biz-footer {
+      margin-top: auto;
+      padding-top: 20px;
+    }
+    .work-case-biz-card .inline-link {
+      font-weight: 600;
+      color: #d4af37;
+    }
+    .work-case-biz-card .inline-link:hover {
+      color: #e5c04d;
+    }
+    .work-case-biz-grid .work-case-biz-card:nth-child(3) {
+      grid-column: 1 / -1;
+    }
+  </style>
   <script defer src="js/app.js"></script>
 </head>
 
@@ -24,24 +108,28 @@
   <header class="site-header">
     <div class="container header-inner">
       <a class="brand" href="index.html" aria-label="Astra Studio">
-        <img class="brand-logo" src="assets/branding/astra-studio-logo.png" alt="Astra Studio" width="500"
-          height="500" />
+        <span class="brand-text"><span class="brand-text-main">ASTRA</span> <span class="brand-text-accent">STUDIO</span></span>
       </a>
 
-      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-navigation"
-        aria-label="Ouvrir le menu">
-        <span></span>
-        <span></span>
-      </button>
+      <div class="header-end">
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="header-nav-wrap"
+          aria-label="Ouvrir le menu">
+          <span class="nav-toggle-line" aria-hidden="true"></span>
+          <span class="nav-toggle-line" aria-hidden="true"></span>
+          <span class="nav-toggle-line" aria-hidden="true"></span>
+        </button>
 
-      <nav class="site-nav" id="site-navigation" aria-label="Navigation principale">
-        <a href="vision.html" data-page-link="vision">À propos</a>
-        <a href="services.html" data-page-link="services">Services</a>
-        <a href="formations.html" data-page-link="formations">Formations</a>
-        <a href="work.html" data-page-link="work">Réalisations</a>
-        <a href="contact.html" data-page-link="contact">Contact</a>
-        <a class="header-cta" href="contact.html">Discuter d'un projet</a>
-      </nav>
+        <div class="header-nav-wrap" id="header-nav-wrap">
+          <nav class="site-nav" id="site-navigation" aria-label="Navigation principale">
+            <a href="vision.html" data-page-link="vision">Ma vision</a>
+            <a href="services.html" data-page-link="services">Services</a>
+            <a href="formations.html" data-page-link="formations">Formations</a>
+            <a href="work.html" data-page-link="work">Réalisations</a>
+            <a href="contact.html" data-page-link="contact">Contact</a>
+          </nav>
+          <a class="header-cta button button-primary" href="contact.html">Discuter d'un projet</a>
+        </div>
+      </div>
     </div>
   </header>
 
@@ -49,13 +137,12 @@
     <section class="page-hero work-page-hero">
       <div class="container page-hero-grid">
         <div class="page-hero-copy work-hero-copy reveal">
-          <span class="kicker">Réalisations</span>
+          <span class="kicker reveal reveal-tilt">Réalisations</span>
           <h1 class="display-title">
-            Une bibliothèque de dossiers pour voir comment Astra Studio lit une marque.
+            Des marques qui ne passent pas inaperçues.
           </h1>
           <p class="subhead">
-            Chaque dossier relie lecture de marque, direction créative et impact business.
-            Vous choisissez le cas qui vous parle, puis vous entrez dans le détail.
+            Découvrez comment la méthode Astra (Humain + IA) transforme la présence digitale de nos clients.
           </p>
           <div class="button-row">
             <a class="button button-primary" href="#bibliotheque">Voir les dossiers</a>
@@ -63,13 +150,13 @@
           </div>
         </div>
 
-        <aside class="panel hero-panel work-hero-panel reveal" style="--reveal-delay: 0.1s">
+        <aside class="panel hero-panel work-hero-panel reveal reveal-card" style="--reveal-delay: 0.1s">
           <div class="hero-panel-head">
-            <span class="meta-label">Ce que cette page montre</span>
-            <h2>Trois contextes de marque, une même exigence de clarté.</h2>
+            <span class="meta-label">Impact business</span>
+            <h2>Clarté, traction, cohérence — mesurables.</h2>
             <p>
-              Astra Studio ne montre pas des visuels isolés. Le studio montre une logique :
-              problème, lecture, mission et impact.
+              Chaque dossier pose le défi, la réponse Astra et les signaux de résultat. Pas du décor&nbsp;: de la
+              présence digitale qui travaille pour la marque.
             </p>
           </div>
           <div class="hero-matrix">
@@ -102,290 +189,116 @@
       <div class="container">
         <div class="section-header split reveal">
           <div class="stack">
-            <span class="kicker">Bibliothèque de dossiers</span>
-            <h2 class="section-title">Choisissez la marque que vous voulez explorer.</h2>
+            <span class="kicker reveal reveal-tilt">Case studies</span>
+            <h2 class="section-title">Challenge, solution, résultats.</h2>
           </div>
           <p class="subhead">
-            Une lecture rapide dans les cartes, puis des dossiers plus détaillés plus bas.
+            Trois exemples de la méthode Astra — structurés pour l’impact business.
           </p>
         </div>
 
-        <div class="work-library-grid">
-          <a class="work-library-card panel reveal" href="#glowly-glow">
-            <div class="work-library-media">
-              <div class="brand-logo-card brand-logo-card-glowly">
+        <div class="work-case-biz-grid">
+          <article class="work-case-biz-card reveal reveal-card" id="glowly-glow">
+            <div style="margin-bottom: 16px">
+              <div class="brand-logo-card brand-logo-card-glowly" style="max-width: 120px">
                 <img src="assets/brand-logos/glowly-glow-logo.png" alt="Logo Glowly Glow" loading="lazy" />
               </div>
             </div>
-            <div class="work-library-body">
-              <div class="work-library-head">
-                <span class="status-pill">Skincare</span>
-                <span class="meta-label">Catalogue &amp; lisibilité</span>
-              </div>
-              <h2 class="card-title display">Glowly Glow</h2>
-              <p>Transformer une offre riche en langage de marque plus clair et plus désirable.</p>
-              <div class="work-library-meta">
-                <span>Produits héros</span>
-                <span>Direction artistique</span>
-                <span>Contenu premium</span>
-              </div>
-              <span class="inline-link">Ouvrir le dossier</span>
+            <h2>Glowly Glow — Lancement digital</h2>
+            <div class="work-case-biz-block">
+              <span class="work-case-biz-label">Le challenge</span>
+              <p>Manque de visibilité et identité floue.</p>
             </div>
-          </a>
+            <div class="work-case-biz-block">
+              <span class="work-case-biz-label">La solution Astra</span>
+              <p>
+                Direction artistique complète + production de contenu augmentée (12 posts/mois + 4 vidéos).
+              </p>
+            </div>
+            <div class="work-case-biz-block">
+              <span class="work-case-biz-label">Les résultats</span>
+              <ul class="work-case-biz-results">
+                <li>Visibilité ×3 en 2 mois.</li>
+                <li>Cohérence de marque retrouvée.</li>
+                <li>Production de contenu sans effort pour le client.</li>
+              </ul>
+            </div>
+            <div class="work-case-biz-footer">
+              <a class="inline-link" href="glowy-glow.html">Voir le dossier complet →</a>
+            </div>
+          </article>
 
-          <a class="work-library-card panel reveal" href="#snack-me" style="--reveal-delay: 0.08s">
-            <div class="work-library-media">
-              <div class="brand-logo-card brand-logo-card-snackme">
+          <article class="work-case-biz-card reveal reveal-card" style="--reveal-delay: 0.08s" id="snack-me">
+            <div style="margin-bottom: 16px">
+              <div class="brand-logo-card brand-logo-card-snackme" style="max-width: 140px">
                 <img src="assets/brand-logos/snack-me-wordmark.svg" alt="Logo Snack Me" loading="lazy" />
               </div>
             </div>
-            <div class="work-library-body">
-              <div class="work-library-head">
-                <span class="status-pill">Campagne produit</span>
-                <span class="meta-label">Storytelling &amp; traction</span>
-              </div>
-              <h2 class="card-title display">Snack Me</h2>
-              <p>Construire un récit complice capable de créer attention, curiosité et diffusion.</p>
-              <div class="work-library-meta">
-                <span>Hook</span>
-                <span>Narration</span>
-                <span>~900K vues</span>
-              </div>
-              <span class="inline-link">Ouvrir le dossier</span>
+            <h2>Snack Me — Campagne produit &amp; social</h2>
+            <div class="work-case-biz-block">
+              <span class="work-case-biz-label">Le challenge</span>
+              <p>Manque de visibilité et identité floue dans un flux social saturé.</p>
             </div>
-          </a>
+            <div class="work-case-biz-block">
+              <span class="work-case-biz-label">La solution Astra</span>
+              <p>
+                Direction artistique complète + production de contenu augmentée (12 posts/mois + 4 vidéos), avec
+                concepts et scripts orientés hook et diffusion.
+              </p>
+            </div>
+            <div class="work-case-biz-block">
+              <span class="work-case-biz-label">Les résultats</span>
+              <ul class="work-case-biz-results">
+                <li>Visibilité ×3 en 2 mois.</li>
+                <li>Cohérence de marque retrouvée.</li>
+                <li>Production de contenu sans effort pour le client.</li>
+              </ul>
+            </div>
+            <div class="work-case-biz-footer">
+              <a class="inline-link" href="results.html">Voir les résultats →</a>
+            </div>
+          </article>
 
-          <a class="work-library-card panel reveal" href="#qaymar-glow" style="--reveal-delay: 0.16s">
-            <div class="work-library-media">
-              <div class="brand-logo-card brand-logo-card-qaymar">
+          <article class="work-case-biz-card reveal reveal-card" style="--reveal-delay: 0.16s" id="qaymar-glow">
+            <div style="margin-bottom: 16px">
+              <div class="brand-logo-card brand-logo-card-qaymar" style="max-width: 120px">
                 <img src="assets/brand-logos/qaymar-glow-logo.jpg" alt="Logo Qaymar Glow" loading="lazy" />
               </div>
             </div>
-            <div class="work-library-body">
-              <div class="work-library-head">
-                <span class="status-pill">Montée en gamme</span>
-                <span class="meta-label">Cohérence visuelle</span>
-              </div>
-              <h2 class="card-title display">Qaymar Glow</h2>
-              <p>Structurer une présence artisanale pour la rendre plus nette et plus mémorisable.</p>
-              <div class="work-library-meta">
-                <span>Direction artistique</span>
-                <span>Clarification</span>
-                <span>Repositionnement</span>
-              </div>
-              <span class="inline-link">Ouvrir le dossier</span>
+            <h2>Qaymar Glow — Montée en gamme</h2>
+            <div class="work-case-biz-block">
+              <span class="work-case-biz-label">Le challenge</span>
+              <p>Manque de visibilité et identité floue — perception premium à structurer.</p>
             </div>
-          </a>
+            <div class="work-case-biz-block">
+              <span class="work-case-biz-label">La solution Astra</span>
+              <p>
+                Direction artistique complète + production de contenu augmentée (12 posts/mois + 4 vidéos).
+              </p>
+            </div>
+            <div class="work-case-biz-block">
+              <span class="work-case-biz-label">Les résultats</span>
+              <ul class="work-case-biz-results">
+                <li>Visibilité ×3 en 2 mois.</li>
+                <li>Cohérence de marque retrouvée.</li>
+                <li>Production de contenu sans effort pour le client.</li>
+              </ul>
+            </div>
+            <div class="work-case-biz-footer">
+              <a class="inline-link" href="https://www.instagram.com/qaymarglow/" target="_blank" rel="noopener noreferrer">Voir le site →</a>
+            </div>
+          </article>
         </div>
-      </div>
-    </section>
-
-    <section class="section" id="glowly-glow">
-      <div class="container">
-        <article class="featured-case-hero panel reveal">
-          <div class="featured-case-grid">
-            <div class="featured-case-copy">
-              <span class="status-pill">Glowly Glow • Skincare &amp; hiérarchisation catalogue</span>
-              <h2 class="section-title">Glowly Glow</h2>
-              <p class="subhead case-study-lead">
-                La marque dispose d’une vraie richesse produit. L’enjeu était de la rendre
-                immédiatement lisible et plus désirable.
-              </p>
-
-              <div class="case-ledger">
-                <article class="case-ledger-card">
-                  <span class="meta-label">Contexte</span>
-                  <strong>Catalogue dense</strong>
-                  <p>Visage, corps, capillaires, routines et packs.</p>
-                </article>
-                <article class="case-ledger-card">
-                  <span class="meta-label">Lecture Astra Studio</span>
-                  <strong>Hiérarchiser</strong>
-                  <p>Passer de “tout montrer” à “bien faire lire”.</p>
-                </article>
-                <article class="case-ledger-card">
-                  <span class="meta-label">Mission</span>
-                  <strong>Produits héros + contenus</strong>
-                  <p>Choix des références clés, axes créatifs et formats.</p>
-                </article>
-                <article class="case-ledger-card">
-                  <span class="meta-label">Impact attendu</span>
-                  <strong>Image plus premium</strong>
-                  <p>Message plus clair et base plus solide pour social et ads.</p>
-                </article>
-              </div>
-
-              <div class="button-row">
-                <a class="button button-primary" href="glowy-glow.html">Lire le dossier complet</a>
-                <a class="button button-secondary" href="contact.html">Parler d’un projet similaire</a>
-              </div>
-            </div>
-
-            <div class="featured-case-visual-grid">
-              <figure class="featured-case-media featured-case-media-primary">
-                <img src="assets/images/glowly/masque-nuit.png"
-                  alt="Produit Glowly Glow mis en avant dans le dossier Astra Studio" loading="lazy" />
-                <figcaption>
-                  Exemple de produit héros utilisé pour installer une narration routine et résultat.
-                </figcaption>
-              </figure>
-              <article class="case-column-card panel">
-                <span class="kicker">Produits piliers</span>
-                <h3 class="card-title display">Masque Nuit, Gommage Enzymatique, Lumieyes.</h3>
-                <p>
-                  Des références capables de porter l’accroche, la preuve et la mémorisation.
-                </p>
-              </article>
-              <article class="case-column-card panel">
-                <span class="kicker">Ce que cela change</span>
-                <h3 class="card-title display">Un catalogue qui devient plus éditorial.</h3>
-                <p>La marque paraît plus structurée et plus crédible dès les premiers contenus.</p>
-              </article>
-            </div>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <section class="section" id="snack-me">
-      <div class="container">
-        <article class="featured-case-hero panel reveal">
-          <div class="featured-case-grid">
-            <div class="featured-case-copy">
-              <span class="status-pill">Snack Me • Campagne produit &amp; diffusion sociale</span>
-              <h2 class="section-title">Snack Me</h2>
-              <p class="subhead case-study-lead">
-                Une marque de chocolat artisanal à forte personnalité, traitée comme un vrai
-                sujet de storytelling et de circulation sociale.
-              </p>
-
-              <div class="case-ledger">
-                <article class="case-ledger-card">
-                  <span class="meta-label">Contexte</span>
-                  <strong>Produit immédiatement mémorable</strong>
-                  <p>Univers complice et sensoriel, fort potentiel d’attention.</p>
-                </article>
-                <article class="case-ledger-card">
-                  <span class="meta-label">Enjeu</span>
-                  <strong>Créer la bonne tension</strong>
-                  <p>Capter vite sans vulgariser ni affaiblir la marque.</p>
-                </article>
-                <article class="case-ledger-card">
-                  <span class="meta-label">Mission</span>
-                  <strong>Concepts, scripts, incarnation</strong>
-                  <p>Formats courts pensés pour le hook, le rythme et la diffusion.</p>
-                </article>
-                <article class="case-ledger-card">
-                  <span class="meta-label">Signal</span>
-                  <strong>~900K vues</strong>
-                  <p>Une performance forte, complétée par des renouvellements.</p>
-                </article>
-              </div>
-
-              <div class="button-row">
-                <a class="button button-primary" href="contact.html">Parler d’une campagne produit</a>
-                <a class="button button-secondary" href="results.html">Voir les résultats</a>
-              </div>
-            </div>
-
-            <div class="featured-case-visual-grid">
-              <figure class="featured-case-media featured-case-media-primary">
-                <img src="assets/images/work-snackme.svg" alt="Univers visuel Snack Me pour le dossier Astra Studio"
-                  loading="lazy" />
-                <figcaption>
-                  Le contenu est pensé comme une narration courte qui crée curiosité et mémoire.
-                </figcaption>
-              </figure>
-              <article class="case-column-card panel">
-                <span class="kicker">Ce que cela prouve</span>
-                <h3 class="card-title display">Image produit et traction peuvent s’aligner.</h3>
-                <p>Astra Studio relie désirabilité, attention et circulation dans un même format.</p>
-              </article>
-              <article class="case-column-card panel">
-                <span class="kicker">Compétence activée</span>
-                <h3 class="card-title display">Hook + narration + diffusion.</h3>
-                <p>Un trio clé pour faire exister une marque dans un flux social dense.</p>
-              </article>
-            </div>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <section class="section" id="qaymar-glow">
-      <div class="container">
-        <article class="featured-case-hero panel reveal">
-          <div class="featured-case-grid">
-            <div class="featured-case-copy">
-              <span class="status-pill">Qaymar Glow • Structuration et montée en gamme</span>
-              <h2 class="section-title">Qaymar Glow</h2>
-              <p class="subhead case-study-lead">
-                À partir d’une base artisanale sincère, construire une présence plus claire,
-                plus cohérente et plus premium.
-              </p>
-
-              <div class="case-ledger">
-                <article class="case-ledger-card">
-                  <span class="meta-label">Contexte observé</span>
-                  <strong>Produits corporels naturels</strong>
-                  <p>Chantillys et beurres pour peau sèche et sensible.</p>
-                </article>
-                <article class="case-ledger-card">
-                  <span class="meta-label">Lecture Astra Studio</span>
-                  <strong>Structurer la perception</strong>
-                  <p>Mieux articuler promesse, visuel et cohérence de marque.</p>
-                </article>
-                <article class="case-ledger-card">
-                  <span class="meta-label">Mission</span>
-                  <strong>Direction artistique + contenu</strong>
-                  <p>Mise en scène plus nette et ligne éditoriale plus mémorisable.</p>
-                </article>
-                <article class="case-ledger-card">
-                  <span class="meta-label">Impact attendu</span>
-                  <strong>Crédibilité plus forte</strong>
-                  <p>Base plus solide pour développer la marque et mieux vendre.</p>
-                </article>
-              </div>
-
-              <div class="button-row">
-                <a class="button button-primary" href="contact.html">Parler d’une montée en gamme</a>
-                <a class="button button-secondary" href="https://www.instagram.com/qaymarglow/" target="_blank"
-                  rel="noopener noreferrer">Voir la référence publique</a>
-              </div>
-            </div>
-
-            <div class="featured-case-visual-grid">
-              <figure class="featured-case-media featured-case-media-primary">
-                <img src="assets/images/work-qaymar-glow.svg" alt="Univers visuel Qaymar Glow analysé par Astra Studio"
-                  loading="lazy" />
-                <figcaption>
-                  L’objectif : conserver la chaleur artisanale tout en augmentant le niveau perçu.
-                </figcaption>
-              </figure>
-              <article class="case-column-card panel">
-                <span class="kicker">Transformation</span>
-                <h3 class="card-title display">De “présence brute” à “marque structurée”.</h3>
-                <p>Le même produit, mais une lecture plus fiable pour le client final.</p>
-              </article>
-              <article class="case-column-card panel">
-                <span class="kicker">Bénéfice business</span>
-                <h3 class="card-title display">Confiance, lisibilité, projection.</h3>
-                <p>Trois leviers qui renforcent la conversion et la valeur perçue.</p>
-              </article>
-            </div>
-          </div>
-        </article>
       </div>
     </section>
 
     <section class="section">
       <div class="container">
-        <div class="cta-banner panel reveal">
-          <span class="kicker">Votre dossier</span>
-          <h2>Vous voulez un dossier stratégique aussi clair pour votre marque ?</h2>
+        <div class="cta-banner panel reveal reveal-card">
+          <span class="kicker reveal reveal-tilt">Votre dossier</span>
+          <h2>Un dossier aussi clair pour votre marque&nbsp;?</h2>
           <p class="subhead">
-            Astra Studio peut cadrer votre problème de perception, définir l’angle créatif et
-            poser un plan de contenus exploitable.
+            Cadrage du problème, angle créatif, plan de contenus exploitable.
           </p>
           <div class="button-row">
             <a class="button button-primary" href="contact.html">Discuter d'un projet</a>
@@ -399,42 +312,41 @@
       <div class="container">
         <div class="section-header split reveal">
           <div class="stack">
-            <span class="kicker">Performance &amp; signaux</span>
+            <span class="kicker reveal reveal-tilt">Performance &amp; signaux</span>
             <h2 class="section-title">
-              Des données qui prouvent la capacité du studio à générer de l'attention.
+              Des chiffres qui attestent la capacité à capter l’attention.
             </h2>
           </div>
           <p class="subhead">
-            Au-delà de la direction créative, Astra Studio mesure ce qui compte : vues,
-            partages, rétention et diffusion réelle.
+            Vues, partages, rétention — mesurés sur les contenus du studio.
           </p>
         </div>
 
         <div class="grid-4">
-          <article class="stat-card reveal">
+          <article class="stat-card reveal reveal-card">
             <span class="stat-display">1.7M+</span>
             <h3 class="card-title">Vues TikTok</h3>
-            <p>Vues cumulées sur les contenus produits et supervisés par le studio.</p>
+            <p>Vues cumulées (contenus produits ou supervisés).</p>
           </article>
-          <article class="stat-card reveal" style="--reveal-delay: 0.06s">
+          <article class="stat-card reveal reveal-card" style="--reveal-delay: 0.06s">
             <span class="stat-display">1.6M+</span>
             <h3 class="card-title">Impressions X</h3>
-            <p>Impressions sur le compte expérimental, preuve de lecture et de diffusion.</p>
+            <p>Impressions organiques (compte expérimental).</p>
           </article>
-          <article class="stat-card reveal" style="--reveal-delay: 0.12s">
+          <article class="stat-card reveal reveal-card" style="--reveal-delay: 0.12s">
             <span class="stat-display">60%+</span>
             <h3 class="card-title">Rétention moyenne</h3>
-            <p>Taux de rétention moyen sur les formats courts produits par le studio.</p>
+            <p>Rétention moyenne sur formats courts.</p>
           </article>
-          <article class="stat-card reveal" style="--reveal-delay: 0.18s">
+          <article class="stat-card reveal reveal-card" style="--reveal-delay: 0.18s">
             <span class="stat-display">100+</span>
             <h3 class="card-title">Contenus produits</h3>
-            <p>Scripts, vidéos, visuels et assets livrés pour des marques et projets.</p>
+            <p>Livrables (scripts, vidéos, visuels, assets).</p>
           </article>
         </div>
 
         <div class="surface-note surface-note-center">
-          <a class="inline-link" href="results.html">Voir l'analyse complète des données performance</a>
+          <a class="inline-link" href="results.html">Voir les données détaillées</a>
         </div>
       </div>
     </section>
@@ -442,40 +354,65 @@
 
   <footer class="site-footer">
     <div class="container">
-      <div class="footer-grid">
-        <div class="footer-group">
-          <a class="brand" href="index.html" aria-label="Astra Studio">
-            <img class="brand-logo" src="assets/branding/astra-studio-logo.png" alt="Astra Studio" width="500"
-              height="500" />
-          </a>
-          <p>
-            Une bibliothèque de dossiers pour montrer comment Astra Studio relie lecture de marque,
-            direction créative et impact.
+      <div class="footer-premium-grid">
+        <div class="footer-premium-col footer-premium-col--brand">
+          <a class="brand" href="index.html" aria-label="Astra Studio"><span class="brand-text"><span class="brand-text-main">ASTRA</span> <span class="brand-text-accent">STUDIO</span></span></a>
+          <p class="footer-premium-desc">
+            Studio créatif humain + IA. Stratégie, contenu, et automatisation pour marques ambitieuses.
           </p>
         </div>
-
-        <div class="footer-group">
-          <h3>Navigation</h3>
-          <a href="vision.html">À propos</a>
-          <a href="services.html">Services</a>
-          <a href="formations.html">Formations</a>
-          <a href="work.html">Réalisations</a>
-          <a href="diagnostic.html">Diagnostic gratuit</a>
-          <a href="contact.html">Contact</a>
+        <nav class="footer-premium-col" aria-label="Navigation">
+          <h3 class="footer-premium-heading">Navigation</h3>
+          <div class="footer-premium-links">
+            <a href="vision.html">Ma vision</a>
+            <a href="index.html#methode">Notre méthode</a>
+            <a href="services.html">Services</a>
+            <a href="systemes-ia.html">Systèmes IA</a>
+            <a href="formations.html">Formations</a>
+            <a href="work.html">Réalisations</a>
+            <a href="contact.html">Contact</a>
+          </div>
+        </nav>
+        <div class="footer-premium-col">
+          <h3 class="footer-premium-heading">Contact</h3>
+          <div class="footer-premium-contact">
+            <a href="mailto:bonjour@astrastudio.fr">bonjour@astrastudio.fr</a>
+            <p>Paris · À distance · Sur site</p>
+            <p class="footer-premium-contact-note">Creative Review incluse dans chaque offre</p>
+          </div>
         </div>
-
-        <div class="footer-group">
-          <h3>Contact</h3>
-          <a href="mailto:bonjour@astrastudio.fr">bonjour@astrastudio.fr</a>
-          <p>Paris, à distance et sur site selon les besoins.</p>
-          <a href="contact.html">Demander un échange</a>
+        <div class="footer-premium-col">
+          <h3 class="footer-premium-heading">Réseaux</h3>
+          <div class="footer-premium-social">
+            <a href="#" aria-label="LinkedIn">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path
+                  d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+              </svg>
+            </a>
+            <a href="#" aria-label="Instagram">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+                <circle cx="12" cy="12" r="4" />
+                <circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none" />
+              </svg>
+            </a>
+            <a href="#" aria-label="TikTok">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path
+                  d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z" />
+              </svg>
+            </a>
+            <a href="#" aria-label="X (Twitter)">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+              </svg>
+            </a>
+          </div>
         </div>
       </div>
-
-      <div class="footer-bottom">
-        <span>&copy; <span data-current-year></span> Astra Studio. Tous droits réservés.</span>
-        <span>Direction artistique, contenu, production, consulting.</span>
-      </div>
+      <p class="footer-premium-copy">© 2026 Astra Studio. Tous droits réservés.</p>
+      <p class="footer-premium-copy-sub">Méthode 100→10→1 • Humain + IA • Paris &amp; à distance</p>
     </div>
   </footer>
 </body>

@@ -16,12 +16,13 @@
     <link rel="stylesheet" href="/css/base.css" />
     <link rel="stylesheet" href="/css/components.css" />
     <link rel="stylesheet" href="/css/pages.css" />
+    <link rel="stylesheet" href="/css/styles-premium.css" />
     <script defer src="/js/learn-auth.js"></script>
   </head>
   <body class="learn-body" data-page="learn-auth">
     <main class="learn-shell">
       <section class="container learn-auth-grid">
-        <div class="learn-auth-copy reveal is-visible">
+        <div class="learn-auth-copy reveal active">
           <a class="brand" href="/index.html" aria-label="Astra Studio">
             <img
               class="brand-logo"
@@ -49,7 +50,7 @@
           </div>
         </div>
 
-        <div class="panel learn-auth-panel reveal is-visible" style="--reveal-delay: 0.08s">
+        <div class="panel learn-auth-panel reveal active" style="--reveal-delay: 0.08s">
           <div class="learn-auth-tabs" role="tablist" aria-label="Connexion ou inscription">
             <button type="button" class="learn-tab is-active" data-auth-tab="login">Connexion</button>
             <button type="button" class="learn-tab" data-auth-tab="signup">Inscription</button>
@@ -109,5 +110,6 @@
         </div>
       </section>
     </main>
-  </body>
+    <script defer src="/js/reveal-scroll.js"></script>
+</body>
 </html>

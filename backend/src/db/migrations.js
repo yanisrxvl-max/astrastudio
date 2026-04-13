@@ -49,6 +49,23 @@ function createTables() {
     CREATE INDEX IF NOT EXISTS idx_leads_status ON leads(status);
     CREATE INDEX IF NOT EXISTS idx_leads_email ON leads(email);
 
+    CREATE TABLE IF NOT EXISTS subscriptions (
+      id TEXT PRIMARY KEY,
+      created_at TEXT NOT NULL,
+      updated_at TEXT NOT NULL,
+      client_id TEXT NOT NULL DEFAULT '',
+      client_email TEXT NOT NULL,
+      stripe_subscription_id TEXT NOT NULL UNIQUE,
+      offer_type TEXT NOT NULL,
+      status TEXT NOT NULL DEFAULT 'active',
+      current_period_end TEXT NOT NULL DEFAULT '',
+      cancel_at_period_end INTEGER NOT NULL DEFAULT 0,
+      last_payment_at TEXT NOT NULL DEFAULT ''
+    );
+
+    CREATE INDEX IF NOT EXISTS idx_subscriptions_email ON subscriptions(client_email);
+    CREATE INDEX IF NOT EXISTS idx_subscriptions_status ON subscriptions(status);
+
     CREATE TABLE IF NOT EXISTS content_modules (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       module_key TEXT NOT NULL UNIQUE,
@@ -384,6 +401,38 @@ function createTables() {
   `);
 }
 
+function migrateSubscriptionsIfNeeded() {
+  const db = getDatabase();
+  const table = db
+    .prepare("SELECT name FROM sqlite_master WHERE type='table' AND name='subscriptions'")
+    .get();
+  if (!table) {
+    return;
+  }
+  const cols = db.prepare("PRAGMA table_info(subscriptions)").all();
+  if (cols.some((c) => c.name === "offer_type")) {
+    return;
+  }
+  db.exec(`
+    DROP TABLE IF EXISTS subscriptions;
+    CREATE TABLE subscriptions (
+      id TEXT PRIMARY KEY,
+      created_at TEXT NOT NULL,
+      updated_at TEXT NOT NULL,
+      client_id TEXT NOT NULL DEFAULT '',
+      client_email TEXT NOT NULL,
+      stripe_subscription_id TEXT NOT NULL UNIQUE,
+      offer_type TEXT NOT NULL,
+      status TEXT NOT NULL DEFAULT 'active',
+      current_period_end TEXT NOT NULL DEFAULT '',
+      cancel_at_period_end INTEGER NOT NULL DEFAULT 0,
+      last_payment_at TEXT NOT NULL DEFAULT ''
+    );
+    CREATE INDEX IF NOT EXISTS idx_subscriptions_email ON subscriptions(client_email);
+    CREATE INDEX IF NOT EXISTS idx_subscriptions_status ON subscriptions(status);
+  `);
+}
+
 function ensureTableColumns(tableName, columns) {
   const db = getDatabase();
   const existingColumns = db
@@ -666,6 +715,7 @@ function migrateLegacyLeadsIfNeeded() {
 
 function initializeDatabase() {
   createTables();
+  migrateSubscriptionsIfNeeded();
   ensureLeadSchema();
   seedSettings();
   seedContentModules();

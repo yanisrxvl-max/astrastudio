@@ -6,17 +6,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Contact | Astra Studio</title>
   <meta name="description"
-    content="Contactez Astra Studio pour cadrer un projet, demander un devis et recevoir un retour clair sur la bonne mission à lancer." />
+    content="ASTRA Studio — Studio créatif IA-augmenté. Direction artistique, contenu et automatisation pour marques ambitieuses. Méthode Humain + IA." />
+  <meta name="keywords" content="agence créative, IA, automatisation, direction artistique, contenu social media, Astra Studio" />
+  <meta name="author" content="Yanis - Astra Studio" />
+  <meta property="og:title" content="ASTRA Studio — Creative Intelligence" />
+  <meta property="og:description"
+    content="On multiplie votre présence digitale. Contenu stratégique, production augmentée par l'IA." />
+  <meta property="og:type" content="website" />
   <meta name="theme-color" content="#050608" />
-  <link rel="icon" type="image/png" href="assets/branding/astra-studio-logo.png" />
+  <link rel="icon" type="image/png" href="assets/favicon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,500;6..96,700&amp;family=Sora:wght@300;400;500;600;700&amp;display=swap"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap"
     rel="stylesheet" />
   <link rel="stylesheet" href="css/base.css" />
   <link rel="stylesheet" href="css/components.css" />
   <link rel="stylesheet" href="css/pages.css" />
+  <link rel="stylesheet" href="css/styles-premium.css" />
   <script defer src="js/app.js"></script>
 </head>
 
@@ -24,290 +31,171 @@
   <header class="site-header">
     <div class="container header-inner">
       <a class="brand" href="index.html" aria-label="Astra Studio">
-        <img class="brand-logo" src="assets/branding/astra-studio-logo.png" alt="Astra Studio" width="500"
-          height="500" />
+        <span class="brand-text"><span class="brand-text-main">ASTRA</span> <span class="brand-text-accent">STUDIO</span></span>
       </a>
 
-      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-navigation"
-        aria-label="Ouvrir le menu">
-        <span></span>
-        <span></span>
-      </button>
+      <div class="header-end">
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="header-nav-wrap"
+          aria-label="Ouvrir le menu">
+          <span class="nav-toggle-line" aria-hidden="true"></span>
+          <span class="nav-toggle-line" aria-hidden="true"></span>
+          <span class="nav-toggle-line" aria-hidden="true"></span>
+        </button>
 
-      <nav class="site-nav" id="site-navigation" aria-label="Navigation principale">
-        <a href="vision.html" data-page-link="vision">À propos</a>
-        <a href="services.html" data-page-link="services">Services</a>
-        <a href="formations.html" data-page-link="formations">Formations</a>
-        <a href="work.html" data-page-link="work">Réalisations</a>
-        <a href="contact.html" data-page-link="contact">Contact</a>
-        <a class="header-cta" href="contact.html">Discuter d'un projet</a>
-      </nav>
+        <div class="header-nav-wrap" id="header-nav-wrap">
+          <nav class="site-nav" id="site-navigation" aria-label="Navigation principale">
+            <a href="vision.html" data-page-link="vision">Ma vision</a>
+            <a href="services.html" data-page-link="services">Services</a>
+            <a href="formations.html" data-page-link="formations">Formations</a>
+            <a href="work.html" data-page-link="work">Réalisations</a>
+            <a href="contact.html" data-page-link="contact">Contact</a>
+          </nav>
+          <a class="header-cta button button-primary" href="contact.html">Discuter d'un projet</a>
+        </div>
+      </div>
     </div>
   </header>
 
   <main id="main-content" class="page-shell">
-    <section class="page-hero">
-      <div class="container page-hero-grid">
-        <div class="page-hero-copy reveal">
-          <span class="kicker">Contact</span>
-          <h1 class="display-title">Décrivez votre projet. Astra Studio cadre la mission utile.</h1>
-          <p class="subhead">
-            Que le besoin soit déjà cadré ou non, ce premier échange permet d’identifier
-            rapidement le bon format d’intervention.
-          </p>
-        </div>
+    <section class="section" style="padding-top: 140px">
+      <div class="container" style="max-width: 700px">
+        <span class="badge">Contact</span>
+        <h1 style="margin: 24px 0 16px">Cadrons votre projet.</h1>
+        <p style="margin-bottom: 32px">Réponse garantie sous 48h ouvrées. Premier échange sans engagement.</p>
 
-        <aside class="panel hero-panel reveal" style="--reveal-delay: 0.1s">
-          <div class="hero-panel-head">
-            <span class="meta-label">Ce premier échange</span>
-            <h2>Simple à remplir. Sérieux dans le suivi.</h2>
-            <p>
-              Le formulaire sert à cadrer vite, puis à vous répondre avec un plan clair.
-            </p>
+        <div class="contact-form-shell" id="form-content">
+          <form
+            id="contact-form"
+            data-contact-form
+            action="/api/leads"
+            method="POST"
+            style="display: grid; gap: 20px"
+            novalidate>
+          <div class="grid-2">
+            <input
+              id="contact-name"
+              type="text"
+              name="name"
+              placeholder="Nom complet"
+              required
+              class="card"
+              style="padding: 16px; background: #0a0a0a; border: 1px solid #222; color: #fff; border-radius: 8px"
+              autocomplete="name" />
+            <input
+              id="contact-email"
+              type="email"
+              name="email"
+              placeholder="Email professionnel"
+              required
+              class="card"
+              style="padding: 16px; background: #0a0a0a; border: 1px solid #222; color: #fff; border-radius: 8px"
+              autocomplete="email" />
           </div>
-          <div class="hero-matrix">
-            <article>
-              <span class="meta-label">Réponse</span>
-              <h3>Sous 48 h ouvrées</h3>
-              <p>Une première lecture du besoin et du bon point d'entrée.</p>
-            </article>
-            <article>
-              <span class="meta-label">Format</span>
-              <h3>Mission ciblée ou accompagnement</h3>
-              <p>Le studio vous oriente vers un cadre utile, pas vers une offre forcée.</p>
-            </article>
+          <input
+            type="text"
+            name="company"
+            placeholder="Marque ou entreprise"
+            class="card"
+            style="padding: 16px; background: #0a0a0a; border: 1px solid #222; color: #fff; border-radius: 8px"
+            autocomplete="organization" />
+          <select
+            id="project-type"
+            name="project_type"
+            required
+            class="card"
+            style="padding: 16px; background: #0a0a0a; border: 1px solid #222; color: #fff; border-radius: 8px">
+            <option value="">Type de projet</option>
+            <option value="Direction artistique &amp; shooting">Direction artistique &amp; shooting</option>
+            <option value="Contenu social media (IA + curation humaine)">
+              Contenu social media (IA + curation humaine)
+            </option>
+            <option value="Automatisation business (workflows, agents IA)">
+              Automatisation business (workflows, agents IA)
+            </option>
+            <option value="Direction créative complète (SIGNATURE)">Direction créative complète (SIGNATURE)</option>
+            <option value="Partenariat stratégique (SCALE)">Partenariat stratégique (SCALE)</option>
+            <option value="Audit / Diagnostic initial">Audit / Diagnostic</option>
+            <option value="Autre (à préciser)">Autre (à préciser)</option>
+          </select>
+          <select
+            id="budget"
+            name="budget"
+            required
+            class="card"
+            style="padding: 16px; background: #0a0a0a; border: 1px solid #222; color: #fff; border-radius: 8px">
+            <option value="">Budget mensuel</option>
+            <option value="Moins de 500€/mois">Moins de 500€/mois</option>
+            <option value="500€ - 1 000€/mois">500€ - 1 000€/mois</option>
+            <option value="1 000€ - 2 000€/mois">1 000€ - 2 000€/mois</option>
+            <option value="2 000€ et plus">2 000€+</option>
+          </select>
+          <textarea
+            id="message"
+            name="message"
+            rows="4"
+            placeholder="Décrivez votre besoin ou objectif..."
+            class="card"
+            style="padding: 16px; background: #0a0a0a; border: 1px solid #222; color: #fff; border-radius: 8px"></textarea>
+          <input type="hidden" name="source" data-contact-source value="" />
+          <div class="sr-only" aria-hidden="true">
+            <label for="company-website">Ne pas remplir</label>
+            <input id="company-website" name="company_website" type="text" tabindex="-1" autocomplete="off" />
           </div>
-        </aside>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container contact-layout">
-        <div class="contact-form-shell panel reveal">
-          <span class="kicker">Formulaire projet</span>
-          <h2 class="section-title">Parlons du besoin, du contexte et du bon cadre.</h2>
-          <p class="subhead">
-            Quelques informations suffisent pour proposer un cadre réaliste et utile.
+          <p class="form-feedback" data-form-feedback role="status" aria-live="polite"></p>
+          <button type="submit" class="button button-primary" style="width: 100%">Envoyer la demande</button>
+          <p style="font-size: 0.85rem; color: #666; text-align: center">
+            Vos données sont protégées. Aucun spam, que du stratégique.
           </p>
-
-          <form class="contact-form" data-contact-form action="/api/leads" method="post" novalidate>
-            <div class="form-grid">
-              <div class="form-section-head full">
-                <span class="meta-label">1. Vos coordonnées</span>
-                <p>Les informations de base pour revenir vers vous clairement.</p>
-              </div>
-
-              <div class="field">
-                <label for="name">Nom</label>
-                <input id="name" name="name" type="text" placeholder="Nom et prénom" autocomplete="name" required />
-              </div>
-              <div class="field">
-                <label for="email">E-mail</label>
-                <input id="email" name="email" type="email" placeholder="vous@entreprise.fr" autocomplete="email"
-                  required />
-              </div>
-              <div class="field">
-                <label for="company">Marque ou entreprise</label>
-                <input id="company" name="company" type="text" placeholder="Nom de la marque ou de l'entreprise"
-                  autocomplete="organization" required />
-              </div>
-              <div class="field">
-                <label for="website">Site, Instagram ou lien utile</label>
-                <input id="website" name="website_or_instagram" type="text" placeholder="https://... ou @marque" />
-                <span class="field-hint">Un lien suffit pour comprendre rapidement l'univers actuel.</span>
-              </div>
-              <div class="field">
-                <label for="phone">Téléphone</label>
-                <input id="phone" name="phone" type="tel" placeholder="Optionnel" autocomplete="tel" inputmode="tel" />
-                <span class="field-hint">Utile si vous préférez être rappelé rapidement.</span>
-              </div>
-
-              <div class="form-section-head full">
-                <span class="meta-label">2. Le cadre du projet</span>
-                <p>Les éléments qui aident à identifier la bonne mission.</p>
-              </div>
-
-              <div class="field">
-                <label for="project-type">Type de projet</label>
-                <select id="project-type" name="project_type" required>
-                  <option value="">Sélectionner le besoin principal</option>
-                  <option>Direction artistique</option>
-                  <option>UGC &amp; ads</option>
-                  <option>Scripts &amp; concepts</option>
-                  <option>Production vidéo</option>
-                  <option>Consulting social media</option>
-                  <option>Accompagnement au lancement de marque</option>
-                  <option>Systèmes IA de marque</option>
-                  <option>Dispositif image &amp; influence</option>
-                  <option>Production mobile / matériel sur site</option>
-                  <option>Intervention sur place</option>
-                  <option>Assets marketing / présence digitale</option>
-                  <option>Besoin à clarifier ensemble</option>
-                </select>
-                <span class="field-hint">S’il y a plusieurs besoins, indiquez le plus prioritaire.</span>
-              </div>
-              <div class="field">
-                <label for="budget">Budget envisagé</label>
-                <select id="budget" name="budget" required>
-                  <option value="">Sélectionner une fourchette</option>
-                  <option>Moins de 2 000 €</option>
-                  <option>2 000 à 5 000 €</option>
-                  <option>5 000 à 10 000 €</option>
-                  <option>10 000 € et plus</option>
-                  <option>À définir ensemble</option>
-                </select>
-                <span class="field-hint">Une fourchette suffit pour orienter le cadrage.</span>
-              </div>
-              <div class="field full">
-                <label for="timeline">Timing souhaité</label>
-                <select id="timeline" name="timeline" required>
-                  <option value="">Sélectionner un timing</option>
-                  <option>Urgent / dès que possible</option>
-                  <option>Dans les 2 à 4 semaines</option>
-                  <option>Dans 1 à 3 mois</option>
-                  <option>Projet à planifier plus tard</option>
-                  <option>À discuter ensemble</option>
-                </select>
-              </div>
-
-              <div class="form-section-head full">
-                <span class="meta-label">3. Le contexte</span>
-                <p>Le point clé : ce qui bloque aujourd’hui et ce que vous voulez améliorer.</p>
-              </div>
-
-              <div class="field full">
-                <label for="message">Contexte du projet</label>
-                <textarea id="message" name="message"
-                  placeholder="Où en est la marque aujourd'hui ? Que faut-il clarifier, produire ou faire monter d'un niveau ? Quel résultat attendez-vous de cette mission ?"
-                  required></textarea>
-                <span class="field-hint">
-                  Une description simple suffit si elle explique le contexte et l’objectif.
-                </span>
-              </div>
-              <input type="hidden" name="source" value="Site Astra Studio • contact" data-contact-source />
-              <div class="field full sr-only" aria-hidden="true">
-                <label for="company-website">Ne pas remplir</label>
-                <input id="company-website" name="company_website" type="text" tabindex="-1" autocomplete="off" />
-              </div>
-            </div>
-
-            <button class="button button-primary" type="submit">Envoyer la demande à Astra Studio</button>
-            <p class="form-note">
-              Votre demande est enregistrée dans le suivi du studio. Si le projet entre dans le
-              champ d’intervention d’Astra Studio, un retour clair vous est envoyé sous 48 h ouvrées.
-            </p>
-            <p class="form-feedback" data-form-feedback role="status" aria-live="polite"></p>
           </form>
         </div>
 
-        <aside class="contact-sidebar panel reveal" style="--reveal-delay: 0.1s">
-          <div class="contact-info-card contact-info-card-accent">
-            <h3>Après l'envoi</h3>
-            <ul class="contact-info-list">
-              <li>Lecture de la demande et qualification du besoin.</li>
-              <li>Retour sur le bon format d'accompagnement.</li>
-              <li>Proposition d'échange, de devis ou de cadrage selon le sujet.</li>
-            </ul>
-          </div>
-          <div class="contact-info-card">
-            <h3>Adresse de contact</h3>
-            <a href="mailto:bonjour@astrastudio.fr">bonjour@astrastudio.fr</a>
-          </div>
-          <div class="contact-info-card">
-            <h3>Délais de réponse</h3>
-            <p>Retour sous 48 h ouvrées avec une première lecture claire du besoin et du cadre possible.</p>
-          </div>
-          <div class="contact-info-card">
-            <h3>Types de missions</h3>
-            <p>Capsule ciblée, production ponctuelle, sprint de lancement ou accompagnement plus continu.</p>
-          </div>
-          <div class="contact-info-card">
-            <h3>Budget &amp; cadrage</h3>
-            <p>Une fourchette budgétaire suffit pour commencer. L'objectif est d'orienter vers un cadre réaliste et
-              utile.</p>
-          </div>
-          <div class="contact-info-card">
-            <h3>Audit interactif offert</h3>
-            <p>
-              Vous préférez un diagnostic guidé avant de nous écrire ? Lancez Astra Signal et recevez un mini-briefing
-              sous 48 h.
-            </p>
-            <a class="inline-link" href="diagnostic.html">Lancer Astra Signal</a>
-          </div>
-        </aside>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container">
-        <div class="section-header split reveal">
-          <div class="stack">
-            <span class="kicker">Questions fréquentes</span>
-            <h2 class="section-title">Un cadre simple avant de travailler ensemble.</h2>
-          </div>
-          <p class="subhead">
-            Quelques points pour rassurer et faciliter le premier contact, surtout si c'est
-            la première fois que vous faites appel à un studio créatif structuré.
-          </p>
-        </div>
-
-        <div class="faq-grid">
-          <article class="faq-card reveal">
-            <span class="card-eyebrow">Cadrage</span>
-            <h3 class="card-title">Faut-il déjà avoir un brief très structuré ?</h3>
-            <p>Non. Un contexte simple, un objectif clair et quelques liens utiles suffisent largement pour démarrer le
-              premier échange.</p>
-          </article>
-          <article class="faq-card reveal" style="--reveal-delay: 0.08s">
-            <span class="card-eyebrow">Mission ponctuelle</span>
-            <h3 class="card-title">Pouvez-vous intervenir sur un seul sujet ?</h3>
-            <p>Oui. Une campagne, un tournage, une remise à niveau créative ou un cadre de lancement peuvent être
-              traités de façon ciblée.</p>
-          </article>
-          <article class="faq-card reveal" style="--reveal-delay: 0.16s">
-            <span class="card-eyebrow">Budget</span>
-            <h3 class="card-title">Faut-il déjà connaître le budget exact ?</h3>
-            <p>Non. Une fourchette permet déjà de proposer un format cohérent. Le budget peut ensuite être affiné selon
-              le besoin réel.</p>
-          </article>
+        <div style="margin-top: 60px; border-top: 1px solid #1f1f1f; padding-top: 40px">
+          <h3 style="margin-bottom: 24px">Questions fréquentes</h3>
+          <details style="margin-bottom: 16px; background: #0a0a0a; padding: 16px; border-radius: 8px; border: 1px solid #222">
+            <summary style="cursor: pointer; font-weight: 600">Faut-il déjà avoir un brief ?</summary>
+            <p style="margin-top: 8px">Non. Un contexte simple et un objectif clair suffisent.</p>
+          </details>
+          <details style="margin-bottom: 16px; background: #0a0a0a; padding: 16px; border-radius: 8px; border: 1px solid #222">
+            <summary style="cursor: pointer; font-weight: 600">Pouvez-vous intervenir sur un seul sujet ?</summary>
+            <p style="margin-top: 8px">Oui. Campagne, tournage ou remise à niveau créative.</p>
+          </details>
+          <details style="background: #0a0a0a; padding: 16px; border-radius: 8px; border: 1px solid #222">
+            <summary style="cursor: pointer; font-weight: 600">Faut-il connaître le budget exact ?</summary>
+            <p style="margin-top: 8px">Non. Une fourchette suffit pour orienter le cadrage.</p>
+          </details>
         </div>
       </div>
     </section>
   </main>
 
-  <footer class="site-footer">
+  <footer class="section" style="padding: 60px 0; border-top: 1px solid #1f1f1f; background: #030303">
     <div class="container">
-      <div class="footer-grid">
-        <div class="footer-group">
-          <a class="brand" href="index.html" aria-label="Astra Studio">
-            <img class="brand-logo" src="assets/branding/astra-studio-logo.png" alt="Astra Studio" width="500"
-              height="500" />
-          </a>
-          <p>Un premier échange clair pour poser la bonne direction, le bon niveau et le bon format d'intervention.</p>
+      <div class="grid-4" style="gap: 40px">
+        <div>
+          <h4 style="margin-bottom: 12px">ASTRA STUDIO</h4>
+          <p style="font-size: 0.9rem">Studio créatif humain + IA. Paris &amp; Remote.</p>
         </div>
-
-        <div class="footer-group">
-          <h3>Navigation</h3>
-          <a href="vision.html">À propos</a>
-          <a href="services.html">Services</a>
-          <a href="formations.html">Formations</a>
-          <a href="work.html">Réalisations</a>
-          <a href="diagnostic.html">Diagnostic gratuit</a>
-          <a href="contact.html">Contact</a>
+        <div>
+          <h4 style="margin-bottom: 12px">Navigation</h4>
+          <a href="vision.html" style="display: block; color: #888; text-decoration: none; margin: 8px 0">Ma vision</a>
+          <a href="services.html" style="display: block; color: #888; text-decoration: none; margin: 8px 0">Services</a>
+          <a href="systemes-ia.html" style="display: block; color: #888; text-decoration: none; margin: 8px 0">Systèmes IA</a>
+          <a href="contact.html" style="display: block; color: #888; text-decoration: none; margin: 8px 0">Contact</a>
         </div>
-
-        <div class="footer-group">
-          <h3>Contact</h3>
-          <a href="mailto:bonjour@astrastudio.fr">bonjour@astrastudio.fr</a>
-          <p>Paris, à distance et sur site selon les besoins.</p>
-          <a href="services.html">Voir les services</a>
+        <div>
+          <h4 style="margin-bottom: 12px">Contact</h4>
+          <a href="mailto:bonjour@astrastudio.fr" style="color: #888; text-decoration: none">bonjour@astrastudio.fr</a>
+          <p style="margin-top: 8px; font-size: 0.85rem; color: #666">Paris · À distance · Sur site</p>
+        </div>
+        <div>
+          <h4 style="margin-bottom: 12px">Légal</h4>
+          <a href="#" style="display: block; color: #888; text-decoration: none; margin: 8px 0">Mentions légales</a>
+          <a href="#" style="display: block; color: #888; text-decoration: none; margin: 8px 0">Politique de confidentialité</a>
         </div>
       </div>
-
-      <div class="footer-bottom">
-        <span>&copy; <span data-current-year></span> Astra Studio. Tous droits réservés.</span>
-        <span>Direction artistique, contenu, production, consulting.</span>
-      </div>
+      <p style="text-align: center; margin-top: 40px; font-size: 0.8rem; color: #444">
+        © 2026 Astra Studio. Méthode 100→10→1 • Humain + IA
+      </p>
     </div>
   </footer>
 </body>

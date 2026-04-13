@@ -8,7 +8,7 @@ const { applySecurityHeaders } = require("./middleware/security-headers");
 const { createPublicRouter } = require("./routes/public.routes");
 const { createAdminRouter } = require("./routes/admin.routes");
 const { createStaticRouter } = require("./routes/static.routes");
-const { createPaymentsRouter } = require("./routes/payments.routes");
+const paymentsRoutes = require("./routes/payments.routes");
 const { createStudentRouter } = require("./routes/student.routes");
 const { createAdminAcademyRouter } = require("./routes/admin-academy.routes");
 const { getSessionFromRequest, requireAdminSession } = require("./middleware/admin-session");
@@ -48,12 +48,24 @@ function createApp() {
   app.set("trust proxy", config.trustProxy);
 
   app.use(applySecurityHeaders);
-  app.use("/api/payments", express.raw({ type: "application/json" }), createPaymentsRouter());
+  app.post(
+    "/api/payments/webhook",
+    express.raw({ type: "application/json" }),
+    paymentsRoutes.handleSubscriptionWebhook
+  );
+  app.post(
+    "/api/payments/stripe/webhook",
+    express.raw({ type: "application/json" }),
+    paymentsRoutes.handleAcademyWebhook
+  );
   app.use(express.json({ limit: "1mb" }));
+  app.use("/api/payments", paymentsRoutes.router);
   app.use(express.urlencoded({ extended: false }));
 
   app.use("/api/admin/auth", createAuthRouter());
   app.use("/api", createPublicRouter({ mailer }));
+  app.use("/api/astra-signal", require("./routes/astra-signal.routes"));
+  app.use("/api/quotes", require("./routes/quotes.routes"));
   app.use("/api/student", createStudentRouter({ mailer }));
   app.use("/api/admin", createAdminRouter({ mailer }));
   app.use("/api/admin/academy", createAdminAcademyRouter());
@@ -113,7 +125,7 @@ function createApp() {
       });
     }
 
-    return res.status(404).sendFile(path.join(config.publicDir, "index.html"));
+    return res.status(404).sendFile(path.join(config.rootDir, "404.html"));
   });
   app.use(errorHandler);
 

@@ -23,6 +23,8 @@ const publicPages = {
   "/results.html": "results.html",
   "/contact": "contact.html",
   "/contact.html": "contact.html",
+  "/404": "404.html",
+  "/404.html": "404.html",
 };
 
 const publicRedirects = {

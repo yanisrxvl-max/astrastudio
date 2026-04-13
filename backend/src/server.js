@@ -1,14 +1,41 @@
 require("dotenv").config();
 
+const helmet = require("helmet");
+const cors = require("cors");
+const rateLimit = require("express-rate-limit");
+
 const { assertConfig, config } = require("./config/env");
 const { initializeDatabase } = require("./db/migrations");
 const { createApp } = require("./app");
 
 async function startServer() {
   assertConfig();
-  initializeDatabase();
+  await initializeDatabase();
 
   const { app, mailer } = createApp();
+
+  // Middlewares de sécurité globaux
+  app.use(
+    helmet({
+      contentSecurityPolicy: false, // Désactivé pour le dev, à activer en prod
+      crossOriginEmbedderPolicy: false,
+    })
+  );
+
+  app.use(
+    cors({
+      origin: process.env.FRONTEND_URL || "http://localhost:3000",
+      credentials: true,
+    })
+  );
+
+  app.use(
+    rateLimit({
+      windowMs: 15 * 60 * 1000, // 15 minutes
+      max: 100, // 100 requêtes par 15min
+      message: "Trop de requêtes, veuillez réessayer plus tard.",
+    })
+  );
 
   if (mailer.hasPartialConfiguration) {
     console.warn(

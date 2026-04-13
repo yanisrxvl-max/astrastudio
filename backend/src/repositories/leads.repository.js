@@ -6,6 +6,22 @@ const { bindNamedParameters } = require("../utils/sqlite");
 function estimateBudgetAmountFromLabel(label) {
   const text = String(label || "");
 
+  if (text.includes("Moins de 500")) {
+    return 400;
+  }
+
+  if (text.includes("500") && text.includes("1 000")) {
+    return 750;
+  }
+
+  if (text.includes("1 000") && text.includes("2 000")) {
+    return 1500;
+  }
+
+  if (text.includes("2 000") && text.includes("plus")) {
+    return 3500;
+  }
+
   if (text.includes("Moins de 2 000")) {
     return 1500;
   }

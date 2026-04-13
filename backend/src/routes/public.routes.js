@@ -52,21 +52,31 @@ function createPublicRouter({ mailer }) {
       const referer = sanitizeText(req.get("referer"), { max: 280 });
       const source = validation.values.source || referer || "Site Astra Studio";
 
-      await registerLead(
-        {
-          ...validation.values,
-          source,
-          referer,
-          ip: getClientIp(req),
-          user_agent: sanitizeText(req.get("user-agent"), { max: 280 }),
-        },
-        mailer
-      );
+      const clientIpHint = sanitizeText(req.body?.ip, { max: 80 });
+      const clientUserAgentHint = sanitizeText(req.body?.user_agent, { max: 280 });
+      const resolvedIp = getClientIp(req) || clientIpHint;
+      const resolvedUserAgent =
+        sanitizeText(req.get("user-agent"), { max: 280 }) || clientUserAgentHint;
 
-      res.status(201).json({
+      try {
+        await registerLead(
+          {
+            ...validation.values,
+            source,
+            referer,
+            ip: resolvedIp,
+            user_agent: resolvedUserAgent,
+          },
+          mailer
+        );
+      } catch (error) {
+        console.error("[Leads] Enregistrement impossible :", error);
+        throw createHttpError(500, "Impossible d'enregistrer la demande pour le moment. Merci de réessayer.");
+      }
+
+      res.status(200).json({
         ok: true,
-        message:
-          "Votre demande a bien été reçue. Astra Studio revient vers vous sous 48 h ouvrées.",
+        message: "Demande enregistrée.",
       });
     })
   );

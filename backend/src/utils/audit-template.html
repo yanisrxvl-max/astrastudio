@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head><meta charset="UTF-8"><title>Audit Astra</title>
+<style>
+  body { font-family: sans-serif; background: #050505; color: #fff; padding: 40px; margin: 0; }
+  .header { border-bottom: 2px solid #D4AF37; padding-bottom: 20px; margin-bottom: 30px; display: flex; justify-content: space-between; }
+  .logo { font-size: 24px; font-weight: 800; color: #fff; letter-spacing: 1px; }
+  .score-box { text-align: center; margin: 40px 0; background: #111; padding: 30px; border-radius: 8px; border: 1px solid #333; }
+  .score { font-size: 64px; font-weight: 900; color: #D4AF37; line-height: 1; }
+  h2 { font-size: 18px; color: #D4AF37; border-left: 3px solid #D4AF37; padding-left: 10px; margin-top: 30px; }
+  ul { color: #ccc; line-height: 1.6; }
+  .verdict { font-style: italic; color: #888; text-align: center; margin-top: 40px; font-size: 14px; }
+  .footer { margin-top: 50px; text-align: center; font-size: 10px; color: #555; border-top: 1px solid #333; padding-top: 15px; }
+</style></head>
+<body>
+  <div class="header"><div class="logo">ASTRA STUDIO</div><div>AUDIT DIGITAL</div></div>
+  <div class="score-box"><div class="score">{{SCORE}}/100</div><div style="color:#888;margin-top:10px;">Score de Maturité</div></div>
+  <h2>Forces</h2><ul>{{STRENGTHS}}</ul>
+  <h2>Points d'Amélioration</h2><ul>{{WEAKNESSES}}</ul>
+  <h2>Recommandations</h2><ul>{{RECOMMENDATIONS}}</ul>
+  <div class="verdict">« {{VERDICT}} » — Offre recommandée : {{OFFER}}</div>
+  <div class="footer">© 2026 Astra Studio • Creative Intelligence</div>
+</body></html>

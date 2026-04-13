@@ -971,6 +971,16 @@
       line-height: 1.6;
     }
 
+    .hero-social-proof {
+      max-width: 38ch;
+      margin-bottom: clamp(20px, 3vh, 28px);
+      font-size: clamp(0.88rem, 1.6vw, 0.95rem);
+      line-height: 1.5;
+      color: rgba(255, 255, 255, 0.55);
+      opacity: 0.85;
+      letter-spacing: 0.02em;
+    }
+
     .hero-signature-word {
       display: inline-block;
       position: relative;
@@ -1026,10 +1036,12 @@
 
         <div class="header-nav-wrap" id="header-nav-wrap">
           <nav class="site-nav" id="site-navigation" aria-label="Navigation principale">
-            <a href="vision.html" data-page-link="vision">Ma vision</a>
+            <a href="index.html" data-page-link="home">Accueil</a>
             <a href="services.html" data-page-link="services">Services</a>
+            <a href="systemes-ia.html" data-page-link="systemes-ia">Systèmes IA</a>
             <a href="formations.html" data-page-link="formations">Formations</a>
             <a href="work.html" data-page-link="work">Réalisations</a>
+            <a href="results.html" data-page-link="results">Résultats</a>
             <a href="contact.html" data-page-link="contact">Contact</a>
           </nav>
           <a class="header-cta button button-primary" href="contact.html">Discuter d'un projet</a>
@@ -1055,14 +1067,15 @@
       <div class="container hero-content">
         <span class="badge">Studio Créatif • Humain + IA</span>
         <h1 class="hero-home-title" id="hero-home-heading">
-          Votre marque mérite plus que des posts<br />
-          Elle mérite une <span class="hero-signature-word">signature</span>
+          Transformez votre marque en<br />
+          référence <span class="hero-signature-word">digitale</span>
         </h1>
         <p class="hero-home-subhead">
-          Stratégie créative humaine. Production augmentée par l'IA. Résultats mesurables.
+          Direction créative humaine × Production IA = Résultats mesurables
         </p>
+        <p class="hero-social-proof">Déjà 50+ marques accompagnées</p>
         <div style="display: flex; gap: 16px; flex-wrap: wrap">
-          <a href="contact.html" class="button button-primary">Discuter d'un projet</a>
+          <a href="contact.html" class="button button-primary">Réserver mon audit gratuit →</a>
           <a href="work.html" class="button button-secondary">Voir les réalisations</a>
         </div>
       </div>

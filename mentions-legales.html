@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mentions Légales - Astra Studio</title>
+    <meta name="description" content="Mentions légales du site Astra Studio. Informations sur l'éditeur, l'hébergement et la propriété intellectuelle.">
+    
+    <!-- Polices -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;600;700&family=Sora:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #050505;
+            --text-color: #ffffff;
+            --text-muted: #888888;
+            --accent-color: #d4af37;
+            --font-heading: 'Bodoni Moda', serif;
+            --font-body: 'Sora', sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: var(--font-body);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Header Simplifié pour pages légales */
+        header {
+            padding: 30px 5%;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: var(--bg-color);
+            z-index: 1000;
+        }
+        .logo { font-family: var(--font-heading); font-size: 1.5rem; font-weight: 700; color: var(--text-color); text-decoration: none; }
+        .logo span { color: var(--accent-color); }
+        .back-link { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; transition: color 0.3s; }
+        .back-link:hover { color: var(--accent-color); }
+
+        /* Contenu Principal */
+        .legal-container {
+            max-width: 800px;
+            margin: 140px auto 80px;
+            padding: 0 20px;
+        }
+
+        h1 {
+            font-family: var(--font-heading);
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        h2 {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            color: var(--text-color);
+            margin-top: 40px;
+            margin-bottom: 20px;
+            border-left: 3px solid var(--accent-color);
+            padding-left: 15px;
+        }
+
+        p {
+            color: var(--text-muted);
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+        }
+
+        ul {
+            color: var(--text-muted);
+            margin-bottom: 20px;
+            padding-left: 20px;
+        }
+        li { margin-bottom: 10px; }
+
+        .highlight { color: var(--text-color); font-weight: 500; }
+        .placeholder { color: var(--accent-color); font-style: italic; }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid rgba(255,255,255,0.05);
+            padding: 60px 5% 30px;
+            margin-top: 80px;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+        .footer-links { margin-bottom: 20px; }
+        .footer-links a { color: var(--text-muted); text-decoration: none; margin: 0 10px; transition: color 0.3s; }
+        .footer-links a:hover { color: var(--accent-color); }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2rem; }
+            .legal-container { margin: 120px auto 40px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <a href="index.html" class="logo">Astra<span>Studio</span></a>
+        <a href="index.html" class="back-link">← Retour au site</a>
+    </header>
+
+    <!-- Contenu -->
+    <div class="legal-container">
+        <h1>Mentions Légales</h1>
+
+        <p>Conformément aux dispositions de la loi n° 2004-575 du 21 juin 2004 pour la confiance en l'économie numérique, il est précisé aux utilisateurs du site internet Astra Studio l'identité des différents intervenants dans le cadre de sa réalisation et de son suivi.</p>
+
+        <h2>1. Édition du site</h2>
+        <p>Le présent site, accessible à l'URL <span class="highlight">www.astrastudio.fr</span> (le "Site"), est édité par :</p>
+        <ul>
+            <li><strong>Nom de l'entreprise / Éditeur :</strong> <span class="placeholder">[À COMPLÉTER : Nom de votre société ou Votre Nom]</span></li>
+            <li><strong>Forme juridique :</strong> <span class="placeholder">[À COMPLÉTER : ex. Micro-entreprise / SAS / SARL]</span></li>
+            <li><strong>Numéro SIRET :</strong> <span class="placeholder">[À COMPLÉTER : Votre numéro SIRET à 14 chiffres]</span></li>
+            <li><strong>Siège social :</strong> <span class="placeholder">[À COMPLÉTER : Adresse complète]</span></li>
+            <li><strong>Email de contact :</strong> <span class="highlight">contact@astrastudio.fr</span></li>
+            <li><strong>Téléphone :</strong> <span class="placeholder">[À COMPLÉTER : Votre numéro de téléphone]</span></li>
+        </ul>
+
+        <h2>2. Directeur de la publication</h2>
+        <p>Le directeur de la publication du Site est :</p>
+        <p class="highlight"><span class="placeholder">[À COMPLÉTER : Nom du dirigeant, ex: Yanis RXVL]</span></p>
+
+        <h2>3. Hébergement</h2>
+        <p>Le Site est hébergé par la société :</p>
+        <ul>
+            <li><strong>Nom de l'hébergeur :</strong> <span class="placeholder">[À COMPLÉTER : ex. Vercel Inc. / O2Switch / Hostinger]</span></li>
+            <li><strong>Adresse :</strong> <span class="placeholder">[À COMPLÉTER : Adresse physique de l'hébergeur]</span></li>
+            <li><strong>Contact / Téléphone :</strong> <span class="placeholder">[À COMPLÉTER : Contact hébergeur]</span></li>
+        </ul>
+
+        <h2>4. Propriété intellectuelle</h2>
+        <p>L'ensemble de ce site relève de la législation française et internationale sur le droit d'auteur et la propriété intellectuelle. Tous les droits de reproduction sont réservés, y compris pour les documents téléchargeables et les représentations iconographiques et photographiques.</p>
+        <p>Le contenu du site Astra Studio (textes, graphismes, logos, images, vidéos, architecture) est la propriété exclusive de <span class="placeholder">[À COMPLÉTER : Nom de l'entreprise]</span> ou de ses partenaires. Toute reproduction, représentation, modification, publication, adaptation de tout ou partie des éléments du site, quel que soit le moyen ou le procédé utilisé, est interdite, sauf autorisation écrite préalable.</p>
+
+        <h2>5. Crédits</h2>
+        <p>Conception et développement : <span class="highlight">Astra Studio Internal Team</span></p>
+        <p>Design & Direction Artistique : <span class="placeholder">[À COMPLÉTER : Yanis RXVL / Agence X]</span></p>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-links">
+            <a href="mentions-legales.html">Mentions légales</a>
+            <a href="politique-confidentialite.html">Politique de confidentialité</a>
+        </div>
+        <p>&copy; 2026 Astra Studio. Tous droits réservés.</p>
+    </footer>
+
+</body>
+</html>

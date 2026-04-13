@@ -62,93 +62,94 @@
     <section class="section" style="padding-top: 140px">
       <div class="container" style="max-width: 700px">
         <span class="badge">Contact</span>
-        <h1 style="margin: 24px 0 16px">Cadrons votre projet.</h1>
-        <p style="margin-bottom: 32px">Réponse garantie sous 48h ouvrées. Premier échange sans engagement.</p>
+        <h1 style="margin: 24px 0 16px">Parlons de votre projet</h1>
+        <p style="margin-bottom: 32px">Remplissez ce formulaire en 2 étapes simples. Réponse garantie sous 24h.</p>
 
         <div class="contact-form-shell" id="form-content">
           <form
-            id="contact-form"
-            data-contact-form
+            id="astraContactForm"
             action="/api/leads"
             method="POST"
-            style="display: grid; gap: 20px"
+            class="progressive-form"
             novalidate>
-          <div class="grid-2">
-            <input
-              id="contact-name"
-              type="text"
-              name="name"
-              placeholder="Nom complet"
-              required
-              class="card"
-              style="padding: 16px; background: #0a0a0a; border: 1px solid #222; color: #fff; border-radius: 8px"
-              autocomplete="name" />
-            <input
-              id="contact-email"
-              type="email"
-              name="email"
-              placeholder="Email professionnel"
-              required
-              class="card"
-              style="padding: 16px; background: #0a0a0a; border: 1px solid #222; color: #fff; border-radius: 8px"
-              autocomplete="email" />
-          </div>
-          <input
-            type="text"
-            name="company"
-            placeholder="Marque ou entreprise"
-            class="card"
-            style="padding: 16px; background: #0a0a0a; border: 1px solid #222; color: #fff; border-radius: 8px"
-            autocomplete="organization" />
-          <select
-            id="project-type"
-            name="project_type"
-            required
-            class="card"
-            style="padding: 16px; background: #0a0a0a; border: 1px solid #222; color: #fff; border-radius: 8px">
-            <option value="">Type de projet</option>
-            <option value="Direction artistique &amp; shooting">Direction artistique &amp; shooting</option>
-            <option value="Contenu social media (IA + curation humaine)">
-              Contenu social media (IA + curation humaine)
-            </option>
-            <option value="Automatisation business (workflows, agents IA)">
-              Automatisation business (workflows, agents IA)
-            </option>
-            <option value="Direction créative complète (SIGNATURE)">Direction créative complète (SIGNATURE)</option>
-            <option value="Partenariat stratégique (SCALE)">Partenariat stratégique (SCALE)</option>
-            <option value="Audit / Diagnostic initial">Audit / Diagnostic</option>
-            <option value="Autre (à préciser)">Autre (à préciser)</option>
-          </select>
-          <select
-            id="budget"
-            name="budget"
-            required
-            class="card"
-            style="padding: 16px; background: #0a0a0a; border: 1px solid #222; color: #fff; border-radius: 8px">
-            <option value="">Budget mensuel</option>
-            <option value="Moins de 500€/mois">Moins de 500€/mois</option>
-            <option value="500€ - 1 000€/mois">500€ - 1 000€/mois</option>
-            <option value="1 000€ - 2 000€/mois">1 000€ - 2 000€/mois</option>
-            <option value="2 000€ et plus">2 000€+</option>
-          </select>
-          <textarea
-            id="message"
-            name="message"
-            rows="4"
-            placeholder="Décrivez votre besoin ou objectif..."
-            class="card"
-            style="padding: 16px; background: #0a0a0a; border: 1px solid #222; color: #fff; border-radius: 8px"></textarea>
-          <input type="hidden" name="source" data-contact-source value="" />
-          <div class="sr-only" aria-hidden="true">
-            <label for="company-website">Ne pas remplir</label>
-            <input id="company-website" name="company_website" type="text" tabindex="-1" autocomplete="off" />
-          </div>
-          <p class="form-feedback" data-form-feedback role="status" aria-live="polite"></p>
-          <button type="submit" class="button button-primary" style="width: 100%">Envoyer la demande</button>
-          <p style="font-size: 0.85rem; color: #666; text-align: center">
-            Vos données sont protégées. Aucun spam, que du stratégique.
-          </p>
+            
+            <!-- INDICATEUR DE PROGRESSION -->
+            <div class="progress-indicator">
+              <span class="step active" data-step="1">1. Informations</span>
+              <span class="divider"></span>
+              <span class="step" data-step="2">2. Détails (Optionnel)</span>
+            </div>
+
+            <!-- ÉTAPE 1 : Champs Critiques (Requis) -->
+            <div class="form-step step-1 active">
+              <div class="input-group">
+                <label for="prenom">Prénom *</label>
+                <input type="text" id="prenom" name="name" placeholder="Votre prénom" required autocomplete="given-name" />
+              </div>
+
+              <div class="input-group">
+                <label for="email">Email professionnel *</label>
+                <input type="email" id="email" name="email" placeholder="vous@entreprise.com" required autocomplete="email" />
+              </div>
+
+              <div class="input-group full-width">
+                <label for="message">Décrivez votre projet en une phrase *</label>
+                <textarea id="message" name="message" rows="3" placeholder="Ex: Je souhaite refondre mon site web avec une identité IA..." required></textarea>
+              </div>
+
+              <div class="form-actions">
+                <button type="button" id="btnContinue" class="button button-primary" style="width: 100%">Continuer →</button>
+                <button type="submit" id="btnDirect" class="btn-text-link">Envoyer directement</button>
+              </div>
+            </div>
+
+            <!-- ÉTAPE 2 : Champs Secondaires (Optionnels) -->
+            <div class="form-step step-2">
+              <div class="input-row">
+                <div class="input-group">
+                  <label for="budget-select">Budget estimé</label>
+                  <select id="budget-select" name="budget">
+                    <option value="" disabled selected>Sélectionnez une option</option>
+                    <option value="<500">&lt; 500€</option>
+                    <option value="500-1500">500€ - 1500€</option>
+                    <option value="1500-3500">1500€ - 3500€</option>
+                    <option value="3500+">3500€ +</option>
+                  </select>
+                </div>
+
+                <div class="input-group">
+                  <label for="source-select">Comment nous avez-vous découvert ?</label>
+                  <select id="source-select" name="source">
+                    <option value="" disabled selected>Sélectionnez une option</option>
+                    <option value="instagram">Instagram</option>
+                    <option value="tiktok">TikTok</option>
+                    <option value="linkedin">LinkedIn</option>
+                    <option value="bouche-oreille">Bouche-à-oreille</option>
+                    <option value="autre">Autre</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="input-group">
+                <label for="telephone">Téléphone (Optionnel)</label>
+                <input type="tel" id="telephone" name="telephone" placeholder="06 12 34 56 78" autocomplete="tel" />
+              </div>
+
+              <div class="form-actions">
+                <button type="button" id="btnBack" class="button button-secondary" style="width: auto">← Retour</button>
+                <button type="submit" id="btnSubmit" class="button button-primary" style="width: auto">Envoyer ma demande</button>
+              </div>
+            </div>
+
+            <!-- MESSAGE DE SUCCÈS / ERREUR -->
+            <div id="formMessage" class="form-feedback" role="status" aria-live="polite" style="display:none;"></div>
           </form>
+        </div>
+
+        <!-- RÉASSURANCE TEMPS DE RÉPONSE -->
+        <div class="response-time-badge" style="margin-top: 40px; text-align: center; padding: 15px; background: rgba(212, 175, 55, 0.05); border: 1px solid rgba(212, 175, 55, 0.2); border-radius: 8px;">
+          <span class="icon">⚡</span>
+          <span class="text" style="color: #ccc; font-size: 0.9rem; font-family: 'Sora', sans-serif;">Temps de réponse moyen : <strong style="color: #d4af37;">moins de 24h</strong></span>
         </div>
 
         <div style="margin-top: 60px; border-top: 1px solid #1f1f1f; padding-top: 40px">
@@ -169,6 +170,211 @@
       </div>
     </section>
   </main>
+
+  <style>
+    /* --- STYLES DU FORMULAIRE PROGRESSIF --- */
+    .progressive-form {
+      display: block;
+    }
+
+    .progress-indicator {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 30px;
+      font-family: 'Sora', sans-serif;
+      font-size: 0.85rem;
+      color: #444;
+    }
+
+    .progress-indicator .step {
+      transition: color 0.3s;
+    }
+
+    .progress-indicator .step.active {
+      color: #d4af37;
+      font-weight: 600;
+    }
+
+    .progress-indicator .divider {
+      width: 40px;
+      height: 1px;
+      background: #333;
+      margin: 0 15px;
+    }
+
+    .form-step {
+      display: none;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+
+    .form-step.active {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .input-group {
+      margin-bottom: 20px;
+    }
+
+    .input-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .input-group label {
+      display: block;
+      color: #fff;
+      font-size: 0.9rem;
+      margin-bottom: 8px;
+      font-family: 'Sora', sans-serif;
+      font-weight: 500;
+    }
+
+    .input-group input,
+    .input-group select,
+    .input-group textarea {
+      width: 100%;
+      background: #0a0a0a;
+      border: 1px solid #222;
+      padding: 16px;
+      color: #fff;
+      font-family: 'Sora', sans-serif;
+      font-size: 1rem;
+      border-radius: 8px;
+      transition: all 0.3s;
+    }
+
+    .input-group input:focus,
+    .input-group select:focus,
+    .input-group textarea:focus {
+      outline: none;
+      border-color: #d4af37;
+      background: #0f0f0f;
+    }
+
+    .input-group select option {
+      background: #0a0a0a;
+      color: #fff;
+    }
+
+    .input-group textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    .form-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      margin-top: 30px;
+      align-items: center;
+    }
+
+    .btn-text-link {
+      background: none;
+      border: none;
+      color: #666;
+      font-size: 0.85rem;
+      cursor: pointer;
+      text-decoration: underline;
+      transition: color 0.3s;
+      font-family: 'Sora', sans-serif;
+    }
+
+    .btn-text-link:hover {
+      color: #d4af37;
+    }
+
+    @media (max-width: 600px) {
+      .input-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+      }
+    }
+  </style>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const form = document.getElementById('astraContactForm');
+      const step1 = document.querySelector('.step-1');
+      const step2 = document.querySelector('.step-2');
+      const indicatorStep1 = document.querySelector('[data-step="1"]');
+      const indicatorStep2 = document.querySelector('[data-step="2"]');
+      
+      const btnContinue = document.getElementById('btnContinue');
+      const btnBack = document.getElementById('btnBack');
+      const btnDirect = document.getElementById('btnDirect');
+      const btnSubmit = document.getElementById('btnSubmit');
+      const formMessage = document.getElementById('formMessage');
+
+      function validateStep1() {
+        const prenom = document.getElementById('prenom').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const message = document.getElementById('message').value.trim();
+
+        if (!prenom || !email || !message) {
+          formMessage.style.display = 'block';
+          formMessage.style.color = '#ff6b6b';
+          formMessage.textContent = "Merci de remplir les champs obligatoires (Prénom, Email, Projet).";
+          return false;
+        }
+        
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+          formMessage.style.display = 'block';
+          formMessage.style.color = '#ff6b6b';
+          formMessage.textContent = "Veuillez entrer une adresse email valide.";
+          return false;
+        }
+
+        formMessage.style.display = 'none';
+        return true;
+      }
+
+      btnContinue.addEventListener('click', () => {
+        if (validateStep1()) {
+          step1.classList.remove('active');
+          setTimeout(() => {
+            step1.style.display = 'none';
+            step2.style.display = 'block';
+            setTimeout(() => step2.classList.add('active'), 50);
+            
+            indicatorStep1.classList.remove('active');
+            indicatorStep2.classList.add('active');
+          }, 400);
+        }
+      });
+
+      btnBack.addEventListener('click', () => {
+        step2.classList.remove('active');
+        setTimeout(() => {
+          step2.style.display = 'none';
+          step1.style.display = 'block';
+          setTimeout(() => step1.classList.add('active'), 50);
+          
+          indicatorStep2.classList.remove('active');
+          indicatorStep1.classList.add('active');
+        }, 400);
+      });
+
+      btnDirect.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (validateStep1()) {
+          form.requestSubmit(); 
+        }
+      });
+
+      form.addEventListener('submit', async (e) => {
+        // Le formulaire se soumet normalement vers /api/leads
+        // Les champs de l'étape 2 seront vides si soumis directement depuis l'étape 1
+      });
+    });
+  </script>
 
   <footer class="section" style="padding: 60px 0; border-top: 1px solid #1f1f1f; background: #030303">
     <div class="container">

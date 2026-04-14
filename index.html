@@ -1016,31 +1016,34 @@
       }
     }
 
-    /* ---- Mobile hero: keep landscape video visible as full background ---- */
+    /* Mobile video: hidden on desktop */
+    .hero-video-mobile {
+      display: none;
+    }
+
+    /* ---- Mobile hero: dedicated vertical video ---- */
     @media (max-width: 640px) {
-      .hero-video-cover {
-        object-fit: cover;
-        object-position: center center;
-        transform: scale(1.02);
-        opacity: 0.7;
-        filter: blur(10px) brightness(0.42) saturate(0.85) contrast(0.95);
+      .hero-video--desktop {
+        display: none;
       }
 
-      .hero-video-main {
+      .hero-video-mobile {
+        display: block;
+        z-index: 2;
         object-fit: cover;
         object-position: center center;
         transform: none;
-        opacity: 0.88;
-        filter: blur(1px) brightness(0.78) saturate(0.9) contrast(0.98);
+        opacity: 0.85;
+        filter: brightness(0.82) saturate(0.92) contrast(0.98);
       }
 
       .video-overlay {
         background:
           linear-gradient(180deg,
-            rgba(4, 5, 7, 0.52) 0%,
-            rgba(4, 5, 7, 0.22) 35%,
-            rgba(4, 5, 7, 0.18) 60%,
-            rgba(4, 5, 7, 0.55) 100%);
+            rgba(4, 5, 7, 0.50) 0%,
+            rgba(4, 5, 7, 0.18) 30%,
+            rgba(4, 5, 7, 0.14) 60%,
+            rgba(4, 5, 7, 0.52) 100%);
       }
     }
   </style>
@@ -1084,11 +1087,14 @@
       style="padding-top: clamp(84px, 9vh, 98px); padding-bottom: clamp(20px, 3vh, 28px); min-height: 100svh; display: flex; align-items: center"
       aria-labelledby="hero-home-heading">
       <div class="video-background-container" aria-hidden="true">
-        <video autoplay muted loop playsinline class="hero-video hero-video-cover" poster="assets/videos/astra-hero-work-poster.png">
+        <video autoplay muted loop playsinline class="hero-video hero-video-cover hero-video--desktop" poster="assets/videos/astra-hero-work-poster.png">
           <source src="assets/videos/astra-hero-work.mp4" type="video/mp4" />
         </video>
-        <video autoplay muted loop playsinline class="hero-video hero-video-main" poster="assets/videos/astra-hero-work-poster.png">
+        <video autoplay muted loop playsinline class="hero-video hero-video-main hero-video--desktop" poster="assets/videos/astra-hero-work-poster.png">
           <source src="assets/videos/astra-hero-work.mp4" type="video/mp4" />
+        </video>
+        <video autoplay muted loop playsinline class="hero-video hero-video-mobile" poster="assets/videos/astra-hero-work-poster.png">
+          <source src="assets/videos/videomobile.mov" type="video/mp4" />
         </video>
         <div class="video-overlay"></div>
       </div>

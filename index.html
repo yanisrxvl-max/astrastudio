@@ -1015,6 +1015,74 @@
         object-position: center 46%;
       }
     }
+
+    /* ---- Mobile hero: editorial video treatment ---- */
+    @media (max-width: 640px) {
+      .hero-section {
+        min-height: auto !important;
+        padding-top: clamp(100px, 14vh, 120px) !important;
+        padding-bottom: 0 !important;
+        display: flex !important;
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .video-background-container {
+        position: relative;
+        width: calc(100% + 24px);
+        height: auto;
+        aspect-ratio: 16 / 9;
+        margin-left: -12px;
+        margin-top: 32px;
+        border-radius: 16px 16px 0 0;
+        overflow: hidden;
+        flex-shrink: 0;
+        transform: rotate(-1.5deg) translateX(4px);
+        transform-origin: center bottom;
+        box-shadow:
+          0 -4px 40px rgba(0, 0, 0, 0.5),
+          0 0 0 1px rgba(255, 255, 255, 0.04);
+      }
+
+      .hero-video-cover {
+        transform: scale(1.04);
+        opacity: 0.6;
+        filter: blur(8px) brightness(0.5) saturate(0.85);
+      }
+
+      .hero-video-main {
+        object-fit: cover;
+        object-position: center center;
+        transform: none;
+        opacity: 0.95;
+        filter: brightness(0.88) saturate(0.95) contrast(1.02);
+      }
+
+      .video-overlay {
+        background:
+          linear-gradient(180deg,
+            rgba(4, 5, 7, 0.10) 0%,
+            rgba(4, 5, 7, 0.04) 50%,
+            rgba(4, 5, 7, 0.30) 100%),
+          radial-gradient(circle at 50% 30%,
+            rgba(255, 255, 255, 0.03) 0%,
+            transparent 60%);
+      }
+
+      .hero-content {
+        padding-bottom: 0;
+      }
+
+      .hero-home-title {
+        max-width: 100%;
+        font-size: clamp(2rem, 7.5vw, 2.6rem);
+      }
+
+      .hero-home-subhead {
+        font-size: 0.95rem;
+        margin-bottom: 20px;
+      }
+    }
   </style>
   <script defer src="js/app.js"></script>
 </head>
@@ -1023,7 +1091,7 @@
   <header class="site-header">
     <div class="container header-inner">
       <a class="brand" href="index.html" aria-label="Astra Studio">
-        <span class="brand-text"><span class="brand-text-main">ASTRA</span> <span class="brand-text-accent">STUDIO</span></span>
+        <img class="brand-logo brand-logo-3d" src="assets/branding/astra-studio-logo.png" alt="Astra Studio" />
       </a>
 
       <div class="header-end">
@@ -1109,7 +1177,7 @@
 
               <article class="home-proof-metric">
                 <span class="home-proof-label">Contenus au-dessus de 100K</span>
-                <strong data-proof-count data-proof-mode="int" data-proof-end="5">0</strong>
+                <strong data-proof-count data-proof-mode="int" data-proof-end="10">0</strong>
                 <p>Des performances répétées, pas un pic isolé.</p>
               </article>
 
@@ -1320,7 +1388,7 @@
 
           <article class="home-results-card reveal reveal-card reveal-delay-2">
             <span class="home-results-badge">Régularité • Constance</span>
-            <strong class="home-results-value" data-count data-count-mode="int" data-count-end="5" aria-live="polite">0</strong>
+            <strong class="home-results-value" data-count data-count-mode="int" data-count-end="10" aria-live="polite">0</strong>
             <p class="home-results-label">Contenus au-dessus de 100K vues</p>
             <p class="home-results-explainer">Des résultats reproductibles, pas un coup de chance.</p>
           </article>
@@ -1429,7 +1497,9 @@
     <div class="container">
       <div class="grid-4" style="gap: 40px">
         <div>
-          <h4 style="margin-bottom: 12px">ASTRA STUDIO</h4>
+          <a href="index.html" aria-label="Astra Studio" style="display: inline-block; margin-bottom: 12px">
+            <img class="brand-logo brand-logo-3d" src="assets/branding/astra-studio-logo.png" alt="Astra Studio" />
+          </a>
           <p style="font-size: 0.9rem">Studio créatif humain + IA. Paris &amp; Remote.</p>
         </div>
         <div>

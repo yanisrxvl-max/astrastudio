@@ -995,3 +995,76 @@ function initHomeProofBoard() {
 }
 
 initHomeProofBoard();
+
+/* -------------------------------------------------- */
+/*  Logo premium tilt — cursor-tracking parallax      */
+/* -------------------------------------------------- */
+
+(function initLogoTilt() {
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  if (window.matchMedia("(pointer: coarse)").matches) return;
+
+  const MAX_DEG = 6;
+  const brands = document.querySelectorAll(".brand");
+  let raf = 0;
+
+  brands.forEach((brand) => {
+    const logo = brand.querySelector(".brand-logo-3d");
+    if (!logo) return;
+
+    let targetRx = 0;
+    let targetRy = 0;
+    let currentRx = 0;
+    let currentRy = 0;
+    let hovering = false;
+
+    function lerp(a, b, t) {
+      return a + (b - a) * t;
+    }
+
+    function tick() {
+      if (!hovering && Math.abs(currentRx) < 0.01 && Math.abs(currentRy) < 0.01) {
+        currentRx = 0;
+        currentRy = 0;
+        logo.style.setProperty("--logo-rx", "0deg");
+        logo.style.setProperty("--logo-ry", "0deg");
+        return;
+      }
+
+      const ease = hovering ? 0.10 : 0.08;
+      currentRx = lerp(currentRx, targetRx, ease);
+      currentRy = lerp(currentRy, targetRy, ease);
+
+      logo.style.setProperty("--logo-rx", currentRx.toFixed(2) + "deg");
+      logo.style.setProperty("--logo-ry", currentRy.toFixed(2) + "deg");
+
+      raf = requestAnimationFrame(tick);
+    }
+
+    brand.addEventListener("mouseenter", () => {
+      hovering = true;
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(tick);
+    });
+
+    brand.addEventListener("mousemove", (e) => {
+      const rect = brand.getBoundingClientRect();
+      const cx = rect.left + rect.width / 2;
+      const cy = rect.top + rect.height / 2;
+
+      const px = (e.clientX - cx) / (rect.width / 2);
+      const py = (e.clientY - cy) / (rect.height / 2);
+
+      targetRy = px * MAX_DEG;
+      targetRx = -py * MAX_DEG;
+    });
+
+    brand.addEventListener("mouseleave", () => {
+      hovering = false;
+      targetRx = 0;
+      targetRy = 0;
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(tick);
+    });
+  });
+})();

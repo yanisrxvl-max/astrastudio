@@ -86,15 +86,15 @@ function EmailFooter() {
         }}
       >
         <Link
-          href="https://astrastudio.fr"
+          href="https://studioastraparis.fr"
           style={{ color: emailTheme.muted, textDecoration: "underline" }}
         >
-          astrastudio.fr
+          studioastraparis.fr
         </Link>
       </Text>
       <Text style={{ margin: "12px 0 0", fontSize: 10, color: emailTheme.muted }}>
         <Link
-          href={`mailto:bonjour@astrastudio.fr?subject=${encodeURIComponent("Désinscription")}`}
+          href={`mailto:bonjour@studioastraparis.fr?subject=${encodeURIComponent("Désinscription")}`}
           style={{ color: emailTheme.muted, textDecoration: "underline" }}
         >
           Se désinscrire

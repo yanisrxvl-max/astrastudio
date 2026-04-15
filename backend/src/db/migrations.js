@@ -472,7 +472,7 @@ function seedSettings() {
     ON CONFLICT(setting_key) DO NOTHING
   `);
 
-  seedStatement.run("contact_email", config.leadsNotifyEmail || "bonjour@astrastudio.fr", now);
+  seedStatement.run("contact_email", config.leadsNotifyEmail || "bonjour@studioastraparis.fr", now);
   seedStatement.run("response_delay", "48 h ouvrées", now);
   seedStatement.run("site_name", "Astra Studio", now);
 }

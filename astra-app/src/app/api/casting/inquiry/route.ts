@@ -3,8 +3,8 @@ import { createAdminClient } from "@/lib/supabase/admin";
 import { sendEmail, sendToAdmin } from "@/lib/emails";
 
 const ALLOWED_ORIGINS = [
-  "https://astrastudio.fr",
-  "https://www.astrastudio.fr",
+  "https://studioastraparis.fr",
+  "https://www.studioastraparis.fr",
 ];
 
 function isAllowedOrigin(origin: string | null): boolean {

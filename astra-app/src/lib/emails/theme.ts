@@ -1,5 +1,5 @@
 export const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://app.astrastudio.fr";
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://app.studioastraparis.fr";
 
 /** Logo affiché dans les emails (URL absolue). Prévoir un PNG ~120px de large en prod. */
 export function emailLogoUrl(): string {

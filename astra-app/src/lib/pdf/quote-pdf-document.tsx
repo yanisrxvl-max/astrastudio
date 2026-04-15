@@ -234,7 +234,7 @@ export function QuotePdfDocument({ quote }: { quote: Quote }) {
             <Text style={styles.blockLine}>Yanis Revel — Micro-entreprise</Text>
             <Text style={styles.blockLine}>SIRET : 988 233 979 00018</Text>
             <Text style={styles.blockLine}>23 rue Bardiaux, 03200 Vichy</Text>
-            <Text style={styles.blockLine}>bonjour@astrastudio.fr</Text>
+            <Text style={styles.blockLine}>bonjour@studioastraparis.fr</Text>
           </View>
           <View style={styles.block}>
             <Text style={styles.blockTitle}>Destinataire</Text>

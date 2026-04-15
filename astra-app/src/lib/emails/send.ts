@@ -1,7 +1,7 @@
 import { Resend } from "resend";
 
-const FROM = "Astra Studio <bonjour@astrastudio.fr>";
-const ADMIN_EMAIL = process.env.ADMIN_EMAIL || "bonjour@astrastudio.fr";
+const FROM = "Astra Studio <bonjour@studioastraparis.fr>";
+const ADMIN_EMAIL = process.env.ADMIN_EMAIL || "bonjour@studioastraparis.fr";
 
 let resendInstance: Resend | null = null;
 

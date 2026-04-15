@@ -8,7 +8,7 @@ import {
 } from "@/lib/emails";
 
 const SITE =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://app.astrastudio.fr";
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://app.studioastraparis.fr";
 
 export async function POST(request: NextRequest) {
   const supabase = await createClient();

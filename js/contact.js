@@ -18,7 +18,7 @@
   /** API Next (CORS *.vercel.app). Surcharge : <form data-leads-api-url="https://…/api/leads"> si le domaine app n’est pas encore en DNS. */
   const UPSTREAM_API =
     (contactForm.getAttribute("data-leads-api-url") || "").trim() ||
-    "https://app.astrastudio.fr/api/leads";
+    "https://app.studioastraparis.fr/api/leads";
 
   /** Même origine : proxy Vercel /api/leads ou route Next si le site tourne sur le même host. */
   function getContactEndpoint() {
@@ -283,7 +283,7 @@
       if (result.parseError) {
         console.error("[contact] JSON invalide", result.raw);
         setFeedback(
-          `Réponse serveur inattendue (${res.status}). Si le problème persiste, écrivez à bonjour@astrastudio.fr.`,
+          `Réponse serveur inattendue (${res.status}). Si le problème persiste, écrivez à bonjour@studioastraparis.fr.`,
           "error"
         );
         return;
@@ -335,8 +335,8 @@
         setFeedback(
           serverMsg ||
             (res.status >= 500
-              ? "Le serveur ne peut pas enregistrer la demande pour le moment. Réessayez plus tard ou écrivez à bonjour@astrastudio.fr."
-              : `Envoi impossible (${res.status}). Réessayez ou contactez bonjour@astrastudio.fr.`),
+              ? "Le serveur ne peut pas enregistrer la demande pour le moment. Réessayez plus tard ou écrivez à bonjour@studioastraparis.fr."
+              : `Envoi impossible (${res.status}). Réessayez ou contactez bonjour@studioastraparis.fr.`),
           "error"
         );
         return;
@@ -353,8 +353,8 @@
       console.error("[contact]", error);
       setFeedback(
         isAbort
-          ? "Délai dépassé. Vérifiez votre connexion ou écrivez à bonjour@astrastudio.fr."
-          : "Impossible d’envoyer le formulaire (réseau). Réessayez ou écrivez à bonjour@astrastudio.fr.",
+          ? "Délai dépassé. Vérifiez votre connexion ou écrivez à bonjour@studioastraparis.fr."
+          : "Impossible d’envoyer le formulaire (réseau). Réessayez ou écrivez à bonjour@studioastraparis.fr.",
         "error"
       );
     } finally {

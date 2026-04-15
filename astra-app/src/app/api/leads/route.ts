@@ -10,9 +10,9 @@ import {
 } from "@/lib/emails";
 
 const DEFAULT_ORIGINS = [
-  "https://astrastudio.fr",
-  "https://www.astrastudio.fr",
-  "https://app.astrastudio.fr",
+  "https://studioastraparis.fr",
+  "https://www.studioastraparis.fr",
+  "https://app.studioastraparis.fr",
 ];
 
 /** Ex. LEADS_ALLOWED_ORIGINS=https://preview.vercel.app,https://staging.example.com */

@@ -239,15 +239,15 @@ DB_FILE=data/astra-studio.sqlite
 LEGACY_LEADS_FILE=data/leads.json
 UPLOADS_DIR=data/uploads
 
-LEADS_NOTIFY_EMAIL=bonjour@astrastudio.fr
+LEADS_NOTIFY_EMAIL=bonjour@studioastraparis.fr
 
 SMTP_HOST=smtp.example.com
 SMTP_PORT=587
 SMTP_SECURE=false
-SMTP_USER=bonjour@astrastudio.fr
+SMTP_USER=bonjour@studioastraparis.fr
 SMTP_PASS=change-me
-SMTP_FROM="Astra Studio <bonjour@astrastudio.fr>"
-SMTP_REPLY_TO=bonjour@astrastudio.fr
+SMTP_FROM="Astra Studio <bonjour@studioastraparis.fr>"
+SMTP_REPLY_TO=bonjour@studioastraparis.fr
 
 GEMINI_API_KEY=
 GEMINI_MODEL=gemini-2.5-flash

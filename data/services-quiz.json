@@ -83,7 +83,7 @@
         {
           "id": "early",
           "label": "Je lance ou tout juste structure",
-          "subtitle": "Peu ou pas de historique de vente / d'image stable",
+          "subtitle": "Peu ou pas d'historique de vente ni d'image stable",
           "scores": { "starter": 5, "audit": 3, "custom": 1, "direction": 0 }
         },
         {
@@ -180,7 +180,7 @@
     },
     {
       "id": "q5",
-      "prompt": "Ordre de grandeur d'investissement créa / direction (réaliste)",
+      "prompt": "Ordre de grandeur de votre investissement en direction créative",
       "options": [
         {
           "id": "low",
@@ -190,7 +190,7 @@
         },
         {
           "id": "mid",
-          "label": "Budget ponctuel ou centaines à ~1,5 k€",
+          "label": "Budget ponctuel, quelques centaines à 1 500 €",
           "subtitle": "Un diagnostic ou une mission ciblée",
           "scores": { "audit": 5, "custom": 4, "direction": 1, "starter": 0 }
         },

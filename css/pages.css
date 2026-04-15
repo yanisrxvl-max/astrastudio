@@ -1,10 +1,12 @@
 .hero {
   position: relative;
+  overflow: hidden;
   padding: clamp(2.35rem, 4.2vw, 4.25rem) 0 calc(var(--section-space) * 0.86);
 }
 
 .page-hero {
   position: relative;
+  overflow: hidden;
   padding: clamp(1.45rem, 2.8vw, 2.75rem) 0 calc(var(--section-space) * 0.6);
 }
 

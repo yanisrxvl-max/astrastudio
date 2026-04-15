@@ -9,29 +9,46 @@ import {
   leadNotificationHtml,
 } from "@/lib/emails";
 
-const ALLOWED_ORIGINS = [
+const DEFAULT_ORIGINS = [
   "https://astrastudio.fr",
   "https://www.astrastudio.fr",
+  "https://app.astrastudio.fr",
 ];
+
+/** Ex. LEADS_ALLOWED_ORIGINS=https://preview.vercel.app,https://staging.example.com */
+function extraOriginsFromEnv(): string[] {
+  const raw = process.env.LEADS_ALLOWED_ORIGINS || "";
+  return raw
+    .split(",")
+    .map((s) => s.trim())
+    .filter(Boolean);
+}
 
 function isAllowedOrigin(origin: string | null): boolean {
   if (!origin) return false;
-  if (ALLOWED_ORIGINS.includes(origin)) return true;
-  return /^https?:\/\/localhost(:\d+)?$/.test(origin);
+  if (DEFAULT_ORIGINS.includes(origin)) return true;
+  if (extraOriginsFromEnv().includes(origin)) return true;
+  if (/^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/i.test(origin)) return true;
+  // Prévisualisations et projets Vercel (*.vercel.app)
+  if (/^https:\/\/[^\s/]+\.vercel\.app$/i.test(origin)) return true;
+  return false;
 }
 
 /**
- * CORS pour le site vitrine (astrastudio.fr) → API Next (app.astrastudio.fr).
- * Preflight OPTIONS : Allow-Headers limité à Content-Type (fetch JSON).
+ * CORS : ne renvoie Access-Control-Allow-Origin que si l'origine est autorisée
+ * (évite le bug « fausse origine » qui faisait échouer le navigateur).
  */
-function corsHeaders(origin: string | null) {
-  const allowed = isAllowedOrigin(origin) ? origin! : ALLOWED_ORIGINS[0];
-  return {
-    "Access-Control-Allow-Origin": allowed,
+function corsHeaders(origin: string | null): Record<string, string> {
+  const h: Record<string, string> = {
     "Access-Control-Allow-Methods": "POST, OPTIONS",
-    "Access-Control-Allow-Headers": "Content-Type",
+    "Access-Control-Allow-Headers": "Content-Type, Accept",
     "Access-Control-Max-Age": "86400",
   };
+  if (origin && isAllowedOrigin(origin)) {
+    h["Access-Control-Allow-Origin"] = origin;
+    h["Vary"] = "Origin";
+  }
+  return h;
 }
 
 export async function OPTIONS(request: NextRequest) {

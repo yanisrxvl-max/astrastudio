@@ -1,6 +1,6 @@
 /**
- * Formulaire contact → POST https://app.astrastudio.fr/api/leads
- * (localhost / 127.0.0.1 : même chemin sur le port dev Next.js)
+ * Formulaire contact → POST /api/leads (proxy Vercel) ou API Next en direct.
+ * Dev local Next : http://127.0.0.1:3000/api/leads
  */
 (function () {
   const contactForm = document.querySelector("[data-contact-form]");
@@ -15,14 +15,15 @@
   const formFields = Array.from(contactForm.querySelectorAll("input, select, textarea"));
   const defaultSubmitLabel = submitButton ? submitButton.textContent : "";
 
-  const isLocalTest =
-    window.location.protocol === "file:" ||
-    window.location.hostname === "127.0.0.1" ||
-    window.location.hostname === "localhost";
+  const UPSTREAM_API = "https://app.astrastudio.fr/api/leads";
 
-  const contactEndpoint = isLocalTest
-    ? "http://127.0.0.1:3000/api/leads"
-    : "https://app.astrastudio.fr/api/leads";
+  /** Même origine : proxy Vercel /api/leads ou route Next si le site tourne sur le même host. */
+  function getContactEndpoint() {
+    if (window.location.protocol === "file:") {
+      return UPSTREAM_API;
+    }
+    return "/api/leads";
+  }
 
   const formSteps = contactForm.querySelectorAll("[data-form-step]");
   const stepDots = contactForm.querySelectorAll("[data-step-dot]");
@@ -196,6 +197,29 @@
     field.addEventListener("change", clearCurrentField);
   });
 
+  async function postLead(url, payload, signal) {
+    const res = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify(payload),
+      signal,
+    });
+    const text = await res.text();
+    let result = {};
+    try {
+      result = text ? JSON.parse(text) : {};
+    } catch {
+      result = {
+        parseError: true,
+        raw: text.slice(0, 300),
+      };
+    }
+    return { res, result };
+  }
+
   contactForm.addEventListener("submit", async (event) => {
     event.preventDefault();
 
@@ -226,27 +250,40 @@
     setSubmittingState(true);
 
     let timeoutId;
+    const primaryUrl = getContactEndpoint();
 
     try {
       const controller = new AbortController();
-      timeoutId = window.setTimeout(() => controller.abort(), 12000);
+      timeoutId = window.setTimeout(() => controller.abort(), 25000);
 
-      const response = await fetch(contactEndpoint, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify(payload),
-        signal: controller.signal,
-      });
+      let { res, result } = await postLead(primaryUrl, payload, controller.signal);
+
+      const fallbackToUpstream =
+        primaryUrl.startsWith("/") &&
+        UPSTREAM_API &&
+        (res.status === 404 ||
+          res.status === 405 ||
+          (result.parseError && res.status === 404));
+
+      if (fallbackToUpstream) {
+        const second = await postLead(UPSTREAM_API, payload, controller.signal);
+        res = second.res;
+        result = second.result;
+      }
 
       window.clearTimeout(timeoutId);
 
-      const result = await response.json().catch(() => ({}));
+      if (result.parseError) {
+        console.error("[contact] JSON invalide", result.raw);
+        setFeedback(
+          `Réponse serveur inattendue (${res.status}). Si le problème persiste, écrivez à bonjour@astrastudio.fr.`,
+          "error"
+        );
+        return;
+      }
 
-      if (!response.ok) {
-        if (result.field_errors) {
+      if (!res.ok) {
+        if (result.field_errors && typeof result.field_errors === "object") {
           const fieldErrors = Object.entries(result.field_errors);
 
           fieldErrors.forEach(([fieldName, message]) => {
@@ -279,12 +316,22 @@
           if (firstMsg) {
             setFeedback(firstMsg, "error");
           } else {
-            setFeedback("Une erreur est survenue, veuillez réessayer.", "error");
+            setFeedback("Merci de corriger les champs indiqués.", "error");
           }
           return;
         }
 
-        setFeedback("Une erreur est survenue, veuillez réessayer.", "error");
+        const serverMsg =
+          typeof result.error === "string" && result.error.trim()
+            ? result.error
+            : null;
+        setFeedback(
+          serverMsg ||
+            (res.status >= 500
+              ? "Le serveur ne peut pas enregistrer la demande pour le moment. Réessayez plus tard ou écrivez à bonjour@astrastudio.fr."
+              : `Envoi impossible (${res.status}). Réessayez ou contactez bonjour@astrastudio.fr.`),
+          "error"
+        );
         return;
       }
 
@@ -295,7 +342,14 @@
       goToStep(1);
       setFeedback("Merci ! Nous revenons vers vous sous 24h.", "success");
     } catch (error) {
-      setFeedback("Une erreur est survenue, veuillez réessayer.", "error");
+      const isAbort = error && error.name === "AbortError";
+      console.error("[contact]", error);
+      setFeedback(
+        isAbort
+          ? "Délai dépassé. Vérifiez votre connexion ou écrivez à bonjour@astrastudio.fr."
+          : "Impossible d’envoyer le formulaire (réseau). Réessayez ou écrivez à bonjour@astrastudio.fr.",
+        "error"
+      );
     } finally {
       window.clearTimeout(timeoutId);
       setSubmittingState(false);

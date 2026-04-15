@@ -364,9 +364,18 @@
       })
       .catch(() => {
         loading.textContent = "";
-        loading.className = "services-quiz-error";
-        loading.textContent =
-          "Impossible de charger le diagnostic. Vérifiez votre connexion ou réessayez plus tard.";
+        loading.className = "services-quiz-fallback";
+        loading.innerHTML = `
+          <div style="text-align:center; padding: clamp(32px, 5vw, 56px) clamp(20px, 3vw, 32px); border-radius: 20px; border: 1px solid rgba(255,255,255,0.06); background: rgba(255,255,255,0.02);">
+            <p style="margin: 0 0 8px; font-size: 0.68rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(212,175,55,0.85);">Diagnostic express</p>
+            <p style="margin: 0 0 12px; font-family: var(--font-display, 'Bodoni Moda', serif); font-size: clamp(1.35rem, 2.4vw, 1.75rem); font-weight: 600; color: rgba(250,245,238,0.94); line-height: 1.18;">Pas besoin de diagnostic pour avancer.</p>
+            <p style="margin: 0 auto 24px; max-width: 48ch; font-size: 0.95rem; line-height: 1.65; color: rgba(255,255,255,0.5);">Consultez directement nos offres ci-dessous et choisissez le format qui correspond à votre besoin — ou planifiez un échange pour qu'on en discute ensemble.</p>
+            <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 12px;">
+              <a class="button button-primary" href="#offres-detail">Voir les offres</a>
+              <a class="button button-secondary" href="contact.html">Planifier un échange</a>
+            </div>
+          </div>
+        `;
       });
   }
 

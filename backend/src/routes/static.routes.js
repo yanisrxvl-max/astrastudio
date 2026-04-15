@@ -18,6 +18,7 @@ function createStaticRouter() {
     ["/assets", path.join(config.rootDir, "assets")],
     ["/css", path.join(config.rootDir, "css")],
     ["/js", path.join(config.rootDir, "js")],
+    ["/data", path.join(config.rootDir, "data")],
     ["/videos", path.join(config.rootDir, "videos")],
   ].forEach(([routePrefix, directory]) => {
     if (!fs.existsSync(directory)) {

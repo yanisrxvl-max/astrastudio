@@ -1,9 +1,15 @@
 /**
  * Proxy Vercel : POST /api/leads → app Next (même schéma JSON, pas de CORS navigateur).
- * Variables : LEADS_UPSTREAM_URL (défaut https://app.astrastudio.fr/api/leads)
+ * Variables : LEADS_UPSTREAM_URL — mettre l’URL réelle de l’app Next si app.astrastudio.fr
+ * n’est pas encore en DNS (ex. https://ton-projet.vercel.app/api/leads).
  */
 const UPSTREAM =
   process.env.LEADS_UPSTREAM_URL || "https://app.astrastudio.fr/api/leads";
+
+const UPSTREAM_TIMEOUT_MS = Math.min(
+  Math.max(Number(process.env.LEADS_UPSTREAM_TIMEOUT_MS) || 20000, 5000),
+  55000
+);
 
 async function readJsonBody(req) {
   if (req.body && typeof req.body === "object" && !Buffer.isBuffer(req.body)) {
@@ -42,14 +48,23 @@ module.exports = async (req, res) => {
   }
 
   try {
-    const r = await fetch(UPSTREAM, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: JSON.stringify(body),
-    });
+    const controller = new AbortController();
+    const t = setTimeout(() => controller.abort(), UPSTREAM_TIMEOUT_MS);
+    let r;
+    try {
+      r = await fetch(UPSTREAM, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          "User-Agent": "AstraStudio-Static-Proxy/1.0",
+        },
+        body: JSON.stringify(body),
+        signal: controller.signal,
+      });
+    } finally {
+      clearTimeout(t);
+    }
 
     const text = await r.text();
     let data;

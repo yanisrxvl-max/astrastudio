@@ -15,7 +15,10 @@
   const formFields = Array.from(contactForm.querySelectorAll("input, select, textarea"));
   const defaultSubmitLabel = submitButton ? submitButton.textContent : "";
 
-  const UPSTREAM_API = "https://app.astrastudio.fr/api/leads";
+  /** API Next (CORS *.vercel.app). Surcharge : <form data-leads-api-url="https://…/api/leads"> si le domaine app n’est pas encore en DNS. */
+  const UPSTREAM_API =
+    (contactForm.getAttribute("data-leads-api-url") || "").trim() ||
+    "https://app.astrastudio.fr/api/leads";
 
   /** Même origine : proxy Vercel /api/leads ou route Next si le site tourne sur le même host. */
   function getContactEndpoint() {
@@ -258,11 +261,15 @@
 
       let { res, result } = await postLead(primaryUrl, payload, controller.signal);
 
+      /** Proxy HS (502/503/504) : souvent fetch serveur→upstream qui échoue ; le navigateur peut joindre l’API Next directement. */
       const fallbackToUpstream =
         primaryUrl.startsWith("/") &&
         UPSTREAM_API &&
         (res.status === 404 ||
           res.status === 405 ||
+          res.status === 502 ||
+          res.status === 503 ||
+          res.status === 504 ||
           (result.parseError && res.status === 404));
 
       if (fallbackToUpstream) {

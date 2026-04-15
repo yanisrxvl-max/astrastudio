@@ -93,7 +93,7 @@ async function handleSubscriptionWebhook(req, res) {
     const rawBody = Buffer.isBuffer(req.body) ? req.body : Buffer.from(String(req.body || ""));
     event = constructWebhookEvent(rawBody, sig);
   } catch (err) {
-    console.log("Webhook signature verification failed.");
+    console.error(`Webhook signature verification failed: ${err.message}`);
     return res.status(400).send(`Webhook Error: ${err.message}`);
   }
 
@@ -102,7 +102,7 @@ async function handleSubscriptionWebhook(req, res) {
     const { offerType, clientName } = session.metadata || {};
     const email = session.customer_details?.email || session.customer_email;
 
-    console.log(
+    console.info(
       `[Stripe] Paiement validé pour ${email} (${clientName || "—"}) sur l'offre ${offerType || "?"}`
     );
 

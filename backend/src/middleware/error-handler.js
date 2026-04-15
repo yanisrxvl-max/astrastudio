@@ -6,7 +6,9 @@ function notFoundHandler(req, res, next) {
     });
   }
 
-  return next();
+  const path = require("node:path");
+  const { config } = require("../config/env");
+  return res.status(404).sendFile(path.join(config.rootDir, "404.html"));
 }
 
 function errorHandler(error, req, res, next) {

@@ -117,16 +117,6 @@ function createApp() {
   app.use("/", createStaticRouter());
 
   app.use(notFoundHandler);
-  app.use((req, res, next) => {
-    if (req.path.startsWith("/api/")) {
-      return res.status(404).json({
-        ok: false,
-        message: "Route introuvable.",
-      });
-    }
-
-    return res.status(404).sendFile(path.join(config.rootDir, "404.html"));
-  });
   app.use(errorHandler);
 
   return { app, mailer };

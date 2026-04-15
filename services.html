@@ -4,357 +4,977 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Offres SPARK, SIGNATURE &amp; SCALE | Astra Studio</title>
+  <title>Nos Services | Astra Studio — Direction artistique pour marques beauté</title>
   <meta name="description"
-    content="SPARK, SIGNATURE et SCALE : trois niveaux d'accompagnement pour votre croissance — créativité humaine, IA, direction artistique et automatisation." />
-  <meta name="theme-color" content="#050608" />
-  <link rel="icon" type="image/png" href="assets/branding/astra-studio-logo.png" />
+    content="Deux offres packagées pour les marques beauté : Audit Stratégique de Marque et Direction Créative Premium. Une lecture claire, puis une direction continue." />
+  <meta name="theme-color" content="#050505" />
+  <link rel="icon" type="image/png" href="assets/favicon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,500;6..96,700&amp;family=Inter:wght@400;500;600;700&amp;family=Sora:wght@300;400;500;600;700&amp;display=swap"
+    href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,500;6..96,700&family=Sora:wght@300;400;500;600;700&display=swap"
     rel="stylesheet" />
   <link rel="stylesheet" href="css/base.css" />
   <link rel="stylesheet" href="css/components.css" />
   <link rel="stylesheet" href="css/pages.css" />
   <link rel="stylesheet" href="css/styles-premium.css" />
+  <link rel="stylesheet" href="css/astra-3d.css" />
+
   <style>
-    .services-offers-head {
-      margin-bottom: clamp(26px, 3.6vw, 40px);
+    /* ═══ HOW WE WORK ═══ */
+    .process-journey {
+      display: grid;
+      grid-template-columns: minmax(240px, 0.38fr) minmax(0, 0.62fr);
+      gap: clamp(26px, 3.8vw, 52px);
+      align-items: start;
     }
 
-    .services-offers-head h2 {
-      margin: 0 0 12px;
+    .process-rail {
+      position: sticky;
+      top: 120px;
+      display: grid;
+      gap: 18px;
+      padding: 24px 24px 26px;
+      border-radius: 26px;
+      border: 1px solid rgba(255,255,255,0.07);
+      background:
+        linear-gradient(160deg, rgba(13,16,22,0.92), rgba(8,10,14,0.96)),
+        radial-gradient(circle at top, rgba(212,175,55,0.08), transparent 46%);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.05),
+        0 24px 44px rgba(0,0,0,0.22);
+      overflow: hidden;
+    }
+
+    .process-rail::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), transparent 18%, transparent 82%, rgba(255,255,255,0.02));
+      opacity: 0.9;
+    }
+
+    .process-rail-head {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      gap: 10px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .process-rail-head strong {
       font-family: var(--font-display, "Bodoni Moda", Georgia, serif);
-      font-size: clamp(2rem, 3.8vw, 2.85rem);
-      line-height: 1.08;
-      letter-spacing: -0.02em;
+      font-size: clamp(1.35rem, 2vw, 1.7rem);
+      line-height: 1.1;
       color: #fff;
     }
 
-    .services-offers-head p {
+    .process-rail-head p {
       margin: 0;
-      max-width: 62ch;
-      color: rgba(255, 255, 255, 0.72);
-      line-height: 1.64;
-      font-size: clamp(1rem, 1.2vw, 1.08rem);
+      color: rgba(255,255,255,0.58);
+      line-height: 1.65;
+      font-size: 0.92rem;
     }
 
-    .services-offers-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: clamp(20px, 2.5vw, 30px);
-      align-items: stretch;
-      perspective: 1300px;
-    }
-
-    .services-offer-card {
+    .process-rail-track {
       position: relative;
-      display: flex;
-      flex-direction: column;
-      min-height: 100%;
-      padding: clamp(24px, 3vw, 34px);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      border-radius: 22px;
-      background:
-        linear-gradient(165deg, rgba(17, 20, 29, 0.9), rgba(7, 9, 13, 0.95)),
-        radial-gradient(circle at 15% -5%, rgba(203, 163, 91, 0.12), transparent 46%);
-      box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.07),
-        0 18px 34px rgba(0, 0, 0, 0.22);
-      transform-style: preserve-3d;
-      transition:
-        transform 0.55s cubic-bezier(0.2, 0.8, 0.2, 1),
-        border-color 0.35s ease,
-        box-shadow 0.35s ease,
-        background 0.35s ease;
-      will-change: transform;
+      z-index: 1;
+      padding-left: 20px;
     }
 
-    .services-offer-card::before {
+    .process-rail-line,
+    .process-rail-progress {
+      position: absolute;
+      left: 11px;
+      top: 10px;
+      bottom: 10px;
+      width: 1px;
+      border-radius: 999px;
+    }
+
+    .process-rail-line {
+      background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
+    }
+
+    .process-rail-progress {
+      bottom: auto;
+      height: var(--process-progress, 0%);
+      background: linear-gradient(180deg, rgba(212,175,55,0.95), rgba(236,209,154,0.38));
+      box-shadow: 0 0 14px rgba(212,175,55,0.22);
+      transition: height 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .process-rail-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 14px;
+    }
+
+    .process-rail-item {
+      position: relative;
+      display: grid;
+      gap: 4px;
+      padding-left: 22px;
+      color: rgba(255,255,255,0.44);
+      transition: color 0.35s ease, transform 0.35s ease;
+    }
+
+    .process-rail-item::before {
       content: "";
       position: absolute;
-      inset: -1px;
+      left: -9px;
+      top: 8px;
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.16);
+      background: rgba(10,12,16,0.95);
+      box-shadow: 0 0 0 6px rgba(10,12,16,0.96);
+      transition: transform 0.35s ease, border-color 0.35s ease, background 0.35s ease, box-shadow 0.35s ease;
+    }
+
+    .process-rail-item small {
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.34);
+      transition: color 0.35s ease;
+    }
+
+    .process-rail-item strong {
+      font-size: 0.94rem;
+      line-height: 1.4;
+      font-weight: 600;
+      color: inherit;
+    }
+
+    .process-rail-item.is-active {
+      color: rgba(255,248,236,0.96);
+      transform: translateX(4px);
+    }
+
+    .process-rail-item.is-active small {
+      color: rgba(232,204,151,0.88);
+    }
+
+    .process-rail-item.is-active::before {
+      transform: scale(1.16);
+      border-color: rgba(212,175,55,0.65);
+      background: rgba(212,175,55,0.92);
+      box-shadow: 0 0 0 6px rgba(212,175,55,0.08), 0 0 16px rgba(212,175,55,0.22);
+    }
+
+    .process-stage-stack {
+      display: grid;
+      gap: clamp(18px, 2.8vw, 24px);
+    }
+
+    .process-stage {
+      position: relative;
+      display: grid;
+      gap: 18px;
+      padding: clamp(24px, 3vw, 32px);
+      border-radius: 24px;
+      border: 1px solid rgba(255,255,255,0.07);
+      background:
+        linear-gradient(160deg, rgba(14,17,24,0.88), rgba(8,10,14,0.95)),
+        radial-gradient(circle at top right, rgba(212,175,55,0.04), transparent 34%);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.04),
+        0 16px 34px rgba(0,0,0,0.18);
+      transition:
+        transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+        border-color 0.4s ease,
+        box-shadow 0.4s ease,
+        background 0.4s ease,
+        opacity 0.4s ease;
+    }
+
+    .process-stage::before {
+      content: "";
+      position: absolute;
+      inset: 0;
       border-radius: inherit;
-      border: 1px solid rgba(232, 202, 139, 0);
       pointer-events: none;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), transparent 20%, transparent 78%, rgba(255,255,255,0.015));
+    }
+
+    .process-stage.is-active {
+      border-color: rgba(212,175,55,0.26);
+      background:
+        linear-gradient(160deg, rgba(20,18,13,0.9), rgba(9,10,14,0.96)),
+        radial-gradient(circle at top right, rgba(212,175,55,0.1), transparent 38%);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.06),
+        0 24px 48px rgba(0,0,0,0.24),
+        0 0 0 1px rgba(212,175,55,0.06);
+      transform: translateY(-2px);
+    }
+
+    .process-stage-head {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 18px;
+      align-items: start;
+    }
+
+    .process-stage-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 18px;
+      border: 1px solid rgba(212,175,55,0.18);
+      background:
+        linear-gradient(180deg, rgba(212,175,55,0.12), rgba(212,175,55,0.04)),
+        rgba(11,13,17,0.92);
+      display: grid;
+      place-items: center;
+      color: rgba(236,209,154,0.95);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
+    }
+
+    .process-stage-icon svg {
+      width: 24px;
+      height: 24px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .process-stage-step {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 8px;
+      font-size: 0.74rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(232,204,151,0.82);
+    }
+
+    .process-stage-step b {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 26px;
+      height: 26px;
+      border-radius: 999px;
+      border: 1px solid rgba(212,175,55,0.24);
+      background: rgba(212,175,55,0.08);
+      font-family: var(--font-display, "Bodoni Moda", Georgia, serif);
+      font-size: 0.82rem;
+      color: rgba(255,248,236,0.96);
+    }
+
+    .process-stage h3 {
+      margin: 0 0 8px;
+      font-size: clamp(1.18rem, 2vw, 1.46rem);
+      line-height: 1.18;
+      color: #fff;
+      font-weight: 600;
+    }
+
+    .process-stage p {
+      margin: 0;
+      color: rgba(255,255,255,0.66);
+      line-height: 1.75;
+      font-size: 0.98rem;
+      max-width: 64ch;
+    }
+
+    .process-stage-note {
+      padding: 14px 16px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.06);
+      background: rgba(255,255,255,0.02);
+      color: rgba(255,255,255,0.58);
+      font-size: 0.88rem;
+      line-height: 1.62;
+    }
+
+    @media (max-width: 980px) {
+      .process-journey {
+        grid-template-columns: 1fr;
+      }
+
+      .process-rail {
+        position: relative;
+        top: 0;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .process-stage-head {
+        grid-template-columns: 1fr;
+      }
+
+      .process-stage-icon {
+        width: 50px;
+        height: 50px;
+      }
+
+      .process-rail {
+        padding: 20px 18px 22px;
+      }
+    }
+
+    /* ═══ OFFER DETAIL CARDS ═══ */
+    .offer-detail {
+      position: relative;
+      padding: clamp(28px, 3.5vw, 44px);
+      border-radius: 24px;
+      border: 1px solid rgba(255,255,255,0.09);
+      background: linear-gradient(165deg, rgba(17,20,29,0.88), rgba(7,9,13,0.95));
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.06), 0 20px 40px rgba(0,0,0,0.24);
       transition: border-color 0.35s ease;
     }
 
-    .services-offer-card > * {
-      position: relative;
-      z-index: 1;
-    }
-
-    .services-offer-card:hover {
-      border-color: rgba(222, 186, 120, 0.34);
-      box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.08),
-        0 28px 44px rgba(0, 0, 0, 0.3);
-      transform: translateY(-10px) rotateX(5deg) rotateY(-5deg);
-    }
-
-    .services-offer-card:hover::before {
-      border-color: rgba(232, 202, 139, 0.28);
-    }
-
-    .services-offer-card:nth-child(3):hover {
-      transform: translateY(-10px) rotateX(5deg) rotateY(5deg);
-    }
-
-    .services-offer-card-featured {
-      border-color: rgba(232, 202, 139, 0.42);
+    .offer-detail--featured {
+      border-color: rgba(212,175,55,0.35);
       background:
-        linear-gradient(165deg, rgba(21, 18, 12, 0.96), rgba(9, 10, 14, 0.95)),
-        radial-gradient(circle at 84% -6%, rgba(232, 202, 139, 0.16), transparent 54%);
-      box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.1),
-        0 24px 46px rgba(0, 0, 0, 0.34),
-        0 0 0 1px rgba(232, 202, 139, 0.08);
-      transform: translateY(-6px);
+        linear-gradient(165deg, rgba(21,18,12,0.96), rgba(9,10,14,0.95)),
+        radial-gradient(circle at 84% -6%, rgba(232,202,139,0.14), transparent 54%);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.08), 0 24px 48px rgba(0,0,0,0.32), 0 0 0 1px rgba(232,202,139,0.06);
     }
 
-    .services-offer-card-featured:hover {
-      transform: translateY(-14px) rotateX(6deg);
-      border-color: rgba(236, 210, 155, 0.55);
-      box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.12),
-        0 32px 52px rgba(0, 0, 0, 0.36),
-        0 0 0 1px rgba(236, 210, 155, 0.16);
+    .offer-detail-header {
+      margin-bottom: clamp(20px, 2.5vw, 28px);
+      padding-bottom: clamp(18px, 2.2vw, 24px);
+      border-bottom: 1px solid rgba(255,255,255,0.07);
     }
 
-    .services-offer-tier {
+    .offer-detail-badge {
       display: inline-flex;
-      align-items: center;
-      margin-bottom: 14px;
-      font-size: 0.78rem;
+      width: fit-content;
+      margin-bottom: 12px;
+      font-size: 0.72rem;
       font-weight: 600;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: rgba(255, 255, 255, 0.78);
+      color: rgba(255,255,255,0.55);
     }
 
-    .services-offer-card-featured .services-offer-tier {
-      color: rgba(237, 211, 157, 0.95);
+    .offer-detail--featured .offer-detail-badge {
+      color: rgba(236,209,154,0.9);
     }
 
-    .services-offer-name {
-      margin: 0 0 10px;
+    .offer-detail-name {
+      margin: 0 0 6px;
       font-family: var(--font-display, "Bodoni Moda", Georgia, serif);
-      font-size: clamp(1.32rem, 2.25vw, 1.75rem);
-      line-height: 1.15;
-      letter-spacing: -0.01em;
+      font-size: clamp(1.8rem, 3vw, 2.5rem);
+      line-height: 1.1;
       color: #fff;
     }
 
-    .services-offer-price {
-      margin: 0 0 16px;
-      font-size: clamp(2.05rem, 3.5vw, 2.8rem);
+    .offer-detail-tagline {
+      margin: 0 0 14px;
+      font-size: 1.05rem;
+      color: rgba(255,255,255,0.6);
+      font-style: italic;
+    }
+
+    .offer-detail-price {
+      margin: 0;
+      font-size: clamp(2.2rem, 3.8vw, 3rem);
       font-weight: 700;
-      line-height: 0.98;
+      line-height: 1;
       color: #fff;
       font-variant-numeric: tabular-nums;
     }
 
-    .services-offer-price span {
+    .offer-detail-price span {
       margin-left: 4px;
       font-size: 1rem;
       font-weight: 500;
-      color: rgba(255, 255, 255, 0.58);
+      color: rgba(255,255,255,0.5);
     }
 
-    .services-offer-list {
-      list-style: none;
-      margin: 0 0 20px;
-      padding: 16px 0 0;
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
-      color: rgba(255, 255, 255, 0.82);
+    .offer-detail-price-note {
+      display: block;
+      margin-top: 6px;
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.42);
+    }
+
+    .offer-detail-body {
       display: grid;
-      gap: 9px;
+      gap: clamp(20px, 2.5vw, 28px);
     }
 
-    .services-offer-list li {
+    .offer-detail-desc {
+      margin: 0;
+      font-size: 1.02rem;
+      line-height: 1.72;
+      color: rgba(255,255,255,0.72);
+      max-width: 72ch;
+    }
+
+    .offer-detail-list-title {
+      margin: 0 0 12px;
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.85);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .offer-detail-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 10px;
+    }
+
+    .offer-detail-list li {
       position: relative;
-      padding-left: 1.22rem;
-      line-height: 1.45;
-      color: rgba(255, 255, 255, 0.82);
+      padding-left: 1.3rem;
+      line-height: 1.55;
+      color: rgba(255,255,255,0.8);
     }
 
-    .services-offer-list li::before {
+    .offer-detail-list li::before {
       content: "✓";
       position: absolute;
       left: 0;
       top: 0.05em;
-      color: rgba(231, 196, 128, 0.9);
+      color: rgba(212,175,55,0.85);
       font-weight: 700;
     }
 
-    .services-offer-note {
-      margin: 0 0 20px;
-      font-size: 0.95rem;
-      color: rgba(255, 255, 255, 0.6);
+    .offer-detail-outcome {
+      margin: 0;
+      padding: clamp(16px, 2vw, 22px);
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.05);
+      background: rgba(255,255,255,0.02);
+      font-size: 0.98rem;
+      line-height: 1.68;
+      color: rgba(255,255,255,0.68);
       font-style: italic;
+    }
+
+    .offer-detail-footer {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 16px;
+      margin-top: clamp(20px, 2.5vw, 28px);
+      padding-top: clamp(18px, 2.2vw, 24px);
+      border-top: 1px solid rgba(255,255,255,0.07);
+    }
+
+    .offer-detail-note {
+      margin: 0;
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.4);
       line-height: 1.55;
+      max-width: 60ch;
     }
 
-    .services-offer-cta {
-      width: 100%;
-      margin-top: auto;
-      text-align: center;
+    .services-packaged-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: clamp(20px, 2.4vw, 28px);
+      align-items: stretch;
     }
 
-    @media (max-width: 1080px) {
-      .services-offers-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        perspective: none;
-      }
-
-      .services-offer-card-featured {
-        transform: none;
-      }
+    .services-packaged-grid .offer-detail {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
     }
 
-    @media (max-width: 860px) {
-      .services-offers-grid {
+    .services-packaged-grid .offer-detail-body {
+      flex: 1;
+      align-content: start;
+    }
+
+    .services-section-intro {
+      margin-bottom: clamp(28px, 4vw, 44px);
+      max-width: 70ch;
+    }
+
+    .services-section-intro p {
+      margin: 0;
+      color: rgba(255,255,255,0.68);
+      line-height: 1.75;
+      font-size: 1.02rem;
+    }
+
+    .services-section-intro strong {
+      color: rgba(255,255,255,0.9);
+      font-weight: 600;
+    }
+
+    @media (max-width: 980px) {
+      .services-packaged-grid {
         grid-template-columns: 1fr;
       }
+    }
 
-      .services-offer-card,
-      .services-offer-card-featured,
-      .services-offer-card:hover,
-      .services-offer-card-featured:hover,
-      .services-offer-card:nth-child(3):hover {
-        transform: none;
-      }
+    /* ═══ FAQ ═══ */
+    .faq-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .faq-item {
+      padding: 20px 24px;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,0.06);
+      background: rgba(255,255,255,0.015);
+      transition: border-color 0.3s ease;
+    }
+
+    .faq-item[open] {
+      border-color: rgba(255,255,255,0.1);
+    }
+
+    .faq-item summary {
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 1.05rem;
+      color: #fff;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .faq-item summary::-webkit-details-marker { display: none; }
+
+    .faq-item summary::after {
+      content: "+";
+      flex-shrink: 0;
+      font-size: 1.3rem;
+      font-weight: 300;
+      color: rgba(255,255,255,0.35);
+      transition: transform 0.3s ease;
+    }
+
+    .faq-item[open] summary::after {
+      content: "−";
+      color: rgba(212,175,55,0.7);
+    }
+
+    .faq-item p {
+      margin: 14px 0 0;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.7;
+      max-width: 64ch;
+    }
+
+    /* ═══ CTA PANEL (reuse method-panel from index) ═══ */
+    .cta-panel {
+      padding: clamp(36px, 4.5vw, 56px);
+      border-radius: 26px;
+      border: 1px solid rgba(212,175,55,0.18);
+      background:
+        linear-gradient(160deg, rgba(12,14,20,0.92), rgba(7,9,13,0.97)),
+        radial-gradient(circle at 82% -8%, rgba(214,179,112,0.14), transparent 52%);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.06),
+        0 20px 38px rgba(0,0,0,0.28);
+      text-align: center;
     }
   </style>
+
   <script defer src="js/app.js"></script>
+  <script defer src="js/astra-3d.js"></script>
 </head>
 
 <body data-page="services">
+
+  <!-- ═══ HEADER ═══ -->
   <header class="site-header">
     <div class="container header-inner">
       <a class="brand" href="index.html" aria-label="Astra Studio">
         <img class="brand-logo brand-logo-3d" src="assets/branding/astra-studio-logo.png" alt="Astra Studio" />
       </a>
-
       <div class="header-end">
-        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="header-nav-wrap"
-          aria-label="Ouvrir le menu">
-          <span class="nav-toggle-line" aria-hidden="true"></span>
-          <span class="nav-toggle-line" aria-hidden="true"></span>
-          <span class="nav-toggle-line" aria-hidden="true"></span>
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="header-nav-wrap" aria-label="Ouvrir le menu">
+          <span class="nav-toggle-line"></span>
+          <span class="nav-toggle-line"></span>
+          <span class="nav-toggle-line"></span>
         </button>
-
         <div class="header-nav-wrap" id="header-nav-wrap">
           <nav class="site-nav" id="site-navigation" aria-label="Navigation principale">
             <a href="index.html" data-page-link="home">Accueil</a>
             <a href="services.html" data-page-link="services">Services</a>
-            <a href="systemes-ia.html" data-page-link="systemes-ia">Systèmes IA</a>
-            <a href="formations.html" data-page-link="formations">Formations</a>
-            <a href="work.html" data-page-link="work">Réalisations</a>
-            <a href="results.html" data-page-link="results">Résultats</a>
+            <a href="casting/index.html" data-page-link="casting">Casting</a>
+            <a href="portfolio.html" data-page-link="portfolio">Portfolio</a>
+            <a href="a-propos.html" data-page-link="about">À propos</a>
             <a href="contact.html" data-page-link="contact">Contact</a>
           </nav>
-          <a class="header-cta button button-primary" href="contact.html">Discuter d'un projet</a>
+          <a class="header-cta button button-primary" href="contact.html">Réserver un appel</a>
         </div>
       </div>
     </div>
   </header>
 
   <main id="main-content" class="page-shell">
-    <section class="section" style="padding-top: 140px">
-      <div class="container" style="max-width: 800px">
-        <span class="badge">Offres</span>
-        <h1 style="margin: 24px 0 16px">Des offres taillées pour votre croissance.</h1>
-        <p style="margin-bottom: 0; font-size: 1.125rem; color: var(--text-secondary, #888)">
-          Choisissez le niveau d'accompagnement qui correspond à votre ambition.
+
+    <!-- ═══════════════════════════════════════
+         SECTION 1 — HERO
+         ═══════════════════════════════════════ -->
+    <section class="section page-hero" style="padding-top: 140px;" aria-labelledby="services-heading">
+      <div class="container">
+        <span class="kicker reveal reveal-tilt">Nos Services</span>
+        <h1 class="display-title" id="services-heading" style="margin: 20px 0 16px; max-width: 18ch;">
+          Deux offres nettes pour structurer et élever votre marque.
+        </h1>
+        <p class="subhead">
+          Un diagnostic stratégique pour voir juste. Un accompagnement premium pour tenir une direction dans le temps.
         </p>
       </div>
     </section>
 
-    <section class="section" id="offres-services">
+    <!-- ═══════════════════════════════════════
+         SECTION 2 — HOW WE WORK
+         ═══════════════════════════════════════ -->
+    <section class="section" style="background: #070707;" aria-labelledby="process-heading">
       <div class="container">
-        <header class="services-offers-head">
-          <h2>Des offres alignées à votre niveau d'ambition.</h2>
+        <span class="kicker reveal reveal-tilt">Comment nous travaillons</span>
+        <h2 id="process-heading" class="reveal" style="margin: 20px 0 14px; max-width: 18ch;">
+          Un process en 9 étapes pour faire émerger une direction juste.
+        </h2>
+        <p class="subhead reveal" style="margin-bottom: clamp(28px, 4vw, 42px); max-width: 62ch;">
+          Le studio avance par séquences claires : cadrage stratégique, exploration massive, curation rigoureuse, validation, puis production finale avec guidelines.
+        </p>
+
+        <div class="process-journey">
+          <aside class="process-rail reveal reveal-card" data-process-rail>
+            <div class="process-rail-head">
+              <strong>Méthode Astra Studio</strong>
+              <p>L'acuité d'un directeur artistique, la vitesse d'un système bien cadré, et un point de validation critique avant toute production finale.</p>
+            </div>
+            <div class="process-rail-track">
+              <div class="process-rail-line" aria-hidden="true"></div>
+              <div class="process-rail-progress" aria-hidden="true"></div>
+              <ol class="process-rail-list">
+                <li class="process-rail-item is-active" data-process-nav="1"><small>01</small><strong>Questionnaire stratégique</strong></li>
+                <li class="process-rail-item" data-process-nav="2"><small>02</small><strong>Analyse stratégique</strong></li>
+                <li class="process-rail-item" data-process-nav="3"><small>03</small><strong>Exploration créative</strong></li>
+                <li class="process-rail-item" data-process-nav="4"><small>04</small><strong>Curation Phase 10</strong></li>
+                <li class="process-rail-item" data-process-nav="5"><small>05</small><strong>Moodboards</strong></li>
+                <li class="process-rail-item" data-process-nav="6"><small>06</small><strong>Rationalisation écrite</strong></li>
+                <li class="process-rail-item" data-process-nav="7"><small>07</small><strong>Validation client</strong></li>
+                <li class="process-rail-item" data-process-nav="8"><small>08</small><strong>Production finale</strong></li>
+                <li class="process-rail-item" data-process-nav="9"><small>09</small><strong>Livraison + guidelines</strong></li>
+              </ol>
+            </div>
+          </aside>
+
+          <div class="process-stage-stack">
+            <article class="process-stage reveal reveal-card is-active" data-process-step="1" data-depth-card>
+              <div class="process-stage-head">
+                <div class="process-stage-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><path d="M5 6h14"/><path d="M5 12h8"/><path d="M5 18h10"/><path d="M18 15l2 2 4-4"/></svg>
+                </div>
+                <div>
+                  <div class="process-stage-step"><b>01</b> Questionnaire Stratégique</div>
+                  <h3>Onboarding asynchrone : l'histoire de la marque avant les visuels.</h3>
+                  <p>On commence par un questionnaire structuré pour comprendre votre histoire, votre cible, vos valeurs, votre différenciation et ce que votre marque doit vraiment faire ressentir. Sans cette matière, la création reste décorative. Avec elle, elle devient orientée.</p>
+                </div>
+              </div>
+              <div class="process-stage-note">Objectif : construire une base de lecture claire avant toute piste créative.</div>
+            </article>
+
+            <article class="process-stage reveal reveal-card" data-process-step="2" data-depth-card>
+              <div class="process-stage-head">
+                <div class="process-stage-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><path d="M4 19h16"/><path d="M7 15l3-3 3 2 4-5"/></svg>
+                </div>
+                <div>
+                  <div class="process-stage-step"><b>02</b> Analyse Stratégique</div>
+                  <h3>Synthèse des signaux et identification du territoire d'expression.</h3>
+                  <p>Le studio transforme vos réponses en lecture stratégique : quels codes garder, quelles tensions résoudre, quel angle visuel assumer, et quel territoire d'expression peut soutenir la marque dans la durée.</p>
+                </div>
+              </div>
+              <div class="process-stage-note">Objectif : passer d'informations dispersées à une hypothèse créative solide.</div>
+            </article>
+
+            <article class="process-stage reveal reveal-card" data-process-step="3" data-depth-card>
+              <div class="process-stage-head">
+                <div class="process-stage-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><path d="M12 3v18"/><path d="M3 12h18"/><path d="M5.6 5.6l12.8 12.8"/><path d="M18.4 5.6 5.6 18.4"/></svg>
+                </div>
+                <div>
+                  <div class="process-stage-step"><b>03</b> Exploration Créative — Phase 100</div>
+                  <h3>Génération massive de concepts visuels par IA, sans se censurer trop tôt.</h3>
+                  <p>C'est la phase d'exhaustivité exploratoire. On ouvre très largement le champ des possibilités pour tester lumières, matières, compositions, directions de casting, textures et signatures visuelles. L'enjeu n'est pas de tout garder, mais de ne pas passer à côté de la bonne piste.</p>
+                </div>
+              </div>
+              <div class="process-stage-note">Objectif : explorer large pour éviter les solutions trop rapides, trop attendues ou trop pauvres.</div>
+            </article>
+
+            <article class="process-stage reveal reveal-card" data-process-step="4" data-depth-card>
+              <div class="process-stage-head">
+                <div class="process-stage-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><path d="m6 12 4 4 8-8"/><path d="M4 6h6"/><path d="M14 6h6"/><path d="M4 18h16"/></svg>
+                </div>
+                <div>
+                  <div class="process-stage-step"><b>04</b> Curation — Phase 10</div>
+                  <h3>Le directeur artistique filtre, coupe et garde uniquement ce qui est aligné à la stratégie.</h3>
+                  <p>La vitesse de génération ne vaut rien sans goût ni arbitrage. Ici, le studio sélectionne les itérations qui soutiennent réellement votre positionnement et élimine ce qui est séduisant mais hors sujet.</p>
+                </div>
+              </div>
+              <div class="process-stage-note">Objectif : passer d'une abondance de possibilités à un noyau de pistes pertinentes.</div>
+            </article>
+
+            <article class="process-stage reveal reveal-card" data-process-step="5" data-depth-card>
+              <div class="process-stage-head">
+                <div class="process-stage-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/><rect x="4" y="13" width="7" height="7" rx="1.5"/><rect x="13" y="13" width="7" height="7" rx="1.5"/></svg>
+                </div>
+                <div>
+                  <div class="process-stage-step"><b>05</b> Moodboards</div>
+                  <h3>Planches d'ambiance thématiques : lumière, typographie, composition, sensation.</h3>
+                  <p>Les moodboards servent à stabiliser le territoire retenu. On y organise les signes visuels qui vont structurer la suite : ambiance lumineuse, tension éditoriale, densité graphique, matières, cadrage et hiérarchie typographique.</p>
+                </div>
+              </div>
+              <div class="process-stage-note">Objectif : rendre la direction tangible, lisible et partageable avant l'exécution.</div>
+            </article>
+
+            <article class="process-stage reveal reveal-card" data-process-step="6" data-depth-card>
+              <div class="process-stage-head">
+                <div class="process-stage-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><path d="M7 5h10"/><path d="M7 9h10"/><path d="M7 13h6"/><path d="M7 17h8"/></svg>
+                </div>
+                <div>
+                  <div class="process-stage-step"><b>06</b> Rationalisation Écrite</div>
+                  <h3>Chaque choix esthétique est justifié pour rester exploitable dans le temps.</h3>
+                  <p>Le studio formalise noir sur blanc pourquoi telle direction est retenue, ce qu'elle raconte, comment elle se traduit et ce qu'elle permet commercialement. Cela évite les validations purement intuitives et sécurise la cohérence future.</p>
+                </div>
+              </div>
+              <div class="process-stage-note">Objectif : transformer une intention visuelle en système compréhensible et défendable.</div>
+            </article>
+
+            <article class="process-stage reveal reveal-card" data-process-step="7" data-depth-card>
+              <div class="process-stage-head">
+                <div class="process-stage-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><path d="M12 3v6"/><path d="M8 21h8"/><path d="M9 9h6l2 3-5 5-5-5 2-3Z"/></svg>
+                </div>
+                <div>
+                  <div class="process-stage-step"><b>07</b> Validation Client</div>
+                  <h3>Le point de contrôle critique avant toute production définitive.</h3>
+                  <p>Cette étape évite les dérives tardives et les corrections coûteuses. On valide la direction, le niveau d'intention et le cap général avant d'engager l'exécution finale. C'est le moment où l'on sécurise la suite ensemble.</p>
+                </div>
+              </div>
+              <div class="process-stage-note">Objectif : aligner pleinement le studio et la marque avant la phase finale “1”.</div>
+            </article>
+
+            <article class="process-stage reveal reveal-card" data-process-step="8" data-depth-card>
+              <div class="process-stage-head">
+                <div class="process-stage-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><path d="m4 18 5-5 4 4 7-9"/><path d="M4 6h5"/><path d="M4 10h8"/></svg>
+                </div>
+                <div>
+                  <div class="process-stage-step"><b>08</b> Production Finale — Phase 1</div>
+                  <h3>Génération, affinage, upscaling : la direction devient asset exploitable.</h3>
+                  <p>Une fois la direction validée, on produit les assets finaux avec un niveau de finition adapté à l'usage : campagne, social, launch assets, visuels site ou supports de marque. C'est la phase la plus concentrée, la plus resserrée, la plus décisive.</p>
+                </div>
+              </div>
+              <div class="process-stage-note">Objectif : livrer un rendu final cohérent, propre, premium et directement utilisable.</div>
+            </article>
+
+            <article class="process-stage reveal reveal-card" data-process-step="9" data-depth-card>
+              <div class="process-stage-head">
+                <div class="process-stage-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/><path d="M5 6h4"/><path d="M5 18h6"/></svg>
+                </div>
+                <div>
+                  <div class="process-stage-step"><b>09</b> Livraison + Guidelines</div>
+                  <h3>Les éléments sont livrés avec un cadre d'utilisation pour l'autonomie du client.</h3>
+                  <p>La mission ne s'arrête pas au fichier final. Les éléments sont accompagnés d'un guide d'utilisation, de principes de cohérence et de recommandations d'application pour que la marque puisse faire vivre la direction sans la diluer.</p>
+                </div>
+              </div>
+              <div class="process-stage-note">Objectif : donner des livrables, mais aussi un cadre pour les utiliser intelligemment dans le temps.</div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════
+         SECTION 3 — NOS SERVICES
+         ═══════════════════════════════════════ -->
+    <section class="section" style="background: #060606;" aria-labelledby="offers-heading">
+      <div class="container">
+        <span class="kicker reveal reveal-tilt">Offres packagées</span>
+        <h2 id="offers-heading" class="reveal" style="margin: 20px 0 14px; max-width: 18ch;">
+          Pas de catalogue flou. Deux points d'entrée, selon la maturité de votre marque.
+        </h2>
+        <div class="services-section-intro reveal">
           <p>
-            Même direction créative, même exigence d'exécution. Vous choisissez le niveau d'intensité qui correspond à votre
-            contexte actuel.
+            <strong>Astra Studio fonctionne avec deux formats seulement.</strong> Le premier sert à diagnostiquer, hiérarchiser et révéler ce qui freine votre perception de marque. Le second installe une direction artistique continue pour faire monter votre image dans la durée.
           </p>
-        </header>
+        </div>
 
-        <div class="services-offers-grid">
-          <article class="services-offer-card">
-            <span class="services-offer-tier">Entrée de gamme</span>
-            <h3 class="services-offer-name">SPARK — Présence essentielle.</h3>
-            <p class="services-offer-price">497€<span>/mois</span></p>
-            <ul class="services-offer-list">
-              <li>12 posts / mois.</li>
-              <li>4 vidéos.</li>
-              <li>Calendrier automatisé.</li>
-              <li>Reporting mensuel.</li>
-            </ul>
-            <p class="services-offer-note">
-              Idéal pour les indépendants et petites marques qui veulent une base propre.
-            </p>
-            <a class="button button-secondary services-offer-cta" href="contact.html?offer=spark">Choisir SPARK</a>
+        <div class="services-packaged-grid">
+          <article class="offer-detail reveal reveal-card">
+            <div class="offer-detail-header">
+              <span class="offer-detail-badge">One-shot</span>
+              <h3 class="offer-detail-name">Audit Stratégique de Marque</h3>
+              <p class="offer-detail-tagline">Le diagnostic qui révèle le potentiel caché de votre marque.</p>
+              <p class="offer-detail-price">690 €</p>
+              <small class="offer-detail-price-note">Prestation ponctuelle · livret stratégique + restitution inclus</small>
+            </div>
+
+            <div class="offer-detail-body">
+              <p class="offer-detail-desc">
+                Une lecture complète de votre identité, de votre contenu et de votre positionnement pour comprendre où votre marque perd en impact, en désirabilité ou en cohérence. L'objectif n'est pas de produire plus vite, mais de voir plus juste.
+              </p>
+
+              <div>
+                <p class="offer-detail-list-title">Ce qui est inclus</p>
+                <ul class="offer-detail-list">
+                  <li>Évaluation de l'identité visuelle : logo, palette, typographies, cohérence multi-canal</li>
+                  <li>Analyse du contenu social et organique : taux d'engagement, qualité photo, storytelling</li>
+                  <li>Analyse concurrentielle face à 3 concurrents directs</li>
+                  <li>Livret stratégique PDF avec quick wins et priorités de correction</li>
+                  <li>Session de restitution en visio d'1h pour poser la suite clairement</li>
+                </ul>
+              </div>
+
+              <div>
+                <p class="offer-detail-list-title">Ce que cela vous apporte</p>
+                <p class="offer-detail-outcome">
+                  Une vision nette de ce qui doit être renforcé, simplifié ou recadré pour que votre marque paraisse plus juste, plus désirable et plus crédible.
+                </p>
+              </div>
+            </div>
+
+            <div class="offer-detail-footer">
+              <a href="contact.html?offer=audit" class="button button-primary">Diagnostiquer ma marque</a>
+              <p class="offer-detail-note">
+                Idéal avant un repositionnement, une montée en gamme, un lancement ou un accompagnement plus long.
+              </p>
+            </div>
           </article>
 
-          <article class="services-offer-card services-offer-card-featured">
-            <span class="services-offer-tier">Recommandé</span>
-            <h3 class="services-offer-name">SIGNATURE — Le cœur du système.</h3>
-            <p class="services-offer-price">1 497€<span>/mois</span></p>
-            <ul class="services-offer-list">
-              <li>Direction artistique &amp; branding.</li>
-              <li>25 posts/mois + 8 vidéos.</li>
-              <li>1 shooting stratégique mensuel.</li>
-              <li>1 workflow d'automatisation (Make/n8n).</li>
-              <li>2 calls stratégiques.</li>
-            </ul>
-            <p class="services-offer-note">
-              Le meilleur équilibre pour accélérer image, contenu et structuration.
-            </p>
-            <a class="button button-primary services-offer-cta" href="contact.html?offer=signature">Postuler pour SIGNATURE</a>
-          </article>
+          <article class="offer-detail offer-detail--featured reveal reveal-card reveal-delay-1">
+            <div class="offer-detail-header">
+              <span class="offer-detail-badge">Abonnement mensuel</span>
+              <h3 class="offer-detail-name">Direction Créative Premium</h3>
+              <p class="offer-detail-tagline">Votre directeur artistique dédié, amplifié par l'IA.</p>
+              <p class="offer-detail-price">1 800 €<span>/mois</span></p>
+              <small class="offer-detail-price-note">Engagement 3 mois minimum</small>
+            </div>
 
-          <article class="services-offer-card">
-            <span class="services-offer-tier">Premium</span>
-            <h3 class="services-offer-name">SCALE — Partenaire stratégique.</h3>
-            <p class="services-offer-price">3 497€<span>/mois</span></p>
-            <ul class="services-offer-list">
-              <li>Tout inclus (niveau SIGNATURE).</li>
-              <li>Agent IA personnalisé.</li>
-              <li>Accès WhatsApp.</li>
-              <li>Formation équipe.</li>
-            </ul>
-            <p class="services-offer-note">
-              Pour les marques ambitieuses qui veulent scaler vite avec un partenaire dédié.
-            </p>
-            <a class="button button-secondary services-offer-cta" href="contact.html?offer=scale">Choisir SCALE</a>
+            <div class="offer-detail-body">
+              <p class="offer-detail-desc">
+                Un accompagnement continu pour les marques qui veulent une présence plus cohérente, plus haut de gamme et plus reconnaissable. Le studio pilote votre direction visuelle dans le temps, avec une cadence de production réellement exploitable.
+              </p>
+
+              <div>
+                <p class="offer-detail-list-title">Ce qui est inclus</p>
+                <ul class="offer-detail-list">
+                  <li>Direction artistique continue sur votre marque et vos prises de parole</li>
+                  <li>8 à 12 contenus premium par mois</li>
+                  <li>Photos produits assistées par IA + vidéos courtes stylisées</li>
+                  <li>2 points de synchronisation stratégique mensuels</li>
+                </ul>
+              </div>
+
+              <div>
+                <p class="offer-detail-list-title">Ce que cela vous apporte</p>
+                <p class="offer-detail-outcome">
+                  Une ligne plus forte, une exécution plus régulière et une image de marque qui gagne en tenue, en cohérence et en valeur perçue mois après mois.
+                </p>
+              </div>
+            </div>
+
+            <div class="offer-detail-footer">
+              <a href="contact.html?offer=direction" class="button button-primary">Candidater pour un accompagnement</a>
+              <p class="offer-detail-note">
+                Pensé pour les marques prêtes à s'engager dans une vraie progression créative, pas dans des contenus isolés sans direction.
+              </p>
+            </div>
           </article>
         </div>
       </div>
     </section>
+
+    <!-- ═══════════════════════════════════════
+         SECTION 4 — FAQ
+         ═══════════════════════════════════════ -->
+    <section class="section" style="background: #080808;" aria-labelledby="faq-heading">
+      <div class="container" style="max-width: 780px;">
+        <h2 id="faq-heading" class="reveal" style="margin-bottom: clamp(28px, 4vw, 40px);">
+          Questions fréquentes
+        </h2>
+
+        <div class="faq-list">
+          <details class="faq-item reveal reveal-card">
+            <summary>Faut-il commencer par l'audit ?</summary>
+            <p>Si votre image, votre contenu ou votre positionnement manquent encore de clarté, oui. L'audit permet de poser un diagnostic propre avant d'investir dans une direction continue.</p>
+          </details>
+          <details class="faq-item reveal reveal-card">
+            <summary>À qui s'adresse la Direction Créative Premium ?</summary>
+            <p>Aux marques qui ont déjà une base réelle et veulent une direction plus forte, plus cohérente et plus tenue dans le temps. Ce n'est pas une formule pour “tester un peu”.</p>
+          </details>
+          <details class="faq-item reveal reveal-card">
+            <summary>Pourquoi un minimum de 3 mois ?</summary>
+            <p>Parce qu'une direction créative ne se juge pas sur deux publications. Trois mois permettent d'installer des codes, de créer une cohérence visible et d'ajuster sans précipitation.</p>
+          </details>
+          <details class="faq-item reveal reveal-card">
+            <summary>Que comprend exactement la partie IA dans l'accompagnement ?</summary>
+            <p>Elle accélère l'exploration visuelle et certaines productions produits. La direction, le goût, l'arbitrage et la cohérence finale restent entièrement pilotés par le studio.</p>
+          </details>
+          <details class="faq-item reveal reveal-card">
+            <summary>Que se passe-t-il après les 3 mois ?</summary>
+            <p>On fait un point lucide sur les avancées, la cadence et les priorités. Si la collaboration a du sens, on poursuit. Sinon, vous repartez avec une base plus solide et plus lisible.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════
+         SECTION 5 — CTA FINAL
+         ═══════════════════════════════════════ -->
+    <section class="section" aria-labelledby="cta-heading">
+      <div class="container">
+        <div class="cta-panel reveal reveal-card">
+          <h2 id="cta-heading" style="margin: 0 auto 16px; max-width: 18ch;">
+            Vous savez déjà que votre marque peut paraître plus forte ?
+          </h2>
+          <p class="subhead" style="margin: 0 auto clamp(24px, 3vw, 32px); text-align: center; max-width: 52ch;">
+            Commençons par clarifier la bonne porte d'entrée : diagnostic ponctuel ou accompagnement premium.
+          </p>
+          <div class="button-row button-row-center">
+            <a class="button button-primary" href="contact.html">Parler de votre marque →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
   </main>
 
+  <!-- ═══ FOOTER ═══ -->
   <footer class="site-footer">
     <div class="container">
       <div class="footer-premium-grid">
         <div class="footer-premium-col footer-premium-col--brand">
-          <a class="brand" href="index.html" aria-label="Astra Studio"><img class="brand-logo brand-logo-3d" src="assets/branding/astra-studio-logo.png" alt="Astra Studio" /></a>
-          <p class="footer-premium-desc">
-            Studio créatif humain + IA. Stratégie, contenu, et automatisation pour marques ambitieuses.
-          </p>
+          <a class="brand" href="index.html" aria-label="Astra Studio">
+            <img class="brand-logo brand-logo-3d" src="assets/branding/astra-studio-logo.png" alt="Astra Studio" />
+          </a>
+          <p class="footer-premium-desc">Direction créative pour marques beauté. Humain + IA.</p>
         </div>
         <nav class="footer-premium-col" aria-label="Navigation">
           <h3 class="footer-premium-heading">Navigation</h3>
           <div class="footer-premium-links">
-            <a href="vision.html">Ma vision</a>
-            <a href="index.html#methode">Notre méthode</a>
+            <a href="index.html">Accueil</a>
             <a href="services.html">Services</a>
-            <a href="systemes-ia.html">Systèmes IA</a>
-            <a href="formations.html">Formations</a>
-            <a href="work.html">Réalisations</a>
+            <a href="portfolio.html">Portfolio</a>
+            <a href="a-propos.html">À propos</a>
             <a href="contact.html">Contact</a>
           </div>
         </nav>
@@ -362,48 +982,76 @@
           <h3 class="footer-premium-heading">Contact</h3>
           <div class="footer-premium-contact">
             <a href="mailto:bonjour@astrastudio.fr">bonjour@astrastudio.fr</a>
-            <p>Paris · À distance · Sur site</p>
-            <p class="footer-premium-contact-note">Creative Review incluse dans chaque offre</p>
+            <p>Paris · À distance</p>
+          </div>
+          <div class="footer-premium-social" style="margin-top: 16px;">
+            <a href="https://www.instagram.com/astrastudio.fr/" target="_blank" rel="noopener" aria-label="Instagram">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
+            </a>
+            <a href="https://www.tiktok.com/@astrastudio.fr" target="_blank" rel="noopener" aria-label="TikTok">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/></svg>
+            </a>
           </div>
         </div>
         <div class="footer-premium-col">
-          <h3 class="footer-premium-heading">Réseaux</h3>
-          <div class="footer-premium-social">
-            <a href="#" aria-label="LinkedIn">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path
-                  d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
-              </svg>
-            </a>
-            <a href="#" aria-label="Instagram">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
-                <circle cx="12" cy="12" r="4" />
-                <circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none" />
-              </svg>
-            </a>
-            <a href="#" aria-label="TikTok">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path
-                  d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z" />
-              </svg>
-            </a>
-            <a href="#" aria-label="X (Twitter)">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-              </svg>
-            </a>
+          <h3 class="footer-premium-heading">Légal</h3>
+          <div class="footer-premium-links">
+            <a href="mentions-legales.html">Mentions légales</a>
+            <a href="politique-confidentialite.html">Politique de confidentialité</a>
           </div>
         </div>
       </div>
-      <p class="footer-premium-copy">© 2026 Astra Studio. Tous droits réservés.</p>
-      <p class="footer-premium-copy-sub">Méthode 100→10→1 • Humain + IA • Paris &amp; à distance</p>
-      <div style="margin-top: 20px; font-size: 0.85rem;">
-        <a href="mentions-legales.html" style="color: #666; text-decoration: none; margin: 0 10px;">Mentions légales</a>
-        <a href="politique-confidentialite.html" style="color: #666; text-decoration: none; margin: 0 10px;">Politique de confidentialité</a>
-      </div>
+      <p class="footer-premium-copy">© <span data-current-year>2026</span> Astra Studio. Méthode 100→10→1.</p>
     </div>
   </footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const rail = document.querySelector("[data-process-rail]");
+      const steps = Array.from(document.querySelectorAll("[data-process-step]"));
+      const navItems = Array.from(document.querySelectorAll("[data-process-nav]"));
+
+      if (!rail || !steps.length || !navItems.length) return;
+
+      const setActiveStep = (activeIndex) => {
+        const safeIndex = Math.max(0, Math.min(activeIndex, steps.length - 1));
+        const progress = steps.length > 1 ? (safeIndex / (steps.length - 1)) * 100 : 100;
+
+        rail.style.setProperty("--process-progress", `${progress}%`);
+
+        steps.forEach((step, index) => {
+          step.classList.toggle("is-active", index === safeIndex);
+        });
+
+        navItems.forEach((item, index) => {
+          item.classList.toggle("is-active", index === safeIndex);
+        });
+      };
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          const visible = entries
+            .filter((entry) => entry.isIntersecting)
+            .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+
+          if (!visible.length) return;
+
+          const activeStep = visible[0].target;
+          const index = steps.indexOf(activeStep);
+          if (index >= 0) setActiveStep(index);
+        },
+        {
+          root: null,
+          threshold: [0.25, 0.45, 0.65],
+          rootMargin: "-10% 0px -35% 0px"
+        }
+      );
+
+      steps.forEach((step) => observer.observe(step));
+      setActiveStep(0);
+    });
+  </script>
+
 </body>
 
 </html>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mentions Légales - Astra Studio</title>
+    <title>Mentions légales — Astra Studio</title>
     <meta name="description" content="Mentions légales du site Astra Studio. Informations sur l'éditeur, l'hébergement et la propriété intellectuelle.">
     
     <!-- Polices -->
@@ -31,24 +31,57 @@
             overflow-x: hidden;
         }
 
-        /* Header Simplifié pour pages légales */
-        header {
-            padding: 30px 5%;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        /* Header — use shared site styles inline for standalone legal pages */
+        .site-header {
             position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background-color: var(--bg-color);
+            top: 0; left: 0; right: 0;
             z-index: 1000;
+            padding: 16px 0;
+            background: rgba(5,5,5,0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255,255,255,0.04);
         }
-        .logo { font-family: var(--font-heading); font-size: 1.5rem; font-weight: 700; color: var(--text-color); text-decoration: none; }
-        .logo span { color: var(--accent-color); }
-        .back-link { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; transition: color 0.3s; }
-        .back-link:hover { color: var(--accent-color); }
+        .site-header .container {
+            width: min(100% - 48px, 1400px);
+            margin: 0 auto;
+        }
+        .header-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 2.5rem;
+        }
+        .brand { display: inline-flex; align-items: center; text-decoration: none; }
+        .brand-logo { display: block; height: 32px; width: auto; object-fit: contain; }
+        .site-nav { display: flex; align-items: center; gap: 2rem; }
+        .site-nav a {
+            color: rgba(255,255,255,0.65);
+            text-decoration: none;
+            font-size: 0.88rem;
+            letter-spacing: 0.02em;
+            transition: color 0.25s ease;
+        }
+        .site-nav a:hover { color: #fff; }
+        .header-end { display: flex; align-items: center; gap: 1.5rem; }
+        .header-cta {
+            display: inline-flex;
+            padding: 0.6rem 1.2rem;
+            border-radius: 999px;
+            background: var(--accent-color);
+            color: #0a0a0a;
+            font-size: 0.82rem;
+            font-weight: 600;
+            text-decoration: none;
+            letter-spacing: 0.02em;
+            transition: opacity 0.25s ease;
+        }
+        .header-cta:hover { opacity: 0.88; }
+        .nav-toggle { display: none; }
+        @media (max-width: 768px) {
+            .site-nav { display: none; }
+            .header-cta { display: none; }
+        }
 
         /* Contenu Principal */
         .legal-container {
@@ -112,15 +145,27 @@
 </head>
 <body>
 
-    <!-- Header -->
-    <header>
-        <a href="index.html" class="logo">Astra<span>Studio</span></a>
-        <a href="index.html" class="back-link">← Retour au site</a>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a class="brand" href="index.html" aria-label="Astra Studio">
+                <img class="brand-logo" src="assets/branding/astra-studio-logo.png" alt="Astra Studio" />
+            </a>
+            <div class="header-end">
+                <nav class="site-nav" aria-label="Navigation principale">
+                    <a href="index.html">Accueil</a>
+                    <a href="services.html">Services</a>
+                    <a href="portfolio.html">Portfolio</a>
+                    <a href="a-propos.html">À propos</a>
+                    <a href="contact.html">Contact</a>
+                </nav>
+                <a class="header-cta" href="contact.html">Réserver un appel</a>
+            </div>
+        </div>
     </header>
 
-    <!-- Contenu -->
+    <main id="main-content">
     <div class="legal-container">
-        <h1>Mentions Légales</h1>
+        <h1>Mentions légales</h1>
 
         <p>Conformément aux dispositions de la loi n° 2004-575 du 21 juin 2004 pour la confiance en l'économie numérique, il est précisé aux utilisateurs du site internet Astra Studio l'identité des différents intervenants dans le cadre de sa réalisation et de son suivi.</p>
 
@@ -131,7 +176,7 @@
             <li><strong>Forme juridique :</strong> <span class="info-value">Micro-entreprise</span></li>
             <li><strong>Numéro SIRET :</strong> <span class="info-value">988 233 979 00018</span></li>
             <li><strong>Siège social :</strong> <span class="info-value">23 rue Bardiaux, 03200 Vichy</span></li>
-            <li><strong>Email de contact :</strong> <span class="highlight">contact@astrastudio.fr</span></li>
+            <li><strong>E-mail de contact :</strong> <span class="highlight">contact@astrastudio.fr</span></li>
         </ul>
 
         <h2>2. Directeur de la publication</h2>
@@ -152,16 +197,23 @@
 
         <h2>5. Crédits</h2>
         <p>Conception et développement : <span class="highlight">Astra Studio Internal Team</span></p>
-        <p>Design & Direction Artistique : <span class="highlight">Yanis Revel</span></p>
+        <p>Design et direction artistique : <span class="highlight">Yanis Revel</span></p>
     </div>
+    </main>
 
-    <!-- Footer -->
     <footer>
         <div class="footer-links">
+            <a href="index.html">Accueil</a>
+            <a href="services.html">Services</a>
+            <a href="portfolio.html">Portfolio</a>
+            <a href="a-propos.html">À propos</a>
+            <a href="contact.html">Contact</a>
+        </div>
+        <div class="footer-links" style="margin-top: 12px;">
             <a href="mentions-legales.html">Mentions légales</a>
             <a href="politique-confidentialite.html">Politique de confidentialité</a>
         </div>
-        <p>&copy; 2026 Astra Studio. Tous droits réservés.</p>
+        <p style="margin-top: 20px;">&copy; 2026 Astra Studio. Méthode 100→10→1.</p>
     </footer>
 
 </body>

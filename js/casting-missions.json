@@ -1,0 +1,44 @@
+[
+  {
+    "slug": "ugc-skincare-paris",
+    "title": "UGC skincare — ambiance naturelle",
+    "type": "UGC / Réseaux sociaux",
+    "city": "Paris",
+    "date": "2026-05-18",
+    "compensation": "À partir de 400 €",
+    "duration": "½ journée",
+    "profiles": 2,
+    "style": "25–40 ans, peau lumineuse, ton authentique",
+    "description": "Recherche de profils pour contenus courts type témoignage / routine. Tournage en studio partenaire, équipe réduite. Profils majeurs uniquement, expérience face caméra appréciée.",
+    "brand": "Marque skincare — confidentiel",
+    "status": "open"
+  },
+  {
+    "slug": "pub-digital-lyon",
+    "title": "Campagne digital — lifestyle",
+    "type": "Publicité / Social ads",
+    "city": "Lyon",
+    "date": "2026-06-03",
+    "compensation": "À partir de 650 €",
+    "duration": "1 journée",
+    "profiles": 1,
+    "style": "Univers premium, silhouette élancée",
+    "description": "Shooting et micro-séquences pour déclinaisons paid social. Brief créatif fourni, direction sur place.",
+    "brand": "Agence partenaire",
+    "status": "selection"
+  },
+  {
+    "slug": "brand-content-remot",
+    "title": "Contenus marque — pack photo",
+    "type": "Shooting produit + portrait",
+    "city": "À distance / IDF",
+    "date": "2026-04-28",
+    "compensation": "Forfait négocié",
+    "duration": "1 journée",
+    "profiles": 3,
+    "style": "Diversité de profils, peaux différentes",
+    "description": "Mise à jour de banque d’images pour e-commerce et social. Contrat de cession à prévoir.",
+    "brand": "Maison beauté indépendante",
+    "status": "done"
+  }
+]

@@ -40,7 +40,7 @@
 .page-hero-grid {
   display: grid;
   grid-template-columns: 1.15fr 0.85fr;
-  gap: clamp(1.8rem, 3.3vw, 3.6rem);
+  gap: clamp(2.25rem, 3.5vw, 3.75rem);
 }
 
 .hero-grid {

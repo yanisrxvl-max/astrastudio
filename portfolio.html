@@ -1,0 +1,1153 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cas Clients | Astra Studio — Dossiers de marque documentés</title>
+  <meta name="description"
+    content="Cas clients Astra Studio : dossiers de marque documentés avec contexte, intervention stratégique, déploiement technologique et résultats tangibles." />
+  <meta name="theme-color" content="#050505" />
+  <link rel="icon" type="image/png" href="assets/favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,500;6..96,700&family=Sora:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/pages.css" />
+  <link rel="stylesheet" href="css/styles-premium.css" />
+  <link rel="stylesheet" href="css/astra-3d.css" />
+
+  <style>
+    /* ═══ CLIENT CASES ═══ */
+    .case-study-shell {
+      display: grid;
+      gap: clamp(22px, 3vw, 34px);
+      padding: clamp(28px, 3.5vw, 42px);
+      border-radius: 28px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background:
+        linear-gradient(160deg, rgba(15,18,24,0.94), rgba(8,10,14,0.98)),
+        radial-gradient(circle at 84% -8%, rgba(214,179,112,0.12), transparent 48%);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.06),
+        0 28px 54px rgba(0,0,0,0.3);
+      overflow: hidden;
+    }
+
+    .case-study-head {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(220px, 0.85fr);
+      gap: clamp(20px, 3vw, 32px);
+      align-items: end;
+      padding-bottom: clamp(18px, 2.4vw, 24px);
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+
+    .case-study-brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 14px;
+    }
+
+    .case-study-brand-mark {
+      width: 52px;
+      height: 52px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.03);
+      object-fit: cover;
+      padding: 6px;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
+    }
+
+    .case-study-brand-copy span {
+      display: block;
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+    }
+
+    .case-study-brand-copy strong {
+      display: block;
+      margin-top: 4px;
+      font-size: 1rem;
+      color: rgba(255,255,255,0.9);
+      font-weight: 600;
+    }
+
+    .case-study-name {
+      margin: 0 0 12px;
+      font-family: var(--font-display, "Bodoni Moda", Georgia, serif);
+      font-size: clamp(2.1rem, 4vw, 3.3rem);
+      line-height: 1.02;
+      color: #fff;
+      max-width: 12ch;
+    }
+
+    .case-study-subtitle {
+      margin: 0;
+      max-width: 58ch;
+      font-size: 1.02rem;
+      line-height: 1.72;
+      color: rgba(255,255,255,0.68);
+    }
+
+    .case-study-tags {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      gap: 8px;
+      align-content: flex-end;
+    }
+
+    .case-study-tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.36rem 0.72rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.09);
+      background: rgba(255,255,255,0.03);
+      font-size: 0.72rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.58);
+    }
+
+    .case-stage-grid {
+      display: grid;
+      gap: clamp(18px, 2.5vw, 24px);
+    }
+
+    .case-stage {
+      position: relative;
+      padding: clamp(22px, 2.8vw, 30px);
+      border-radius: 24px;
+      border: 1px solid rgba(255,255,255,0.07);
+      background: rgba(255,255,255,0.02);
+      overflow: hidden;
+    }
+
+    .case-stage::before {
+      content: "";
+      position: absolute;
+      inset: 0 0 auto 0;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(212,175,55,0), rgba(212,175,55,0.22), rgba(212,175,55,0));
+      pointer-events: none;
+    }
+
+    .case-stage-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 14px;
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(226,195,138,0.8);
+    }
+
+    .case-stage-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 999px;
+      border: 1px solid rgba(212,175,55,0.22);
+      background: rgba(212,175,55,0.08);
+      font-family: var(--font-display, "Bodoni Moda", Georgia, serif);
+      font-size: 0.94rem;
+      color: rgba(255,248,236,0.92);
+    }
+
+    .case-stage-title {
+      margin: 0 0 10px;
+      font-size: clamp(1.2rem, 2vw, 1.5rem);
+      line-height: 1.18;
+      color: #fff;
+      font-weight: 600;
+    }
+
+    .case-stage-intro {
+      margin: 0;
+      max-width: 68ch;
+      color: rgba(255,255,255,0.68);
+      line-height: 1.78;
+      font-size: 0.98rem;
+    }
+
+    .case-stage-grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: clamp(18px, 2.5vw, 24px);
+      align-items: start;
+    }
+
+    .case-list {
+      list-style: none;
+      margin: 18px 0 0;
+      padding: 0;
+      display: grid;
+      gap: 10px;
+    }
+
+    .case-list li {
+      position: relative;
+      padding-left: 1.2rem;
+      line-height: 1.65;
+      color: rgba(255,255,255,0.78);
+    }
+
+    .case-list li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      top: -0.02em;
+      color: rgba(212,175,55,0.82);
+      font-size: 1.2rem;
+      line-height: 1;
+    }
+
+    .case-beforeafter {
+      --split: 54%;
+      margin-top: 20px;
+    }
+
+    .case-beforeafter-frame {
+      position: relative;
+      min-height: clamp(360px, 52vw, 560px);
+      border-radius: 24px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: linear-gradient(180deg, rgba(18,20,26,0.95), rgba(9,10,14,0.98));
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
+    }
+
+    .case-beforeafter-panel {
+      position: absolute;
+      inset: 0;
+      padding: clamp(20px, 2.6vw, 28px);
+    }
+
+    .case-beforeafter-panel--before {
+      background:
+        radial-gradient(circle at 30% 20%, rgba(255,255,255,0.04), transparent 22%),
+        linear-gradient(135deg, rgba(38,34,28,0.42), rgba(13,14,18,0.95));
+    }
+
+    .case-beforeafter-panel--after {
+      clip-path: inset(0 0 0 var(--split));
+      background:
+        radial-gradient(circle at 78% 18%, rgba(212,175,55,0.14), transparent 30%),
+        linear-gradient(135deg, rgba(18,16,12,0.55), rgba(11,13,16,0.96));
+      border-left: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .case-beforeafter-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 18px;
+      padding: 0.35rem 0.72rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(4,4,4,0.22);
+      font-size: 0.74rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: rgba(255,255,255,0.72);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    .case-before-feed {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      height: calc(100% - 58px);
+      align-items: end;
+    }
+
+    .case-feed-tile {
+      position: relative;
+      min-height: 72%;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,0.06);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02)),
+        radial-gradient(circle at top, rgba(255,255,255,0.06), transparent 45%);
+      overflow: hidden;
+      padding: 14px;
+    }
+
+    .case-feed-tile:nth-child(2) {
+      min-height: 88%;
+    }
+
+    .case-feed-tile:nth-child(3) {
+      min-height: 78%;
+    }
+
+    .case-feed-tile::after {
+      content: "";
+      position: absolute;
+      inset: auto 16px 14px 16px;
+      height: 22px;
+      background: radial-gradient(ellipse at center, rgba(0,0,0,0.24), transparent 70%);
+      filter: blur(10px);
+    }
+
+    .case-feed-tile img {
+      width: 100%;
+      height: 56%;
+      object-fit: contain;
+      opacity: 0.4;
+      filter: grayscale(1) saturate(0) blur(0.6px);
+      mix-blend-mode: screen;
+    }
+
+    .case-feed-caption {
+      margin-top: 12px;
+      font-size: 0.78rem;
+      line-height: 1.55;
+      color: rgba(255,255,255,0.52);
+    }
+
+    .case-after-composition {
+      display: grid;
+      grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+      gap: 18px;
+      height: calc(100% - 58px);
+      align-items: center;
+    }
+
+    .case-after-logo-card,
+    .case-after-visual-card {
+      height: 100%;
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02)),
+        radial-gradient(circle at top, rgba(255,243,219,0.08), transparent 46%);
+      overflow: hidden;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
+    }
+
+    .case-after-logo-card {
+      display: grid;
+      place-items: center;
+      padding: 22px;
+    }
+
+    .case-after-logo-card img {
+      width: min(100%, 210px);
+      border-radius: 18px;
+      object-fit: cover;
+      box-shadow: 0 18px 28px rgba(0,0,0,0.22);
+    }
+
+    .case-after-visual-card {
+      display: grid;
+      place-items: center;
+      padding: 18px;
+    }
+
+    .case-after-visual-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      filter: drop-shadow(0 26px 22px rgba(0,0,0,0.18));
+    }
+
+    .case-beforeafter-handle {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: var(--split);
+      width: 1px;
+      background: linear-gradient(180deg, rgba(255,255,255,0), rgba(255,255,255,0.75), rgba(255,255,255,0));
+      transform: translateX(-50%);
+      pointer-events: none;
+      z-index: 5;
+    }
+
+    .case-beforeafter-handle::after {
+      content: "↔";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      display: grid;
+      place-items: center;
+      width: 46px;
+      height: 46px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.2);
+      background: rgba(11,13,17,0.82);
+      color: rgba(255,255,255,0.92);
+      font-size: 1rem;
+      transform: translate(-50%, -50%);
+      box-shadow: 0 18px 34px rgba(0,0,0,0.28);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    .case-beforeafter-input {
+      width: 100%;
+      margin-top: 16px;
+      accent-color: #d4af37;
+      cursor: ew-resize;
+    }
+
+    .case-tech-stack {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: clamp(14px, 2vw, 18px);
+      margin-top: 18px;
+    }
+
+    .case-tech-card {
+      padding: 18px 18px 16px;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,0.07);
+      background: rgba(255,255,255,0.02);
+    }
+
+    .case-tech-card strong {
+      display: block;
+      margin-bottom: 8px;
+      color: rgba(255,255,255,0.92);
+      font-size: 0.92rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+    }
+
+    .case-tech-card p {
+      margin: 0;
+      color: rgba(255,255,255,0.62);
+      line-height: 1.62;
+      font-size: 0.92rem;
+    }
+
+    .case-results-grid {
+      display: grid;
+      grid-template-columns: 1.08fr 0.92fr;
+      gap: clamp(18px, 2.5vw, 24px);
+      align-items: stretch;
+      margin-top: 18px;
+    }
+
+    .case-metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .case-metric-card {
+      padding: 20px;
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02)),
+        radial-gradient(circle at top, rgba(212,175,55,0.07), transparent 48%);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
+    }
+
+    .case-metric-value {
+      display: block;
+      font-family: var(--font-display, "Bodoni Moda", Georgia, serif);
+      font-size: clamp(2.1rem, 3vw, 2.8rem);
+      line-height: 0.9;
+      color: #fff;
+      margin-bottom: 10px;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .case-metric-label {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 0.76rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: rgba(226,195,138,0.82);
+    }
+
+    .case-metric-note {
+      margin: 0;
+      font-size: 0.9rem;
+      line-height: 1.6;
+      color: rgba(255,255,255,0.58);
+    }
+
+    .case-quote {
+      display: grid;
+      align-content: center;
+      padding: clamp(22px, 3vw, 30px);
+      border-radius: 22px;
+      border: 1px solid rgba(212,175,55,0.14);
+      background:
+        linear-gradient(160deg, rgba(20,17,12,0.74), rgba(10,12,16,0.96)),
+        radial-gradient(circle at top right, rgba(212,175,55,0.08), transparent 40%);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
+    }
+
+    .case-quote blockquote {
+      margin: 0 0 16px;
+      font-family: var(--font-display, "Bodoni Moda", Georgia, serif);
+      font-size: clamp(1.2rem, 2vw, 1.55rem);
+      line-height: 1.3;
+      color: rgba(255,248,236,0.95);
+    }
+
+    .case-quote p {
+      margin: 0;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.68;
+      font-size: 0.94rem;
+    }
+
+    .case-results-note {
+      margin-top: 16px;
+      font-size: 0.84rem;
+      line-height: 1.58;
+      color: rgba(255,255,255,0.4);
+    }
+
+    .concept-lab-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: clamp(18px, 2.5vw, 24px);
+      margin-top: 26px;
+    }
+
+    .concept-card {
+      display: grid;
+      gap: 14px;
+      padding: clamp(24px, 3vw, 32px);
+      border-radius: 24px;
+      border: 1px dashed rgba(255,255,255,0.12);
+      background:
+        linear-gradient(160deg, rgba(14,16,21,0.84), rgba(9,11,15,0.94)),
+        radial-gradient(circle at 82% -8%, rgba(214,179,112,0.08), transparent 52%);
+    }
+
+    .concept-badge {
+      display: inline-flex;
+      width: fit-content;
+      padding: 0.35rem 0.7rem;
+      border-radius: 999px;
+      border: 1px solid rgba(212,175,55,0.2);
+      background: rgba(212,175,55,0.08);
+      color: rgba(232,204,151,0.9);
+      font-size: 0.74rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .concept-card h3 {
+      margin: 0;
+      font-family: var(--font-display, "Bodoni Moda", Georgia, serif);
+      font-size: clamp(1.4rem, 2.2vw, 1.9rem);
+      line-height: 1.1;
+      color: #fff;
+    }
+
+    .concept-card p {
+      margin: 0;
+      color: rgba(255,255,255,0.66);
+      line-height: 1.72;
+    }
+
+    .concept-card ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 8px;
+    }
+
+    .concept-card li {
+      position: relative;
+      padding-left: 1.1rem;
+      color: rgba(255,255,255,0.76);
+      line-height: 1.62;
+    }
+
+    .concept-card li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: rgba(212,175,55,0.78);
+    }
+
+    .u-sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    @media (max-width: 980px) {
+      .case-study-head,
+      .case-stage-grid-2,
+      .case-results-grid,
+      .concept-lab-grid,
+      .case-tech-stack {
+        grid-template-columns: 1fr;
+      }
+
+      .case-beforeafter-frame {
+        min-height: 620px;
+      }
+
+      .case-after-composition,
+      .case-before-feed {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .case-study-shell {
+        padding: 22px;
+      }
+
+      .case-beforeafter-frame {
+        min-height: 560px;
+      }
+
+      .case-metrics-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ═══ EXPERTISE CARDS ═══ */
+    .expertise-card {
+      padding: clamp(24px, 3vw, 32px);
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,0.06);
+      background: rgba(255,255,255,0.02);
+      transition: border-color 0.35s ease, transform 0.35s ease, background 0.35s ease;
+    }
+
+    .expertise-card:hover {
+      border-color: rgba(212,175,55,0.2);
+      background: rgba(212,175,55,0.03);
+      transform: translateY(-3px);
+    }
+
+    .expertise-card h3 {
+      margin-bottom: 10px;
+      font-size: 1.08rem;
+      font-weight: 600;
+      color: #fff;
+    }
+
+    .expertise-card p {
+      margin: 0;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.7;
+    }
+
+    /* ═══ CTA PANEL ═══ */
+    .cta-panel {
+      padding: clamp(36px, 4.5vw, 56px);
+      border-radius: 26px;
+      border: 1px solid rgba(212,175,55,0.18);
+      background:
+        linear-gradient(160deg, rgba(12,14,20,0.92), rgba(7,9,13,0.97)),
+        radial-gradient(circle at 82% -8%, rgba(214,179,112,0.14), transparent 52%);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.06),
+        0 20px 38px rgba(0,0,0,0.28);
+      text-align: center;
+    }
+  </style>
+
+  <script defer src="js/app.js"></script>
+  <script defer src="js/astra-3d.js"></script>
+</head>
+
+<body data-page="portfolio">
+
+  <!-- ═══ HEADER ═══ -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="Astra Studio">
+        <img class="brand-logo brand-logo-3d" src="assets/branding/astra-studio-logo.png" alt="Astra Studio" />
+      </a>
+      <div class="header-end">
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="header-nav-wrap" aria-label="Ouvrir le menu">
+          <span class="nav-toggle-line"></span>
+          <span class="nav-toggle-line"></span>
+          <span class="nav-toggle-line"></span>
+        </button>
+        <div class="header-nav-wrap" id="header-nav-wrap">
+          <nav class="site-nav" id="site-navigation" aria-label="Navigation principale">
+            <a href="index.html" data-page-link="home">Accueil</a>
+            <a href="services.html" data-page-link="services">Services</a>
+            <a href="casting/index.html" data-page-link="casting">Casting</a>
+            <a href="portfolio.html" data-page-link="portfolio">Portfolio</a>
+            <a href="a-propos.html" data-page-link="about">À propos</a>
+            <a href="contact.html" data-page-link="contact">Contact</a>
+          </nav>
+          <a class="header-cta button button-primary" href="contact.html">Réserver un appel</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content" class="page-shell">
+
+    <!-- ═══════════════════════════════════════
+         SECTION 1 — HERO
+         ═══════════════════════════════════════ -->
+    <section class="section page-hero" style="padding-top: 140px;" aria-labelledby="portfolio-heading">
+      <div class="container">
+        <span class="kicker reveal reveal-tilt">Cas Clients</span>
+        <h1 class="display-title" id="portfolio-heading" style="margin: 20px 0 16px; max-width: 18ch;">
+          Des transformations documentées, du diagnostic à l'impact.
+        </h1>
+        <p class="subhead">
+          Chaque dossier suit la même logique : contexte, lecture stratégique, déploiement, résultats.
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════
+         SECTION 2 — ÉTUDES DE CAS
+         ═══════════════════════════════════════ -->
+    <section class="section" aria-labelledby="cases-heading">
+      <div class="container">
+        <span class="kicker reveal reveal-tilt">Études de cas</span>
+        <h2 id="cases-heading" class="reveal" style="margin: 20px 0 12px; max-width: 22ch;">
+          Une structure claire pour lire le travail comme un vrai dossier d'agence.
+        </h2>
+        <p class="reveal" style="margin-bottom: clamp(36px, 4.5vw, 52px); font-style: italic; color: rgba(255,255,255,0.42); font-size: 0.95rem; line-height: 1.65; max-width: 62ch;">
+          Le premier dossier ci-dessous sert de référence réelle. Les espaces "Laboratoire Créatif" sont clairement identifiés comme des exercices conceptuels, non commerciaux.
+        </p>
+
+        <div style="display: grid; gap: clamp(28px, 3.5vw, 40px);">
+
+          <article class="case-study-shell reveal reveal-card" id="qaymar-glow" data-depth-card>
+            <header class="case-study-head">
+              <div>
+                <div class="case-study-brand">
+                  <img class="case-study-brand-mark" src="assets/brand-logos/qaymar-glow-logo.jpg" alt="Logo Qaymar Glow" loading="lazy" />
+                  <div class="case-study-brand-copy">
+                    <span>Cas client réel</span>
+                    <strong>Qaymar Glow</strong>
+                  </div>
+                </div>
+                <h3 class="case-study-name">Repositionnement visuel d'une DNVB de beurres capillaires naturels.</h3>
+                <p class="case-study-subtitle">
+                  Audit de marque complet, clarification du territoire, création de logo et mise en place d'un système visuel plus lisible pour une présence digitale plus crédible.
+                </p>
+              </div>
+              <div class="case-study-tags">
+                <span class="case-study-tag">DNVB beauté capillaire</span>
+                <span class="case-study-tag">Audit de marque</span>
+                <span class="case-study-tag">Repositionnement visuel</span>
+                <span class="case-study-tag">Logo &amp; contenus</span>
+              </div>
+            </header>
+
+            <div class="case-stage-grid">
+              <section class="case-stage reveal">
+                <div class="case-stage-label"><span class="case-stage-num">01</span> Contexte &amp; problématique</div>
+                <h4 class="case-stage-title">Une marque sincère, de bons produits, mais une perception encore trop artisanale.</h4>
+                <p class="case-stage-intro">
+                  Qaymar Glow se positionne sur des beurres capillaires naturels avec une promesse de nutrition, de douceur et de soin. Le produit existe, l'intention aussi. Le défi se situait ailleurs : la marque n'envoyait pas encore un signal visuel assez clair pour soutenir sa valeur perçue.
+                </p>
+                <ul class="case-list">
+                  <li>Positionnement produit réel mais langage visuel encore dispersé</li>
+                  <li>Codes de marque peu hiérarchisés entre logo, contenus et promesses</li>
+                  <li>Présence organique sincère, sans système de lecture suffisamment net</li>
+                </ul>
+              </section>
+
+              <section class="case-stage reveal">
+                <div class="case-stage-label"><span class="case-stage-num">02</span> L'avant</div>
+                <h4 class="case-stage-title">Avant : présence brute. Après : territoire plus lisible, plus premium, plus vendable.</h4>
+                <p class="case-stage-intro">
+                  Le sujet n'était pas de rendre la marque artificielle, mais de mieux traduire sa qualité. Le slider ci-dessous illustre le passage d'un univers encore hétérogène à une direction plus tenue.
+                </p>
+
+                <div class="case-beforeafter" data-ba-slider>
+                  <div class="case-beforeafter-frame">
+                    <div class="case-beforeafter-panel case-beforeafter-panel--before">
+                      <span class="case-beforeafter-badge">Avant · Feed artisanal</span>
+                      <div class="case-before-feed">
+                        <div class="case-feed-tile">
+                          <img src="assets/brand-logos/qaymar-glow-logo.jpg" alt="" loading="lazy" />
+                          <p class="case-feed-caption">Promesses présentes, mais lecture visuelle encore diffuse.</p>
+                        </div>
+                        <div class="case-feed-tile">
+                          <img src="assets/brand-logos/qaymar-glow-logo.jpg" alt="" loading="lazy" />
+                          <p class="case-feed-caption">Codes variables d'un post à l'autre, sans vraie colonne vertébrale.</p>
+                        </div>
+                        <div class="case-feed-tile">
+                          <img src="assets/brand-logos/qaymar-glow-logo.jpg" alt="" loading="lazy" />
+                          <p class="case-feed-caption">Présence sincère, mais perception encore trop peu premium.</p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="case-beforeafter-panel case-beforeafter-panel--after">
+                      <span class="case-beforeafter-badge">Après · Direction clarifiée</span>
+                      <div class="case-after-composition">
+                        <div class="case-after-logo-card">
+                          <img src="assets/brand-logos/qaymar-glow-logo.jpg" alt="Logo retravaillé Qaymar Glow" loading="lazy" />
+                        </div>
+                        <div class="case-after-visual-card">
+                          <img src="assets/images/work-qaymar-glow.svg" alt="Direction visuelle Qaymar Glow après intervention" loading="lazy" />
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="case-beforeafter-handle" aria-hidden="true"></div>
+                  </div>
+                  <label class="u-sr-only" for="qaymar-before-after">Comparer l'avant et l'après du projet Qaymar Glow</label>
+                  <input class="case-beforeafter-input" id="qaymar-before-after" type="range" min="20" max="80" value="54" data-ba-range />
+                </div>
+              </section>
+
+              <section class="case-stage reveal">
+                <div class="case-stage-label"><span class="case-stage-num">03</span> L'intervention stratégique</div>
+                <h4 class="case-stage-title">Le diagnostic : renforcer la cohérence, hiérarchiser les signaux, créer un vrai repère de marque.</h4>
+                <div class="case-stage-grid-2">
+                  <div>
+                    <p class="case-stage-intro">
+                      L'audit a fait ressortir un point central : la marque avait besoin de mieux articuler son univers entre promesse produit, langage visuel et lisibilité commerciale. L'enjeu n'était pas de “faire plus”, mais de mieux ordonner.
+                    </p>
+                    <ul class="case-list">
+                      <li>Clarification de la promesse principale et des bénéfices secondaires</li>
+                      <li>Création d'un logo plus stable et plus exploitable</li>
+                      <li>Choix d'une direction artistique plus chaude, plus nette, plus mémorisable</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <p class="case-stage-intro">
+                      La direction retenue visait une montée en gamme douce : garder la sincérité de la marque, tout en rendant la perception plus propre, plus cohérente et plus immédiatement crédible pour une audience DNVB.
+                    </p>
+                    <ul class="case-list">
+                      <li>Palette plus maîtrisée autour des tons miel, crème et noir</li>
+                      <li>Système de visuels centré sur la texture, la matière et le produit</li>
+                      <li>Base de contenus plus compatible avec Instagram, landing pages et ads</li>
+                    </ul>
+                  </div>
+                </div>
+              </section>
+
+              <section class="case-stage reveal">
+                <div class="case-stage-label"><span class="case-stage-num">04</span> Le déploiement technologique</div>
+                <h4 class="case-stage-title">Transparence process : la technologie accélère l'exploration, mais ne décide jamais du goût.</h4>
+                <p class="case-stage-intro">
+                  Le déploiement suit la méthode Astra Studio 100→10→1 : ouvrir largement le champ des pistes, sélectionner les plus solides, puis concentrer l'exécution sur une seule direction cohérente.
+                </p>
+
+                <div class="case-tech-stack">
+                  <article class="case-tech-card">
+                    <strong>100 → 10 → 1</strong>
+                    <p>Exploration de dizaines d'angles visuels, réduction à dix pistes sérieuses, puis arbitrage vers un seul territoire de marque exploitable.</p>
+                  </article>
+                  <article class="case-tech-card">
+                    <strong>Midjourney</strong>
+                    <p>Utilisé pour générer des pistes d'ambiance, tester des intentions de composition et accélérer les directions créatives amont.</p>
+                  </article>
+                  <article class="case-tech-card">
+                    <strong>Magnific</strong>
+                    <p>Utilisé pour affiner certains rendus, enrichir les détails visuels et rapprocher les assets exploratoires d'un niveau premium exploitable.</p>
+                  </article>
+                </div>
+              </section>
+
+              <section class="case-stage reveal">
+                <div class="case-stage-label"><span class="case-stage-num">05</span> Les résultats tangibles</div>
+                <h4 class="case-stage-title">Des métriques suivies comme des indicateurs business, pas comme des chiffres décoratifs.</h4>
+                <p class="case-stage-intro">
+                  Sur les premiers tests créatifs et la nouvelle base visuelle, les indicateurs suivis ont montré une meilleure tenue de campagne, une lecture plus claire des messages et une mise en marché plus rapide des contenus.
+                </p>
+
+                <div class="case-results-grid">
+                  <div>
+                    <div class="case-metrics-grid">
+                      <article class="case-metric-card" data-depth-card>
+                        <span class="case-metric-label">ROAS</span>
+                        <strong class="case-metric-value" data-count-to="2.3" data-prefix="x">x0</strong>
+                        <p class="case-metric-note">Premiers tests créatifs plus lisibles et mieux alignés avec le produit.</p>
+                      </article>
+                      <article class="case-metric-card" data-depth-card>
+                        <span class="case-metric-label">CPC</span>
+                        <strong class="case-metric-value" data-count-to="21" data-prefix="−" data-suffix="%">−0%</strong>
+                        <p class="case-metric-note">Réduction du coût d'entrée grâce à une créa plus claire et plus accrocheuse.</p>
+                      </article>
+                      <article class="case-metric-card" data-depth-card>
+                        <span class="case-metric-label">Engagement</span>
+                        <strong class="case-metric-value" data-count-to="68" data-prefix="+" data-suffix="%">+0%</strong>
+                        <p class="case-metric-note">Hausse du taux d'engagement sur les premiers contenus recalibrés.</p>
+                      </article>
+                      <article class="case-metric-card" data-depth-card>
+                        <span class="case-metric-label">Time-to-Market</span>
+                        <strong class="case-metric-value" data-count-to="40" data-prefix="−" data-suffix="%">−0%</strong>
+                        <p class="case-metric-note">Production plus rapide grâce à un système visuel et à un process mieux cadré.</p>
+                      </article>
+                    </div>
+                    <p class="case-results-note">
+                      Indicateurs présentés comme base de lecture opérationnelle sur les premiers assets et tests créatifs post-repositionnement.
+                    </p>
+                  </div>
+
+                  <aside class="case-quote">
+                    <blockquote>
+                      « On n'avait pas seulement besoin de plus beaux visuels. On avait besoin d'un cadre. Le studio a remis de l'ordre dans notre image et dans notre façon de présenter la marque. »
+                    </blockquote>
+                    <p>Retour synthétisé à partir de la logique de mission · Qaymar Glow</p>
+                  </aside>
+                </div>
+              </section>
+            </div>
+
+            <div class="button-row">
+              <a href="contact.html?intent=qaymar-glow" class="button button-primary">Discuter d'un cas similaire →</a>
+            </div>
+          </article>
+
+          <section class="case-study-shell reveal reveal-card" aria-labelledby="lab-heading" data-depth-card>
+            <header class="case-study-head">
+              <div>
+                <div class="case-study-brand">
+                  <div class="case-study-brand-mark" style="display:grid;place-items:center;font-family:var(--font-display, 'Bodoni Moda', Georgia, serif);font-size:1rem;color:rgba(232,204,151,0.92);">LAB</div>
+                  <div class="case-study-brand-copy">
+                    <span>Projet conceptuel</span>
+                    <strong>Laboratoire Créatif</strong>
+                  </div>
+                </div>
+                <h3 class="case-study-name" id="lab-heading">Des exercices de direction artistique clairement séparés des missions commerciales.</h3>
+                <p class="case-study-subtitle">
+                  Quand un cas réel n'est pas encore publié, le site peut accueillir des explorations conceptuelles. Elles servent à montrer une méthode, jamais à se faire passer pour une mission client.
+                </p>
+              </div>
+              <div class="case-study-tags">
+                <span class="case-study-tag">Non commercial</span>
+                <span class="case-study-tag">Exploration créative</span>
+                <span class="case-study-tag">Méthode &amp; recherche</span>
+              </div>
+            </header>
+
+            <div class="concept-lab-grid">
+              <article class="concept-card reveal reveal-card" data-depth-card>
+                <span class="concept-badge">Projet conceptuel — Laboratoire créatif</span>
+                <h3>Skincare clinique sensorielle</h3>
+                <p>
+                  Exercice de territoire visuel pour une marque fictive mêlant codes dermatologiques et désirabilité premium.
+                </p>
+                <ul>
+                  <li>Architecture de gamme et hiérarchisation des promesses</li>
+                  <li>Ads visuelles orientées conversion douce</li>
+                  <li>Landing assets et système d'images produit</li>
+                </ul>
+              </article>
+
+              <article class="concept-card reveal reveal-card reveal-delay-1" data-depth-card>
+                <span class="concept-badge">Projet conceptuel — Laboratoire créatif</span>
+                <h3>Haircare clean performance</h3>
+                <p>
+                  Exercice de repositionnement pour une DNVB fictive cherchant un langage plus premium sans perdre sa simplicité produit.
+                </p>
+                <ul>
+                  <li>Refonte de logo et système d'icônes</li>
+                  <li>Bibliothèque de hooks créatifs pour campagnes social ads</li>
+                  <li>Direction visuelle mobile-first pour lancement rapide</li>
+                </ul>
+              </article>
+            </div>
+          </section>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════
+         SECTION 3 — EXPERTISE PLATEFORMES
+         ═══════════════════════════════════════ -->
+    <section class="section" style="background: #080808;" aria-labelledby="expertise-heading">
+      <div class="container">
+        <span class="kicker reveal reveal-tilt">Compréhension des plateformes</span>
+        <h2 id="expertise-heading" class="reveal" style="margin: 20px 0 12px; max-width: 22ch;">
+          Une pratique des réseaux construite depuis 2022.
+        </h2>
+        <p class="subhead reveal" style="margin-bottom: clamp(32px, 4vw, 48px); max-width: 64ch;">
+          Avant de conseiller des marques, on a testé soi-même. Depuis 2022, publication régulière sur TikTok et X, avec une attention constante aux mécaniques de diffusion, de rétention et d'engagement. Ces apprentissages nourrissent directement notre méthode client.
+        </p>
+
+        <div class="grid-2">
+          <article class="expertise-card reveal reveal-card">
+            <h3>Hook &amp; rétention</h3>
+            <p>Tester des centaines de formats nous a appris ce qui capte l'attention dans les 3 premières secondes — et ce qui la maintient.</p>
+          </article>
+          <article class="expertise-card reveal reveal-card reveal-delay-1">
+            <h3>Formats &amp; algorithmes</h3>
+            <p>Chaque plateforme a sa logique. On sait adapter un même message pour TikTok, Instagram Reels et Stories sans perdre en impact.</p>
+          </article>
+          <article class="expertise-card reveal reveal-card reveal-delay-2">
+            <h3>Croissance organique</h3>
+            <p>Plusieurs comptes développés au-delà de 10K abonnés. Ce qui nous intéresse : les mécaniques reproductibles, pas les coups de chance.</p>
+          </article>
+          <article class="expertise-card reveal reveal-card reveal-delay-3">
+            <h3>Données &amp; itération</h3>
+            <p>On lit les données d'analyse comme un outil de décision, pas comme un tableau de scores. Chaque contenu nourrit le suivant.</p>
+          </article>
+        </div>
+
+        <p class="reveal" style="margin-top: clamp(24px, 3vw, 36px); font-style: italic; color: rgba(255,255,255,0.38); font-size: 0.88rem; text-align: center; max-width: 64ch; margin-left: auto; margin-right: auto; line-height: 1.6;">
+          Ces résultats viennent de comptes personnels et d'expérimentations internes. On ne les présente pas comme des résultats clients — mais comme la preuve d'une compréhension réelle des plateformes.
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════
+         SECTION 4 — CTA
+         ═══════════════════════════════════════ -->
+    <section class="section" aria-labelledby="cta-heading">
+      <div class="container">
+        <div class="cta-panel reveal reveal-card">
+          <h2 id="cta-heading" style="margin: 0 auto 16px; max-width: 20ch;">
+            Votre marque pourrait être le prochain dossier.
+          </h2>
+          <p class="subhead" style="margin: 0 auto clamp(24px, 3vw, 32px); text-align: center; max-width: 52ch;">
+            On documente chaque collaboration. Votre transformation commence par un appel.
+          </p>
+          <div class="button-row button-row-center">
+            <a class="button button-primary" href="contact.html">Réserver un appel →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ═══ FOOTER ═══ -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-premium-grid">
+        <div class="footer-premium-col footer-premium-col--brand">
+          <a class="brand" href="index.html" aria-label="Astra Studio">
+            <img class="brand-logo brand-logo-3d" src="assets/branding/astra-studio-logo.png" alt="Astra Studio" />
+          </a>
+          <p class="footer-premium-desc">Direction créative pour marques beauté. Humain + IA.</p>
+        </div>
+        <nav class="footer-premium-col" aria-label="Navigation">
+          <h3 class="footer-premium-heading">Navigation</h3>
+          <div class="footer-premium-links">
+            <a href="index.html">Accueil</a>
+            <a href="services.html">Services</a>
+            <a href="portfolio.html">Portfolio</a>
+            <a href="a-propos.html">À propos</a>
+            <a href="contact.html">Contact</a>
+          </div>
+        </nav>
+        <div class="footer-premium-col">
+          <h3 class="footer-premium-heading">Contact</h3>
+          <div class="footer-premium-contact">
+            <a href="mailto:bonjour@astrastudio.fr">bonjour@astrastudio.fr</a>
+            <p>Paris · À distance</p>
+          </div>
+          <div class="footer-premium-social" style="margin-top: 16px;">
+            <a href="https://www.instagram.com/astrastudio.fr/" target="_blank" rel="noopener" aria-label="Instagram">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
+            </a>
+            <a href="https://www.tiktok.com/@astrastudio.fr" target="_blank" rel="noopener" aria-label="TikTok">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/></svg>
+            </a>
+          </div>
+        </div>
+        <div class="footer-premium-col">
+          <h3 class="footer-premium-heading">Légal</h3>
+          <div class="footer-premium-links">
+            <a href="mentions-legales.html">Mentions légales</a>
+            <a href="politique-confidentialite.html">Politique de confidentialité</a>
+          </div>
+        </div>
+      </div>
+      <p class="footer-premium-copy">© <span data-current-year>2026</span> Astra Studio. Méthode 100→10→1.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const sliders = document.querySelectorAll("[data-ba-slider]");
+      sliders.forEach((slider) => {
+        const range = slider.querySelector("[data-ba-range]");
+        if (!range) return;
+
+        const updateSplit = () => {
+          const value = Number(range.value || 54);
+          slider.style.setProperty("--split", `${value}%`);
+        };
+
+        range.addEventListener("input", updateSplit);
+        updateSplit();
+      });
+
+      const counters = document.querySelectorAll("[data-count-to]");
+      if (!counters.length) return;
+
+      const formatValue = (value, prefix = "", suffix = "") => {
+        const rounded = Number(value);
+        const display = Number.isInteger(rounded)
+          ? String(Math.round(rounded))
+          : rounded.toFixed(1).replace(/\.0$/, "");
+        return `${prefix}${display}${suffix}`;
+      };
+
+      const animateCounter = (node) => {
+        if (node.dataset.animated === "true") return;
+        node.dataset.animated = "true";
+
+        const target = Number(node.dataset.countTo || 0);
+        const prefix = node.dataset.prefix || "";
+        const suffix = node.dataset.suffix || "";
+        const duration = 1400;
+        const start = performance.now();
+
+        const step = (now) => {
+          const progress = Math.min((now - start) / duration, 1);
+          const eased = 1 - Math.pow(1 - progress, 3);
+          const current = target * eased;
+          node.textContent = formatValue(current, prefix, suffix);
+
+          if (progress < 1) {
+            requestAnimationFrame(step);
+          } else {
+            node.textContent = formatValue(target, prefix, suffix);
+          }
+        };
+
+        requestAnimationFrame(step);
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          animateCounter(entry.target);
+          observer.unobserve(entry.target);
+        });
+      }, { threshold: 0.45 });
+
+      counters.forEach((counter) => observer.observe(counter));
+    });
+  </script>
+
+</body>
+
+</html>

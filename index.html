@@ -4,1493 +4,181 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Astra Studio | Direction créative, contenu &amp; stratégie pour marques ambitieuses</title>
+  <title>Astra Studio | Direction artistique &amp; image de marque premium</title>
   <meta name="description"
-    content="ASTRA Studio — Studio créatif IA-augmenté. Direction artistique, contenu et automatisation pour marques ambitieuses. Méthode Humain + IA." />
-  <meta name="keywords" content="agence créative, IA, automatisation, direction artistique, contenu social media, Astra Studio" />
-  <meta name="author" content="Yanis - Astra Studio" />
-  <meta property="og:title" content="ASTRA Studio — Creative Intelligence" />
+    content="Direction artistique et identité visuelle pour maisons beauté — ligne nette du concept au détail. Paris." />
+  <meta name="author" content="Yanis — Astra Studio" />
+  <meta property="og:title" content="Astra Studio — Direction artistique premium" />
   <meta property="og:description"
-    content="On multiplie votre présence digitale. Contenu stratégique, production augmentée par l'IA." />
+    content="Direction artistique et identité visuelle pour marques beauté — une image tenue jusqu’au détail." />
   <meta property="og:type" content="website" />
-  <meta name="theme-color" content="#050608" />
+  <meta name="theme-color" content="#050505" />
   <link rel="icon" type="image/png" href="assets/favicon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,500;6..96,700&amp;family=Great+Vibes&amp;family=Inter:wght@400;500;600&amp;family=Playfair+Display:wght@500;600;700&amp;family=Sora:wght@300;400;500;600;700&amp;display=swap"
+    href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,500;6..96,700&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700&family=Sora:wght@300;400;500;600;700&display=swap"
     rel="stylesheet" />
   <link rel="stylesheet" href="css/base.css" />
   <link rel="stylesheet" href="css/components.css" />
   <link rel="stylesheet" href="css/pages.css" />
   <link rel="stylesheet" href="css/styles-premium.css" />
-  <style>
-    /* Bloc preuves business (section sous le hero) */
-    body[data-page="home"] .page-shell {
-      padding-top: 0;
-    }
+  <link rel="stylesheet" href="css/astra-3d.css" />
+  <link rel="stylesheet" href="css/home-premium.css" />
 
-    .home-proof-board {
-      padding-top: clamp(28px, 4.4vw, 56px);
-      padding-bottom: clamp(34px, 5vw, 64px);
-    }
-
-    .home-proof-shell {
-      position: relative;
-      display: grid;
-      gap: clamp(22px, 3.1vw, 34px);
-      padding: clamp(24px, 3vw, 40px);
-      border-radius: 26px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      background:
-        linear-gradient(160deg, rgba(12, 14, 20, 0.92), rgba(7, 9, 13, 0.97)),
-        radial-gradient(circle at 82% -8%, rgba(214, 179, 112, 0.16), transparent 52%);
-      box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.06),
-        0 20px 38px rgba(0, 0, 0, 0.28);
-      transform-style: preserve-3d;
-      transition:
-        transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1),
-        border-color 0.35s ease,
-        box-shadow 0.35s ease;
-    }
-
-    .home-proof-shell::before {
-      content: "";
-      position: absolute;
-      inset: -1px;
-      border-radius: inherit;
-      border: 1px solid rgba(232, 202, 139, 0);
-      pointer-events: none;
-      transition: border-color 0.35s ease;
-    }
-
-    .home-proof-shell:hover {
-      border-color: rgba(223, 187, 121, 0.32);
-      box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.08),
-        0 28px 52px rgba(0, 0, 0, 0.34);
-    }
-
-    .home-proof-shell:hover::before {
-      border-color: rgba(232, 202, 139, 0.24);
-    }
-
-    .home-proof-head h2 {
-      margin-bottom: 0.7rem;
-      max-width: 16ch;
-      line-height: 1.06;
-      letter-spacing: -0.01em;
-    }
-
-    .home-proof-head p {
-      max-width: 64ch;
-      margin: 0;
-      color: rgba(255, 255, 255, 0.76);
-    }
-
-    .home-proof-layout {
-      display: grid;
-      grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
-      gap: clamp(16px, 2.5vw, 26px);
-      align-items: stretch;
-    }
-
-    .home-proof-metrics {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: clamp(12px, 2vw, 16px);
-    }
-
-    .home-proof-metric {
-      padding: 1rem 1.05rem 1.05rem;
-      border-radius: 18px;
-      border: 1px solid rgba(255, 255, 255, 0.07);
-      background: rgba(255, 255, 255, 0.025);
-      transform-style: preserve-3d;
-      transition:
-        transform 0.4s ease,
-        border-color 0.3s ease,
-        background 0.3s ease;
-    }
-
-    .home-proof-metric:hover {
-      transform: translateY(-3px);
-      border-color: rgba(232, 202, 139, 0.2);
-      background: rgba(255, 255, 255, 0.04);
-    }
-
-    .home-proof-label {
-      display: block;
-      margin-bottom: 0.55rem;
-      font-size: 0.72rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: rgba(255, 255, 255, 0.58);
-    }
-
-    .home-proof-metric strong {
-      display: block;
-      margin-bottom: 0.42rem;
-      font-family: var(--font-display, "Bodoni Moda", Georgia, serif);
-      font-size: clamp(2rem, 3.2vw, 2.9rem);
-      line-height: 0.93;
-      color: #fff;
-      font-variant-numeric: tabular-nums;
-    }
-
-    .home-proof-metric p {
-      margin: 0;
-      color: rgba(255, 255, 255, 0.72);
-      font-size: 0.94rem;
-      line-height: 1.45;
-    }
-
-    .home-proof-side {
-      padding: clamp(16px, 2.2vw, 22px);
-      border-radius: 20px;
-      border: 1px solid rgba(232, 202, 139, 0.18);
-      background:
-        linear-gradient(155deg, rgba(17, 14, 10, 0.7), rgba(11, 13, 18, 0.92)),
-        radial-gradient(circle at 84% -8%, rgba(232, 202, 139, 0.16), transparent 54%);
-      box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.06),
-        0 14px 26px rgba(0, 0, 0, 0.24);
-      display: grid;
-      gap: 0.95rem;
-      transform-style: preserve-3d;
-    }
-
-    .home-proof-side h3 {
-      margin: 0;
-      font-size: clamp(1.25rem, 2.3vw, 1.8rem);
-      line-height: 1.08;
-    }
-
-    .home-proof-side>p {
-      margin: 0;
-      color: rgba(255, 255, 255, 0.72);
-      line-height: 1.52;
-      font-size: 0.95rem;
-    }
-
-    .home-proof-rate-list {
-      display: grid;
-      gap: 0.72rem;
-      margin-top: 0.1rem;
-    }
-
-    .home-proof-rate-head {
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      gap: 1rem;
-      margin-bottom: 0.34rem;
-    }
-
-    .home-proof-rate-head span {
-      color: rgba(255, 255, 255, 0.76);
-      font-size: 0.84rem;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-    }
-
-    .home-proof-rate-head strong {
-      font-family: var(--font-display, "Bodoni Moda", Georgia, serif);
-      color: #fff;
-      font-size: 1.22rem;
-      line-height: 0.95;
-      font-variant-numeric: tabular-nums;
-    }
-
-    .home-proof-rate-track {
-      width: 100%;
-      height: 7px;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.08);
-      overflow: hidden;
-    }
-
-    .home-proof-rate-fill {
-      display: block;
-      width: 0;
-      height: 100%;
-      border-radius: inherit;
-      background: linear-gradient(90deg, #e8ca8b 0%, #97b8d8 100%);
-      box-shadow: 0 0 18px rgba(200, 167, 106, 0.26);
-      transition: width 1.25s cubic-bezier(0.2, 0.8, 0.2, 1);
-    }
-
-    .home-proof-board.is-animated .home-proof-rate-fill {
-      width: calc(var(--proof-rate-progress, 0) * 1%);
-    }
-
-    .home-proof-chart {
-      margin-top: 0.3rem;
-      border-radius: 14px;
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      background: rgba(255, 255, 255, 0.03);
-      padding: 0.55rem 0.6rem 0.45rem;
-    }
-
-    .home-proof-chart svg {
-      display: block;
-      width: 100%;
-      height: auto;
-    }
-
-    .home-proof-chart-line {
-      fill: none;
-      stroke: #e8ca8b;
-      stroke-width: 2.4;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-      stroke-dasharray: 440;
-      stroke-dashoffset: 440;
-      filter: drop-shadow(0 0 8px rgba(232, 202, 139, 0.32));
-      transition: stroke-dashoffset 1.45s cubic-bezier(0.2, 0.8, 0.2, 1);
-    }
-
-    .home-proof-board.is-animated .home-proof-chart-line {
-      stroke-dashoffset: 0;
-    }
-
-    .home-proof-chart-point {
-      fill: #f5e5bc;
-      opacity: 0;
-      transform: scale(0.35);
-      transform-origin: center;
-      transition:
-        opacity 0.35s ease,
-        transform 0.35s ease;
-    }
-
-    .home-proof-board.is-animated .home-proof-chart-point {
-      opacity: 1;
-      transform: scale(1);
-    }
-
-    .home-proof-side .button {
-      margin-top: 0.36rem;
-      justify-self: start;
-    }
-
-    [data-tilt-card] {
-      transform:
-        perspective(1200px) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg))
-        translateZ(0);
-      will-change: transform;
-    }
-
-    @media (max-width: 980px) {
-      .home-proof-layout {
-        grid-template-columns: 1fr;
-      }
-
-      .home-proof-metrics {
-        grid-template-columns: 1fr;
-      }
-
-      [data-tilt-card],
-      .home-proof-shell:hover {
-        transform: none;
-      }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      .home-proof-rate-fill,
-      .home-proof-chart-line,
-      .home-proof-chart-point,
-      [data-tilt-card] {
-        transition: none !important;
-      }
-    }
-
-    #offres {
-      position: relative;
-      overflow: hidden;
-    }
-
-    #offres .home-offers-grid {
-      gap: clamp(20px, 2.6vw, 30px);
-      align-items: stretch;
-      perspective: 1300px;
-    }
-
-    #offres .home-offer-card {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      min-height: 100%;
-      padding: clamp(24px, 3vw, 34px);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      border-radius: 22px;
-      background:
-        linear-gradient(165deg, rgba(17, 20, 29, 0.88), rgba(7, 9, 13, 0.95)),
-        radial-gradient(circle at 15% -5%, rgba(203, 163, 91, 0.12), transparent 46%);
-      box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.07),
-        0 18px 34px rgba(0, 0, 0, 0.22);
-      transform-style: preserve-3d;
-      transition:
-        transform 0.55s cubic-bezier(0.2, 0.8, 0.2, 1),
-        border-color 0.35s ease,
-        box-shadow 0.35s ease,
-        background 0.35s ease;
-      will-change: transform;
-    }
-
-    #offres .home-offer-card::before {
-      content: "";
-      position: absolute;
-      inset: -1px;
-      border-radius: inherit;
-      border: 1px solid rgba(232, 202, 139, 0);
-      pointer-events: none;
-      transition: border-color 0.35s ease;
-    }
-
-    #offres .home-offer-card > * {
-      position: relative;
-      z-index: 1;
-    }
-
-    #offres .home-offer-card:hover {
-      border-color: rgba(222, 186, 120, 0.34);
-      box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.08),
-        0 28px 44px rgba(0, 0, 0, 0.3);
-      transform: translateY(-10px) rotateX(5deg) rotateY(-5deg);
-    }
-
-    #offres .home-offer-card:hover::before {
-      border-color: rgba(232, 202, 139, 0.28);
-    }
-
-    #offres .home-offer-card:nth-child(3):hover {
-      transform: translateY(-10px) rotateX(5deg) rotateY(5deg);
-    }
-
-    #offres .home-offer-card-featured {
-      border-color: rgba(232, 202, 139, 0.42);
-      background:
-        linear-gradient(165deg, rgba(21, 18, 12, 0.96), rgba(9, 10, 14, 0.95)),
-        radial-gradient(circle at 84% -6%, rgba(232, 202, 139, 0.16), transparent 54%);
-      box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.1),
-        0 24px 46px rgba(0, 0, 0, 0.34),
-        0 0 0 1px rgba(232, 202, 139, 0.08);
-      transform: translateY(-6px);
-    }
-
-    #offres .home-offer-card-featured:hover {
-      transform: translateY(-14px) rotateX(6deg);
-      border-color: rgba(236, 210, 155, 0.55);
-      box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.12),
-        0 32px 52px rgba(0, 0, 0, 0.36),
-        0 0 0 1px rgba(236, 210, 155, 0.16);
-    }
-
-    #offres .home-offer-tier {
-      display: inline-flex;
-      align-items: center;
-      margin-bottom: 14px;
-      font-size: 0.78rem;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: rgba(255, 255, 255, 0.78);
-    }
-
-    #offres .home-offer-card-featured .home-offer-tier {
-      color: rgba(237, 211, 157, 0.95);
-    }
-
-    #offres .home-offer-name {
-      margin: 0 0 14px;
-      font-family: var(--font-display, "Bodoni Moda", Georgia, serif);
-      font-size: clamp(1.95rem, 3vw, 2.5rem);
-      line-height: 0.98;
-      letter-spacing: -0.01em;
-      color: #fff;
-    }
-
-    #offres .home-offer-price {
-      margin: 0 0 16px;
-      font-size: clamp(2.1rem, 3.8vw, 3rem);
-      font-weight: 700;
-      line-height: 0.98;
-      color: #fff;
-      font-variant-numeric: tabular-nums;
-    }
-
-    #offres .home-offer-price span {
-      margin-left: 4px;
-      font-size: 1rem;
-      font-weight: 500;
-      color: rgba(255, 255, 255, 0.58);
-    }
-
-    #offres .home-offer-list {
-      list-style: none;
-      margin: 0 0 24px;
-      padding: 16px 0 0;
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
-      color: rgba(255, 255, 255, 0.82);
-      display: grid;
-      gap: 9px;
-    }
-
-    #offres .home-offer-list li {
-      position: relative;
-      padding-left: 1.22rem;
-      line-height: 1.45;
-    }
-
-    #offres .home-offer-list li::before {
-      content: "✓";
-      position: absolute;
-      left: 0;
-      top: 0.05em;
-      color: rgba(231, 196, 128, 0.9);
-      font-weight: 700;
-    }
-
-    #offres .home-offer-cta {
-      width: 100%;
-      margin-top: auto;
-      text-align: center;
-    }
-
-    @media (max-width: 980px) {
-      #offres .home-offers-grid {
-        perspective: none;
-      }
-
-      #offres .home-offer-card,
-      #offres .home-offer-card-featured,
-      #offres .home-offer-card:hover,
-      #offres .home-offer-card-featured:hover,
-      #offres .home-offer-card:nth-child(3):hover {
-        transform: none;
-      }
-    }
-
-    #systems .home-systems-head {
-      margin-bottom: clamp(22px, 3.4vw, 34px);
-      max-width: 860px;
-    }
-
-    #systems .home-systems-title {
-      margin: 0 0 12px;
-      font-family: var(--font-display, "Bodoni Moda", Georgia, serif);
-      font-size: clamp(2rem, 4.2vw, 3rem);
-      line-height: 1.08;
-      letter-spacing: -0.02em;
-      color: #fff;
-    }
-
-    #systems .home-systems-sub {
-      margin: 0;
-      max-width: 62ch;
-      color: rgba(255, 255, 255, 0.74);
-      line-height: 1.65;
-    }
-
-    #systems .home-systems-grid {
-      gap: clamp(18px, 2.2vw, 24px);
-      align-items: stretch;
-    }
-
-    #systems .home-system-card {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      min-height: 100%;
-      padding: clamp(22px, 2.8vw, 30px);
-      border: 1px solid rgba(255, 255, 255, 0.11);
-      border-radius: 20px;
-      background:
-        linear-gradient(158deg, rgba(15, 18, 25, 0.9), rgba(8, 10, 14, 0.95)),
-        radial-gradient(circle at 86% -8%, rgba(200, 167, 106, 0.12), transparent 50%);
-      box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.06),
-        0 14px 28px rgba(0, 0, 0, 0.2);
-    }
-
-    #systems .home-system-code {
-      display: inline-flex;
-      width: fit-content;
-      margin-bottom: 10px;
-      padding: 0.28rem 0.62rem;
-      border-radius: 999px;
-      border: 1px solid rgba(232, 202, 139, 0.25);
-      background: rgba(232, 202, 139, 0.08);
-      font-size: 0.69rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: rgba(236, 209, 154, 0.94);
-    }
-
-    #systems .home-system-name {
-      margin: 0 0 12px;
-      font-size: clamp(1.22rem, 2.1vw, 1.45rem);
-      line-height: 1.25;
-      color: #fff;
-    }
-
-    #systems .home-system-copy {
-      margin: 0 0 14px;
-      color: rgba(255, 255, 255, 0.78);
-      line-height: 1.6;
-    }
-
-    #systems .home-system-list {
-      list-style: none;
-      margin: 0 0 18px;
-      padding: 14px 0 0;
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
-      display: grid;
-      gap: 8px;
-      color: rgba(255, 255, 255, 0.8);
-    }
-
-    #systems .home-system-list li {
-      position: relative;
-      padding-left: 1.16rem;
-      line-height: 1.48;
-    }
-
-    #systems .home-system-list li::before {
-      content: "•";
-      position: absolute;
-      left: 0;
-      top: 0;
-      color: rgba(232, 202, 139, 0.9);
-      font-weight: 700;
-    }
-
-    #systems .home-system-outcome {
-      margin-top: auto;
-      padding-top: 12px;
-      border-top: 1px dashed rgba(232, 202, 139, 0.22);
-      font-size: 0.92rem;
-      color: rgba(232, 202, 139, 0.9);
-      line-height: 1.5;
-    }
-
-    .home-formations-callout {
-      padding: clamp(30px, 4vw, 48px);
-      gap: clamp(0.95rem, 1.9vw, 1.3rem);
-    }
-
-    .home-formations-callout .kicker {
-      margin-bottom: 0.08rem;
-    }
-
-    .home-formations-callout .services-band-note-title {
-      max-width: 17.5ch;
-      margin: 0 auto;
-      line-height: 1.16;
-      letter-spacing: -0.015em;
-    }
-
-    .home-formations-callout .services-band-note-copy {
-      max-width: 44rem;
-      margin: 0 auto;
-      font-size: clamp(1rem, 1.25vw, 1.12rem);
-      line-height: 1.72;
-      color: rgba(255, 255, 255, 0.76);
-    }
-
-    .home-formations-callout .button-row {
-      margin-top: 0.38rem;
-      column-gap: 1.05rem;
-      row-gap: 0.95rem;
-    }
-
-    /* Section résultats chiffrés (index) */
-    .home-results-head {
-      margin-bottom: 0;
-    }
-
-    .home-results-title {
-      margin: 0 0 16px;
-      max-width: 800px;
-      font-family: var(--font-display, "Playfair Display", Georgia, serif);
-      font-size: clamp(2rem, 4vw, 3rem);
-      line-height: 1.2;
-      font-weight: 600;
-      letter-spacing: -0.02em;
-      color: var(--color-text-primary, #fff);
-    }
-
-    .home-results-sub {
-      margin: 0 0 48px;
-      max-width: 600px;
-      font-size: 1.125rem;
-      line-height: 1.5;
-      color: var(--color-text-secondary, rgba(255, 255, 255, 0.7));
-    }
-
-    .home-results-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 32px;
-      align-items: stretch;
-    }
-
-    .home-results-card {
-      margin: 0;
-      display: grid;
-      grid-template-rows: minmax(2.3rem, auto) auto auto 1fr;
-      align-content: start;
-      gap: 0.35rem;
-      height: 100%;
-      padding: clamp(26px, 3.2vw, 40px);
-      background: var(--color-bg-secondary, #111);
-      border-radius: var(--border-radius-lg, 16px);
-      border: 1px solid rgba(255, 255, 255, 0.05);
-    }
-
-    .home-results-badge {
-      display: inline-flex;
-      align-items: center;
-      width: fit-content;
-      max-width: 100%;
-      margin: 0 0 16px;
-      padding: 0.38rem 0.72rem;
-      border-radius: 999px;
-      border: 1px solid rgba(212, 175, 55, 0.22);
-      background: rgba(212, 175, 55, 0.08);
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--color-accent, #d4af37);
-      line-height: 1.2;
-      white-space: normal;
-    }
-
-    .home-results-value {
-      display: block;
-      margin: 0 0 10px;
-      min-height: clamp(3rem, 4.8vw, 4.8rem);
-      font-size: clamp(3rem, 6vw, 5rem);
-      font-weight: 700;
-      line-height: 0.95;
-      letter-spacing: -0.03em;
-      color: var(--color-text-primary, #fff);
-      font-variant-numeric: tabular-nums;
-    }
-
-    .home-results-label {
-      margin: 0 0 8px;
-      font-size: 1rem;
-      line-height: 1.4;
-      color: var(--color-text-secondary, rgba(255, 255, 255, 0.7));
-    }
-
-    .home-results-explainer {
-      margin: 0;
-      font-size: 0.9rem;
-      line-height: 1.6;
-      color: var(--color-text-tertiary, rgba(255, 255, 255, 0.5));
-    }
-
-    @media (max-width: 640px) {
-      .home-results-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    /* Section « Pourquoi nous choisir » (index) */
-    .home-why {
-      background: #080808;
-      padding-top: clamp(4rem, 8vw, 6rem);
-      padding-bottom: clamp(4rem, 8vw, 6rem);
-    }
-
-    .home-why-title {
-      margin: 0 0 clamp(36px, 5vw, 52px);
-      max-width: 900px;
-      font-family: var(--font-display, "Bodoni Moda", Georgia, serif);
-      font-size: clamp(1.85rem, 3.5vw, 2.65rem);
-      font-weight: 600;
-      line-height: 1.18;
-      letter-spacing: -0.02em;
-      color: var(--color-text-primary, #fff);
-    }
-
-    .home-why-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: clamp(20px, 3vw, 28px);
-    }
-
-    .home-why-card {
-      margin: 0;
-      padding: clamp(24px, 3vw, 32px);
-      border-radius: var(--border-radius-lg, 16px);
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      background: rgba(255, 255, 255, 0.02);
-      transition:
-        border-color 0.35s ease,
-        box-shadow 0.35s ease,
-        transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
-        background 0.35s ease;
-    }
-
-    .home-why-card:hover {
-      border-color: rgba(212, 175, 55, 0.28);
-      background: rgba(212, 175, 55, 0.04);
-      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
-      transform: translateY(-3px);
-    }
-
-    .home-why-icon {
-      display: block;
-      margin: 0 0 16px;
-      font-size: 1.75rem;
-      line-height: 1;
-      filter: grayscale(0.15) saturate(1.1);
-      text-shadow: 0 0 24px rgba(212, 175, 55, 0.25);
-    }
-
-    .home-why-card-title {
-      margin: 0 0 12px;
-      font-size: 1.15rem;
-      font-weight: 600;
-      line-height: 1.3;
-      color: var(--color-text-primary, #fff);
-    }
-
-    .home-why-card-text {
-      margin: 0;
-      font-size: 0.95rem;
-      line-height: 1.65;
-      color: var(--color-text-secondary, rgba(255, 255, 255, 0.72));
-    }
-
-    .home-why-quote-wrap {
-      margin-top: clamp(40px, 6vw, 56px);
-      margin-left: 0;
-      margin-right: 0;
-      padding: clamp(24px, 3vw, 32px);
-      border-radius: var(--border-radius-lg, 16px);
-      border: 1px solid rgba(212, 175, 55, 0.15);
-      background: linear-gradient(135deg, rgba(212, 175, 55, 0.06) 0%, rgba(8, 8, 8, 0.9) 100%);
-    }
-
-    .home-why-quote-row {
-      display: flex;
-      align-items: flex-start;
-      gap: 20px;
-    }
-
-    .home-why-quote-copy {
-      flex: 1;
-      min-width: 0;
-    }
-
-    .home-why-avatar {
-      flex-shrink: 0;
-      width: 52px;
-      height: 52px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.85rem;
-      font-weight: 700;
-      letter-spacing: 0.04em;
-      color: #0a0a0a;
-      background: linear-gradient(145deg, #e8c96a, #c9a24a);
-      border: 2px solid rgba(212, 175, 55, 0.35);
-    }
-
-    .home-why-quote-body {
-      margin: 0;
-      min-width: 0;
-    }
-
-    .home-why-quote-text {
-      margin: 0 0 14px;
-      font-size: 1.05rem;
-      line-height: 1.65;
-      font-style: italic;
-      color: var(--color-text-primary, #fff);
-    }
-
-    .home-why-quote-text::before {
-      content: "« ";
-      color: rgba(212, 175, 55, 0.65);
-    }
-
-    .home-why-quote-text::after {
-      content: " »";
-      color: rgba(212, 175, 55, 0.65);
-    }
-
-    .home-why-quote-cite {
-      margin: 14px 0 0;
-      font-size: 0.9rem;
-      font-style: normal;
-      font-weight: 500;
-      color: var(--color-text-secondary, rgba(255, 255, 255, 0.65));
-      text-align: left;
-    }
-
-    @media (max-width: 640px) {
-      .home-why-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .home-why-quote-row {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-      }
-
-      .home-why-quote-cite {
-        text-align: center;
-      }
-    }
-
-    /* Footer accueil — identité + liens (2 colonnes) */
-    .site-footer .footer-premium-grid--index {
-      grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
-      gap: clamp(36px, 5vw, 72px);
-    }
-
-    .site-footer .footer-premium-grid--index .footer-premium-desc {
-      max-width: 420px;
-    }
-
-    @media (max-width: 1024px) {
-      .site-footer .footer-premium-grid--index {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    /* Hero — vidéo de fond */
-    .hero-section {
-      position: relative;
-      overflow: hidden;
-    }
-
-    .video-background-container {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-      z-index: 1;
-      isolation: isolate;
-      background: #07090c;
-    }
-
-    .video-background-container::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      z-index: 5;
-      pointer-events: none;
-      opacity: 0.09;
-      background:
-        linear-gradient(125deg, transparent 0%, rgba(255, 255, 255, 0.01) 46%, transparent 100%),
-        repeating-linear-gradient(
-          0deg,
-          rgba(255, 255, 255, 0.009) 0,
-          rgba(255, 255, 255, 0.009) 1px,
-          transparent 1px,
-          transparent 2px
-        );
-      mix-blend-mode: soft-light;
-    }
-
-    .hero-video {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-    }
-
-    .hero-video-cover {
-      z-index: 1;
-      object-fit: cover;
-      object-position: center center;
-      transform: scale(1.08);
-      opacity: 0.55;
-      filter: blur(12px) brightness(0.48) saturate(0.9) contrast(0.95);
-    }
-
-    .hero-video-main {
-      z-index: 2;
-      object-fit: contain;
-      object-position: center 52%;
-      transform: scale(1);
-      opacity: 0.91;
-      filter: blur(2px) brightness(0.84) saturate(0.92) contrast(0.98);
-    }
-
-    .video-overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background:
-        radial-gradient(circle at 58% 44%, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0) 40%),
-        linear-gradient(92deg, rgba(4, 5, 7, 0.58) 0%, rgba(4, 5, 7, 0.3) 36%, rgba(4, 5, 7, 0.35) 100%),
-        linear-gradient(180deg, rgba(4, 5, 7, 0.16) 0%, rgba(4, 5, 7, 0.12) 64%, rgba(4, 5, 7, 0.18) 100%);
-      z-index: 4;
-    }
-
-    .hero-content {
-      position: relative;
-      z-index: 10;
-      width: 100%;
-    }
-
-    .hero-home-title {
-      margin: 18px 0 14px;
-      max-width: 11ch;
-      font-size: clamp(2.35rem, 4.6vw, 4.25rem);
-      line-height: 1.03;
-      letter-spacing: -0.018em;
-    }
-
-    .hero-home-subhead {
-      max-width: 38ch;
-      margin-bottom: clamp(24px, 3.4vh, 36px);
-      font-size: clamp(1.02rem, 2vw, 1.2rem);
-      line-height: 1.6;
-    }
-
-    .hero-social-proof {
-      max-width: 38ch;
-      margin-bottom: clamp(20px, 3vh, 28px);
-      font-size: clamp(0.88rem, 1.6vw, 0.95rem);
-      line-height: 1.5;
-      color: rgba(255, 255, 255, 0.55);
-      opacity: 0.85;
-      letter-spacing: 0.02em;
-    }
-
-    .hero-signature-word {
-      display: inline-block;
-      position: relative;
-      font-family: "Great Vibes", "Brush Script MT", cursive;
-      font-size: 1.28em;
-      line-height: 0.9;
-      letter-spacing: 0.008em;
-      color: rgba(244, 228, 192, 0.98);
-      text-shadow:
-        0 0 1px rgba(245, 230, 197, 0.75),
-        0 0 10px rgba(235, 194, 117, 0.45),
-        0 0 22px rgba(228, 170, 66, 0.35),
-        0 0 42px rgba(218, 158, 51, 0.28);
-      transform: translateY(3%) rotate(-1.4deg);
-      transform-origin: left center;
-      opacity: 1;
-    }
-
-    .hero-signature-word::after {
-      content: "";
-      position: absolute;
-      inset: 40% -6% -8% -6%;
-      z-index: -1;
-      border-radius: 999px;
-      background: radial-gradient(circle at 50% 40%, rgba(236, 192, 98, 0.34) 0%, rgba(236, 192, 98, 0) 72%);
-      filter: blur(10px);
-      pointer-events: none;
-    }
-
-    @media (max-width: 900px) {
-      .hero-video-main {
-        object-position: center 46%;
-      }
-    }
-
-    /* Mobile video: hidden on desktop */
-    .hero-video-mobile {
-      display: none;
-    }
-
-    /* ---- Mobile hero: dedicated vertical video ---- */
-    @media (max-width: 640px) {
-      .hero-video--desktop {
-        display: none;
-      }
-
-      .hero-video-mobile {
-        display: block;
-        z-index: 2;
-        object-fit: cover;
-        object-position: center center;
-        transform: none;
-        opacity: 0.85;
-        filter: brightness(0.82) saturate(0.92) contrast(0.98);
-      }
-
-      .video-overlay {
-        background:
-          linear-gradient(180deg,
-            rgba(4, 5, 7, 0.50) 0%,
-            rgba(4, 5, 7, 0.18) 30%,
-            rgba(4, 5, 7, 0.14) 60%,
-            rgba(4, 5, 7, 0.52) 100%);
-      }
-    }
-  </style>
   <script defer src="js/app.js"></script>
+  <script defer src="js/astra-3d.js"></script>
 </head>
 
 <body data-page="home">
-  <header class="site-header">
+
+  <header class="site-header site-header--premium-home">
     <div class="container header-inner">
       <a class="brand" href="index.html" aria-label="Astra Studio">
         <img class="brand-logo brand-logo-3d" src="assets/branding/astra-studio-logo.png" alt="Astra Studio" />
       </a>
-
       <div class="header-end">
-        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="header-nav-wrap"
-          aria-label="Ouvrir le menu">
-          <span class="nav-toggle-line" aria-hidden="true"></span>
-          <span class="nav-toggle-line" aria-hidden="true"></span>
-          <span class="nav-toggle-line" aria-hidden="true"></span>
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="header-nav-wrap" aria-label="Ouvrir le menu">
+          <span class="nav-toggle-line"></span>
+          <span class="nav-toggle-line"></span>
+          <span class="nav-toggle-line"></span>
         </button>
-
         <div class="header-nav-wrap" id="header-nav-wrap">
           <nav class="site-nav" id="site-navigation" aria-label="Navigation principale">
             <a href="index.html" data-page-link="home">Accueil</a>
             <a href="services.html" data-page-link="services">Services</a>
-            <a href="systemes-ia.html" data-page-link="systemes-ia">Systèmes IA</a>
-            <a href="formations.html" data-page-link="formations">Formations</a>
-            <a href="work.html" data-page-link="work">Réalisations</a>
-            <a href="results.html" data-page-link="results">Résultats</a>
+            <a href="casting/index.html" data-page-link="casting">Casting</a>
+            <a href="portfolio.html" data-page-link="portfolio">Portfolio</a>
+            <a href="a-propos.html" data-page-link="about">À propos</a>
             <a href="contact.html" data-page-link="contact">Contact</a>
           </nav>
-          <a class="header-cta button button-primary" href="contact.html">Discuter d'un projet</a>
+          <a class="header-cta button button-primary" href="contact.html">Réserver un appel</a>
         </div>
       </div>
     </div>
   </header>
 
   <main id="main-content" class="page-shell">
-    <section
-      class="section hero-section"
-      style="padding-top: clamp(84px, 9vh, 98px); padding-bottom: clamp(20px, 3vh, 28px); min-height: 100svh; display: flex; align-items: center"
-      aria-labelledby="hero-home-heading">
-      <div class="video-background-container" aria-hidden="true">
-        <video autoplay muted loop playsinline class="hero-video hero-video-cover hero-video--desktop" poster="assets/videos/astra-hero-work-poster.png">
-          <source src="assets/videos/astra-hero-work.mp4" type="video/mp4" />
-        </video>
-        <video autoplay muted loop playsinline class="hero-video hero-video-main hero-video--desktop" poster="assets/videos/astra-hero-work-poster.png">
-          <source src="assets/videos/astra-hero-work.mp4" type="video/mp4" />
-        </video>
-        <video autoplay muted loop playsinline class="hero-video hero-video-mobile" poster="assets/videos/astra-hero-work-poster.png">
-          <source src="assets/videos/videomobile.mov" type="video/mp4" />
-        </video>
-        <div class="video-overlay"></div>
+
+    <section class="home-hero" aria-labelledby="hero-heading" data-home-hero>
+      <div class="home-hero__media" aria-hidden="true">
+        <div class="home-hero__media-inner" data-home-hero-media>
+          <div class="home-hero__video-shell">
+            <video
+              class="home-hero__video"
+              autoplay
+              muted
+              loop
+              playsinline
+              preload="auto"
+            >
+              <source src="assets/videos/astra-hero-work.mp4" type="video/mp4" />
+            </video>
+          </div>
+          <div class="home-hero__diffuse" aria-hidden="true"></div>
+          <div class="home-hero__bloom home-hero__bloom--warm"></div>
+          <div class="home-hero__bloom home-hero__bloom--cool"></div>
+          <div class="home-hero__depth"></div>
+          <div class="home-hero__grade"></div>
+          <div class="home-hero__vignette"></div>
+          <div class="home-hero__grain"></div>
+        </div>
       </div>
-      <div class="container hero-content">
-        <span class="badge">Studio Créatif • Humain + IA</span>
-        <h1 class="hero-home-title" id="hero-home-heading">
-          Transformez votre marque en<br />
-          référence <span class="hero-signature-word">digitale</span>
-        </h1>
-        <p class="hero-home-subhead">
-          Direction créative humaine × Production IA = Résultats mesurables
+
+      <div class="home-hero__frame">
+        <div class="container home-hero__layout">
+          <div class="home-hero__copy">
+            <p class="home-hero__kicker">Studio créatif · Direction artistique</p>
+            <h1 class="home-hero__title" id="hero-heading">
+              <span class="home-hero__title-line">Une marque se lit</span>
+              <span class="home-hero__title-line home-hero__title-line--accent"><em>avant qu’on la lise.</em></span>
+            </h1>
+            <p class="home-hero__sub">
+              Identité visuelle, direction artistique et production pour maisons beauté. Une ligne tenue du concept au détail — nette, désirable, sans bruit.
+            </p>
+            <div class="home-hero__ctas">
+              <a class="home-hero__btn home-hero__btn--primary" href="contact.html">Échanger sur un projet</a>
+              <a class="home-hero__btn home-hero__btn--ghost" href="portfolio.html">Voir les réalisations</a>
+            </div>
+            <p class="home-hero__meta"><span>Paris</span><span class="home-hero__meta-sep" aria-hidden="true"></span><span>Image &amp; production</span></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="home-statement section" aria-labelledby="statement-heading">
+      <div class="container home-statement__inner">
+        <h2 class="home-statement__lead" id="statement-heading">Maîtrise, méthode, signature</h2>
+        <p class="home-statement__text">
+          Une approche 100 → 10 → 1 : exploration large, choix humains, une direction unique qui porte votre marque.
+          Pas de catalogue, pas de templates — un cadre créatif exigeant, adapté à votre univers.
         </p>
-        <p class="hero-social-proof">Déjà 50+ marques accompagnées</p>
-        <div style="display: flex; gap: 16px; flex-wrap: wrap">
-          <a href="contact.html" class="button button-primary">Réserver mon audit gratuit →</a>
-          <a href="work.html" class="button button-secondary">Voir les réalisations</a>
-        </div>
+        <a class="inline-link home-statement__link" href="services.html">Découvrir l’approche</a>
       </div>
     </section>
 
-    <section class="section home-proof-board" id="methode" aria-labelledby="methode-intro-heading" data-proof-board>
+    <section class="home-close section" aria-labelledby="close-heading">
       <div class="container">
-        <div class="home-proof-shell" data-tilt-card>
-          <header class="home-proof-head">
-            <span class="kicker">Résultats bruts</span>
-            <h2 id="methode-intro-heading">Des performances visibles dès le premier regard.</h2>
-            <p>
-              Ici, on montre les signaux business concrets : portée, traction, rétention et conversion.
-              Pas du storytelling flou, des chiffres pilotables.
-            </p>
-          </header>
-
-          <div class="home-proof-layout">
-            <div class="home-proof-metrics">
-              <article class="home-proof-metric">
-                <span class="home-proof-label">TikTok • vues générées</span>
-                <strong data-proof-count data-proof-mode="decimal-m-plus" data-proof-end="1.7">0</strong>
-                <p>Traction organique cumulée sur des formats courts orientés attention.</p>
-              </article>
-
-              <article class="home-proof-metric">
-                <span class="home-proof-label">X • impressions organiques</span>
-                <strong data-proof-count data-proof-mode="decimal-m" data-proof-end="1.6">0</strong>
-                <p>Capacité à faire circuler des messages et à maintenir la visibilité.</p>
-              </article>
-
-              <article class="home-proof-metric">
-                <span class="home-proof-label">Contenus au-dessus de 100K</span>
-                <strong data-proof-count data-proof-mode="int" data-proof-end="10">0</strong>
-                <p>Des performances répétées, pas un pic isolé.</p>
-              </article>
-
-              <article class="home-proof-metric">
-                <span class="home-proof-label">Croissance de comptes TikTok</span>
-                <strong data-proof-count data-proof-mode="range-k" data-proof-end="20">0</strong>
-                <p>Plusieurs comptes montés entre 10K et 20K abonnés sur différentes phases.</p>
-              </article>
-            </div>
-
-            <aside class="home-proof-side" data-tilt-card>
-              <h3>Taux clés suivis chaque semaine</h3>
-              <p>Les taux qui impactent directement la conversion commerciale.</p>
-
-              <div class="home-proof-rate-list">
-                <div class="home-proof-rate" data-proof-rate="72">
-                  <div class="home-proof-rate-head">
-                    <span>Hook capté (3s)</span>
-                    <strong data-proof-rate-value>0%</strong>
-                  </div>
-                  <div class="home-proof-rate-track"><span class="home-proof-rate-fill"></span></div>
-                </div>
-
-                <div class="home-proof-rate" data-proof-rate="48">
-                  <div class="home-proof-rate-head">
-                    <span>Rétention 25%</span>
-                    <strong data-proof-rate-value>0%</strong>
-                  </div>
-                  <div class="home-proof-rate-track"><span class="home-proof-rate-fill"></span></div>
-                </div>
-
-                <div class="home-proof-rate" data-proof-rate="34">
-                  <div class="home-proof-rate-head">
-                    <span>Rétention 50%</span>
-                    <strong data-proof-rate-value>0%</strong>
-                  </div>
-                  <div class="home-proof-rate-track"><span class="home-proof-rate-fill"></span></div>
-                </div>
-
-                <div class="home-proof-rate" data-proof-rate="6.8">
-                  <div class="home-proof-rate-head">
-                    <span>Conversion clic → contact</span>
-                    <strong data-proof-rate-value>0%</strong>
-                  </div>
-                  <div class="home-proof-rate-track"><span class="home-proof-rate-fill"></span></div>
-                </div>
-              </div>
-
-              <div class="home-proof-chart" aria-hidden="true">
-                <svg viewBox="0 0 360 140" role="presentation">
-                  <defs>
-                    <linearGradient id="proof-gradient" x1="0" y1="0" x2="1" y2="0">
-                      <stop offset="0%" stop-color="#dfbe80" />
-                      <stop offset="100%" stop-color="#8fb1d5" />
-                    </linearGradient>
-                  </defs>
-                  <path d="M10 116 L72 92 L136 98 L198 62 L260 54 L350 18" stroke="url(#proof-gradient)"
-                    class="home-proof-chart-line" />
-                  <circle cx="72" cy="92" r="3.8" class="home-proof-chart-point" style="transition-delay:0.15s" />
-                  <circle cx="136" cy="98" r="3.8" class="home-proof-chart-point" style="transition-delay:0.28s" />
-                  <circle cx="198" cy="62" r="3.8" class="home-proof-chart-point" style="transition-delay:0.41s" />
-                  <circle cx="260" cy="54" r="3.8" class="home-proof-chart-point" style="transition-delay:0.54s" />
-                  <circle cx="350" cy="18" r="4.2" class="home-proof-chart-point" style="transition-delay:0.66s" />
-                </svg>
-              </div>
-
-              <a href="results.html" class="button button-primary">Voir les résultats détaillés</a>
-            </aside>
+        <div class="home-close__panel reveal">
+          <h2 id="close-heading">Un projet, une exigence commune</h2>
+          <p>Échangeons 20 minutes sur votre marque et vos objectifs — sans engagement.</p>
+          <div class="home-close__actions">
+            <a class="button button-primary" href="contact.html">Prendre contact</a>
+            <a class="button button-secondary" href="services.html">Les services</a>
           </div>
         </div>
-      </div>
-    </section>
-
-    <section class="section" id="offres" aria-labelledby="offres-heading">
-      <div class="container">
-        <h2 id="offres-heading">Des systèmes de croissance créative</h2>
-        <p style="margin-bottom: 40px">Stratégie humaine. Production augmentée. Résultats mesurables.</p>
-        <div class="grid-3 home-offers-grid">
-          <article class="card home-offer-card">
-            <span class="home-offer-tier">ESSENTIEL</span>
-            <h3 class="home-offer-name">SPARK</h3>
-            <p class="home-offer-price">497€<span>/mois</span></p>
-            <ul class="home-offer-list">
-              <li>12 posts/mois + 4 vidéos</li>
-              <li>Calendrier automatisé</li>
-              <li>Reporting mensuel</li>
-            </ul>
-            <a href="contact.html?offer=spark" class="button button-secondary home-offer-cta">Choisir SPARK</a>
-          </article>
-
-          <article class="card home-offer-card home-offer-card-featured">
-            <span class="home-offer-tier">RECOMMANDÉ</span>
-            <h3 class="home-offer-name">SIGNATURE</h3>
-            <p class="home-offer-price">1 497€<span>/mois</span></p>
-            <ul class="home-offer-list">
-              <li>Tout SPARK inclus</li>
-              <li>Direction artistique complète</li>
-              <li>🎬 1 shooting/mois</li>
-              <li>2 calls stratégiques</li>
-            </ul>
-            <a href="contact.html?offer=signature" class="button button-primary home-offer-cta">Choisir SIGNATURE</a>
-          </article>
-
-          <article class="card home-offer-card">
-            <span class="home-offer-tier">STRATÉGIQUE</span>
-            <h3 class="home-offer-name">SCALE</h3>
-            <p class="home-offer-price">3 497€<span>/mois</span></p>
-            <ul class="home-offer-list">
-              <li>Tout SIGNATURE inclus</li>
-              <li>Automatisation complète</li>
-              <li>🤖 Agent IA personnalisé</li>
-              <li>Accès direct WhatsApp</li>
-            </ul>
-            <a href="contact.html?offer=scale" class="button button-secondary home-offer-cta">Choisir SCALE</a>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="systems" style="background: #060606" aria-labelledby="systems-heading">
-      <div class="container">
-        <header class="home-systems-head">
-          <h2 class="home-systems-title" id="systems-heading">Systèmes IA Astra Studio</h2>
-          <p class="home-systems-sub">
-            Des agents orientés business, conçus pour gagner du temps, mieux qualifier et accélérer les décisions.
-            Chaque système a un rôle précis dans votre pipeline.
-          </p>
-        </header>
-        <div class="grid-3 home-systems-grid">
-          <article class="card home-system-card">
-            <span class="home-system-code">Astra / Signal</span>
-            <h3 class="home-system-name">Agent de qualification &amp; pré-diagnostic</h3>
-            <p class="home-system-copy">
-              Il transforme les réponses du diagnostic en lecture stratégique claire pour prioriser les prospects.
-            </p>
-            <ul class="home-system-list">
-              <li>Analyse le contexte de la marque et son niveau de maturité.</li>
-              <li>Détecte les signaux d'urgence, de potentiel et de budget.</li>
-              <li>Génère un pré-brief exploitable pour préparer l'appel.</li>
-            </ul>
-            <p class="home-system-outcome">Résultat: vous savez qui contacter en priorité et avec quel angle.</p>
-          </article>
-
-          <article class="card home-system-card">
-            <span class="home-system-code">Astra / Operator</span>
-            <h3 class="home-system-name">Agent de plan de contenu &amp; production</h3>
-            <p class="home-system-copy">
-              Il structure les idées en plan éditorial concret pour éviter le contenu dispersé ou répétitif.
-            </p>
-            <ul class="home-system-list">
-              <li>Propose des angles adaptés à vos objectifs (notoriété, preuve, conversion).</li>
-              <li>Transforme un thème en formats activables (Reels, TikTok, Stories, scripts).</li>
-              <li>Cadence la production avec un rythme réaliste et suivi.</li>
-            </ul>
-            <p class="home-system-outcome">Résultat: une machine de contenu plus régulière et plus cohérente.</p>
-          </article>
-
-          <article class="card home-system-card">
-            <span class="home-system-code">Astra / Desk</span>
-            <h3 class="home-system-name">Agent de réponse commerciale &amp; suivi lead</h3>
-            <p class="home-system-copy">
-              Il fluidifie l'avant-vente pour répondre plus vite, mieux cadrer et réduire les opportunités perdues.
-            </p>
-            <ul class="home-system-list">
-              <li>Prépare des réponses commerciales claires selon le profil du lead.</li>
-              <li>Centralise les infos clés pour les relances et prochaines actions.</li>
-              <li>Maintient un historique propre entre premier contact et devis.</li>
-            </ul>
-            <p class="home-system-outcome">Résultat: plus de clarté, plus de réactivité, meilleur taux de conversion.</p>
-          </article>
-        </div>
-        <div style="text-align: center; margin-top: 32px">
-          <a href="contact.html?intent=systems" class="button button-secondary">Demander un cadrage IA</a>
-        </div>
-      </div>
-    </section>
-
-    <section class="section home-results" id="accueil-suite" aria-labelledby="home-results-heading"
-      data-home-results>
-      <div class="container">
-        <header class="home-results-head">
-          <h2 class="home-results-title" id="home-results-heading">
-            Une direction créative qui génère aussi de l'attention et des résultats.
-          </h2>
-          <p class="home-results-sub">
-            Le studio travaille l'image et mesure ce qui compte : visibilité, engagement et passage à l'action.
-          </p>
-        </header>
-
-        <div class="home-results-grid">
-          <article class="home-results-card reveal reveal-card">
-            <span class="home-results-badge">TikTok • Visibilité</span>
-            <strong class="home-results-value" data-count data-count-mode="decimal-m-plus" data-count-end="1.7"
-              aria-live="polite">0</strong>
-            <p class="home-results-label">Vues générées sur TikTok</p>
-            <p class="home-results-explainer">Une maîtrise prouvée de l'attention organique.</p>
-          </article>
-
-          <article class="home-results-card reveal reveal-card reveal-delay-1">
-            <span class="home-results-badge">X (Twitter) • Portée</span>
-            <strong class="home-results-value" data-count data-count-mode="decimal-m" data-count-end="1.6"
-              aria-live="polite">0</strong>
-            <p class="home-results-label">Impressions organiques sur X</p>
-            <p class="home-results-explainer">
-              Preuve de capacité à générer de la circulation et de l'engagement.
-            </p>
-          </article>
-
-          <article class="home-results-card reveal reveal-card reveal-delay-2">
-            <span class="home-results-badge">Régularité • Constance</span>
-            <strong class="home-results-value" data-count data-count-mode="int" data-count-end="10" aria-live="polite">0</strong>
-            <p class="home-results-label">Contenus au-dessus de 100K vues</p>
-            <p class="home-results-explainer">Des résultats reproductibles, pas un coup de chance.</p>
-          </article>
-
-          <article class="home-results-card reveal reveal-card reveal-delay-3">
-            <span class="home-results-badge">Cas clients • Portfolio</span>
-            <strong class="home-results-value" data-count data-count-mode="int" data-count-end="3" aria-live="polite">0</strong>
-            <p class="home-results-label">Dossiers de marque documentés sur le site</p>
-            <p class="home-results-explainer">Des cas concrets pour évaluer la méthode du studio.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container">
-        <article class="panel services-band-note services-band-note--center home-formations-callout reveal reveal-card">
-          <span class="kicker reveal reveal-tilt">Astra Formations</span>
-          <h2 class="card-title display services-band-note-title">Transformer l'attention en autorité de marché.</h2>
-          <p class="services-band-note-copy">
-            Programmes pour créateurs et marques — audience, crédibilité, monétisation prévisible.
-          </p>
-          <div class="button-row button-row-center">
-            <a class="button button-primary" href="formations.html">Voir les programmes</a>
-            <a class="button button-secondary" href="contact.html">Discuter d'un projet</a>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container">
-        <div class="cta-banner panel reveal reveal-card">
-          <span class="kicker reveal reveal-tilt">Prochaine étape</span>
-          <h2>Image et contenu à la hauteur de votre ambition.</h2>
-          <p class="subhead">
-            Votre présence ne reflète pas votre niveau&nbsp;? Posons un cap clair.
-          </p>
-          <div class="button-row">
-            <a class="button button-primary" href="contact.html">Discuter d'un projet</a>
-            <a class="button button-secondary" href="work.html">Voir les réalisations</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section home-why" aria-labelledby="home-why-heading">
-      <div class="container">
-        <h2 class="home-why-title reveal" id="home-why-heading">Pourquoi les marques nous choisissent (et restent)</h2>
-
-        <div class="home-why-grid">
-          <article class="home-why-card reveal reveal-card">
-            <span class="home-why-icon" aria-hidden="true">👤</span>
-            <h3 class="home-why-card-title">Votre directeur créatif, pas un exécutant</h3>
-            <p class="home-why-card-text">
-              Vous travaillez directement avec Yanis, fondateur et directeur créatif. Pas de junior, pas de turnover. Une
-              vision cohérente, de la stratégie à la livraison.
-            </p>
-          </article>
-          <article class="home-why-card reveal reveal-card reveal-delay-1">
-            <span class="home-why-icon" aria-hidden="true">🎬</span>
-            <h3 class="home-why-card-title">Shooting stratégique mensuel</h3>
-            <p class="home-why-card-text">
-              Contrairement aux agences 100% IA, nous allons sur le terrain capturer du contenu authentique. L'IA
-              repurpose, nous créons l'original.
-            </p>
-          </article>
-          <article class="home-why-card reveal reveal-card reveal-delay-2">
-            <span class="home-why-icon" aria-hidden="true">🔢</span>
-            <h3 class="home-why-card-title">Méthode 100→10→1 documentée</h3>
-            <p class="home-why-card-text">
-              Notre processus de curation est réplicable, transparent, et au cœur de chaque livraison. Vous savez
-              exactement ce que vous achetez.
-            </p>
-          </article>
-          <article class="home-why-card reveal reveal-card reveal-delay-3">
-            <span class="home-why-icon" aria-hidden="true">💡</span>
-            <h3 class="home-why-card-title">Brand Soul Sessions</h3>
-            <p class="home-why-card-text">
-              Trimestriellement, nous prenons 2h pour réaligner votre vision créative. Parce que votre marque évolue, et
-              votre contenu doit évoluer avec elle.
-            </p>
-          </article>
-        </div>
-
-        <figure class="home-why-quote-wrap reveal" style="--reveal-delay: 0.1s">
-          <div class="home-why-quote-row">
-            <div class="home-why-avatar" aria-hidden="true">CR</div>
-            <div class="home-why-quote-copy">
-              <blockquote class="home-why-quote-body">
-                <p class="home-why-quote-text">
-                  On a gagné en clarté et en régularité. Le démarrage demande une vraie implication de notre côté, mais
-                  derrière, la qualité du contenu est nettement plus stable.
-                </p>
-              </blockquote>
-              <figcaption class="home-why-quote-cite">— Responsable marketing, marque beauté · Mission 3 mois</figcaption>
-            </div>
-          </div>
-        </figure>
       </div>
     </section>
 
   </main>
 
-  <footer class="section" style="padding: 60px 0; border-top: 1px solid #1f1f1f; background: #030303">
+  <footer class="site-footer">
     <div class="container">
-      <div class="grid-4" style="gap: 40px">
-        <div>
-          <a href="index.html" aria-label="Astra Studio" style="display: inline-block; margin-bottom: 12px">
+      <div class="footer-premium-grid">
+        <div class="footer-premium-col footer-premium-col--brand">
+          <a class="brand" href="index.html" aria-label="Astra Studio">
             <img class="brand-logo brand-logo-3d" src="assets/branding/astra-studio-logo.png" alt="Astra Studio" />
           </a>
-          <p style="font-size: 0.9rem">Studio créatif humain + IA. Paris &amp; Remote.</p>
+          <p class="footer-premium-desc">Direction artistique pour marques beauté.</p>
         </div>
-        <div>
-          <h4 style="margin-bottom: 12px">Navigation</h4>
-          <a href="vision.html" style="display: block; color: #888; text-decoration: none; margin: 8px 0">Ma vision</a>
-          <a href="services.html" style="display: block; color: #888; text-decoration: none; margin: 8px 0">Services</a>
-          <a href="systemes-ia.html" style="display: block; color: #888; text-decoration: none; margin: 8px 0">Systèmes IA</a>
-          <a href="contact.html" style="display: block; color: #888; text-decoration: none; margin: 8px 0">Contact</a>
+        <nav class="footer-premium-col" aria-label="Navigation">
+          <h3 class="footer-premium-heading">Navigation</h3>
+          <div class="footer-premium-links">
+            <a href="index.html">Accueil</a>
+            <a href="services.html">Services</a>
+            <a href="casting/index.html">Casting</a>
+            <a href="portfolio.html">Portfolio</a>
+            <a href="a-propos.html">À propos</a>
+            <a href="contact.html">Contact</a>
+          </div>
+        </nav>
+        <div class="footer-premium-col">
+          <h3 class="footer-premium-heading">Contact</h3>
+          <div class="footer-premium-contact">
+            <a href="mailto:bonjour@astrastudio.fr">bonjour@astrastudio.fr</a>
+            <p>Paris · À distance</p>
+          </div>
+          <div class="footer-premium-social" style="margin-top: 16px;">
+            <a href="https://www.instagram.com/astrastudio.fr/" target="_blank" rel="noopener" aria-label="Instagram">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
+            </a>
+            <a href="https://www.tiktok.com/@astrastudio.fr" target="_blank" rel="noopener" aria-label="TikTok">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/></svg>
+            </a>
+          </div>
         </div>
-        <div>
-          <h4 style="margin-bottom: 12px">Contact</h4>
-          <a href="mailto:bonjour@astrastudio.fr" style="color: #888; text-decoration: none">bonjour@astrastudio.fr</a>
-          <p style="margin-top: 8px; font-size: 0.85rem; color: #666">Paris · À distance · Sur site</p>
-        </div>
-        <div>
-          <h4 style="margin-bottom: 12px">Légal</h4>
-          <a href="mentions-legales.html" style="display: block; color: #888; text-decoration: none; margin: 8px 0">Mentions légales</a>
-          <a href="politique-confidentialite.html" style="display: block; color: #888; text-decoration: none; margin: 8px 0">Politique de confidentialité</a>
+        <div class="footer-premium-col">
+          <h3 class="footer-premium-heading">Légal</h3>
+          <div class="footer-premium-links">
+            <a href="mentions-legales.html">Mentions légales</a>
+            <a href="politique-confidentialite.html">Politique de confidentialité</a>
+          </div>
         </div>
       </div>
-      <p style="text-align: center; margin-top: 40px; font-size: 0.8rem; color: #444">
-        © 2026 Astra Studio. Méthode 100→10→1 • Humain + IA
-      </p>
+      <p class="footer-premium-copy">© <span data-current-year>2026</span> Astra Studio.</p>
     </div>
   </footer>
+
 </body>
 
 </html>

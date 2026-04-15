@@ -1,0 +1,46 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply bg-astra-bg text-astra-text antialiased;
+  font-family: var(--font-sora), ui-sans-serif, system-ui, sans-serif;
+}
+
+input,
+select,
+textarea {
+  @apply rounded-xl border border-astra-border bg-astra-bg text-astra-text;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  @apply border-astra-gold outline-none ring-2 ring-astra-gold/15;
+}
+
+::selection {
+  @apply bg-astra-gold/30 text-astra-text;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply rounded-sm bg-white/10;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-white/20;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.1) transparent;
+}

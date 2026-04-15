@@ -87,7 +87,7 @@ function isInsideOtherReveal(element) {
 }
 
 function initAutoRevealSections() {
-  const allowed = new Set(["home", "services", "formations", "work", "contact"]);
+  const allowed = new Set(["home", "services", "formations", "work", "contact", "about", "portfolio", "casting"]);
   if (!body.dataset.page || !allowed.has(body.dataset.page)) {
     return;
   }
@@ -107,6 +107,9 @@ function initAutoRevealButtons() {
 
   root.querySelectorAll("a.button, button.button").forEach((el) => {
     if (el.classList.contains("reveal") || isInsideOtherReveal(el)) {
+      return;
+    }
+    if (el.closest(".home-hero")) {
       return;
     }
     el.classList.add("reveal");
@@ -204,7 +207,7 @@ function initAutoRevealTypography() {
     if (el.classList.contains("reveal") || isInsideOtherReveal(el)) {
       return;
     }
-    if (el.closest(".hero-matrix")) {
+    if (el.closest(".hero-matrix") || el.closest(".home-hero")) {
       return;
     }
     el.classList.add("reveal");
@@ -214,7 +217,7 @@ function initAutoRevealTypography() {
     if (el.classList.contains("reveal") || isInsideOtherReveal(el)) {
       return;
     }
-    if (el.closest(".hero-matrix")) {
+    if (el.closest(".hero-matrix") || el.closest(".home-hero")) {
       return;
     }
     el.classList.add("reveal");
@@ -317,289 +320,82 @@ if (backgroundVideos.length) {
   });
 }
 
-const contactForm = document.querySelector("[data-contact-form]");
-const formFeedback = document.querySelector("[data-form-feedback]");
+/** Fond galaxie (CSS) sur les pages secondaires — pas de video, leger et premium */
+function initSecondaryPagesGalaxyBackground() {
+  if (!body || body.dataset.page === "home") {
+    return;
+  }
 
-if (contactForm) {
-  const submitButton = contactForm.querySelector('button[type="submit"]');
-  const sourceField = contactForm.querySelector("[data-contact-source]");
-  const formShell = contactForm.closest(".contact-form-shell");
-  const formFields = Array.from(contactForm.querySelectorAll("input, select, textarea"));
-  const projectTypeField = contactForm.querySelector("#project-type");
-  const primaryObjectiveFieldset = contactForm.querySelector("[data-primary-objective-fieldset]");
-  const defaultSubmitLabel = submitButton ? submitButton.textContent : "";
-  const isLocalTest =
-    window.location.protocol === "file:" ||
-    window.location.hostname === "127.0.0.1" ||
-    window.location.hostname === "localhost";
-  const contactEndpoint =
-    window.location.protocol === "file:"
-      ? "http://127.0.0.1:3000/api/leads"
-      : contactForm.action || "/api/leads";
+  if (body.classList.contains("admin-body") || body.classList.contains("learn-body")) {
+    return;
+  }
 
-  const setFeedback = (message, type = "") => {
-    if (!formFeedback) {
-      return;
-    }
+  if (document.querySelector(".site-galaxy-bg")) {
+    return;
+  }
 
-    formFeedback.textContent = message;
-    formFeedback.classList.remove("is-error", "is-success");
+  const root = document.createElement("div");
+  root.className = "site-galaxy-bg";
+  root.setAttribute("aria-hidden", "true");
+  root.innerHTML = [
+    '<div class="site-galaxy-bg__deep"></div>',
+    '<div class="site-galaxy-bg__nebula site-galaxy-bg__nebula--a"></div>',
+    '<div class="site-galaxy-bg__nebula site-galaxy-bg__nebula--b"></div>',
+    '<div class="site-galaxy-bg__halo"></div>',
+    '<div class="site-galaxy-bg__dust"></div>',
+    '<div class="site-galaxy-bg__vignette"></div>',
+  ].join("");
 
-    if (type) {
-      formFeedback.classList.add(`is-${type}`);
-    }
+  body.prepend(root);
+  body.classList.add("has-page-galaxy");
 
-    if (message) {
-      formFeedback.scrollIntoView({ behavior: "smooth", block: "nearest" });
-    }
-  };
-
-  const clearFieldErrors = () => {
-    formFields.forEach((field) => {
-      field.classList.remove("is-invalid");
-      field.removeAttribute("aria-invalid");
-      field.setCustomValidity("");
-    });
-
-    if (primaryObjectiveFieldset) {
-      primaryObjectiveFieldset.classList.remove("is-invalid");
-    }
-  };
-
-  const setSourceValue = () => {
-    if (!sourceField) {
-      return;
-    }
-
-    const currentLocation = `${window.location.pathname}${window.location.search}`.replace(
-      /^\/+/,
-      ""
-    );
-
-    sourceField.value = `Site Astra Studio • ${currentLocation || "contact.html"}`;
-  };
-
-  const applyIntentPreset = () => {
-    const params = new URLSearchParams(window.location.search);
-    const intent = params.get("intent");
-    const offer = params.get("offer");
-
-    if (projectTypeField && !projectTypeField.value) {
-      const offerProjectMap = {
-        spark: "Contenu social media (IA + curation humaine)",
-        systems: "Automatisation business (workflows, agents IA)",
-        signature: "Direction créative complète (SIGNATURE)",
-        scale: "Partenariat stratégique (SCALE)",
-      };
-
-      const intentProjectMap = {
-        systems: "Automatisation business (workflows, agents IA)",
-        "systemes-ia": "Automatisation business (workflows, agents IA)",
-      };
-
-      const mappedProject =
-        (offer && offerProjectMap[offer]) || (intent && intentProjectMap[intent]) || null;
-
-      if (mappedProject) {
-        const option = Array.from(projectTypeField.options).find(
-          (entry) => entry.textContent.trim() === mappedProject
-        );
-
-        if (option) {
-          projectTypeField.value = option.value || option.textContent.trim();
-        }
-      } else if (intent && !offer) {
-        const legacyIntentMap = {
-          "production-mobile": "Direction artistique & shooting",
-          agence: "Autre (à préciser)",
-          formation: "Autre (à préciser)",
-          "audit-premium": "Audit / Diagnostic",
-          audit: "Audit / Diagnostic",
-          "image-influence": "Direction artistique & shooting",
-        };
-
-        const legacy = legacyIntentMap[intent];
-
-        if (legacy) {
-          const option = Array.from(projectTypeField.options).find(
-            (entry) => entry.textContent.trim() === legacy
-          );
-
-          if (option) {
-            projectTypeField.value = option.value || option.textContent.trim();
-          }
-        }
-      }
-    }
-
-    if (offer) {
-      const match = contactForm.querySelector(
-        `input[name="primary_objective"][data-offer="${offer}"]`
-      );
-
-      if (match) {
-        match.checked = true;
-      }
-    }
-  };
-
-  const setSubmittingState = (isSubmitting) => {
-    contactForm.classList.toggle("is-submitting", isSubmitting);
-
-    if (formShell) {
-      formShell.classList.toggle("is-submitting", isSubmitting);
-    }
-
-    if (!submitButton) {
-      return;
-    }
-
-    submitButton.disabled = isSubmitting;
-    submitButton.textContent = isSubmitting ? "Envoi en cours..." : defaultSubmitLabel;
-
-    if (isSubmitting) {
-      submitButton.setAttribute("aria-busy", "true");
-    } else {
-      submitButton.removeAttribute("aria-busy");
-    }
-  };
-
-  setSourceValue();
-  applyIntentPreset();
-
-  formFields.forEach((field) => {
-    const clearCurrentField = () => {
-      field.classList.remove("is-invalid");
-      field.removeAttribute("aria-invalid");
-      field.setCustomValidity("");
-    };
-
-    field.addEventListener("input", clearCurrentField);
-    field.addEventListener("change", clearCurrentField);
-  });
-
-  contactForm.addEventListener("submit", async (event) => {
-    event.preventDefault();
-
-    clearFieldErrors();
-    setFeedback("");
-
-    if (!contactForm.reportValidity()) {
-      return;
-    }
-
-    const formData = new FormData(contactForm);
-    const honeypot = formData.get("company_website");
-
-    if (honeypot) {
-      return;
-    }
-
-    const payload = Object.fromEntries(formData.entries());
-
-    if (sourceField && !payload.source) {
-      payload.source = sourceField.value;
-    }
-
-    setSubmittingState(true);
-
-    let timeoutId;
-
-    try {
-      const controller = new AbortController();
-      timeoutId = window.setTimeout(() => controller.abort(), 12000);
-
-      const response = await fetch(contactEndpoint, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify(payload),
-        signal: controller.signal,
-      });
-
-      window.clearTimeout(timeoutId);
-
-      const result = await response.json().catch(() => ({}));
-
-      if (!response.ok) {
-        if (result.field_errors) {
-          const fieldErrors = Object.entries(result.field_errors);
-
-          fieldErrors.forEach(([fieldName, message]) => {
-            if (fieldName === "primary_objective" && primaryObjectiveFieldset) {
-              primaryObjectiveFieldset.classList.add("is-invalid");
-              const firstRadio = contactForm.querySelector('input[name="primary_objective"]');
-
-              if (firstRadio && typeof firstRadio.setCustomValidity === "function") {
-                firstRadio.setCustomValidity(message);
-              }
-
-              return;
-            }
-
-            const field = contactForm.elements.namedItem(fieldName);
-
-            if (!field || typeof field.setCustomValidity !== "function") {
-              return;
-            }
-
-            field.classList.add("is-invalid");
-            field.setAttribute("aria-invalid", "true");
-            field.setCustomValidity(message);
-          });
-
-          const firstInvalidFieldName = fieldErrors[0]?.[0];
-          const firstInvalidField = firstInvalidFieldName
-            ? contactForm.elements.namedItem(firstInvalidFieldName)
-            : null;
-
-          if (firstInvalidField && typeof firstInvalidField.reportValidity === "function") {
-            firstInvalidField.reportValidity();
-          }
-        }
-
-        throw new Error(
-          result.message ||
-            "Une erreur est survenue lors de l'envoi. Merci de réessayer dans un instant."
-        );
-      }
-
-      contactForm.reset();
-      clearFieldErrors();
-      setSourceValue();
-      setFeedback(
-        result.message ||
-          "Votre demande a bien été reçue. Astra Studio revient vers vous sous 48 h ouvrées.",
-        "success"
-      );
-    } catch (error) {
-      let errorMessage =
-        "Une erreur est survenue lors de l'envoi. Merci de réessayer dans un instant.";
-
-      if (error?.name === "AbortError") {
-        errorMessage = isLocalTest
-          ? "Le serveur de contact met trop de temps à répondre. Vérifiez qu'il est bien lancé avec npm start, puis rechargez la page."
-          : "Le serveur de contact met trop de temps à répondre. Merci de réessayer dans un instant.";
-      } else if (error instanceof TypeError) {
-        errorMessage = isLocalTest
-          ? "Le serveur de contact n'est pas joignable. Lancez npm start, puis ouvrez le site via http://127.0.0.1:3000/contact.html."
-          : "Le serveur de contact n'est pas disponible pour le moment. Merci de réessayer un peu plus tard.";
-      } else if (error?.message) {
-        errorMessage = error.message;
-      }
-
-      setFeedback(
-        errorMessage,
-        "error"
-      );
-    } finally {
-      window.clearTimeout(timeoutId);
-      setSubmittingState(false);
-    }
+  requestAnimationFrame(() => {
+    root.classList.add("is-ready");
   });
 }
+
+initSecondaryPagesGalaxyBackground();
+
+/** Hero home : micro-parallaxe sur le calque vidéo (scroll, très subtil) */
+function initHomeHeroParallax() {
+  const root = document.querySelector("[data-home-hero]");
+  const mediaInner = document.querySelector("[data-home-hero-media]");
+  if (!root || !mediaInner) {
+    return;
+  }
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    return;
+  }
+
+  let ticking = false;
+  const update = () => {
+    ticking = false;
+    const rect = root.getBoundingClientRect();
+    const vh = window.innerHeight || 1;
+    const visible = rect.bottom > 0 && rect.top < vh;
+    if (!visible) {
+      return;
+    }
+    const t = Math.max(0, Math.min(1, (vh - rect.top) / (rect.height + vh * 0.35)));
+    const y = (t - 0.5) * 18;
+    const sc = 1 + t * 0.012;
+    mediaInner.style.setProperty("--hero-parallax-y", `${y}px`);
+    mediaInner.style.setProperty("--hero-parallax-scale", String(sc));
+  };
+
+  const onScroll = () => {
+    if (!ticking) {
+      ticking = true;
+      requestAnimationFrame(update);
+    }
+  };
+
+  update();
+  window.addEventListener("scroll", onScroll, { passive: true });
+  window.addEventListener("resize", onScroll, { passive: true });
+}
+
+initHomeHeroParallax();
 
 function initAstraCursor() {
   if (!window.matchMedia("(pointer: fine)").matches) {

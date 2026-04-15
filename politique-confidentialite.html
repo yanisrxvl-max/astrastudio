@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Politique de Confidentialité - Astra Studio</title>
+    <title>Politique de confidentialité — Astra Studio</title>
     <meta name="description" content="Politique de confidentialité d'Astra Studio. Gestion des données personnelles, cookies et droits RGPD.">
     
     <!-- Polices -->
@@ -31,24 +31,57 @@
             overflow-x: hidden;
         }
 
-        /* Header Simplifié */
-        header {
-            padding: 30px 5%;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        /* Header — use shared site styles inline for standalone legal pages */
+        .site-header {
             position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background-color: var(--bg-color);
+            top: 0; left: 0; right: 0;
             z-index: 1000;
+            padding: 16px 0;
+            background: rgba(5,5,5,0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255,255,255,0.04);
         }
-        .logo { font-family: var(--font-heading); font-size: 1.5rem; font-weight: 700; color: var(--text-color); text-decoration: none; }
-        .logo span { color: var(--accent-color); }
-        .back-link { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; transition: color 0.3s; }
-        .back-link:hover { color: var(--accent-color); }
+        .site-header .container {
+            width: min(100% - 48px, 1400px);
+            margin: 0 auto;
+        }
+        .header-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 2.5rem;
+        }
+        .brand { display: inline-flex; align-items: center; text-decoration: none; }
+        .brand-logo { display: block; height: 32px; width: auto; object-fit: contain; }
+        .site-nav { display: flex; align-items: center; gap: 2rem; }
+        .site-nav a {
+            color: rgba(255,255,255,0.65);
+            text-decoration: none;
+            font-size: 0.88rem;
+            letter-spacing: 0.02em;
+            transition: color 0.25s ease;
+        }
+        .site-nav a:hover { color: #fff; }
+        .header-end { display: flex; align-items: center; gap: 1.5rem; }
+        .header-cta {
+            display: inline-flex;
+            padding: 0.6rem 1.2rem;
+            border-radius: 999px;
+            background: var(--accent-color);
+            color: #0a0a0a;
+            font-size: 0.82rem;
+            font-weight: 600;
+            text-decoration: none;
+            letter-spacing: 0.02em;
+            transition: opacity 0.25s ease;
+        }
+        .header-cta:hover { opacity: 0.88; }
+        .nav-toggle { display: none; }
+        @media (max-width: 768px) {
+            .site-nav { display: none; }
+            .header-cta { display: none; }
+        }
 
         /* Contenu Principal */
         .legal-container {
@@ -129,15 +162,27 @@
 </head>
 <body>
 
-    <!-- Header -->
-    <header>
-        <a href="index.html" class="logo">Astra<span>Studio</span></a>
-        <a href="index.html" class="back-link">← Retour au site</a>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a class="brand" href="index.html" aria-label="Astra Studio">
+                <img class="brand-logo" src="assets/branding/astra-studio-logo.png" alt="Astra Studio" />
+            </a>
+            <div class="header-end">
+                <nav class="site-nav" aria-label="Navigation principale">
+                    <a href="index.html">Accueil</a>
+                    <a href="services.html">Services</a>
+                    <a href="portfolio.html">Portfolio</a>
+                    <a href="a-propos.html">À propos</a>
+                    <a href="contact.html">Contact</a>
+                </nav>
+                <a class="header-cta" href="contact.html">Réserver un appel</a>
+            </div>
+        </div>
     </header>
 
-    <!-- Contenu -->
+    <main id="main-content">
     <div class="legal-container">
-        <h1>Politique de Confidentialité</h1>
+        <h1>Politique de confidentialité</h1>
 
         <p>Chez <strong>Astra Studio</strong>, nous accordons une importance fondamentale à la protection de vos données personnelles. La présente politique de confidentialité a pour objet de vous informer de manière transparente sur la collecte et l'utilisation de vos données dans le cadre de votre navigation sur notre site et de l'utilisation de nos services.</p>
 
@@ -145,12 +190,12 @@
         <p>Le responsable du traitement des données collectées est :</p>
         <p class="highlight"><strong>Revel Yanis</strong><br>
         Siège social : 23 rue Bardiaux, 03200 Vichy<br>
-        Email : contact@astrastudio.fr</p>
+        E-mail : contact@astrastudio.fr</p>
 
         <h2>2. Données collectées</h2>
         <p>Nous collectons uniquement les données strictement nécessaires à la fourniture de nos services et à la gestion de la relation client :</p>
         <ul>
-            <li><strong>Données d'identification :</strong> Nom, prénom, adresse email, numéro de téléphone (via les formulaires de contact et de diagnostic).</li>
+            <li><strong>Données d'identification :</strong> nom, prénom, adresse e-mail, numéro de téléphone (via les formulaires de contact et de diagnostic).</li>
             <li><strong>Données professionnelles :</strong> Nom de l'entreprise, poste occupé, secteur d'activité.</li>
             <li><strong>Données de navigation :</strong> Adresse IP, type de navigateur, pages visitées, durée de session (via les cookies et outils d'analyse).</li>
         </ul>
@@ -195,7 +240,7 @@
         </ul>
         <p>Pour exercer ces droits, contactez-nous à : <span class="highlight">contact@astrastudio.fr</span> en joignant une preuve d'identité.</p>
 
-        <h2>8. Cookies et Traceurs</h2>
+        <h2>8. Cookies et traceurs</h2>
         <p>Notre site utilise des cookies pour améliorer l'expérience utilisateur et mesurer l'audience. Vous avez la possibilité de désactiver les cookies via les paramètres de votre navigateur. Aucun cookie traceur publicitaire tiers n'est déposé sans votre consentement préalable.</p>
 
         <div class="contact-box">
@@ -203,14 +248,21 @@
             <p style="margin-bottom:0;">Notre équipe est à votre disposition pour toute demande relative à la protection de vos données personnelles. Écrivez-nous à <strong>contact@astrastudio.fr</strong>.</p>
         </div>
     </div>
+    </main>
 
-    <!-- Footer -->
     <footer>
         <div class="footer-links">
+            <a href="index.html">Accueil</a>
+            <a href="services.html">Services</a>
+            <a href="portfolio.html">Portfolio</a>
+            <a href="a-propos.html">À propos</a>
+            <a href="contact.html">Contact</a>
+        </div>
+        <div class="footer-links" style="margin-top: 12px;">
             <a href="mentions-legales.html">Mentions légales</a>
             <a href="politique-confidentialite.html">Politique de confidentialité</a>
         </div>
-        <p>&copy; 2026 Astra Studio. Tous droits réservés.</p>
+        <p style="margin-top: 20px;">&copy; 2026 Astra Studio. Méthode 100→10→1.</p>
     </footer>
 
 </body>

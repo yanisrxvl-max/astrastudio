@@ -1,0 +1,287 @@
+/* ═══════════════════════════════════════════════════════
+   ASTRA 3D — Premium immersive layer
+   Layered on top of existing base.css / components.css
+   ═══════════════════════════════════════════════════════ */
+
+/* ─── PERSPECTIVE ROOT ─── */
+.page-shell {
+  perspective: 1200px;
+  perspective-origin: 50% 0%;
+}
+
+/* ─── 1. HEADER — Glassmorphism + depth ─── */
+.site-header {
+  transition:
+    padding 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    background 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.site-header.scrolled {
+  background: rgba(5, 5, 5, 0.6);
+  backdrop-filter: blur(20px) saturate(130%);
+  -webkit-backdrop-filter: blur(20px) saturate(130%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.03),
+    0 8px 32px rgba(0, 0, 0, 0.4),
+    0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* ─── 2. HERO — Ambient orb + text motion ─── */
+.hero-orb-canvas {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 1.2s ease;
+}
+
+.hero-orb-canvas.is-ready {
+  opacity: 1;
+}
+
+.hero-content [data-hero-stagger] {
+  opacity: 0;
+  transform: translateY(24px) translateZ(-20px);
+  transition:
+    opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.hero-content [data-hero-stagger].is-visible {
+  opacity: 1;
+  transform: translateY(0) translateZ(0);
+}
+
+.hero-content [data-hero-stagger="1"] { transition-delay: 0.1s; }
+.hero-content [data-hero-stagger="2"] { transition-delay: 0.25s; }
+.hero-content [data-hero-stagger="3"] { transition-delay: 0.4s; }
+.hero-content [data-hero-stagger="4"] { transition-delay: 0.55s; }
+.hero-content [data-hero-stagger="5"] { transition-delay: 0.7s; }
+
+/* ─── 3. CARDS — 3D tilt + dynamic shadow ─── */
+[data-depth-card] {
+  transform-style: preserve-3d;
+  transform:
+    perspective(800px)
+    rotateX(var(--rx, 0deg))
+    rotateY(var(--ry, 0deg));
+  transition:
+    transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.4s ease;
+  will-change: transform, box-shadow;
+}
+
+[data-depth-card]:hover {
+  border-color: rgba(212, 175, 55, 0.2);
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.35),
+    0 0 0 1px rgba(212, 175, 55, 0.08);
+}
+
+[data-depth-card] .card-shine {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  background: radial-gradient(
+    600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(212, 175, 55, 0.06),
+    transparent 40%
+  );
+  transition: opacity 0.4s ease;
+  z-index: 1;
+}
+
+[data-depth-card]:hover .card-shine {
+  opacity: 1;
+}
+
+/* Inner content lifts slightly in Z */
+[data-depth-card] > *:not(.card-shine) {
+  transform: translateZ(20px);
+  transform-style: preserve-3d;
+}
+
+/* ─── 4. BUTTONS — Depth + press effect ─── */
+[data-depth-btn] {
+  transform-style: preserve-3d;
+  transform: perspective(600px) translateZ(0);
+  transition:
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    background 0.35s ease,
+    border-color 0.35s ease;
+}
+
+[data-depth-btn]:hover {
+  transform: perspective(600px) translateZ(8px) translateY(-2px);
+}
+
+[data-depth-btn]:active {
+  transform: perspective(600px) translateZ(-2px) translateY(1px);
+  transition-duration: 0.1s;
+}
+
+/* Glow ring on primary buttons */
+.button-primary[data-depth-btn] {
+  position: relative;
+}
+
+.button-primary[data-depth-btn]:not([aria-busy="true"])::after {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  border-radius: inherit;
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.3), rgba(212, 175, 55, 0));
+  opacity: 0;
+  z-index: -1;
+  transition: opacity 0.4s ease;
+  filter: blur(12px);
+}
+
+.button-primary[data-depth-btn]:not([aria-busy="true"]):hover::after {
+  opacity: 1;
+}
+
+/* ─── 5. SECTIONS — Scroll depth parallax ─── */
+[data-parallax] {
+  will-change: transform;
+  transition: transform 0.1s linear;
+}
+
+/* ─── 6. METHOD PANEL — Floating numbers ─── */
+.method-number[data-float] {
+  animation: astra-float 6s ease-in-out infinite;
+  animation-delay: var(--float-delay, 0s);
+}
+
+@keyframes astra-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+/* ─── 7. MAGNETIC ELEMENTS ─── */
+[data-magnetic] {
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+
+/* ─── 8. SECTION DIVIDERS — Depth lines ─── */
+.section + .section {
+  border-top: none;
+  position: relative;
+}
+
+.section + .section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(80%, 600px);
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(212, 175, 55, 0.15) 20%,
+    rgba(212, 175, 55, 0.25) 50%,
+    rgba(212, 175, 55, 0.15) 80%,
+    transparent
+  );
+}
+
+/* ─── 9. OFFER CARDS — Elevated featured ─── */
+.offer-teaser--featured[data-depth-card] {
+  transform:
+    perspective(800px)
+    rotateX(var(--rx, 0deg))
+    rotateY(var(--ry, 0deg))
+    scale(1.02);
+  box-shadow:
+    0 24px 80px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(212, 175, 55, 0.12),
+    0 0 60px rgba(212, 175, 55, 0.05);
+}
+
+/* ─── 10. TESTIMONIAL CARDS — Subtle float ─── */
+.testimonial-card[data-depth-card] {
+  animation: astra-testimonial-float 8s ease-in-out infinite;
+  animation-delay: var(--float-delay, 0s);
+}
+
+@keyframes astra-testimonial-float {
+  0%, 100% { transform: perspective(800px) translateY(0) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)); }
+  50% { transform: perspective(800px) translateY(-4px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)); }
+}
+
+/* ─── MOBILE — Simplified effects ─── */
+@media (max-width: 980px) {
+  .page-shell {
+    perspective: none;
+  }
+
+  [data-depth-card] {
+    transform: none !important;
+  }
+
+  [data-depth-card]:hover {
+    transform: translateY(-4px) !important;
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.3);
+  }
+
+  [data-depth-card] > *:not(.card-shine) {
+    transform: none;
+  }
+
+  [data-depth-card] .card-shine {
+    display: none;
+  }
+
+  .testimonial-card[data-depth-card] {
+    animation: none;
+  }
+
+  [data-depth-btn]:hover {
+    transform: translateY(-2px);
+  }
+
+  [data-depth-btn]:active {
+    transform: translateY(0);
+  }
+
+  .hero-orb-canvas {
+    display: none;
+  }
+}
+
+/* ─── REDUCED MOTION ─── */
+@media (prefers-reduced-motion: reduce) {
+  [data-depth-card],
+  [data-depth-btn],
+  [data-magnetic],
+  [data-parallax] {
+    transform: none !important;
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .hero-orb-canvas {
+    display: none !important;
+  }
+
+  .hero-content [data-hero-stagger] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .method-number[data-float] {
+    animation: none;
+  }
+}

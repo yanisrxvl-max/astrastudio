@@ -517,8 +517,8 @@ body.nav-open {
 .faq-card {
   display: grid;
   align-content: start;
-  gap: 0.75rem;
-  padding: 1.28rem 1.3rem;
+  gap: var(--card-inner-gap, clamp(0.85rem, 1.4vw, 1.2rem));
+  padding: var(--card-padding, clamp(1.75rem, 2.6vw, 2.6rem));
 }
 
 .stat-card,
@@ -566,37 +566,39 @@ body.nav-open {
 
 .card-eyebrow {
   display: block;
-  margin-bottom: 0.82rem;
+  margin-bottom: 0.95rem;
   color: var(--gold-bright);
   font-size: 0.74rem;
+  line-height: var(--lh-label, 1.45);
   letter-spacing: 0.16em;
   text-transform: uppercase;
 }
 
 .card-title {
-  margin-bottom: 0.68rem;
+  margin-bottom: 0.85rem;
   font-size: 1.35rem;
-  line-height: 1.24;
+  line-height: var(--lh-h3, 1.2);
 }
 
 .card-title.display {
   font-family: var(--font-display);
   font-size: clamp(1.9rem, 3vw, 2.6rem);
-  line-height: 1.09;
+  line-height: var(--lh-h2, 1.16);
   letter-spacing: 0.02em;
   text-wrap: balance;
 }
 
 .card-list {
   display: grid;
-  gap: 0.75rem;
-  margin-top: 0.95rem;
+  gap: 0.88rem;
+  margin-top: 1.05rem;
 }
 
 .card-list li {
   position: relative;
   padding-left: 1rem;
   color: var(--text-soft);
+  line-height: var(--lh-body-loose, 1.68);
 }
 
 .card-list li::before {
@@ -627,7 +629,7 @@ body.nav-open {
 }
 
 .project-card-body {
-  padding: 1.18rem 1.2rem;
+  padding: var(--card-padding, clamp(1.75rem, 2.6vw, 2.6rem));
 }
 
 .project-tag,
@@ -657,7 +659,7 @@ body.nav-open {
 
 .offer-card {
   display: grid;
-  gap: 0.82rem;
+  gap: var(--card-inner-gap, clamp(0.85rem, 1.4vw, 1.2rem));
 }
 
 .offer-card .card-title {
@@ -678,7 +680,7 @@ body.nav-open {
 }
 
 .quote-block {
-  padding: 1.5rem 1.55rem;
+  padding: var(--card-padding-lg, clamp(2rem, 3vw, 2.85rem));
   border-radius: var(--radius);
   border: 1px solid rgba(200, 167, 106, 0.18);
   background:
@@ -689,9 +691,10 @@ body.nav-open {
 .quote-block p {
   font-family: var(--font-display);
   font-size: clamp(1.75rem, 3vw, 2.4rem);
-  line-height: 1.12;
+  line-height: var(--lh-h2, 1.16);
   letter-spacing: 0.02em;
   color: var(--text);
+  max-width: none;
 }
 
 .quote-block span {
@@ -704,7 +707,7 @@ body.nav-open {
 }
 
 .contact-form {
-  padding: clamp(1.25rem, 1.8vw, 1.7rem);
+  padding: clamp(1.65rem, 2.4vw, 2.25rem);
 }
 
 .contact-form-shell {
@@ -725,7 +728,7 @@ body.nav-open {
 .form-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1rem;
+  gap: 1.25rem;
 }
 
 .form-section-head {
@@ -749,7 +752,7 @@ body.nav-open {
 
 .field {
   display: grid;
-  gap: 0.55rem;
+  gap: 0.65rem;
 }
 
 .field.full {
@@ -758,6 +761,7 @@ body.nav-open {
 
 .field label {
   font-size: 0.82rem;
+  line-height: var(--lh-label, 1.45);
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--text-muted);
@@ -765,7 +769,7 @@ body.nav-open {
 
 .field-hint {
   font-size: 0.84rem;
-  line-height: 1.5;
+  line-height: 1.55;
   color: var(--text-muted);
 }
 
@@ -773,12 +777,12 @@ body.nav-open {
 .field select,
 .field textarea {
   width: 100%;
-  padding: 1rem 1.05rem;
+  padding: 1.05rem 1.15rem;
   border-radius: 16px;
   border: 1px solid rgba(255, 255, 255, 0.12);
   background: rgba(14, 16, 21, 0.95);
   color: var(--text);
-  line-height: 1.55;
+  line-height: 1.6;
   transition:
     border-color var(--transition-ui),
     background var(--transition-ui),

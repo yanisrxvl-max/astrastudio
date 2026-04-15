@@ -1,0 +1,32 @@
+{
+  "redirects": [
+    { "source": "/systemes-ia.html", "destination": "/", "permanent": true },
+    { "source": "/systemes-ia", "destination": "/", "permanent": true },
+    { "source": "/formations.html", "destination": "/", "permanent": true },
+    { "source": "/formations", "destination": "/", "permanent": true },
+    { "source": "/work.html", "destination": "/portfolio.html", "permanent": true },
+    { "source": "/work", "destination": "/portfolio", "permanent": true },
+    { "source": "/results.html", "destination": "/portfolio.html", "permanent": true },
+    { "source": "/results", "destination": "/portfolio", "permanent": true },
+    { "source": "/production.html", "destination": "/services.html", "permanent": true },
+    { "source": "/production", "destination": "/services", "permanent": true },
+    { "source": "/creative-influence.html", "destination": "/services.html", "permanent": true },
+    { "source": "/creative-influence", "destination": "/services", "permanent": true },
+    { "source": "/vision.html", "destination": "/a-propos.html", "permanent": true },
+    { "source": "/vision", "destination": "/a-propos", "permanent": true },
+    { "source": "/glowy-glow.html", "destination": "/portfolio.html", "permanent": true },
+    { "source": "/glowy-glow", "destination": "/portfolio", "permanent": true },
+    { "source": "/diagnostic.html", "destination": "/contact.html", "permanent": true },
+    { "source": "/diagnostic", "destination": "/contact", "permanent": true }
+  ],
+  "rewrites": [
+    { "source": "/casting", "destination": "/casting/index.html" },
+    { "source": "/casting/", "destination": "/casting/index.html" },
+    { "source": "/casting/marques", "destination": "/casting/marques.html" },
+    { "source": "/casting/talents", "destination": "/casting/talents.html" },
+    { "source": "/casting/missions", "destination": "/casting/missions.html" },
+    { "source": "/casting/mission", "destination": "/casting/mission.html" },
+    { "source": "/casting/brief", "destination": "/casting/brief.html" },
+    { "source": "/casting/rejoindre", "destination": "/casting/rejoindre.html" }
+  ]
+}

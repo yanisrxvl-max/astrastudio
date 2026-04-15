@@ -586,50 +586,138 @@ body[data-page="home"] .brand:hover .brand-logo-3d {
   }
 }
 
-/* —— Bloc éditorial —— */
-.home-statement {
-  padding: clamp(96px, 15vw, 150px) 0;
+/* —— Section valeur business —— */
+.home-value {
+  padding: clamp(96px, 14vw, 150px) 0;
   background: #060606;
   border-top: 1px solid rgba(255, 255, 255, 0.04);
 }
 
-.home-statement__inner {
-  max-width: min(38rem, var(--prose-max, 65ch));
+.home-value__inner {
+  max-width: 1100px;
   margin: 0 auto;
   text-align: center;
 }
 
-.home-statement__lead {
-  margin: 0 0 clamp(1.5rem, 2.5vh, 1.85rem);
-  font-family: var(--font-display, "Bodoni Moda", Georgia, serif);
-  font-size: clamp(1.35rem, 2.4vw, 1.75rem);
+.home-value__kicker {
+  display: inline-block;
+  margin: 0 0 clamp(1rem, 1.8vh, 1.25rem);
+  font-family: var(--font-hero-ui, "Sora", sans-serif);
+  font-size: 0.68rem;
   font-weight: 600;
-  line-height: 1.18;
-  color: rgba(250, 245, 238, 0.94);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(212, 175, 55, 0.85);
 }
 
-body[data-page="home"] .home-statement__lead {
-  font-family: var(--font-hero-display);
+.home-value__title {
+  margin: 0 auto clamp(1.15rem, 2vh, 1.5rem);
+  max-width: 22ch;
+  font-family: var(--font-hero-display, "Bodoni Moda", Georgia, serif);
+  font-size: clamp(1.65rem, 3.2vw, 2.5rem);
+  font-weight: 600;
+  line-height: 1.12;
   letter-spacing: -0.02em;
+  color: rgba(250, 245, 238, 0.96);
 }
 
-.home-statement__text {
-  margin: 0 auto 2.25rem;
-  max-width: 58ch;
-  font-size: 1.04rem;
-  line-height: 1.65;
+.home-value__sub {
+  margin: 0 auto clamp(2.5rem, 4.5vw, 3.5rem);
+  max-width: 52ch;
+  font-family: var(--font-hero-ui, "Sora", sans-serif);
+  font-size: clamp(0.98rem, 1.15vw, 1.06rem);
+  line-height: 1.7;
   color: rgba(255, 255, 255, 0.52);
 }
 
-body[data-page="home"] .home-statement__text {
-  font-family: var(--font-hero-ui);
+.home-value__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(16px, 2vw, 22px);
+  margin-bottom: clamp(2.5rem, 4vw, 3.5rem);
 }
 
-.home-statement__link {
-  font-size: 0.88rem;
-  font-weight: 500;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+.home-value__card {
+  position: relative;
+  padding: clamp(26px, 3vw, 34px) clamp(22px, 2.5vw, 28px);
+  border-radius: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: linear-gradient(165deg, rgba(15, 17, 22, 0.7), rgba(8, 9, 13, 0.85));
+  text-align: left;
+  transition:
+    border-color 0.4s ease,
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.4s ease,
+    background 0.4s ease;
+}
+
+.home-value__card:hover {
+  border-color: rgba(212, 175, 55, 0.25);
+  background: linear-gradient(165deg, rgba(18, 16, 12, 0.75), rgba(10, 11, 15, 0.9));
+  transform: translateY(-5px);
+  box-shadow:
+    0 20px 48px rgba(0, 0, 0, 0.25),
+    0 0 0 1px rgba(212, 175, 55, 0.08);
+}
+
+.home-value__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  margin-bottom: 18px;
+  border-radius: 14px;
+  border: 1px solid rgba(212, 175, 55, 0.15);
+  background: rgba(212, 175, 55, 0.06);
+  color: rgba(232, 204, 151, 0.85);
+  transition: border-color 0.3s ease, background 0.3s ease;
+}
+
+.home-value__card:hover .home-value__icon {
+  border-color: rgba(212, 175, 55, 0.3);
+  background: rgba(212, 175, 55, 0.1);
+}
+
+.home-value__card-title {
+  margin: 0 0 8px;
+  font-family: var(--font-hero-ui, "Sora", sans-serif);
+  font-size: 1.08rem;
+  font-weight: 600;
+  color: #fff;
+  letter-spacing: 0.01em;
+}
+
+.home-value__card-text {
+  margin: 0;
+  font-size: 0.92rem;
+  line-height: 1.62;
+  color: rgba(255, 255, 255, 0.52);
+}
+
+.home-value__cta {
+  text-align: center;
+}
+
+@media (max-width: 980px) {
+  .home-value__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .home-value__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .home-value__card {
+    text-align: center;
+  }
+
+  .home-value__icon {
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
 
 /* —— CTA final —— */

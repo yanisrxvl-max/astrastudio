@@ -1,0 +1,308 @@
+{
+  "version": 1,
+  "leadEndpoint": null,
+  "intro": {
+    "kicker": "Diagnostic express",
+    "title": "Quelle offre correspond à votre marque ?",
+    "lead": "Neuf questions, moins de deux minutes. Pas d'algorithme opaque : des réponses pondérées et des règles simples pour orienter vers le bon format — avant d'investir au mauvais endroit.",
+    "cta": "Lancer le diagnostic",
+    "footnote": "Vos réponses restent dans votre navigateur jusqu'à ce que vous choisissiez de nous les envoyer."
+  },
+  "offers": {
+    "starter": {
+      "id": "starter",
+      "name": "Premier pas — échange d'orientation",
+      "priceHint": "Gratuit · court échange",
+      "profileLabel": "Marque en amorçage",
+      "href": "contact.html?quiz=starter",
+      "hrefLabel": "Réserver un court échange",
+      "secondaryHref": "offre-audit-marque.html",
+      "secondaryHrefLabel": "Découvrir l'audit",
+      "why": "Vous êtes encore en phase de structuration ou avec un budget créa très limité. Un call court permet de cadrer la suite sans engagement — et souvent de confirmer si un diagnostic plus poussé est pertinent.",
+      "bullets": [
+        "Comprendre où vous en êtes avant de choisir un format",
+        "Éviter de sous-investir ou sur-investir trop tôt",
+        "Point d'entrée léger, utile si la marque n'est pas encore stabilisée"
+      ]
+    },
+    "custom": {
+      "id": "custom",
+      "name": "Mission sur mesure",
+      "priceHint": "Devis sur brief",
+      "profileLabel": "Besoin borné dans le temps",
+      "href": "contact.html?intent=custom",
+      "hrefLabel": "Décrire mon projet",
+      "secondaryHref": "offre-sur-mesure.html",
+      "secondaryHrefLabel": "Voir le format mission",
+      "why": "Vous avez une échéance ou un livrable précis (lancement, salon, campagne). Ce n'est pas le moment d'un abonnement : il faut un périmètre clair, une proposition chiffrée et une exécution calée.",
+      "bullets": [
+        "Brief + réponse sous 24 h, investissement aligné sur le projet",
+        "Idéal quand le besoin est daté et nommable",
+        "Complète l'audit si vous avez encore besoin de clarté stratégique avant"
+      ]
+    },
+    "audit": {
+      "id": "audit",
+      "name": "Audit stratégique de marque",
+      "priceHint": "À partir de 490 — 690 € selon formule",
+      "profileLabel": "Besoin de clarté avant d'agir",
+      "href": "contact.html?offer=audit",
+      "hrefLabel": "Réserver un audit",
+      "secondaryHref": "offre-audit-marque.html",
+      "secondaryHrefLabel": "Lire la page audit",
+      "why": "Votre priorité est de voir juste : cohérence, positionnement, image. L'audit structure le diagnostic avant production ou avant un gros engagement — c'est souvent le meilleur ROI quand l'image est encore floue.",
+      "bullets": [
+        "Livret stratégique + restitution pour décider sereinement",
+        "Pertinent si la marque n'est pas mûre pour un rythme mensuel",
+        "Point d'étape idéal avant une mission ou une direction continue"
+      ]
+    },
+    "direction": {
+      "id": "direction",
+      "name": "Direction créative premium",
+      "priceHint": "Dès 1 500 — 1 800 € / mois",
+      "profileLabel": "Prêt pour un pilotage dans la durée",
+      "href": "contact.html?offer=direction",
+      "hrefLabel": "Candidater pour l'accompagnement",
+      "secondaryHref": "offre-direction-creative.html",
+      "secondaryHrefLabel": "Voir le détail de l'offre",
+      "why": "Vous visez une présence régulière, haut de gamme et cohérente, avec un investissement récurrent. L'abonnement correspond quand la base existe et que l'enjeu est la tenue dans le temps — pas un test de deux semaines.",
+      "bullets": [
+        "Direction artistique continue + cadence de production exploitable",
+        "Engagement minimum généralement 3 mois — cohérence avant volume",
+        "Adapté quand l'ambition et le budget suivent"
+      ]
+    }
+  },
+  "tieBreakOrder": ["audit", "custom", "direction", "starter"],
+  "questions": [
+    {
+      "id": "q1",
+      "prompt": "Où en est votre marque aujourd'hui ?",
+      "options": [
+        {
+          "id": "early",
+          "label": "Je lance ou tout juste structure",
+          "subtitle": "Peu ou pas de historique de vente / d'image stable",
+          "scores": { "starter": 5, "audit": 3, "custom": 1, "direction": 0 }
+        },
+        {
+          "id": "growing",
+          "label": "Il y a des ventes, l'image est encore floue",
+          "subtitle": "Ça tourne, mais la perception de marque n'est pas cadrée",
+          "scores": { "starter": 0, "audit": 5, "custom": 2, "direction": 1 }
+        },
+        {
+          "id": "established",
+          "label": "Marque installée — je veux monter d'un cran",
+          "subtitle": "Base réelle, enjeu de cohérence ou de gamme",
+          "scores": { "starter": 0, "audit": 2, "custom": 2, "direction": 5 }
+        }
+      ]
+    },
+    {
+      "id": "q2",
+      "prompt": "Votre priorité sur les 90 prochains jours ?",
+      "options": [
+        {
+          "id": "clarity",
+          "label": "Comprendre ce qui bloque la perception",
+          "subtitle": "Diagnostic avant de produire à grande échelle",
+          "scores": { "audit": 6, "starter": 1, "custom": 0, "direction": 1 }
+        },
+        {
+          "id": "deadline",
+          "label": "Livrer pour une date ou un événement",
+          "subtitle": "Lancement, salon, campagne, shooting…",
+          "scores": { "custom": 6, "audit": 2, "direction": 0, "starter": 0 }
+        },
+        {
+          "id": "rhythm",
+          "label": "Tenir une présence régulière et cohérente",
+          "subtitle": "Réseaux, contenus, ligne éditoriale",
+          "scores": { "direction": 6, "audit": 1, "custom": 1, "starter": 0 }
+        },
+        {
+          "id": "scale",
+          "label": "Accélérer fortement la croissance visuelle",
+          "subtitle": "Volume + niveau d'exigence élevé",
+          "scores": { "direction": 5, "audit": 2, "custom": 2, "starter": 0 }
+        }
+      ]
+    },
+    {
+      "id": "q3",
+      "prompt": "Comment qualifieriez-vous votre image actuelle ?",
+      "options": [
+        {
+          "id": "weak",
+          "label": "Incohérente ou amateur",
+          "subtitle": "Dispersée, peu lisible, peu premium",
+          "scores": { "audit": 5, "starter": 2, "direction": 1, "custom": 1 }
+        },
+        {
+          "id": "ok",
+          "label": "Correcte mais pas mémorable",
+          "subtitle": "Ça passe, sans tenue forte",
+          "scores": { "audit": 4, "direction": 3, "custom": 1, "starter": 0 }
+        },
+        {
+          "id": "strong",
+          "label": "Déjà soignée — à affiner ou décliner",
+          "subtitle": "Base saine, besoin de niveau ou de système",
+          "scores": { "direction": 4, "custom": 3, "audit": 1, "starter": 0 }
+        }
+      ]
+    },
+    {
+      "id": "q4",
+      "prompt": "Quel type de besoin dans le temps ?",
+      "options": [
+        {
+          "id": "one_shot",
+          "label": "Ponctuel — deadline claire",
+          "subtitle": "Un projet, une livraison, une date",
+          "scores": { "custom": 7, "audit": 1, "direction": 0, "starter": 1 }
+        },
+        {
+          "id": "mixed",
+          "label": "Projet maintenant, puis peut-être la suite",
+          "subtitle": "Les deux",
+          "scores": { "audit": 3, "custom": 3, "direction": 2, "starter": 0 }
+        },
+        {
+          "id": "ongoing",
+          "label": "Continu — mois après mois",
+          "subtitle": "Pilotage et production dans la durée",
+          "scores": { "direction": 7, "audit": 1, "custom": 0, "starter": 0 }
+        }
+      ]
+    },
+    {
+      "id": "q5",
+      "prompt": "Ordre de grandeur d'investissement créa / direction (réaliste)",
+      "options": [
+        {
+          "id": "low",
+          "label": "Très limité pour l'instant",
+          "subtitle": "Pas de budget récurrent significatif",
+          "scores": { "starter": 6, "audit": 2, "custom": 1, "direction": 0 }
+        },
+        {
+          "id": "mid",
+          "label": "Budget ponctuel ou centaines à ~1,5 k€",
+          "subtitle": "Un diagnostic ou une mission ciblée",
+          "scores": { "audit": 5, "custom": 4, "direction": 1, "starter": 0 }
+        },
+        {
+          "id": "project",
+          "label": "Projet significatif ou récurrent sérieux",
+          "subtitle": "Prêt à engager sur un scope clair",
+          "scores": { "custom": 3, "audit": 3, "direction": 4, "starter": 0 }
+        },
+        {
+          "id": "retainer",
+          "label": "Accompagnement mensuel type premium",
+          "subtitle": "Ligne budgétaire dédiée à la direction créative",
+          "scores": { "direction": 7, "audit": 1, "custom": 0, "starter": 0 }
+        }
+      ]
+    },
+    {
+      "id": "q6",
+      "prompt": "Qui porte la créa en interne aujourd'hui ?",
+      "options": [
+        {
+          "id": "none",
+          "label": "Personne de dédié",
+          "subtitle": "Tout est à construire côté exécution",
+          "scores": { "direction": 4, "audit": 3, "custom": 1, "starter": 1 }
+        },
+        {
+          "id": "founder",
+          "label": "Fondateur·rice ou une personne à temps partiel",
+          "subtitle": "Souvent surchargé",
+          "scores": { "audit": 4, "direction": 3, "custom": 2, "starter": 0 }
+        },
+        {
+          "id": "team",
+          "label": "Petite équipe ou freelance régulier",
+          "subtitle": "Il manque souvent la direction",
+          "scores": { "direction": 3, "custom": 3, "audit": 2, "starter": 0 }
+        }
+      ]
+    },
+    {
+      "id": "q7",
+      "prompt": "Fréquence de publication visée (ou actuelle) sur vos canaux principaux",
+      "options": [
+        {
+          "id": "rare",
+          "label": "Rare ou irrégulière",
+          "subtitle": "Pas de rythme stable",
+          "scores": { "audit": 4, "starter": 2, "direction": 0, "custom": 1 }
+        },
+        {
+          "id": "monthly",
+          "label": "Quelques fois par mois",
+          "subtitle": "Rythme modéré",
+          "scores": { "audit": 3, "direction": 3, "custom": 1, "starter": 0 }
+        },
+        {
+          "id": "weekly",
+          "label": "Plusieurs fois par semaine",
+          "subtitle": "Forte exigence de cadence",
+          "scores": { "direction": 6, "audit": 1, "custom": 1, "starter": 0 }
+        }
+      ]
+    },
+    {
+      "id": "q8",
+      "prompt": "Engagement d'au moins 3 mois pour une direction continue : c'est envisageable ?",
+      "options": [
+        {
+          "id": "yes",
+          "label": "Oui, si le fit est clair",
+          "subtitle": "Je comprends l'enjeu de la continuité",
+          "scores": { "direction": 7, "audit": 0, "custom": 0, "starter": 0 }
+        },
+        {
+          "id": "no",
+          "label": "Plutôt non — je veux du ponctuel ou du clair d'abord",
+          "subtitle": "Pas de récurrent pour l'instant",
+          "scores": { "audit": 5, "custom": 4, "direction": 0, "starter": 2 }
+        },
+        {
+          "id": "unsure",
+          "label": "Je ne sais pas encore",
+          "subtitle": "Besoin d'éléments pour décider",
+          "scores": { "audit": 5, "direction": 1, "custom": 2, "starter": 1 }
+        }
+      ]
+    },
+    {
+      "id": "q9",
+      "prompt": "Ce qui compte le plus pour vous maintenant",
+      "options": [
+        {
+          "id": "see",
+          "label": "Voir clair avant d'investir",
+          "subtitle": "Réduire le risque de mauvaise dépense",
+          "scores": { "audit": 6, "starter": 1, "custom": 1, "direction": 0 }
+        },
+        {
+          "id": "ship",
+          "label": "Produire vite pour une échéance",
+          "subtitle": "Livrables datés",
+          "scores": { "custom": 6, "audit": 2, "direction": 1, "starter": 0 }
+        },
+        {
+          "id": "system",
+          "label": "Installer un système durable",
+          "subtitle": "Direction + répétabilité",
+          "scores": { "direction": 6, "audit": 2, "custom": 0, "starter": 0 }
+        }
+      ]
+    }
+  ]
+}

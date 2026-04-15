@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Nos Services | Astra Studio — Direction artistique pour marques beauté</title>
   <meta name="description"
-    content="Deux offres packagées pour les marques beauté : Audit Stratégique de Marque et Direction Créative Premium. Une lecture claire, puis une direction continue." />
+    content="Diagnostic express en 9 questions : découvrez quelle offre Astra Studio correspond à votre marque beauté — audit, mission sur mesure ou direction créative." />
   <meta name="theme-color" content="#050505" />
   <link rel="icon" type="image/png" href="assets/favicon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -19,310 +19,9 @@
   <link rel="stylesheet" href="css/pages.css" />
   <link rel="stylesheet" href="css/styles-premium.css" />
   <link rel="stylesheet" href="css/astra-3d.css" />
+  <link rel="stylesheet" href="css/services-quiz.css" />
 
   <style>
-    /* ═══ HOW WE WORK ═══ */
-    .process-journey {
-      display: grid;
-      grid-template-columns: minmax(240px, 0.38fr) minmax(0, 0.62fr);
-      gap: clamp(26px, 3.8vw, 52px);
-      align-items: start;
-    }
-
-    .process-rail {
-      position: sticky;
-      top: 120px;
-      display: grid;
-      gap: 18px;
-      padding: 24px 24px 26px;
-      border-radius: 26px;
-      border: 1px solid rgba(255,255,255,0.07);
-      background:
-        linear-gradient(160deg, rgba(13,16,22,0.92), rgba(8,10,14,0.96)),
-        radial-gradient(circle at top, rgba(212,175,55,0.08), transparent 46%);
-      box-shadow:
-        inset 0 1px 0 rgba(255,255,255,0.05),
-        0 24px 44px rgba(0,0,0,0.22);
-      overflow: hidden;
-    }
-
-    .process-rail::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      background: linear-gradient(180deg, rgba(255,255,255,0.03), transparent 18%, transparent 82%, rgba(255,255,255,0.02));
-      opacity: 0.9;
-    }
-
-    .process-rail-head {
-      position: relative;
-      z-index: 1;
-      display: grid;
-      gap: 10px;
-      padding-bottom: 18px;
-      border-bottom: 1px solid rgba(255,255,255,0.06);
-    }
-
-    .process-rail-head strong {
-      font-family: var(--font-display, "Bodoni Moda", Georgia, serif);
-      font-size: clamp(1.35rem, 2vw, 1.7rem);
-      line-height: 1.1;
-      color: #fff;
-    }
-
-    .process-rail-head p {
-      margin: 0;
-      color: rgba(255,255,255,0.58);
-      line-height: 1.65;
-      font-size: 0.92rem;
-    }
-
-    .process-rail-track {
-      position: relative;
-      z-index: 1;
-      padding-left: 20px;
-    }
-
-    .process-rail-line,
-    .process-rail-progress {
-      position: absolute;
-      left: 11px;
-      top: 10px;
-      bottom: 10px;
-      width: 1px;
-      border-radius: 999px;
-    }
-
-    .process-rail-line {
-      background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
-    }
-
-    .process-rail-progress {
-      bottom: auto;
-      height: var(--process-progress, 0%);
-      background: linear-gradient(180deg, rgba(212,175,55,0.95), rgba(236,209,154,0.38));
-      box-shadow: 0 0 14px rgba(212,175,55,0.22);
-      transition: height 0.5s cubic-bezier(0.22, 1, 0.36, 1);
-    }
-
-    .process-rail-list {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      display: grid;
-      gap: 14px;
-    }
-
-    .process-rail-item {
-      position: relative;
-      display: grid;
-      gap: 4px;
-      padding-left: 22px;
-      color: rgba(255,255,255,0.44);
-      transition: color 0.35s ease, transform 0.35s ease;
-    }
-
-    .process-rail-item::before {
-      content: "";
-      position: absolute;
-      left: -9px;
-      top: 8px;
-      width: 10px;
-      height: 10px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.16);
-      background: rgba(10,12,16,0.95);
-      box-shadow: 0 0 0 6px rgba(10,12,16,0.96);
-      transition: transform 0.35s ease, border-color 0.35s ease, background 0.35s ease, box-shadow 0.35s ease;
-    }
-
-    .process-rail-item small {
-      font-size: 0.72rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.34);
-      transition: color 0.35s ease;
-    }
-
-    .process-rail-item strong {
-      font-size: 0.94rem;
-      line-height: 1.4;
-      font-weight: 600;
-      color: inherit;
-    }
-
-    .process-rail-item.is-active {
-      color: rgba(255,248,236,0.96);
-      transform: translateX(4px);
-    }
-
-    .process-rail-item.is-active small {
-      color: rgba(232,204,151,0.88);
-    }
-
-    .process-rail-item.is-active::before {
-      transform: scale(1.16);
-      border-color: rgba(212,175,55,0.65);
-      background: rgba(212,175,55,0.92);
-      box-shadow: 0 0 0 6px rgba(212,175,55,0.08), 0 0 16px rgba(212,175,55,0.22);
-    }
-
-    .process-stage-stack {
-      display: grid;
-      gap: clamp(18px, 2.8vw, 24px);
-    }
-
-    .process-stage {
-      position: relative;
-      display: grid;
-      gap: 18px;
-      padding: clamp(24px, 3vw, 32px);
-      border-radius: 24px;
-      border: 1px solid rgba(255,255,255,0.07);
-      background:
-        linear-gradient(160deg, rgba(14,17,24,0.88), rgba(8,10,14,0.95)),
-        radial-gradient(circle at top right, rgba(212,175,55,0.04), transparent 34%);
-      box-shadow:
-        inset 0 1px 0 rgba(255,255,255,0.04),
-        0 16px 34px rgba(0,0,0,0.18);
-      transition:
-        transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
-        border-color 0.4s ease,
-        box-shadow 0.4s ease,
-        background 0.4s ease,
-        opacity 0.4s ease;
-    }
-
-    .process-stage::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      border-radius: inherit;
-      pointer-events: none;
-      background: linear-gradient(180deg, rgba(255,255,255,0.02), transparent 20%, transparent 78%, rgba(255,255,255,0.015));
-    }
-
-    .process-stage.is-active {
-      border-color: rgba(212,175,55,0.26);
-      background:
-        linear-gradient(160deg, rgba(20,18,13,0.9), rgba(9,10,14,0.96)),
-        radial-gradient(circle at top right, rgba(212,175,55,0.1), transparent 38%);
-      box-shadow:
-        inset 0 1px 0 rgba(255,255,255,0.06),
-        0 24px 48px rgba(0,0,0,0.24),
-        0 0 0 1px rgba(212,175,55,0.06);
-      transform: translateY(-2px);
-    }
-
-    .process-stage-head {
-      display: grid;
-      grid-template-columns: auto 1fr;
-      gap: 18px;
-      align-items: start;
-    }
-
-    .process-stage-icon {
-      width: 56px;
-      height: 56px;
-      border-radius: 18px;
-      border: 1px solid rgba(212,175,55,0.18);
-      background:
-        linear-gradient(180deg, rgba(212,175,55,0.12), rgba(212,175,55,0.04)),
-        rgba(11,13,17,0.92);
-      display: grid;
-      place-items: center;
-      color: rgba(236,209,154,0.95);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
-    }
-
-    .process-stage-icon svg {
-      width: 24px;
-      height: 24px;
-      stroke: currentColor;
-      fill: none;
-      stroke-width: 1.8;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
-
-    .process-stage-step {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 8px;
-      font-size: 0.74rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: rgba(232,204,151,0.82);
-    }
-
-    .process-stage-step b {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 26px;
-      height: 26px;
-      border-radius: 999px;
-      border: 1px solid rgba(212,175,55,0.24);
-      background: rgba(212,175,55,0.08);
-      font-family: var(--font-display, "Bodoni Moda", Georgia, serif);
-      font-size: 0.82rem;
-      color: rgba(255,248,236,0.96);
-    }
-
-    .process-stage h3 {
-      margin: 0 0 8px;
-      font-size: clamp(1.18rem, 2vw, 1.46rem);
-      line-height: 1.18;
-      color: #fff;
-      font-weight: 600;
-    }
-
-    .process-stage p {
-      margin: 0;
-      color: rgba(255,255,255,0.66);
-      line-height: 1.75;
-      font-size: 0.98rem;
-      max-width: 64ch;
-    }
-
-    .process-stage-note {
-      padding: 14px 16px;
-      border-radius: 16px;
-      border: 1px solid rgba(255,255,255,0.06);
-      background: rgba(255,255,255,0.02);
-      color: rgba(255,255,255,0.58);
-      font-size: 0.88rem;
-      line-height: 1.62;
-    }
-
-    @media (max-width: 980px) {
-      .process-journey {
-        grid-template-columns: 1fr;
-      }
-
-      .process-rail {
-        position: relative;
-        top: 0;
-      }
-    }
-
-    @media (max-width: 640px) {
-      .process-stage-head {
-        grid-template-columns: 1fr;
-      }
-
-      .process-stage-icon {
-        width: 50px;
-        height: 50px;
-      }
-
-      .process-rail {
-        padding: 20px 18px 22px;
-      }
-    }
-
     /* ═══ OFFER DETAIL CARDS ═══ */
     .offer-detail {
       position: relative;
@@ -588,6 +287,7 @@
 
   <script defer src="js/app.js"></script>
   <script defer src="js/astra-3d.js"></script>
+  <script defer src="js/services-quiz.js"></script>
 </head>
 
 <body data-page="services">
@@ -625,180 +325,28 @@
          SECTION 1 — HERO
          ═══════════════════════════════════════ -->
     <section class="section page-hero" style="padding-top: 140px;" aria-labelledby="services-heading">
-      <div class="container">
+      <div class="container" style="text-align: center; max-width: 720px; margin-inline: auto;">
         <span class="kicker reveal reveal-tilt">Nos Services</span>
-        <h1 class="display-title" id="services-heading" style="margin: 20px 0 16px; max-width: 18ch;">
-          Deux offres nettes pour structurer et élever votre marque.
+        <h1 class="display-title" id="services-heading" style="margin: 20px auto 16px; max-width: 20ch;">
+          La bonne offre, avant le bon devis.
         </h1>
-        <p class="subhead">
-          Un diagnostic stratégique pour voir juste. Un accompagnement premium pour tenir une direction dans le temps.
+        <p class="subhead" style="margin-inline: auto;">
+          Neuf questions, moins de deux minutes : un diagnostic simple pour orienter vers l’audit, une mission ponctuelle, ou une direction créative continue — selon votre maturité et votre calendrier.
         </p>
+        <div class="button-row button-row-center" style="margin-top: 28px;">
+          <a class="button button-primary" href="#diagnostic">Lancer le diagnostic</a>
+          <a class="button button-secondary" href="#offres-detail">Voir les offres</a>
+        </div>
       </div>
     </section>
 
     <!-- ═══════════════════════════════════════
-         SECTION 2 — HOW WE WORK
+         SECTION 2 — DIAGNOSTIC INTERACTIF
          ═══════════════════════════════════════ -->
-    <section class="section" style="background: #070707;" aria-labelledby="process-heading">
+    <section class="section" id="diagnostic" style="background: #070707;" aria-label="Diagnostic express interactif">
       <div class="container">
-        <span class="kicker reveal reveal-tilt">Comment nous travaillons</span>
-        <h2 id="process-heading" class="reveal" style="margin: 20px 0 14px; max-width: 18ch;">
-          Un process en 9 étapes pour faire émerger une direction juste.
-        </h2>
-        <p class="subhead reveal" style="margin-bottom: clamp(28px, 4vw, 42px); max-width: 62ch;">
-          Le studio avance par séquences claires : cadrage stratégique, exploration massive, curation rigoureuse, validation, puis production finale avec guidelines.
-        </p>
-
-        <div class="process-journey">
-          <aside class="process-rail reveal reveal-card" data-process-rail>
-            <div class="process-rail-head">
-              <strong>Méthode Astra Studio</strong>
-              <p>L'acuité d'un directeur artistique, la vitesse d'un système bien cadré, et un point de validation critique avant toute production finale.</p>
-            </div>
-            <div class="process-rail-track">
-              <div class="process-rail-line" aria-hidden="true"></div>
-              <div class="process-rail-progress" aria-hidden="true"></div>
-              <ol class="process-rail-list">
-                <li class="process-rail-item is-active" data-process-nav="1"><small>01</small><strong>Questionnaire stratégique</strong></li>
-                <li class="process-rail-item" data-process-nav="2"><small>02</small><strong>Analyse stratégique</strong></li>
-                <li class="process-rail-item" data-process-nav="3"><small>03</small><strong>Exploration créative</strong></li>
-                <li class="process-rail-item" data-process-nav="4"><small>04</small><strong>Curation Phase 10</strong></li>
-                <li class="process-rail-item" data-process-nav="5"><small>05</small><strong>Moodboards</strong></li>
-                <li class="process-rail-item" data-process-nav="6"><small>06</small><strong>Rationalisation écrite</strong></li>
-                <li class="process-rail-item" data-process-nav="7"><small>07</small><strong>Validation client</strong></li>
-                <li class="process-rail-item" data-process-nav="8"><small>08</small><strong>Production finale</strong></li>
-                <li class="process-rail-item" data-process-nav="9"><small>09</small><strong>Livraison + guidelines</strong></li>
-              </ol>
-            </div>
-          </aside>
-
-          <div class="process-stage-stack">
-            <article class="process-stage reveal reveal-card is-active" data-process-step="1" data-depth-card>
-              <div class="process-stage-head">
-                <div class="process-stage-icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24"><path d="M5 6h14"/><path d="M5 12h8"/><path d="M5 18h10"/><path d="M18 15l2 2 4-4"/></svg>
-                </div>
-                <div>
-                  <div class="process-stage-step"><b>01</b> Questionnaire Stratégique</div>
-                  <h3>Onboarding asynchrone : l'histoire de la marque avant les visuels.</h3>
-                  <p>On commence par un questionnaire structuré pour comprendre votre histoire, votre cible, vos valeurs, votre différenciation et ce que votre marque doit vraiment faire ressentir. Sans cette matière, la création reste décorative. Avec elle, elle devient orientée.</p>
-                </div>
-              </div>
-              <div class="process-stage-note">Objectif : construire une base de lecture claire avant toute piste créative.</div>
-            </article>
-
-            <article class="process-stage reveal reveal-card" data-process-step="2" data-depth-card>
-              <div class="process-stage-head">
-                <div class="process-stage-icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24"><path d="M4 19h16"/><path d="M7 15l3-3 3 2 4-5"/></svg>
-                </div>
-                <div>
-                  <div class="process-stage-step"><b>02</b> Analyse Stratégique</div>
-                  <h3>Synthèse des signaux et identification du territoire d'expression.</h3>
-                  <p>Le studio transforme vos réponses en lecture stratégique : quels codes garder, quelles tensions résoudre, quel angle visuel assumer, et quel territoire d'expression peut soutenir la marque dans la durée.</p>
-                </div>
-              </div>
-              <div class="process-stage-note">Objectif : passer d'informations dispersées à une hypothèse créative solide.</div>
-            </article>
-
-            <article class="process-stage reveal reveal-card" data-process-step="3" data-depth-card>
-              <div class="process-stage-head">
-                <div class="process-stage-icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24"><path d="M12 3v18"/><path d="M3 12h18"/><path d="M5.6 5.6l12.8 12.8"/><path d="M18.4 5.6 5.6 18.4"/></svg>
-                </div>
-                <div>
-                  <div class="process-stage-step"><b>03</b> Exploration Créative — Phase 100</div>
-                  <h3>Génération massive de concepts visuels par IA, sans se censurer trop tôt.</h3>
-                  <p>C'est la phase d'exhaustivité exploratoire. On ouvre très largement le champ des possibilités pour tester lumières, matières, compositions, directions de casting, textures et signatures visuelles. L'enjeu n'est pas de tout garder, mais de ne pas passer à côté de la bonne piste.</p>
-                </div>
-              </div>
-              <div class="process-stage-note">Objectif : explorer large pour éviter les solutions trop rapides, trop attendues ou trop pauvres.</div>
-            </article>
-
-            <article class="process-stage reveal reveal-card" data-process-step="4" data-depth-card>
-              <div class="process-stage-head">
-                <div class="process-stage-icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24"><path d="m6 12 4 4 8-8"/><path d="M4 6h6"/><path d="M14 6h6"/><path d="M4 18h16"/></svg>
-                </div>
-                <div>
-                  <div class="process-stage-step"><b>04</b> Curation — Phase 10</div>
-                  <h3>Le directeur artistique filtre, coupe et garde uniquement ce qui est aligné à la stratégie.</h3>
-                  <p>La vitesse de génération ne vaut rien sans goût ni arbitrage. Ici, le studio sélectionne les itérations qui soutiennent réellement votre positionnement et élimine ce qui est séduisant mais hors sujet.</p>
-                </div>
-              </div>
-              <div class="process-stage-note">Objectif : passer d'une abondance de possibilités à un noyau de pistes pertinentes.</div>
-            </article>
-
-            <article class="process-stage reveal reveal-card" data-process-step="5" data-depth-card>
-              <div class="process-stage-head">
-                <div class="process-stage-icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24"><rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/><rect x="4" y="13" width="7" height="7" rx="1.5"/><rect x="13" y="13" width="7" height="7" rx="1.5"/></svg>
-                </div>
-                <div>
-                  <div class="process-stage-step"><b>05</b> Moodboards</div>
-                  <h3>Planches d'ambiance thématiques : lumière, typographie, composition, sensation.</h3>
-                  <p>Les moodboards servent à stabiliser le territoire retenu. On y organise les signes visuels qui vont structurer la suite : ambiance lumineuse, tension éditoriale, densité graphique, matières, cadrage et hiérarchie typographique.</p>
-                </div>
-              </div>
-              <div class="process-stage-note">Objectif : rendre la direction tangible, lisible et partageable avant l'exécution.</div>
-            </article>
-
-            <article class="process-stage reveal reveal-card" data-process-step="6" data-depth-card>
-              <div class="process-stage-head">
-                <div class="process-stage-icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24"><path d="M7 5h10"/><path d="M7 9h10"/><path d="M7 13h6"/><path d="M7 17h8"/></svg>
-                </div>
-                <div>
-                  <div class="process-stage-step"><b>06</b> Rationalisation Écrite</div>
-                  <h3>Chaque choix esthétique est justifié pour rester exploitable dans le temps.</h3>
-                  <p>Le studio formalise noir sur blanc pourquoi telle direction est retenue, ce qu'elle raconte, comment elle se traduit et ce qu'elle permet commercialement. Cela évite les validations purement intuitives et sécurise la cohérence future.</p>
-                </div>
-              </div>
-              <div class="process-stage-note">Objectif : transformer une intention visuelle en système compréhensible et défendable.</div>
-            </article>
-
-            <article class="process-stage reveal reveal-card" data-process-step="7" data-depth-card>
-              <div class="process-stage-head">
-                <div class="process-stage-icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24"><path d="M12 3v6"/><path d="M8 21h8"/><path d="M9 9h6l2 3-5 5-5-5 2-3Z"/></svg>
-                </div>
-                <div>
-                  <div class="process-stage-step"><b>07</b> Validation Client</div>
-                  <h3>Le point de contrôle critique avant toute production définitive.</h3>
-                  <p>Cette étape évite les dérives tardives et les corrections coûteuses. On valide la direction, le niveau d'intention et le cap général avant d'engager l'exécution finale. C'est le moment où l'on sécurise la suite ensemble.</p>
-                </div>
-              </div>
-              <div class="process-stage-note">Objectif : aligner pleinement le studio et la marque avant la phase finale “1”.</div>
-            </article>
-
-            <article class="process-stage reveal reveal-card" data-process-step="8" data-depth-card>
-              <div class="process-stage-head">
-                <div class="process-stage-icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24"><path d="m4 18 5-5 4 4 7-9"/><path d="M4 6h5"/><path d="M4 10h8"/></svg>
-                </div>
-                <div>
-                  <div class="process-stage-step"><b>08</b> Production Finale — Phase 1</div>
-                  <h3>Génération, affinage, upscaling : la direction devient asset exploitable.</h3>
-                  <p>Une fois la direction validée, on produit les assets finaux avec un niveau de finition adapté à l'usage : campagne, social, launch assets, visuels site ou supports de marque. C'est la phase la plus concentrée, la plus resserrée, la plus décisive.</p>
-                </div>
-              </div>
-              <div class="process-stage-note">Objectif : livrer un rendu final cohérent, propre, premium et directement utilisable.</div>
-            </article>
-
-            <article class="process-stage reveal reveal-card" data-process-step="9" data-depth-card>
-              <div class="process-stage-head">
-                <div class="process-stage-icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/><path d="M5 6h4"/><path d="M5 18h6"/></svg>
-                </div>
-                <div>
-                  <div class="process-stage-step"><b>09</b> Livraison + Guidelines</div>
-                  <h3>Les éléments sont livrés avec un cadre d'utilisation pour l'autonomie du client.</h3>
-                  <p>La mission ne s'arrête pas au fichier final. Les éléments sont accompagnés d'un guide d'utilisation, de principes de cohérence et de recommandations d'application pour que la marque puisse faire vivre la direction sans la diluer.</p>
-                </div>
-              </div>
-              <div class="process-stage-note">Objectif : donner des livrables, mais aussi un cadre pour les utiliser intelligemment dans le temps.</div>
-            </article>
-          </div>
+        <div data-services-quiz>
+          <p class="services-quiz-loading" style="text-align:center;color:rgba(255,255,255,0.5);padding:2rem 0;">Chargement du diagnostic…</p>
         </div>
       </div>
     </section>
@@ -806,15 +354,18 @@
     <!-- ═══════════════════════════════════════
          SECTION 3 — NOS SERVICES
          ═══════════════════════════════════════ -->
-    <section class="section" style="background: #060606;" aria-labelledby="offers-heading">
+    <section class="section" id="offres-detail" style="background: #060606;" aria-labelledby="offers-heading">
       <div class="container">
         <span class="kicker reveal reveal-tilt">Offres packagées</span>
-        <h2 id="offers-heading" class="reveal" style="margin: 20px 0 14px; max-width: 18ch;">
-          Pas de catalogue flou. Deux points d'entrée, selon la maturité de votre marque.
+        <h2 id="offers-heading" class="reveal" style="margin: 20px 0 14px; max-width: 22ch;">
+          Les formats en détail
         </h2>
         <div class="services-section-intro reveal">
           <p>
-            <strong>Astra Studio fonctionne avec deux formats seulement.</strong> Le premier sert à diagnostiquer, hiérarchiser et révéler ce qui freine votre perception de marque. Le second installe une direction artistique continue pour faire monter votre image dans la durée.
+            <strong>Audit, mission sur mesure, direction continue :</strong> le diagnostic ci-dessus indique l’entrée la plus logique. Voici le détail des offres pour décider sereinement.
+          </p>
+          <p style="margin-top: 14px; font-size: 0.92rem; color: rgba(255,255,255,0.48); max-width: 58ch;">
+            Besoin borné dans le temps (lancement, salon, shooting) ? Voir aussi les <a href="offre-sur-mesure.html" style="color: rgba(212,175,55,0.95);">missions sur mesure</a>.
           </p>
         </div>
 
@@ -914,6 +465,10 @@
 
         <div class="faq-list">
           <details class="faq-item reveal reveal-card">
+            <summary>Le diagnostic « Services » est-il une IA ?</summary>
+            <p>Non : des scores par réponse et quelques règles métier (par exemple limiter l’accompagnement mensuel si vous n’êtes pas prêt à vous engager). Le but est de qualifier vite, pas de remplacer un échange humain.</p>
+          </details>
+          <details class="faq-item reveal reveal-card">
             <summary>Faut-il commencer par l'audit ?</summary>
             <p>Si votre image, votre contenu ou votre positionnement manquent encore de clarté, oui. L'audit permet de poser un diagnostic propre avant d'investir dans une direction continue.</p>
           </details>
@@ -1005,52 +560,8 @@
     </div>
   </footer>
 
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const rail = document.querySelector("[data-process-rail]");
-      const steps = Array.from(document.querySelectorAll("[data-process-step]"));
-      const navItems = Array.from(document.querySelectorAll("[data-process-nav]"));
 
-      if (!rail || !steps.length || !navItems.length) return;
 
-      const setActiveStep = (activeIndex) => {
-        const safeIndex = Math.max(0, Math.min(activeIndex, steps.length - 1));
-        const progress = steps.length > 1 ? (safeIndex / (steps.length - 1)) * 100 : 100;
-
-        rail.style.setProperty("--process-progress", `${progress}%`);
-
-        steps.forEach((step, index) => {
-          step.classList.toggle("is-active", index === safeIndex);
-        });
-
-        navItems.forEach((item, index) => {
-          item.classList.toggle("is-active", index === safeIndex);
-        });
-      };
-
-      const observer = new IntersectionObserver(
-        (entries) => {
-          const visible = entries
-            .filter((entry) => entry.isIntersecting)
-            .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
-
-          if (!visible.length) return;
-
-          const activeStep = visible[0].target;
-          const index = steps.indexOf(activeStep);
-          if (index >= 0) setActiveStep(index);
-        },
-        {
-          root: null,
-          threshold: [0.25, 0.45, 0.65],
-          rootMargin: "-10% 0px -35% 0px"
-        }
-      );
-
-      steps.forEach((step) => observer.observe(step));
-      setActiveStep(0);
-    });
-  </script>
 
 </body>
 

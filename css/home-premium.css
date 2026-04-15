@@ -381,8 +381,15 @@ body[data-page="home"] .brand:hover .brand-logo-3d {
   flex-wrap: wrap;
   align-items: stretch;
   gap: 12px 16px;
+  width: 100%;
   opacity: 0;
   animation: homeHeroFade 1s cubic-bezier(0.22, 1, 0.36, 1) 0.68s forwards;
+}
+
+@media (max-width: 640px) {
+  .home-hero__ctas {
+    flex-direction: column;
+  }
 }
 
 .home-hero__btn {
@@ -407,6 +414,15 @@ body[data-page="home"] .brand:hover .brand-logo-3d {
     background 0.35s ease,
     color 0.35s ease,
     box-shadow 0.45s ease;
+}
+
+@media (max-width: 640px) {
+  .home-hero__btn {
+    width: 100%;
+    min-height: 56px;
+    padding: 1rem 1.5rem;
+    font-size: 0.85rem;
+  }
 }
 
 .home-hero__btn--primary {

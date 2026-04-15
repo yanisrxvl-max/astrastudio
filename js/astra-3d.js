@@ -379,6 +379,7 @@
       ".mastery-card",
       ".platform-card",
       ".period-card",
+      ".home-value__card",
     ];
 
     document.querySelectorAll(selectors.join(",")).forEach((el) => {

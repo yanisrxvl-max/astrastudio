@@ -1011,14 +1011,7 @@ body.has-intro-locked {
   height: 100vh;
   outline: none;
   --poster-color: transparent;
-  transform: scale(1.6); /* Expansion massive */
   filter: drop-shadow(0 30px 60px rgba(0, 0, 0, 0.95)) drop-shadow(0 15px 35px rgba(200, 167, 106, 0.25));
-}
-
-@media (min-width: 900px) {
-  .astra-intro-model {
-    transform: scale(1.85); /* Encore plus dominateur sur desktop */
-  }
 }
 
 @keyframes introMonumentalReveal {
@@ -1028,9 +1021,11 @@ body.has-intro-locked {
 }
 
 .astra-intro__language-wrap {
-  position: relative;
+  position: absolute;
+  bottom: clamp(6vh, 48px, 12vh);
+  left: 0;
+  right: 0;
   z-index: 2;
-  margin-top: 45vh; /* Pushes text securely to the lower bottom matching cinematic styling */
   opacity: 0;
   transform: translateY(10px);
   animation: introLangReveal 1.6s cubic-bezier(0.22, 1, 0.36, 1) 2.2s forwards;

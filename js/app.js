@@ -914,4 +914,45 @@ if ("serviceWorker" in navigator) {
       }, 1200); // 1.2s match la duration CSS fadeIn
     });
   });
+
+  // ——————————————————————————————————————————————————
+  // PARALLAX 3D INTERACTIF DYNAMIQUE
+  // ——————————————————————————————————————————————————
+  const viewer = introOverlay.querySelector("model-viewer");
+  if (viewer && window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+    // Si la souris est disponible, on remplace l'auto-rotation par le suivi de souris dynamique
+    viewer.removeAttribute("auto-rotate");
+    
+    let targetX = 0;
+    let targetY = 0;
+    let currentX = 0;
+    let currentY = 0;
+    let isTracking = false;
+
+    function renderParallax() {
+      if (!document.getElementById("astra-intro")) return; // Si détruit
+      
+      // Interpolation linéaire très douce "effet masse" - ressort lourd
+      currentX += (targetX - currentX) * 0.04;
+      currentY += (targetY - currentY) * 0.04;
+
+      // Map values : X = -35deg à 35deg, Y = 70deg à 110deg (90 est le centre)
+      const orbitX = currentX * 35;
+      const orbitY = 90 + (currentY * 20);
+
+      viewer.setAttribute("camera-orbit", `${orbitX}deg ${orbitY}deg auto`);
+      requestAnimationFrame(renderParallax);
+    }
+
+    document.addEventListener("mousemove", (e) => {
+      // Normaliser la position de la souris de -1 à 1 par rapport au centre de l'écran
+      targetX = (e.clientX / window.innerWidth - 0.5) * 2;
+      targetY = (e.clientY / window.innerHeight - 0.5) * 2;
+      
+      if (!isTracking) {
+        isTracking = true;
+        requestAnimationFrame(renderParallax);
+      }
+    });
+  }
 })();

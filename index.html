@@ -31,6 +31,9 @@
 
   <script defer src="js/app.js"></script>
   <script defer src="js/astra-3d.js"></script>
+  
+  <!-- Moteur 3D Premium -->
+  <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
 </head>
 
 <body data-page="home">
@@ -106,6 +109,26 @@
               <span class="home-hero__meta-sep" aria-hidden="true"></span>
               <span class="home-hero__meta-part home-hero__meta-part--wide">Stratégie d'image &amp; présence digitale</span>
             </p>
+          </div>
+          
+          <!-- Pièce 3D Signature -->
+          <div class="home-hero__3d-wrapper" aria-hidden="true">
+            <model-viewer
+              src="assets/3d/3Dastra.glb"
+              alt="Astra Studio Logo 3D"
+              auto-rotate
+              rotation-per-second="0.5deg"
+              camera-controls="false"
+              disable-zoom
+              disable-pan
+              interaction-prompt="none"
+              exposure="0.9"
+              shadow-intensity="1.2"
+              shadow-softness="1"
+              environment-image="neutral"
+              camera-orbit="15deg 80deg 100%"
+              class="astra-3d-model"
+            ></model-viewer>
           </div>
         </div>
       </div>

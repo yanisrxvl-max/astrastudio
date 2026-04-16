@@ -873,3 +873,45 @@ if ("serviceWorker" in navigator) {
     navigator.serviceWorker.register("/sw.js").catch(() => {});
   });
 }
+
+/* -------------------------------------------------- */
+/*  CINEMATIC INTRO & LANGUAGE SELECT                 */
+/* -------------------------------------------------- */
+(function initCinematicIntro() {
+  const introOverlay = document.getElementById("astra-intro");
+  if (!introOverlay) return;
+
+  const storedLang = localStorage.getItem("astra_lang");
+
+  // Si on a déjà choisi une langue, on skippe totalement
+  if (storedLang) {
+    document.documentElement.classList.add("intro-skipped");
+    if (introOverlay.parentNode) {
+      introOverlay.parentNode.removeChild(introOverlay);
+    }
+    document.body.classList.remove("has-intro-locked");
+    return;
+  }
+
+  // Si c'est la première fois, on bloque le scroll
+  document.body.classList.add("has-intro-locked");
+
+  const langBtns = introOverlay.querySelectorAll(".astra-intro__btn");
+  langBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const selectedLang = btn.getAttribute("data-lang");
+      
+      // Mémoriser la langue silencieusement
+      localStorage.setItem("astra_lang", selectedLang);
+      
+      // Animer la sortie de l'Overlay (le site derrière est déjà prêt)
+      introOverlay.classList.add("is-fading-out");
+      
+      // Attendre la fin de la transition pour retirer le verrou et détruire l'overlay
+      setTimeout(() => {
+        document.body.classList.remove("has-intro-locked");
+        if (introOverlay.parentNode) introOverlay.parentNode.removeChild(introOverlay);
+      }, 1200); // 1.2s match la duration CSS fadeIn
+    });
+  });
+})();

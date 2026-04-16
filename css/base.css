@@ -934,3 +934,136 @@ textarea:focus-visible {
     transition: none;
   }
 }
+
+/* ==========================================================================
+   ASTRA CINEMATIC INTRO 
+   ========================================================================== */
+html.intro-skipped .astra-intro {
+  display: none !important;
+}
+
+body.has-intro-locked {
+  overflow: hidden !important;
+  height: 100vh;
+}
+
+.astra-intro {
+  position: fixed;
+  inset: 0;
+  z-index: 100000;
+  background: #020202;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 1.2s cubic-bezier(0.22, 1, 0.36, 1), transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+
+.astra-intro.is-fading-out {
+  opacity: 0 !important;
+  pointer-events: none;
+  transform: scale(1.02);
+}
+
+.astra-intro__bg {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 50%, rgba(200, 167, 106, 0.08), transparent 60%);
+  z-index: 0;
+  opacity: 0;
+  animation: introBgPulse 4s ease-in-out forwards 0.5s;
+}
+
+@keyframes introBgPulse {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+.astra-intro__content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.astra-intro__3d-container {
+  width: 100%;
+  height: 45vh;
+  max-height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transform: scale(0.9) translateY(20px);
+  animation: introLogoReveal 2.8s cubic-bezier(0.22, 1, 0.36, 1) 0.3s forwards;
+}
+
+.astra-intro-model {
+  width: 100%;
+  height: 100%;
+  outline: none;
+  --poster-color: transparent;
+  filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.8)) drop-shadow(0 10px 20px rgba(200, 167, 106, 0.15));
+}
+
+@keyframes introLogoReveal {
+  0% { opacity: 0; transform: scale(0.9) translateY(20px); filter: blur(4px); }
+  100% { opacity: 1; transform: scale(1) translateY(0); filter: blur(0px); }
+}
+
+.astra-intro__language-wrap {
+  margin-top: 3rem;
+  opacity: 0;
+  transform: translateY(10px);
+  animation: introLangReveal 1.6s cubic-bezier(0.22, 1, 0.36, 1) 2.2s forwards;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@keyframes introLangReveal {
+  0% { opacity: 0; transform: translateY(10px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.astra-intro__hint {
+  font-family: var(--font-sans);
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(220, 200, 160, 0.5);
+  margin-bottom: 1.5rem;
+}
+
+.astra-intro__options {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+.astra-intro__sep {
+  color: rgba(255, 255, 255, 0.2);
+  font-size: 1.5rem;
+  line-height: 0;
+}
+
+.astra-intro__btn {
+  background: none;
+  border: none;
+  padding: 0.5rem;
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  color: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  transition: color 0.5s ease, transform 0.5s ease, text-shadow 0.5s ease;
+}
+
+.astra-intro__btn:hover {
+  color: #fff;
+  transform: translateY(-2px);
+  text-shadow: 0 0 20px rgba(200, 167, 106, 0.3);
+}

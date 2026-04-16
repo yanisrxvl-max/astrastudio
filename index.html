@@ -34,9 +34,50 @@
   
   <!-- Moteur 3D Premium -->
   <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
+  
+  <script>
+    // Vérification de la langue ou "intro lue" pour skipper l'intro cinématographique
+    if (localStorage.getItem('astra_lang')) {
+      document.documentElement.classList.add('intro-skipped');
+    }
+  </script>
 </head>
 
 <body data-page="home">
+
+  <!-- Séquence d'entrée Premium / Choix de langue -->
+  <div id="astra-intro" class="astra-intro">
+    <div class="astra-intro__bg"></div>
+    <div class="astra-intro__content">
+      <div class="astra-intro__3d-container">
+        <model-viewer
+          src="assets/3d/3Dastra.glb"
+          alt="Astra Studio - Cinematic Entrance"
+          auto-rotate
+          rotation-per-second="0.3deg"
+          camera-controls="false"
+          disable-zoom
+          disable-pan
+          interaction-prompt="none"
+          exposure="0.95"
+          shadow-intensity="1.5"
+          shadow-softness="0.8"
+          environment-image="neutral"
+          camera-orbit="10deg 85deg 100%"
+          class="astra-intro-model"
+        ></model-viewer>
+      </div>
+
+      <div class="astra-intro__language-wrap">
+        <p class="astra-intro__hint">Select your language</p>
+        <div class="astra-intro__options">
+          <button class="astra-intro__btn" data-lang="fr">Français</button>
+          <span class="astra-intro__sep">·</span>
+          <button class="astra-intro__btn" data-lang="en">English</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <header class="site-header site-header--premium-home">
     <div class="container header-inner">
@@ -109,26 +150,6 @@
               <span class="home-hero__meta-sep" aria-hidden="true"></span>
               <span class="home-hero__meta-part home-hero__meta-part--wide">Stratégie d'image &amp; présence digitale</span>
             </p>
-          </div>
-          
-          <!-- Pièce 3D Signature -->
-          <div class="home-hero__3d-wrapper" aria-hidden="true">
-            <model-viewer
-              src="assets/3d/3Dastra.glb"
-              alt="Astra Studio Logo 3D"
-              auto-rotate
-              rotation-per-second="0.5deg"
-              camera-controls="false"
-              disable-zoom
-              disable-pan
-              interaction-prompt="none"
-              exposure="0.9"
-              shadow-intensity="1.2"
-              shadow-softness="1"
-              environment-image="neutral"
-              camera-orbit="15deg 80deg 100%"
-              class="astra-3d-model"
-            ></model-viewer>
           </div>
         </div>
       </div>

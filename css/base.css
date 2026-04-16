@@ -1012,6 +1012,7 @@ body.has-intro-locked {
   outline: none;
   --poster-color: transparent;
   filter: drop-shadow(0 30px 60px rgba(0, 0, 0, 0.95)) drop-shadow(0 15px 35px rgba(200, 167, 106, 0.25));
+  cursor: pointer;
 }
 
 @keyframes introMonumentalReveal {

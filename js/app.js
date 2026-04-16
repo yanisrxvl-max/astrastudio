@@ -896,23 +896,42 @@ if ("serviceWorker" in navigator) {
   // Si c'est la première fois, on bloque le scroll
   document.body.classList.add("has-intro-locked");
 
+  const viewer = introOverlay.querySelector("model-viewer");
+
+  function enterExperience(langChoice = 'fr') {
+    // Mémoriser la langue silencieusement
+    localStorage.setItem("astra_lang", langChoice);
+    
+    // Animer la sortie de l'Overlay (le site derrière est déjà prêt)
+    introOverlay.classList.add("is-fading-out");
+    
+    // Attendre la fin de la transition pour retirer le verrou et détruire l'overlay
+    setTimeout(() => {
+      document.body.classList.remove("has-intro-locked");
+      if (introOverlay.parentNode) introOverlay.parentNode.removeChild(introOverlay);
+    }, 1200); // 1.2s match la duration CSS fadeIn
+  }
+
   const langBtns = introOverlay.querySelectorAll(".astra-intro__btn");
   langBtns.forEach((btn) => {
     btn.addEventListener("click", () => {
-      const selectedLang = btn.getAttribute("data-lang");
-      
-      // Mémoriser la langue silencieusement
-      localStorage.setItem("astra_lang", selectedLang);
-      
-      // Animer la sortie de l'Overlay (le site derrière est déjà prêt)
-      introOverlay.classList.add("is-fading-out");
-      
-      // Attendre la fin de la transition pour retirer le verrou et détruire l'overlay
-      setTimeout(() => {
-        document.body.classList.remove("has-intro-locked");
-        if (introOverlay.parentNode) introOverlay.parentNode.removeChild(introOverlay);
-      }, 1200); // 1.2s match la duration CSS fadeIn
+      enterExperience(btn.getAttribute("data-lang") || 'fr');
     });
   });
+
+  // Rendre le logo 3D interactif au clic
+  if (viewer) {
+    viewer.addEventListener("click", () => enterExperience('fr'));
+    
+    // Touch handler on mobile to ensure tap works even if click is absorbed
+    let touchMoved = false;
+    viewer.addEventListener("touchstart", () => { touchMoved = false; }, { passive: true });
+    viewer.addEventListener("touchmove", () => { touchMoved = true; }, { passive: true });
+    viewer.addEventListener("touchend", (e) => {
+      if (!touchMoved) {
+        enterExperience('fr');
+      }
+    });
+  }
 
 })();

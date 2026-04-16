@@ -881,27 +881,12 @@ if ("serviceWorker" in navigator) {
   const introOverlay = document.getElementById("astra-intro");
   if (!introOverlay) return;
 
-  const storedLang = localStorage.getItem("astra_lang");
-
-  // Si on a déjà choisi une langue, on skippe totalement
-  if (storedLang) {
-    document.documentElement.classList.add("intro-skipped");
-    if (introOverlay.parentNode) {
-      introOverlay.parentNode.removeChild(introOverlay);
-    }
-    document.body.classList.remove("has-intro-locked");
-    return;
-  }
-
-  // Si c'est la première fois, on bloque le scroll
+  // À chaque chargement, on bloque le scroll et affiche l'intro
   document.body.classList.add("has-intro-locked");
 
   const viewer = introOverlay.querySelector("model-viewer");
 
   function enterExperience(langChoice = 'fr') {
-    // Mémoriser la langue silencieusement
-    localStorage.setItem("astra_lang", langChoice);
-    
     // Animer la sortie de l'Overlay (le site derrière est déjà prêt)
     introOverlay.classList.add("is-fading-out");
     

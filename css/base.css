@@ -1042,24 +1042,13 @@ body.has-intro-locked {
 
 .astra-intro__hint {
   font-family: var(--font-display, "Bodoni Moda", serif);
-  font-size: 0.85rem;
+  font-size: 1.3rem;
   font-style: italic;
   font-weight: 500;
-  letter-spacing: 0.05em;
-  color: rgba(220, 200, 160, 0.75);
+  letter-spacing: 0.08em;
+  color: rgba(220, 200, 160, 0.85);
   margin-bottom: 2rem;
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
-}
-
-.astra-intro__hint::before,
-.astra-intro__hint::after {
-  content: "";
-  display: block;
-  width: 32px;
-  height: 1px;
-  background: rgba(220, 200, 160, 0.25);
+  text-align: center;
 }
 
 .astra-intro__options {

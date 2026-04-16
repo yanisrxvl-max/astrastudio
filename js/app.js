@@ -916,43 +916,74 @@ if ("serviceWorker" in navigator) {
   });
 
   // ——————————————————————————————————————————————————
-  // PARALLAX 3D INTERACTIF DYNAMIQUE
+  // PARALLAX 3D INTERACTIF DYNAMIQUE (STUDIO GRADE)
   // ——————————————————————————————————————————————————
   const viewer = introOverlay.querySelector("model-viewer");
-  if (viewer && window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
-    // Si la souris est disponible, on remplace l'auto-rotation par le suivi de souris dynamique
+  if (viewer) {
+    // Désactiver la rotation auto pour imposer notre propre physique
     viewer.removeAttribute("auto-rotate");
+    viewer.setAttribute("camera-controls", "false"); // Verrouille le joystick libre
     
     let targetX = 0;
     let targetY = 0;
     let currentX = 0;
     let currentY = 0;
-    let isTracking = false;
+    
+    let isInteracting = false;
+    let time = 0;
 
     function renderParallax() {
-      if (!document.getElementById("astra-intro")) return; // Si détruit
+      if (!document.getElementById("astra-intro") || viewer.closest('.is-fading-out')) return;
       
-      // Interpolation linéaire très douce "effet masse" - ressort lourd
-      currentX += (targetX - currentX) * 0.04;
-      currentY += (targetY - currentY) * 0.04;
+      time += 0.012; // Vitesse de la respiration idle
 
-      // Map values : X = -35deg à 35deg, Y = 70deg à 110deg (90 est le centre)
-      const orbitX = currentX * 35;
-      const orbitY = 90 + (currentY * 20);
+      if (!isInteracting) {
+        // Idle Animation douce quand la souris n'est pas là
+        targetX = Math.sin(time) * 0.4;
+        targetY = Math.cos(time * 0.6) * 0.3;
+      }
 
-      viewer.setAttribute("camera-orbit", `${orbitX}deg ${orbitY}deg auto`);
+      // Easing/Inertie "Métal lourd" : 0.035 rend le mouvement de l'or incroyablement organique et ralenti
+      currentX += (targetX - currentX) * 0.035;
+      currentY += (targetY - currentY) * 0.035;
+
+      // Rotation stricte et contenue : on ne voit jamais "l'arrière" de l'objet.
+      const maxAngleX = 14; 
+      const maxAngleY = 10; 
+
+      const orbitX = currentX * maxAngleX; 
+      const orbitY = 90 + (currentY * maxAngleY);
+
+      // On maintient impérativement le 60% de zoom pour la monumentalité
+      viewer.setAttribute("camera-orbit", `${orbitX}deg ${orbitY}deg 60%`);
+      
       requestAnimationFrame(renderParallax);
     }
+    
+    // Démarre la boucle de rendu physique
+    requestAnimationFrame(renderParallax);
 
+    // Écouteurs fluides souris
     document.addEventListener("mousemove", (e) => {
-      // Normaliser la position de la souris de -1 à 1 par rapport au centre de l'écran
+      isInteracting = true;
       targetX = (e.clientX / window.innerWidth - 0.5) * 2;
       targetY = (e.clientY / window.innerHeight - 0.5) * 2;
-      
-      if (!isTracking) {
-        isTracking = true;
-        requestAnimationFrame(renderParallax);
-      }
+    });
+
+    document.addEventListener("mouseleave", () => {
+      isInteracting = false;
+    });
+
+    // Prise en charge Mobile (doigt)
+    document.addEventListener("touchmove", (e) => {
+      isInteracting = true;
+      const touch = e.touches[0];
+      targetX = (touch.clientX / window.innerWidth - 0.5) * 2;
+      targetY = (touch.clientY / window.innerHeight - 0.5) * 2;
+    }, { passive: true });
+
+    document.addEventListener("touchend", () => {
+      isInteracting = false;
     });
   }
 })();

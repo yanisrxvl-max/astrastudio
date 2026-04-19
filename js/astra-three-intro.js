@@ -100,32 +100,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const stars = new THREE.Points(starGeometry, starMaterial);
     cosmosGroup.add(stars);
 
-    // 2. THE CELESTIAL BODY / PLANET (Eclipse effect)
-    const planetGeometry = new THREE.SphereGeometry(25, 64, 64);
-    const planetMaterial = new THREE.MeshPhysicalMaterial({
-        color: 0x050505, // Almost pure black
-        emissive: 0xdcc8a0,
-        emissiveIntensity: 0.05,
-        roughness: 0.9,
-        metalness: 0.1,
-        clearcoat: 1.0,
-        clearcoatRoughness: 0.8
-    });
-    const planet = new THREE.Mesh(planetGeometry, planetMaterial);
-    planet.position.set(20, -10, -60); // Far behind, slightly offset
-    cosmosGroup.add(planet);
-
-    // Orbital Rings of the planet
-    const ringGeometry = new THREE.TorusGeometry(35, 0.1, 16, 100);
-    const ringMaterial = new THREE.MeshBasicMaterial({
-        color: 0xdcc8a0,
-        transparent: true,
-        opacity: 0.1,
-        side: THREE.DoubleSide
-    });
-    const ring = new THREE.Mesh(ringGeometry, ringMaterial);
-    ring.rotation.x = Math.PI / 1.8;
-    planet.add(ring);
+    // ORBITAL RINGS/PLANET DELETED AS REQUESTED
 
     // 3. SHOOTING STARS
     const shootingStars = [];
@@ -184,12 +159,14 @@ document.addEventListener("DOMContentLoaded", () => {
             logo.position.y += (logo.position.y - center.y);
             logo.position.z += (logo.position.z - center.z);
             
-            // Scale dynamically to fit more screen height and appear massive
+            // Scale dynamically to fit more screen height and appear massive, but properly framed for mobile
             const maxDim = Math.max(size.x, size.y, size.z);
             const fov = camera.fov * (Math.PI / 180);
-            let cameraZ = Math.abs(maxDim / 2 / Math.tan(fov / 2));
-            cameraZ *= 1.4; // Reduced from 2.3 to zoom in significantly (massive scale)
-            camera.position.z = cameraZ;
+            let baseCameraZ = Math.abs(maxDim / 2 / Math.tan(fov / 2));
+            
+            logo.userData.zDesk = baseCameraZ * 1.4;
+            logo.userData.zMob = baseCameraZ * 2.4;
+            camera.position.z = window.innerWidth < 768 ? logo.userData.zMob : logo.userData.zDesk;
 
             // Offset slightly higher to balance the text at the bottom visually
             logo.position.y += maxDim * 0.1;
@@ -232,11 +209,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
             if (stars.material.uniforms) {
                 stars.material.uniforms.time.value = time;
-            }
-
-            if (planet) {
-                planet.rotation.y += 0.002;
-                ring.rotation.z += 0.001;
             }
 
             // Shooting stars logic
@@ -286,6 +258,11 @@ document.addEventListener("DOMContentLoaded", () => {
         camera.aspect = window.innerWidth / window.innerHeight;
         camera.updateProjectionMatrix();
         renderer.setSize(window.innerWidth, window.innerHeight);
+        
+        // Dynamically update framing for mobile vs desktop on resize
+        if(logo && logo.userData.zDesk) {
+            camera.position.z = window.innerWidth < 768 ? logo.userData.zMob : logo.userData.zDesk;
+        }
     });
 
     // START INTERACTION

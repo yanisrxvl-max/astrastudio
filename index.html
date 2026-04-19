@@ -32,43 +32,31 @@
   <script defer src="js/app.js"></script>
   <script defer src="js/astra-3d.js"></script>
   
-  <!-- Moteur 3D Premium -->
-  <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
-  
+  <!-- Moteur 3D Premium (Three.js) -->
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+  <script defer src="js/astra-three-intro.js"></script>
 
 </head>
 
 <body data-page="home">
 
-  <!-- Séquence d'entrée Premium / Choix de langue -->
+  <!-- Séquence d'entrée Premium (Three.js) -->
   <div id="astra-intro" class="astra-intro">
     <div class="astra-intro__bg"></div>
-    <div class="astra-intro__content">
-      <div class="astra-intro__3d-container">
-        <model-viewer
-          src="assets/3d/nouveaulogo.glb"
-          alt="Astra Studio - Cinematic Entrance"
-          auto-rotate
-          rotation-per-second="30deg"
-          camera-controls
-          disable-zoom
-          disable-pan
-          interaction-prompt="none"
-          exposure="0.95"
-          shadow-intensity="1.5"
-          shadow-softness="0.8"
-          environment-image="neutral"
-          camera-orbit="0deg 90deg auto"
-          bounds="tight"
-          class="astra-intro-model"
-        ></model-viewer>
-      </div>
+    <div id="astra-three-container" class="astra-intro__3d-container">
+      <!-- Canvas Three.js s'injecte ici -->
+    </div>
 
+    <div class="astra-intro__content">
       <div class="astra-intro__language-wrap">
         <p class="astra-intro__hint">Astra Studio Paris</p>
         <div class="astra-intro__options">
-          <button class="astra-intro__btn astra-intro__start" data-lang="fr">START</button>
+          <button id="astra-btn-start" class="astra-intro__btn astra-intro__start" type="button" aria-label="Entrer dans Astra Studio">
+            ENTRER
+          </button>
         </div>
+        <p class="astra-intro__micro" style="color:#aaaaaa;">Direction créative &amp; stratégie digitale</p>
       </div>
     </div>
   </div>

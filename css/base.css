@@ -999,11 +999,11 @@ body.has-intro-locked {
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1;
+  z-index: 3; /* HIGHER THAN TEXT SO LOGO PIERCES THROUGH */
   opacity: 0;
   transform: scale(0.85);
   animation: introMonumentalReveal 3.5s cubic-bezier(0.22, 1, 0.36, 1) 0.1s forwards;
-  pointer-events: none; /* Let clicks pass through if needed, though language is z-index 2 */
+  pointer-events: none; /* Let clicks pass through to the button */
 }
 
 .astra-intro-model {
@@ -1041,35 +1041,73 @@ body.has-intro-locked {
   100% { opacity: 1; transform: translateY(0); }
 }
 
-.astra-intro__hint {
+/* WRAPPER DU BOUTON ROTATIF */
+.astra-intro__btn-rotator-wrap {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  outline: none;
+  position: relative;
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.astra-intro__btn-rotator-wrap:hover {
+  transform: scale(1.05); /* Slight pop on hover */
+}
+
+.astra-intro__btn-rotator-wrap:hover .astra-intro__phrase--gold {
+  text-shadow: 0 0 20px rgba(200, 167, 106, 0.6);
+}
+
+.astra-intro__phrase-container {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: 2.5rem;
+}
+
+/* PHRASES COMMUNES */
+.astra-intro__phrase {
+  grid-area: 1 / 1;
+  display: block;
+  white-space: nowrap;
+}
+
+/* PHRASE 1 : ASTRA STUDIO PARIS */
+.astra-intro__phrase--gold {
   font-family: var(--font-display, "Bodoni Moda", serif);
   font-size: 1.4rem;
   font-style: italic;
   font-weight: 300;
   letter-spacing: 0.1em;
-  color: #C9A84C;
-  margin: 0;
-  text-align: center;
+  color: #dcc8a0;
+  animation: crossfadePhrase1 7s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }
 
-.astra-intro__btn {
-  background: none;
-  border: none;
-  padding: 0.5rem 2rem;
+/* PHRASE 2 : ENTRER */
+.astra-intro__phrase--action {
   font-family: var(--font-sans, "Plus Jakarta Sans", sans-serif);
-  font-size: 0.85rem;
-  font-weight: 500;
-  letter-spacing: 0.4em;
+  font-size: 0.95rem;
+  font-weight: 400;
+  letter-spacing: 0.5em;
   text-transform: uppercase;
-  color: #C9A84C;
-  cursor: pointer;
-  transition: all 0.4s ease;
+  color: #fff;
+  opacity: 0; 
+  animation: crossfadePhrase2 7s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }
 
-.astra-intro__btn:hover {
-  text-shadow: 0 0 20px rgba(201, 168, 76, 0.8);
-  transform: translateY(-2px);
-  color: #fff;
+@keyframes crossfadePhrase1 {
+  0%, 35% { opacity: 1; filter: blur(0); transform: translateY(0) scale(1); }
+  45%, 85% { opacity: 0; filter: blur(8px); transform: translateY(-10px) scale(0.95); }
+  95%, 100% { opacity: 1; filter: blur(0); transform: translateY(0) scale(1); }
+}
+
+@keyframes crossfadePhrase2 {
+  0%, 35% { opacity: 0; filter: blur(8px); transform: translateY(10px) scale(0.95); }
+  45%, 85% { opacity: 1; filter: blur(0); transform: translateY(0) scale(1); }
+  95%, 100% { opacity: 0; filter: blur(8px); transform: translateY(-10px) scale(0.95); }
 }
 
 .astra-intro__micro {

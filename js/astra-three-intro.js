@@ -22,25 +22,42 @@ document.addEventListener("DOMContentLoaded", () => {
     
     introContainer.appendChild(renderer.domElement);
 
-    // LIGHTING (As requested)
-    // AmbientLight dorée douce (~0.3)
-    const ambientLight = new THREE.AmbientLight(0xffd700, 0.3);
+    // LIGHTING (PIMPED FOR BLING BLING DIGITAL GOLD)
+    // AmbientLight pure gold for base
+    const ambientLight = new THREE.AmbientLight(0xffea00, 0.4);
     scene.add(ambientLight);
 
-    // DirectionalLight chaude positionnée en haut à droite (~intensity 2)
-    const directionalLight = new THREE.DirectionalLight(0xffeedd, 2.0);
-    directionalLight.position.set(5, 5, 2);
+    // Deep warm directional pointing towards the camera plane
+    const directionalLight = new THREE.DirectionalLight(0xffdf00, 2.5);
+    directionalLight.position.set(5, 5, 5);
     scene.add(directionalLight);
 
-    // PointLight chaleureuse sur le côté pour accentuer les reflets métalliques
-    const pointLight = new THREE.PointLight(0xffa500, 1.5, 50);
-    pointLight.position.set(-5, 0, 3);
-    scene.add(pointLight);
+    // "Digital" effect: Intense white/blue flashes as if entering computer system
+    const digitalLight1 = new THREE.PointLight(0xffffff, 3.5, 30);
+    digitalLight1.position.set(-3, 1, 4);
+    scene.add(digitalLight1);
 
-    // Subtle fill light from bottom
-    const fillLight = new THREE.DirectionalLight(0x444455, 0.5);
-    fillLight.position.set(0, -5, 2);
-    scene.add(fillLight);
+    const digitalLight2 = new THREE.PointLight(0xe0f2fe, 2.5, 30); // Slight ice blue for computer feel
+    digitalLight2.position.set(3, -2, 3);
+    scene.add(digitalLight2);
+
+    // ETOILES DE GALAXIE CHIC ET SUBTILES
+    const starGeometry = new THREE.BufferGeometry();
+    const starCount = 300; 
+    const starPositions = new Float32Array(starCount * 3);
+    for(let i=0; i<starCount*3; i++) {
+        starPositions[i] = (Math.random() - 0.5) * 60; 
+    }
+    starGeometry.setAttribute('position', new THREE.BufferAttribute(starPositions, 3));
+    const starMaterial = new THREE.PointsMaterial({
+        color: 0xffffff,
+        size: 0.04, // Very tiny, cute stars
+        transparent: true,
+        opacity: 0.5,
+        sizeAttenuation: true
+    });
+    const stars = new THREE.Points(starGeometry, starMaterial);
+    scene.add(stars);
 
     // LOAD MODEL
     const loader = new THREE.GLTFLoader();
@@ -54,10 +71,13 @@ document.addEventListener("DOMContentLoaded", () => {
             // Adjust materials for maximum gold reflection if needed
             logo.traverse((child) => {
                 if (child.isMesh && child.material) {
-                    // Enhance metallic feel
+                    // Enhance metallic feel to "pure bling lingot d'or"
+                    if(child.material.color) {
+                       child.material.color.setHex(0xffaa00);
+                    }
                     child.material.metalness = 1.0;
-                    child.material.roughness = Math.max(0.1, child.material.roughness); 
-                    child.material.envMapIntensity = 2.0;
+                    child.material.roughness = 0.05; // Make it extremely glossy like polished gold
+                    child.material.envMapIntensity = 3.0;
                     child.material.needsUpdate = true;
                 }
             });
@@ -106,8 +126,16 @@ document.addEventListener("DOMContentLoaded", () => {
             logo.rotation.x = Math.sin(time * 0.5) * 0.2; // slight elegant pitch
             logo.rotation.z = Math.cos(time * 0.3) * 0.1; // slight elegant roll
             
-            // Hover effect on Y to make it float
-            logo.position.y = Math.sin(time * 1.5) * (camera.position.z * 0.015);
+            // Hover effect on Y to make it float dynamically
+            logo.position.y += Math.sin(time * 1.5) * 0.002;
+            
+            // Mouse entering digital world: subtle zooming in and out pulsating
+            camera.position.z += Math.sin(time * 0.8) * 0.01;
+        }
+        
+        if (stars) {
+            stars.rotation.y += 0.0005; // Galaxy very slowly rotating
+            stars.rotation.x += 0.0002;
         }
 
         renderer.render(scene, camera);

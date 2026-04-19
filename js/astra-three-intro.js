@@ -72,13 +72,16 @@ document.addEventListener("DOMContentLoaded", () => {
             logo.position.y += (logo.position.y - center.y);
             logo.position.z += (logo.position.z - center.z);
             
-            // Scale dynamically to fit ~55-60% of viewport height
+            // Scale dynamically to fit more screen height and appear massive
             const maxDim = Math.max(size.x, size.y, size.z);
             const fov = camera.fov * (Math.PI / 180);
             let cameraZ = Math.abs(maxDim / 2 / Math.tan(fov / 2));
-            cameraZ *= 2.3; // Adjust to make logo take ~60% of vertical space
+            cameraZ *= 1.4; // Reduced from 2.3 to zoom in significantly (massive scale)
             camera.position.z = cameraZ;
 
+            // Offset slightly higher to balance the text at the bottom visually
+            logo.position.y += maxDim * 0.1;
+            
             scene.add(logo);
         },
         undefined,

@@ -22,24 +22,25 @@ document.addEventListener("DOMContentLoaded", () => {
     
     introContainer.appendChild(renderer.domElement);
 
-    // LIGHTING (PIMPED FOR BLING BLING DIGITAL GOLD)
-    // AmbientLight pure gold for base
-    const ambientLight = new THREE.AmbientLight(0xffea00, 0.4);
+    // LIGHTING (PREMIUM PRO METALLIC STUDIO)
+    // Soft elegant ambient light
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.6); 
     scene.add(ambientLight);
 
-    // Deep warm directional pointing towards the camera plane
-    const directionalLight = new THREE.DirectionalLight(0xffdf00, 2.5);
-    directionalLight.position.set(5, 5, 5);
+    // Main studio key light (slightly warm white)
+    const directionalLight = new THREE.DirectionalLight(0xfffae6, 2.0);
+    directionalLight.position.set(5, 8, 5);
     scene.add(directionalLight);
 
-    // "Digital" effect: Intense white/blue flashes as if entering computer system
-    const digitalLight1 = new THREE.PointLight(0xffffff, 3.5, 30);
-    digitalLight1.position.set(-3, 1, 4);
-    scene.add(digitalLight1);
+    // Rim light (cool/digital white) to define the sharp metallic edges beautifully
+    const rimLight = new THREE.DirectionalLight(0xe0f2fe, 1.5);
+    rimLight.position.set(-5, -2, -5);
+    scene.add(rimLight);
 
-    const digitalLight2 = new THREE.PointLight(0xe0f2fe, 2.5, 30); // Slight ice blue for computer feel
-    digitalLight2.position.set(3, -2, 3);
-    scene.add(digitalLight2);
+    // Subtle front fill light to reveal surface details
+    const fillLight = new THREE.DirectionalLight(0xffffff, 0.8);
+    fillLight.position.set(0, 0, 5);
+    scene.add(fillLight);
 
     // ETOILES DE GALAXIE CHIC ET SUBTILES
     const starGeometry = new THREE.BufferGeometry();
@@ -71,13 +72,13 @@ document.addEventListener("DOMContentLoaded", () => {
             // Adjust materials for maximum gold reflection if needed
             logo.traverse((child) => {
                 if (child.isMesh && child.material) {
-                    // Enhance metallic feel to "pure bling lingot d'or"
+                    // Premium Champagne Gold / Titanium logic
                     if(child.material.color) {
-                       child.material.color.setHex(0xffaa00);
+                       child.material.color.setHex(0xdcc8a0); // Chic Pale Champagne Gold
                     }
                     child.material.metalness = 1.0;
-                    child.material.roughness = 0.05; // Make it extremely glossy like polished gold
-                    child.material.envMapIntensity = 3.0;
+                    child.material.roughness = 0.12; // Slight satin finish, not cheap mirror
+                    child.material.envMapIntensity = 2.5;
                     child.material.needsUpdate = true;
                 }
             });

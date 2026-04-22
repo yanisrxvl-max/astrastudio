@@ -20,27 +20,7 @@ const publicPages = {
   "/offre-sur-mesure": "offre-sur-mesure.html",
   "/offre-sur-mesure.html": "offre-sur-mesure.html",
 
-  /* ─── Univers de marque ─── */
-  "/vision": "vision.html",
-  "/vision.html": "vision.html",
-  "/systemes-ia": "systemes-ia.html",
-  "/systemes-ia.html": "systemes-ia.html",
-  "/creative-influence": "creative-influence.html",
-  "/creative-influence.html": "creative-influence.html",
-  "/production": "production.html",
-  "/production.html": "production.html",
-  "/work": "work.html",
-  "/work.html": "work.html",
-
-  /* ─── Outils ─── */
-  "/formations": "formations.html",
-  "/formations.html": "formations.html",
-  "/diagnostic": "diagnostic.html",
-  "/diagnostic.html": "diagnostic.html",
-  "/glowy-glow": "glowy-glow.html",
-  "/glowy-glow.html": "glowy-glow.html",
-  "/results": "results.html",
-  "/results.html": "results.html",
+  /* ─── Legacy (redirigées via vercel.json) ─── */
 
   /* ─── Légal ─── */
   "/mentions-legales": "mentions-legales.html",

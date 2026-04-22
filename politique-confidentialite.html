@@ -11,154 +11,44 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;600;700&family=Sora:wght@300;400;500;600&display=swap" rel="stylesheet">
     
+    <link rel="stylesheet" href="css/core.css" />
+    <link rel="stylesheet" href="css/pages.css" />
     <style>
-        :root {
-            --bg-color: #050505;
-            --text-color: #ffffff;
-            --text-muted: #888888;
-            --accent-color: #d4af37;
-            --font-heading: 'Bodoni Moda', serif;
-            --font-body: 'Sora', sans-serif;
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            font-family: var(--font-body);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        /* Header — use shared site styles inline for standalone legal pages */
-        .site-header {
-            position: fixed;
-            top: 0; left: 0; right: 0;
-            z-index: 1000;
-            padding: 16px 0;
-            background: rgba(5,5,5,0.85);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border-bottom: 1px solid rgba(255,255,255,0.04);
-        }
-        .site-header .container {
-            width: min(100% - 48px, 1400px);
-            margin: 0 auto;
-        }
-        .header-inner {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 2.5rem;
-        }
-        .brand { display: inline-flex; align-items: center; text-decoration: none; }
-        .brand-logo { display: block; height: 32px; width: auto; object-fit: contain; }
-        .site-nav { display: flex; align-items: center; gap: 2rem; }
-        .site-nav a {
-            color: rgba(255,255,255,0.65);
-            text-decoration: none;
-            font-size: 0.88rem;
-            letter-spacing: 0.02em;
-            transition: color 0.25s ease;
-        }
-        .site-nav a:hover { color: #fff; }
-        .header-end { display: flex; align-items: center; gap: 1.5rem; }
-        .header-cta {
-            display: inline-flex;
-            padding: 0.6rem 1.2rem;
-            border-radius: 999px;
-            background: var(--accent-color);
-            color: #0a0a0a;
-            font-size: 0.82rem;
-            font-weight: 600;
-            text-decoration: none;
-            letter-spacing: 0.02em;
-            transition: opacity 0.25s ease;
-        }
-        .header-cta:hover { opacity: 0.88; }
-        .nav-toggle { display: none; }
-        @media (max-width: 768px) {
-            .site-nav { display: none; }
-            .header-cta { display: none; }
-        }
-
-        /* Contenu Principal */
-        .legal-container {
-            max-width: 800px;
-            margin: 140px auto 80px;
-            padding: 0 20px;
-        }
-
-        h1 {
-            font-family: var(--font-heading);
-            font-size: 2.5rem;
-            color: var(--accent-color);
-            margin-bottom: 40px;
-            text-align: center;
-        }
-
-        h2 {
-            font-family: var(--font-heading);
-            font-size: 1.5rem;
-            color: var(--text-color);
-            margin-top: 40px;
-            margin-bottom: 20px;
-            border-left: 3px solid var(--accent-color);
-            padding-left: 15px;
-        }
-
-        h3 {
-            font-family: var(--font-body);
-            font-size: 1.1rem;
-            color: var(--text-color);
-            margin-top: 25px;
-            margin-bottom: 15px;
-            font-weight: 600;
-        }
-
-        p {
-            color: var(--text-muted);
-            margin-bottom: 20px;
-            font-size: 0.95rem;
-        }
-
-        ul {
-            color: var(--text-muted);
-            margin-bottom: 20px;
-            padding-left: 20px;
-        }
-        li { margin-bottom: 10px; }
-
-        .highlight { color: var(--text-color); font-weight: 500; }
-        .placeholder { color: var(--accent-color); font-style: italic; }
-        
-        .contact-box {
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            background: rgba(212, 175, 55, 0.05);
-            padding: 20px;
-            border-radius: 8px;
-            margin-top: 30px;
-        }
-
-        /* Footer */
-        footer {
-            border-top: 1px solid rgba(255,255,255,0.05);
-            padding: 60px 5% 30px;
-            margin-top: 80px;
-            text-align: center;
-            color: var(--text-muted);
-            font-size: 0.85rem;
-        }
-        .footer-links { margin-bottom: 20px; }
-        .footer-links a { color: var(--text-muted); text-decoration: none; margin: 0 10px; transition: color 0.3s; }
-        .footer-links a:hover { color: var(--accent-color); }
-
-        @media (max-width: 768px) {
-            h1 { font-size: 2rem; }
-            .legal-container { margin: 120px auto 40px; }
-        }
+        .legal-container { max-width: 800px; margin: 140px auto 80px; padding: 0 20px; }
+        .legal-container h1 { font-family: var(--font-display, 'Bodoni Moda', serif); font-size: 2.5rem; color: #d4af37; margin-bottom: 40px; text-align: center; }
+        .legal-container h2 { font-size: 1.5rem; margin-top: 40px; margin-bottom: 20px; border-left: 3px solid #d4af37; padding-left: 15px; }
+        .legal-container h3 { font-size: 1.1rem; margin-top: 25px; margin-bottom: 15px; font-weight: 600; }
+        .legal-container p { color: #888; margin-bottom: 20px; font-size: 0.95rem; }
+        .legal-container ul { color: #888; margin-bottom: 20px; padding-left: 20px; }
+        .legal-container li { margin-bottom: 10px; }
+        .highlight { color: #fff; font-weight: 500; }
+        .placeholder { color: #d4af37; font-style: italic; }
+        .contact-box { border: 1px solid rgba(212,175,55,0.3); background: rgba(212,175,55,0.05); padding: 20px; border-radius: 8px; margin-top: 30px; }
+        @media (max-width: 768px) { .legal-container h1 { font-size: 2rem; } .legal-container { margin: 120px auto 40px; } }
     </style>
+
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "Astra Studio",
+    "description": "Direction créative pour marques beauté indépendantes. Un studio, une méthode, une ligne tenue dans la durée.",
+    "url": "https://astrastudio-seven.vercel.app",
+    "founder": {
+      "@type": "Person",
+      "name": "Yanis Revel"
+    },
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Vichy",
+      "addressCountry": "FR"
+    },
+    "areaServed": "FR",
+    "serviceType": ["Direction créative", "Audit de marque", "Identité visuelle"],
+    "priceRange": "490€ – 1500€/mois"
+  }
+  </script>
 </head>
 <body>
 

@@ -44,7 +44,7 @@
     "audit": {
       "id": "audit",
       "name": "Audit stratégique de marque",
-      "priceHint": "À partir de 490 — 690 € selon formule",
+      "priceHint": "À partir de 490 — 490 € selon formule",
       "profileLabel": "Besoin de clarté avant d'agir",
       "href": "contact.html?offer=audit",
       "hrefLabel": "Réserver un audit",
@@ -60,7 +60,7 @@
     "direction": {
       "id": "direction",
       "name": "Direction créative premium",
-      "priceHint": "Dès 1 500 — 1 800 € / mois",
+      "priceHint": "Dès 1 500 — 1 500 € / mois",
       "profileLabel": "Prêt pour un pilotage dans la durée",
       "href": "contact.html?offer=direction",
       "hrefLabel": "Candidater pour l'accompagnement",
